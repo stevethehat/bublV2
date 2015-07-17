@@ -1,0 +1,267 @@
+.zen-control{
+	border: 0;
+	border-radius: 0;
+}
+
+body{
+	background-color: white;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   	font-weight: 300;
+}
+
+#BublApp{
+	background-color: white;
+}
+
+h1{
+	margin-left: 10px;
+	font-weight: normal;
+}
+
+button{
+	text-align: center;
+	vertical-align: middle;
+}
+
+#palette{
+	border-right: solid 1px #aaa;
+	top: 2px;
+}
+
+.paletteItem{
+	border-bottom: 1px solid #aaa;
+	width: 100%;
+	padding: 4px;
+	color: #666;
+}
+
+.paletteItem * {
+	padding-left: 6px;
+}
+
+#properties{
+	border-left: solid 1px #aaa;
+}
+
+.icon{
+	margin: auto;
+	color: #94C2C9;
+}
+
+.statusbar{
+	border-top: solid 1px #aaa;
+}
+
+p{
+	margin: 0px 0px 0px 10px;
+}
+
+/* 851C38 */
+.go{
+	background-color: #eee;
+	text-align: center;
+	color: #999;
+}
+
+.launcher{
+	height: 99%;
+	width: 100%;
+	vertical-align: top;
+}
+
+.launcher, .launcher *{
+	cursor: pointer;
+}
+.launcher .thumbnail{
+	width: 100px;
+	height: 100px;
+	border: solid 1px #94C2C9;
+	float: left;
+	background-color: #eee;
+}
+
+.launcher p, .launcher h2{
+	margin-left: 110px;
+}
+
+.launcher .go{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 30px;
+	height: 100%;
+}
+
+.launcher .go i{
+	margin-top: 40px;
+}
+
+#help, #help *{
+	cursor: pointer;
+}
+
+table{
+	width: 100%;
+}
+
+table, table *{
+	cursor: pointer;
+}
+
+table th{
+	background-color: #94C2C9;
+	margin: 1 4 1 4;
+	text-align: left;
+}
+
+table tr{
+	height:60px;
+}
+
+table td{
+	vertical-align: top;
+}
+
+.toolbar{
+	color: #000;
+}
+
+.labelbutton, .labelbutton *{
+	cursor: pointer;
+}
+
+.labelbutton span{
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+table .thumbnail{
+	width: 100px;
+	height: 100px;
+	border: solid 1px #94C2C9;
+	background-color: #eee;	
+}
+
+table .selected{
+	background-color: #eee;
+}
+
+
+/* Bubble with an isoceles triangle
+------------------------------------------ */
+
+.triangle-isosceles {
+  	position: relative;
+  	padding: 15px;
+  	margin: 1em 0 3em;
+  	color: #000;
+  	background: white;
+  	border: solid 1px #666;
+  	border-radius: 5px;
+}
+
+/* creates triangle */
+.triangle-isosceles:after {
+  	content: "";
+  	display: block; /* reduce the damage in FF3.0 */
+  	position: absolute;
+  	bottom: -15px;
+  	left: 50px;
+  	width: 0;
+  	border-width: 15px 15px 0;
+  	border-style: solid;
+  	border-color: #666 transparent;
+}
+
+.crossfader {
+  	position:relative;
+  	margin:0 auto;
+}
+
+.crossfader  div.front{
+	z-index: 1000;
+	width:100%;
+	height:100%;
+}
+.crossfader  div.back{
+	z-index: 900;
+	width:100%;
+	height:100%;
+}
+
+.crossfader  div.front, .crossfader div.back {
+  	position:absolute;
+  	left:0;
+  	-webkit-transition: opacity 1s ease-in-out;
+  	-moz-transition: opacity 1s ease-in-out;
+  	-o-transition: opacity 1s ease-in-out;
+  	transition: opacity 1s ease-in-out;
+	  /*pointer-events: all;*/
+}
+
+.crossfader div.front:hover {
+  	opacity:0;
+	  /*pointer-events: none;*/
+}
+
+.thumbnailMI, .thumbnailMI *{
+	cursor: pointer;
+}
+
+.thumbnailMI{
+	border: solid 4px white;
+}
+
+.thumbnailMI .controls{
+	display: none;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	border: solid 1px white;
+	padding: 2px 3px 2px 3px;
+}
+
+.thumbnailMI .controls *{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.thumbnailMI .control{
+	display:block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.thumbnailMI span{
+	margin-left: 2px;
+}
+
+.jsonEditor{
+	font-family: Courier New, Courier, monospace;
+}
+
+.uploader{
+	/*
+	position: relative;
+	top:10px;
+	right:10px;
+	bottom:10px;
+	left:10px;
+	border: dashed 1px #666;
+	*/
+	background-color: #ddd;
+}
+
+.uploader span{
+	padding: 10px;
+	display: block;
+}
+.uploader .progress{
+	height: 20px;
+	width: 100%;
+	border: solid 1px white;
+	/*margin: 10px;*/
+}
+

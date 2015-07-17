@@ -27,15 +27,15 @@
 						{
 							"children": [
 								{
-									"type": "Header",
+									"type": "Control",
 									"id": "header",
 									"size": { "height": 60 },
-									"content": "$(username)'s bubls"
+									"label": "$(username)'s bubls"
 								},
 								{
-									"type": "Text",
+									"type": "Control",
 									"id": "instructions",
-									"content": "Select the bubl you want to edit.",
+									"label": "Select the bubl you want to edit.",
 									"size": { "height": 30 }	
 								},
 								{
@@ -43,7 +43,7 @@
 									"id": "bubleGrid",
 									"dimensions": { "columns": 3, "rows": 2 },
 									"defaults": {
-										"type": "ThubmnailMenuItem",
+										"type": "Control",
 										"size": { "width": 340, "height": 200 },
 										"actions": { "click": "Select" },
 										"menu":[
