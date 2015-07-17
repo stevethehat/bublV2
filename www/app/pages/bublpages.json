@@ -1,0 +1,80 @@
+{
+	"type": "View",
+	"id": "home",
+	"show": true,
+	"size": { "width": "max", "height": "max" },
+	"layout": { "style": "vertical" },
+	"defaults": { 
+		"type": "View",
+		"show": true,
+		"size": { "width": "max", "height": "max" },
+		"layout": { "style": "vertical", "align": "left" } 
+	},
+	"children": [
+		{
+			"id": "topPadding",
+			"size": { "height" : 40 }
+		},
+		{
+			"id": "mainRow",
+			"layout": { "style": "horizontal" },
+			"children":[
+				{
+					"id": "leftPadding"
+				},
+				{
+					"id": "mainContentArea",
+					"size": { "width" : 1020, "height": 600 },
+					"children":[
+						{
+							"children": [
+								{
+									"type": "Header",
+									"id": "header",
+									"size": { "height": 60 },
+									"content": "$(bubltitle)"
+								},
+								{
+									"type": "Text",
+									"id": "instructions",
+									"content": "Select the page you want to edit.",
+									"size": { "height": 30 }	
+								},
+								{
+									"type": "Grid",
+									"id": "bubleGrid",
+									"dimensions": { "columns": 3, "rows": 2 },
+									"defaults": {
+										"type": "ThubmnailMenuItem",
+										"size": { "width": 340, "height": 200 },
+										"actions": {
+											"click": "ShowPage"										
+										},
+										"controls":[
+											{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
+											{ "action": "Delete", "icon": "fa-trash-o", "label": "Delete" },
+											{ "action": "More", "icon": "fa-ellipsis-h", "label": "" }
+										]
+									},
+									"children": [
+										{ "type": "LabelButton", "id": "addPage", "content": { "icon": "fa-plus", "label": "New page", "size": 4 } }
+									],
+									"actions": {
+										"click": "ListClick"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "rightPadding"					
+				}
+			]
+		},
+		{
+			"id": "bottomPadding",
+			"size": { "height" : 40 }
+		}
+	]
+}

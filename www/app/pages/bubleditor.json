@@ -1,0 +1,83 @@
+{
+	"type": "View",
+	"id": "editor",
+	"show": true,
+	"size": { "width": "max", "height": "max" },
+	"layout": { "style": "vertical" },
+	"defaults": { 
+		"type": "View",
+		"show": true,
+		"size": { "width": "max", "height": "max" },
+		"layout": { "style": "vertical", "align": "left" } 
+	},
+
+	"children": [
+		{
+			"id": "toolbar",
+			"layout": { "style": "horizontal", "align": "right" },
+			"size": { "height": 34 },
+			"style": { "background-color": "$(bublBackgroundColor)", "color": "$(bublColor)", "padding-top": 2 },
+			"defaults": {
+				"type": "LabelButton",
+				"size": { "width": 100 },
+				"actions": {
+					"click": "ToolbarClick"
+				}
+			},
+			"children": [
+				{ "type": "LabelButton", "size": { "width": "max" }, "id": "back", "content": { "icon": "fa-angle-left", "label": "Back", "size": 2 } },
+				{ "type": "LabelButton", "id": "pages", "content": { "icon": "fa-file-o", "label": "Pages", "size": 2 } }
+			]
+		},
+		{
+			"id": "mainPanel",
+			"layout": { "style": "horizontal" },
+			"children": [
+				{
+					"id": "palette",
+					"size": { "width": 200 },
+					"children":[
+						{
+							"type": "View",
+							"defaults": {
+								"type": "PaletteItem",
+								"size": { "height": 38 }
+							},
+							"children": [
+								{
+									"content": "Text",
+									"icon": "fa-file-text-o"
+								},
+								{
+									"content": "Image",
+									"icon": "fa-file-image-o"										},
+								{
+									"content": "Video",
+									"icon": "fa-file-movie-o"
+								},
+								{
+									"content": "Columns",
+									"icon": "fa-columns"
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "bublEditor",
+					"color": "#999"
+				},
+				{
+					"id": "properties",
+					"size": { "width": 200 },
+					"children": [
+						{
+							"content": "Text",
+							"icon": "fa-file-text-o"
+						}
+					]
+				}
+			]
+		}
+	]
+}

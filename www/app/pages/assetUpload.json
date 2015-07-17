@@ -1,0 +1,53 @@
+{
+	"type": "View",
+	"id": "home",
+	"show": true,
+	"size": { "width": "max", "height": "max" },
+	"layout": { "style": "vertical" },
+	"defaults": { 
+		"type": "View",
+		"show": true,
+		"size": { "width": "max", "height": "max" },
+		"layout": { "style": "vertical", "align": "left" } 
+	},
+	"children": [
+		{
+			"size": { "height" : 40 }
+		},
+		{
+			"layout": { "style": "horizontal" },
+			"children":[
+				{},
+				{
+					"size": { "width" : 500 },
+					"style": { "border": "solid 1px #aaa"},
+					"children":[
+						{
+							"children": [
+								{
+									"type": "Header",
+									"size": { "height": 60 },
+									"content": "Upload test"
+								},
+								{
+									"type": "Text",
+									"content": "Drag your file below to upload",
+									"size": { "height": 30 },
+									"style": { "border-bottom": "solid 1px #aaa" }	
+								},
+								{
+									"type": "Uploader",
+									"size": { "height": 200 }
+								}
+							]
+						}
+					]
+				},
+				{}
+			]
+		},
+		{
+			"size": { "height" : 40 }
+		}
+	]
+}
