@@ -7,6 +7,7 @@ body{
 	background-color: white;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    	font-weight: 300;
+	text-align: left;	   
 }
 
 #BublApp{
@@ -173,39 +174,31 @@ table .selected{
   	border-color: #666 transparent;
 }
 
-.crossfader {
-  	position:relative;
-  	margin:0 auto;
+
+.thumbnailMI.highlight .back {
+                opacity: 1;
 }
 
-.crossfader  div.front{
-	z-index: 1000;
+.thumbnailMI .back{
+        -webkit-transition: opacity 1s;
+        transition: opacity 1s;
+        opacity: 0;
+}
+
+
+.thumbnailMI  .front{
 	width:100%;
 	height:100%;
 }
-.crossfader  div.back{
-	z-index: 900;
+.thumbnailMI  .back{
 	width:100%;
 	height:100%;
 }
-
-.crossfader  div.front, .crossfader div.back {
+.thumbnailMI  div.back,
+.thumbnailMI  div.front {
+	top: 0;
   	position:absolute;
   	left:0;
-  	-webkit-transition: opacity 1s ease-in-out;
-  	-moz-transition: opacity 1s ease-in-out;
-  	-o-transition: opacity 1s ease-in-out;
-  	transition: opacity 1s ease-in-out;
-	  /*pointer-events: all;*/
-}
-
-.crossfader div.front:hover {
-  	opacity:0;
-	  /*pointer-events: none;*/
-}
-
-.thumbnailMI, .thumbnailMI *{
-	cursor: pointer;
 }
 
 .thumbnailMI{
@@ -213,7 +206,6 @@ table .selected{
 }
 
 .thumbnailMI .controls{
-	display: none;
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
