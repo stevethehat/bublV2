@@ -17,7 +17,9 @@
 		 'app/js/objectstore.js',
 		 'app/js/actions.js',
 		 'app/js/ui.grid.js',
-		 'app/js/ui.thumbnailmenu.js'
+		 'app/js/ui.thumbnailmenu.js',
+		 'app/js/ui.codeeditor.js',
+		 'app/js/ui.uploader.js'
 		 ],
 		function () {
 			var url = 'app.json';

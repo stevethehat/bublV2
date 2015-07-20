@@ -16,7 +16,6 @@
 
 			url = ZEN.data.querystring['url'] === undefined ? url : ZEN.data.querystring['url'];
 			self.setupObservers();
-			self.setupEvents();
 			self.load('app.json', null,
 				function(parsedData){
 					self.app = parsedData;
@@ -229,21 +228,12 @@
 		setupObservers: function(){
 			var self = this;
 			
-/*
-			self.setupObserver('clicks',
-				function(params){
-					var id = params['objectid'];
-					var object = ZEN.objects[id];
-					
-					if(object){
-						var action = object.click(params);
-						if(action !== null){
-							self.executeAction(action, { 'object': object, 'params': params } );	
-						}
-					}
+			self.setupObserver('ui.button',
+				function(message){
+					ZEN.log('observer(ui.button)', message, $(message.sourceElement));	
+					self.executeAction(message.source.tag, message);	
 				}
 			);
-*/
 			
 			self.setupObserver('pageevents',
 				function(params){
@@ -254,9 +244,12 @@
 			);	
 		},
 		
-		executeAction: function(actionName, data){
+		executeAction: function(actionName, message){
 			var self = this;
+			ZEN.log('executeAction ' + actionName, message);
+
 			var action = null;
+			var sourceElement = $(message.sourceElement);
 			
 			// check if we have a page specific action
 			if(self.actions[self.variables.currentpage][actionName]){
@@ -266,28 +259,12 @@
 			}
 			
 			if(action !== null){
-				action(data.object, data.object.params.clickElement);
+				action(message.source, sourceElement);
 			} else {
 				ZEN.log(actionName + ' not found');
 			}			
 		},
 		
-		setupEvents: function(){
-			var self = this;
-			$('body').click(
-				function(event){
-					var element = $(event.target);
-					var id = element.attr('id');
-					
-					// if we have no id then we will be in a sub bit of a compound element so find the element up the dom					
-					if(id === undefined){
-						element = element.closest('[id]');
-					}
-					var clickElement = $(event.target); 	
-					ZEN.notify('clicks', { 'objectid': element.attr('id'), 'clickElement': clickElement, 'x': event.pageX, 'y': event.pageY });
-				}
-			);
-		},
 		setCurrentBubl: function(bubl, callback){
 			var self = this;
 			if(_.isObject(bubl)){

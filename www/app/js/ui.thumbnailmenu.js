@@ -36,7 +36,8 @@ var ZEN = (function (ZEN, _, $) {
 					if (message.sourceElement && $(message.sourceElement).data('tag') !== undefined) {
 						if(message.type === 'active'){
 							ZEN.log('got action:', $(message.sourceElement).data('tag') + ' ' + message.type);
-							bublApp.executeAction($(message.sourceElement).data('tag'), { 'object': this });
+							bublApp.executeAction($(message.sourceElement).data('tag'), message);
+							//ZEN.notify(message)
 						}
 					}
 				},

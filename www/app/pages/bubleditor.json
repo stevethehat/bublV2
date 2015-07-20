@@ -18,15 +18,15 @@
 			"size": { "height": 34 },
 			"style": { "background-color": "$(bublBackgroundColor)", "color": "$(bublColor)", "padding-top": 2 },
 			"defaults": {
-				"type": "LabelButton",
+				"type": "Control",
 				"size": { "width": 100 },
 				"actions": {
 					"click": "ToolbarClick"
 				}
 			},
 			"children": [
-				{ "type": "LabelButton", "size": { "width": "max" }, "id": "back", "content": { "icon": "fa-angle-left", "label": "Back", "size": 2 } },
-				{ "type": "LabelButton", "id": "pages", "content": { "icon": "fa-file-o", "label": "Pages", "size": 2 } }
+				{ "type": "Control", "size": { "width": "max" }, "id": "back", "content": { "icon": "fa-angle-left", "label": "Back", "size": 2 } },
+				{ "type": "Control", "id": "pages", "content": { "icon": "fa-file-o", "label": "Pages", "size": 2 } }
 			]
 		},
 		{
@@ -40,7 +40,7 @@
 						{
 							"type": "View",
 							"defaults": {
-								"type": "PaletteItem",
+								"type": "Control",
 								"size": { "height": 38 }
 							},
 							"children": [

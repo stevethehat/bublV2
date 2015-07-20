@@ -43,9 +43,9 @@
 									"id": "bubleGrid",
 									"dimensions": { "columns": 3, "rows": 2 },
 									"defaults": {
-										"type": "Control",
+										"type": "ThumbnailMenu",
 										"size": { "width": 340, "height": 200 },
-										"actions": { "click": "Select" },
+										"tag": "Select",
 										"menu":[
 											{ "action": "Share", "icon": "fa-share-square-o", "label": "Share" },
 											{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
@@ -55,10 +55,9 @@
 									},
 									"children": [
 										{ 
-											"type": "LabelButton", 
+											"type": "Button", 
 											"id": "addBubl", 
-											"content": { "icon": "fa-plus", "label": "New bubl", "size": 4 },
-											"actions": { "click": "Add" } 
+											"tag": "Add"
 										}		
 									]
 								}

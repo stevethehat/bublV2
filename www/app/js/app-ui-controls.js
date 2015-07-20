@@ -125,39 +125,6 @@ _.extend(
 		}
 );
 
-function EditorControl (params, parent) {
-	if (arguments.length > 0) {
- 		ZEN.ui.Control.call(this, params, parent);
-    }
-    return this;
-}
-
-EditorControl.prototype = new ZEN.ui.Control();
-
-_.extend(
-	EditorControl.prototype,
-		{
-			init: function (params, parent) {
-				// call the base class init method
-				ZEN.ui.Control.prototype.init.call(this, params, parent);
-			},
-			render: function () {
-				var self = this;	
-				$('<div class="jsonEditor" id="' + this.el.attr('id') + 'editor" style="width:100%; height: 100%; font-family: Courier New, Courier, monospace"/>').text('this is the editor').appendTo(this.el);
-				self.editor = ace.edit(this.el.attr('id') + 'editor');
-				self.editor.setTheme('ace/theme/monokai');
-				self.editor.getSession().setMode('ace/mode/javascript');
-			},
-			setContent: function(content){
-				var self = this;
-				self.editor.setValue(content);
-			},
-			getContent: function(){
-				var self = this;
-				return(self.editor.getValue());
-			}
-		}
-);
 
 //http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=test.jpg
 function UploadControl (params, parent) {

@@ -24,15 +24,15 @@
 						{
 							"children": [
 								{
-									"type": "Header",
+									"type": "Control",
 									"id": "header",
 									"size": { "height": 60 },
-									"content": "$(bubltitle)"
+									"label": "$(bubltitle)"
 								},
 								{
-									"type": "Text",
+									"type": "Control",
 									"id": "instructions",
-									"content": "Select the template you want to use.",
+									"label": "Select the template you want to use.",
 									"size": { "height": 30 }	
 								},
 								{
@@ -40,7 +40,7 @@
 									"id": "bubleGrid",
 									"dimensions": { "columns": 3, "rows": 2 },
 									"defaults": {
-										"type": "ThubmnailMenuItem",
+										"type": "ThubmnailMenu",
 										"size": { "width": 340, "height": 200 },
 										"actions": {
 											"click": "GridClick"										

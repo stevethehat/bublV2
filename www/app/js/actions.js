@@ -42,6 +42,7 @@ function getBublID(elementID){
 			
 			Select: function(data){
 				var selectorBack = $('#' + data.id + ' .back');
+				alert('select');
 				bublApp.variables['bublBackgroundColor'] = selectorBack.css('background-color');
 				bublApp.variables['bublColor'] = selectorBack.css('color');
 
