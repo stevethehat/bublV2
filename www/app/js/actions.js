@@ -21,9 +21,19 @@ function getBublID(elementID){
 			},
 			ShowHelp: function(data){
 				alert('show help ' + data.object.params.id);
-			}			
+			},
+			back: function(data){
+				bublApp.loadPage(bublApp.variables['lastpage']);
+			},
+			home: function(data){
+				bublApp.loadPage('index.html');
+			},			
+			pages: function(data){	
+				alert('show pages');
+			}
 		},
 		'home': {
+			
 			
 		},
 		"bublselector":{
@@ -195,6 +205,13 @@ function getBublID(elementID){
 				);
 			},
 			
+			save: function(data){
+				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
+					function(){
+						bublApp.loadPage('bublselector');
+					}
+				);
+			},
 			ToolbarClick: function(data){
 				switch(data.id){
 					case 'back':
