@@ -229,6 +229,7 @@
 		setupObservers: function(){
 			var self = this;
 			
+/*
 			self.setupObserver('clicks',
 				function(params){
 					var id = params['objectid'];
@@ -242,6 +243,7 @@
 					}
 				}
 			);
+*/
 			
 			self.setupObserver('pageevents',
 				function(params){
