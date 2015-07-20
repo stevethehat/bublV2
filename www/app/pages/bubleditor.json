@@ -45,18 +45,18 @@
 							},
 							"children": [
 								{
-									"content": "Text",
+									"label": "Text",
 									"icon": "fa-file-text-o"
 								},
 								{
-									"content": "Image",
+									"label": "Image",
 									"icon": "fa-file-image-o"										},
 								{
-									"content": "Video",
+									"label": "Video",
 									"icon": "fa-file-movie-o"
 								},
 								{
-									"content": "Columns",
+									"label": "Columns",
 									"icon": "fa-columns"
 								}
 							]

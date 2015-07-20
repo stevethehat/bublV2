@@ -40,7 +40,7 @@
 									"id": "bubleGrid",
 									"dimensions": { "columns": 3, "rows": 2 },
 									"defaults": {
-										"type": "ThubmnailMenu",
+										"type": "ThumbnailMenu",
 										"size": { "width": 340, "height": 200 },
 										"actions": {
 											"click": "GridClick"										
