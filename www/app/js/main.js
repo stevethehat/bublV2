@@ -12,11 +12,14 @@
 		 'zen/js/ui.slider.js',
 		 'zen/js/ui.button.js',
 		 'zen/js/ui.menu.js',
+
 		 'app/lib/color-thief.js',
+		 'app/lib/ace/src/ace.js',
 		 'app/js/bubl.js',
 		 'app/js/objectstore.js',
 		 'app/js/actions.js',
 		 'app/js/ui.grid.js',
+		 'app/js/ui.iconlabel.js',
 		 'app/js/ui.thumbnailmenu.js',
 		 'app/js/ui.codeeditor.js',
 		 'app/js/ui.uploader.js'

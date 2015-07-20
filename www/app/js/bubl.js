@@ -235,6 +235,15 @@
 				}
 			);
 			
+			/*
+			self.setupObserver('ui.iconlabel',
+				function(message){
+					ZEN.log('observer(ui.iconlabel)', message, $(message.sourceElement));	
+					self.executeAction(message.source.tag, message);	
+				}
+			);
+			*/
+			
 			self.setupObserver('pageevents',
 				function(params){
 					if(params.event === 'imageloaded'){
