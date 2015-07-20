@@ -24,6 +24,8 @@ var ZEN = (function (ZEN, _, $) {
 					//ZEN.events.GridHandler (this, this.el);
 				},
 
+				label: function () {
+				},
 
 				notify: function (message) {
 					message.source = this;
