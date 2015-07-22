@@ -13,6 +13,19 @@ var ZEN = (function (ZEN, _, $) {
 		}
 
 		Grid.prototype = new ZEN.ui.Control();
+		
+		Grid.populate = function(children, gridChildren){
+			_.each(children,
+				function(child){
+					gridChildren.push(
+						{ 
+							'id': 'bubl' + child.id,
+					 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
+						}				
+					);
+				}
+			);
+		}
 
 		_.extend(
 			Grid.prototype,
@@ -53,8 +66,6 @@ var ZEN = (function (ZEN, _, $) {
 					}
 					return this.el;
 				}
-
-
 			}
 		);
 

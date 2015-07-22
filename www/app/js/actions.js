@@ -26,10 +26,10 @@ function getBublID(elementID){
 				bublApp.loadPage(bublApp.variables['lastpage']);
 			},
 			home: function(data){
-				bublApp.loadPage('index.html');
+				bublApp.loadPage('bublselector');
 			},			
 			pages: function(data){	
-				alert('show pages');
+				bublApp.loadPage('bublpages');
 			}
 		},
 		'home': {
@@ -52,7 +52,6 @@ function getBublID(elementID){
 			
 			Select: function(data){
 				var selectorBack = $('#' + data.id + ' .back');
-				alert('select');
 				bublApp.variables['bublBackgroundColor'] = selectorBack.css('background-color');
 				bublApp.variables['bublColor'] = selectorBack.css('color');
 
@@ -129,7 +128,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								childrenToGrid(loadedData.children, element.children);
+								ZEN.ui.Grid.populate(loadedData.children, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
 								element.children.shift();
 								callback();
@@ -179,7 +178,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								childrenToGrid(loadedData.children, element.children);	
+								ZEN.ui.Grid.populate(loadedData.children, element.children);
 								callback();
 							}
 						);
@@ -199,7 +198,9 @@ function getBublID(elementID){
 						if(object['children']){
 							delete object['children'];
 						}
-						ZEN.objects['BublEditor'].setContent(JSON.stringify(object, null, 4));
+						var editor = ZEN.objects['BublEditor'];
+						ZEN.log('editor = ', editor);
+						editor.setContent(JSON.stringify(object, null, 4));
 						callback();
 					}	
 				);
