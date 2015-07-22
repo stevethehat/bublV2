@@ -1,16 +1,3 @@
-function childrenToGrid(children, gridChildren){
-	_.each(children,
-		function(child){
-			gridChildren.push(
-				{ 
-					'id': 'bubl' + child.id,
-			 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
-				}				
-			);
-		}
-	);
-}
-
 function getBublID(elementID){
 	return(elementID.substr(4));
 }
@@ -42,7 +29,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								childrenToGrid(loadedData.children, element.children);	
+								ZEN.ui.Grid.populate(loadedData.children, element.children);	
 								callback();
 							}
 						);
