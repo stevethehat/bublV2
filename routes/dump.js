@@ -17,7 +17,15 @@ router.post('/',
 		        	return console.log(err);
 		    	}
 		    	console.log("The file was saved!");
-				response.send('ok');
+				fs.writeFile("../bubl/www/lastpage.json", JSON.stringify(object, null, 4), 
+					function(err) {
+				    	if(err) {
+				        	return console.log(err);
+				    	}
+				    	console.log("The file was saved!");
+						response.send('ok');
+					}
+				);
 			}
 		);
 	}

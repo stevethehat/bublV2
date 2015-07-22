@@ -18,8 +18,10 @@ function requestStart(){
 
 router.all('/*'),
 	function(request, response, next){
+		console.log('YAY !!!!!   !!!!!  !!!!! using proxy');
 		var proxy = httpProxy.createServer();
-		proxy.web(request, response, 'target');	
+		//proxy.on
+		proxy.web(request, response, { 'target': 'http://bubblestore.blob.core.windows.net' });	
 	}
 
 /*
