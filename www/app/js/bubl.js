@@ -21,7 +21,7 @@
 					self.app = parsedData;
 					ZEN.init(self.app);
 
-					self.loadPage(self.variables['currentpage']);
+					self.loadPage(self.variables['currentpage'], 'slideInRight');
 				}	
 			);
 		},
@@ -40,7 +40,7 @@
 				}
 			}
 		},
-		loadPage: function(page){
+		loadPage: function(page, inAnimation, outAnimation){
 			var self = this;
 		
 			self.variables['lastpage'] = self.variables['currentpage'];
@@ -52,7 +52,6 @@
 			
 			self.load('app/pages/' + page + '.json', null, 
 				function(data){
-					var activePage = ZEN.objects['ActivePage']; 
 					var defaults = 	{ 
 						"type": "View",
 						"show": true,
@@ -61,84 +60,24 @@
 					};
 					
 					var newPage = {
+						'type': 'View',
+						"size": { "width": "full", "height": "full" },
+						"layout": { "style": "vertical", "align": "left" }, 
 						defaults: defaults,
 						children: data.children
 					}
 					
 					if(self.actions[page] && self.actions[page].onLoad){
 						self.actions[page].onLoad(data, function(){
-							self.preParse(newPage);
-			
-							if(ZEN.data.querystring['showjson'] == 'true'){
-								document.write('<pre>' + JSON.stringify(self.app, null, 4) + '</pre>');		
-							} else {
-								var parsedData = self.preParse(newPage);	
-								self.dump(ZEN.objects['BublApp'].params);				
-								activePage.replaceChildren(parsedData.children);;
-								activePage.show(true);
-								
-								if(self.actions[page] && self.actions[page].afterLoad){
-									self.actions[page].afterLoad(data,
-										function(){
-											
-										}
-									);
-								}
-							}
+							self.showPage(newPage, page, data, inAnimation, outAnimation);
 						});
 					} else {
-						var parsedData = self.preParse(newPage);					
-						self.dump(ZEN.objects['BublApp'].params);				
-						activePage.replaceChildren(parsedData.children);
-						activePage.show(true);
-						if(self.actions[page] && self.actions[page].afterLoad){
-							self.actions[page].afterLoad(data,
-								function(){
-									
-								}
-							);
-						}
-
+						self.showPage(newPage, page, data, inAnimation, outAnimation);
 					}
-
-					/*
-					self.findID('ActivePage', self.app,
-						function(element){
-							element['children'] = [data];
-							
-							if(self.actions[page] && self.actions[page].onLoad){
-								self.actions[page].onLoad(data, function(){
-									self.preParse(element);
-
-									ZEN.log('preparsed data');
-									ZEN.log(self);
-									
-									if(ZEN.data.querystring['showjson'] == 'true'){
-										document.write('<pre>' + JSON.stringify(self.app, null, 4) + '</pre>');		
-									} else {
-										
-										ZEN.init(self.app);
-										
-										if(self.actions[page] && self.actions[page].afterLoad){
-											self.actions[page].afterLoad(data,
-												function(){
-													
-												}
-											);
-										}
-								}
-								});
-							} else {
-								self.preParse(element);
-
-								ZEN.init(self.app);
-							}
-						}
-					);*/
 				}	
 			);
-			//$('body').empty();			
 		},
+
 		load: function(url, parent, callback){
 			var self = this;
 			ZEN.data.load(
@@ -146,13 +85,51 @@
 				function (data) {
 					var parsedData = self.preParse(data, {});
 					
-
 					if(callback !== undefined){
 						callback(parsedData);
 					}
 				}
 			);
 		},
+
+		lastPage: null,
+		showPage: function(newPage, page, data, inAnimation, outAnimation){
+			var self = this, o;
+			self.preParse(newPage);
+			var parsedData = self.preParse(newPage);	
+
+			o = ZEN.parse(parsedData, ZEN.objects['BublApp']);
+			//ZEN.objects['BublApp'].resize(true);
+			self.dump(ZEN.objects['BublApp'].params);				
+
+			//activePage.replaceChildren(parsedData.children);;
+			if(self.lastPage !== null){
+				self.lastPage.animate(outAnimation, false,
+					function(){
+						ZEN.cleanup();		
+					}
+				);
+			}
+
+			o.show(true);
+			ZEN.objects['BublApp'].resize(true);
+			
+			o.animate(inAnimation, true,
+				function(){
+					//ZEN.objects['BublApp'].resize(true);
+				}
+			);
+			
+			this.lastPage = o;
+			if(self.actions[page] && self.actions[page].afterLoad){
+				self.actions[page].afterLoad(data,
+					function(){
+						
+					}
+				);
+			}
+		},
+		
 		preParse: function(data, defaults){
 			var self = this;
 			var childDefaults = {};

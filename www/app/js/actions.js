@@ -23,13 +23,13 @@ function getBublID(elementID){
 				alert('show help ' + data.object.params.id);
 			},
 			back: function(data){
-				bublApp.loadPage(bublApp.variables['lastpage']);
+				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 			},
 			home: function(data){
 				bublApp.loadPage('bublselector');
 			},			
 			pages: function(data){	
-				bublApp.loadPage('bublpages');
+				bublApp.loadPage('bublpages', 'slideInRight', 'slideOutLeft');
 			}
 		},
 		'home': {
@@ -58,7 +58,7 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentBubl(bublID,
 					function(){
-						bublApp.loadPage('bubleditor');		
+						bublApp.loadPage('bubleditor', 'slideInRight', 'slideOutLeft');		
 					}	
 				);
 			},
@@ -76,7 +76,7 @@ function getBublID(elementID){
 						bublApp.variables['bubltitle'] = insertedData['title'];
 						bublApp.setCurrentBubl(insertedData,
 							function(){
-								bublApp.loadPage('bubltemplateselector');						
+								bublApp.loadPage('bubltemplateselector', 'slideInRight', 'slideOutLeft');						
 							}
 						);
 					}
@@ -96,7 +96,7 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				objectStore.deleteObject( { 'id': bublID },
 					function(){
-						bublApp.loadPage('bublselector');
+						bublApp.loadPage('bublselector', 'fadeIn', 'fadeOut');
 					}
 				);
 			},
@@ -105,7 +105,7 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentBubl(bublID,
 					function(){
-						bublApp.loadPage('bublproperties');		
+						bublApp.loadPage('bublproperties', 'slideInRight', 'slideOutLeft');		
 					}	
 				);
 			}
@@ -113,11 +113,8 @@ function getBublID(elementID){
 		"bubleditor":{
 			ToolbarClick: function(data){
 				switch(data.id){
-					case 'back':
-						bublApp.loadPage(bublApp.variables['lastpage']);
-						break;
 					case 'pages':
-						bublApp.loadPage('bublpages');
+						bublApp.loadPage('bublpages', 'fadeIn', 'fadeOut');
 						break;
 				}
 			}
@@ -164,7 +161,7 @@ function getBublID(elementID){
 									);
 								} else {
 									delete bubl['children'];
-									bublApp.loadPage('bubleditor');									
+									bublApp.loadPage('bubleditor', 'slideInRight', 'slideOutLeft');									
 								}
 							}
 						);
@@ -209,19 +206,16 @@ function getBublID(elementID){
 			save: function(data){
 				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
 					function(){
-						bublApp.loadPage('bublselector');
+						bublApp.loadPage('bublselector', 'slideInLeft', 'slideOutRight');
 					}
 				);
 			},
 			ToolbarClick: function(data){
 				switch(data.id){
-					case 'back':
-						bublApp.loadPage(bublApp.variables['lastpage']);
-						break;
 					case 'save':
 						objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
 							function(){
-								bublApp.loadPage('bublselector');
+								bublApp.loadPage('bublselector', 'slideInLeft', 'slideOutRight');
 							}
 						); 
 						break;

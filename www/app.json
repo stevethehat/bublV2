@@ -27,9 +27,6 @@
 			]
 		},
 		{
-			"id": "ActivePage"
-		},
-		{
 			"id": "StatusBar",
 			"class": "statusbar",
 			"size": { "height": 30 }

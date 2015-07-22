@@ -93,13 +93,22 @@ var ZEN = (function (ZEN, _, $) {
 										{
 											'success':
 												function(data){
+													alert(JSON.stringify(data, null, 4));
+													self.uploadUrl = data.uploadUrl;
+													//self.uploadUrl = data.uploadUrl.replace('https://bubblestore.blob.core.windows.net', 'http://localhost:3001');
+													alert(self.uploadUrl);
+													// replace https://bubblestore.blob.core.windows.net
+													// with http://localhost:3000
+													
+													self.uploadFile();
+													/*
 													$.get('api/upload/init', {
 														'uploadUrl': data.uploadUrl,
 														function(){
 															alert('done init');
 															self.uploadFile(data);
 														}	
-													});
+													});*/
 												}
 										}
 									);
@@ -162,6 +171,8 @@ var ZEN = (function (ZEN, _, $) {
 				self.blockID++;
        
 				var uri = self.uploadUrl + '/block?comp=block&blockid=' + blockID;
+				alert(uri);
+				
                 var requestData = new Uint8Array(fileSlice);
 				ZEN.log('send block >> ' + uri + ' (' + requestData.length + ')');
 				self.percentageValue = self.currentFilePosition / self.fileSize * 100;
@@ -222,7 +233,7 @@ var ZEN = (function (ZEN, _, $) {
 			uploadFile: function(uploadDetails){
 				var self = this;
 				//self.uploadUrl = uploadDetails.uploadUrl.substr(8);
-				self.uploadUrl = 'http://localhost:3000/api/upload';
+				//self.uploadUrl = 'http://localhost:3000/api/upload';
 				self.currentFilePosition = 0;
 				self.maxChunkSize = 256 * 1024;
 				self.bytesRemaining = self.file.size;

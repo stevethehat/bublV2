@@ -12,35 +12,30 @@
 	},
 	"children": [
 		{
-			"id": "topPadding",
 			"size": { "height" : 40 }
 		},
 		{
-			"id": "mainRow",
 			"layout": { "style": "horizontal" },
 			"children":[
-				{ "id": "leftPadding" },
+				{ },
 				{
-					"id": "mainContentArea",
 					"size": { "width" : 1020, "height": 600 },
 					"children":[
 						{
 							"children": [
 								{
 									"type": "Control",
-									"id": "header",
 									"size": { "height": 60 },
 									"label": "$(username)'s bubls"
 								},
 								{
 									"type": "Control",
-									"id": "instructions",
 									"label": "Select the bubl you want to edit.",
 									"size": { "height": 30 }	
 								},
 								{
-									"type": "Grid",
 									"id": "bubleGrid",
+									"type": "Grid",
 									"dimensions": { "columns": 3, "rows": 2 },
 									"defaults": {
 										"type": "ThumbnailMenu",
@@ -66,9 +61,9 @@
 						}
 					]
 				},
-				{ "id": "rightPadding" }
+				{  }
 			]
 		},
-		{ "id": "bottomPadding", "size": { "height" : 40 } }
+		{ "size": { "height" : 40 } }
 	]
 }
