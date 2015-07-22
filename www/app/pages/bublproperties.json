@@ -16,13 +16,10 @@
 			"id": "toolbar",
 			"layout": { "style": "horizontal", "align": "right" },
 			"size": { "height": 34 },
-			"style": { "background-color": "$(bublBackgroundColor)", "color": "$(bublColor)", "padding-top": 2 },
+			"style": { "padding-top": 2 },
 			"defaults": {
 				"type": "Control",
-				"size": { "width": 100 },
-				"actions": {
-					"click": "ToolbarClick"
-				}
+				"size": { "width": 100 }
 			},
 			"children": [
 				{ "type": "IconLabel", "tag": "back", "size": { "width": "max" }, "content": { "icon": "fa-angle-left", "label": "Back", "size": 2 } },

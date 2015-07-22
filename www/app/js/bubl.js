@@ -2,11 +2,11 @@
 
 	var bublApp = {
 		variables: {},
-		apiRoot: 'http://localhost:3000/api/objects',
+		apiRoot: 'http://localhost:3001/api/objects',
 		
 		init: function(){
 			var self = this;
-			var url = 'http://localhost:3000/app.json'
+			var url = 'http://localhost:3001/app.json'
 
 			
 			self.variables['username'] = 'Steve';
@@ -19,6 +19,7 @@
 			self.load('app.json', null,
 				function(parsedData){
 					self.app = parsedData;
+					ZEN.init(self.app);
 
 					self.loadPage(self.variables['currentpage']);
 				}	
@@ -41,15 +42,66 @@
 		},
 		loadPage: function(page){
 			var self = this;
+		
 			self.variables['lastpage'] = self.variables['currentpage'];
 			self.variables['currentpage'] = page;
-			$('body').empty();
+			//$('body').empty();
 			
 			ZEN.log('load page');
 			ZEN.log(self.variables);
 			
 			self.load('app/pages/' + page + '.json', null, 
 				function(data){
+					var activePage = ZEN.objects['ActivePage']; 
+					var defaults = 	{ 
+						"type": "View",
+						"show": true,
+						"size": { "width": "max", "height": "max" },
+						"layout": { "style": "vertical", "align": "left" } 
+					};
+					
+					var newPage = {
+						defaults: defaults,
+						children: data.children
+					}
+					
+					if(self.actions[page] && self.actions[page].onLoad){
+						self.actions[page].onLoad(data, function(){
+							self.preParse(newPage);
+			
+							if(ZEN.data.querystring['showjson'] == 'true'){
+								document.write('<pre>' + JSON.stringify(self.app, null, 4) + '</pre>');		
+							} else {
+								var parsedData = self.preParse(newPage);	
+								self.dump(ZEN.objects['BublApp'].params);				
+								activePage.replaceChildren(parsedData.children);;
+								activePage.show(true);
+								
+								if(self.actions[page] && self.actions[page].afterLoad){
+									self.actions[page].afterLoad(data,
+										function(){
+											
+										}
+									);
+								}
+							}
+						});
+					} else {
+						var parsedData = self.preParse(newPage);					
+						self.dump(ZEN.objects['BublApp'].params);				
+						activePage.replaceChildren(parsedData.children);
+						activePage.show(true);
+						if(self.actions[page] && self.actions[page].afterLoad){
+							self.actions[page].afterLoad(data,
+								function(){
+									
+								}
+							);
+						}
+
+					}
+
+					/*
 					self.findID('ActivePage', self.app,
 						function(element){
 							element['children'] = [data];
@@ -82,7 +134,7 @@
 								ZEN.init(self.app);
 							}
 						}
-					);
+					);*/
 				}	
 			);
 			//$('body').empty();			
@@ -294,6 +346,21 @@
 					}	
 				);	
 			}
+		},
+		
+		dump: function(object){
+   			$.ajax({
+        		url: 'api/dump',
+        		type: 'POST',
+        		contentType: 'application/json',
+        		data: JSON.stringify(object),
+        		dataType: 'json',
+				success: function(returnData){
+					ZEN.log('returned data');
+					ZEN.log(returnData);
+				}
+			});
+
 		}
 	};
 	
