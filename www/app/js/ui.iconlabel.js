@@ -46,9 +46,11 @@ var ZEN = (function (ZEN, _, $) {
 				getElement: function () {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
+						this.el.addClass('iconLabel');
 						$('<i class="fa ' + this.params.content.icon + ' fa-1x"/>').appendTo(this.el);
-						$('<span>' + this.params.content.label + '</span>').appendTo(this.el);
-										
+						if(this.params.content.label !== undefined){
+							$('<span>' + this.params.content.label + '</span>').appendTo(this.el);
+						}			
 						this.resize();
 					}
 					return this.el;

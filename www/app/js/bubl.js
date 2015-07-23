@@ -22,7 +22,7 @@
 					self.app = parsedData;
 					ZEN.init(self.app);
 
-					self.loadPage(self.variables['currentpage'], 'slideInRight');
+					self.loadPage(self.variables['currentpage'], 'fadeIn');
 				}	
 			);
 		},

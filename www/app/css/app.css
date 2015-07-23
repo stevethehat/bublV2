@@ -19,7 +19,7 @@ body{
 }
 
 .zen-control h1{
-	font-size: 150%;
+	font-size: 180%;
 }
 
 .zen-control h2{
@@ -68,123 +68,27 @@ p{
 	margin: 0px 0px 0px 10px;
 }
 
-/* 851C38 */
-.go{
-	background-color: #eee;
-	text-align: center;
-	color: #999;
-}
-
-.launcher{
-	height: 99%;
-	width: 100%;
-	vertical-align: top;
-}
-
-.launcher, .launcher *{
-	cursor: pointer;
-}
-.launcher .thumbnail{
-	width: 100px;
-	height: 100px;
-	border: solid 1px #94C2C9;
-	float: left;
-	background-color: #eee;
-}
-
-.launcher p, .launcher h2{
-	margin-left: 110px;
-}
-
-.launcher .go{
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 30px;
-	height: 100%;
-}
-
-.launcher .go i{
-	margin-top: 40px;
-}
-
 #help, #help *{
 	cursor: pointer;
 }
 
-table{
-	width: 100%;
+#toolbar{
+	border-bottom: solid 1px #aaa;
+	border-top: solid 1px #aaa;
 }
 
-table, table *{
+#toolbar *{
+	margin-top: 2px;	
+}
+
+.iconLabel, .iconLabel *{
 	cursor: pointer;
 }
 
-table th{
-	background-color: #94C2C9;
-	margin: 1 4 1 4;
-	text-align: left;
-}
-
-table tr{
-	height:60px;
-}
-
-table td{
-	vertical-align: top;
-}
-
-.toolbar{
-	color: #000;
-}
-
-.labelbutton, .labelbutton *{
-	cursor: pointer;
-}
-
-.labelbutton span{
+.iconLabel *{
 	vertical-align: middle;
-	margin-left: 4px;
+	margin-left: 6px;
 }
-
-table .thumbnail{
-	width: 100px;
-	height: 100px;
-	border: solid 1px #94C2C9;
-	background-color: #eee;	
-}
-
-table .selected{
-	background-color: #eee;
-}
-
-
-/* Bubble with an isoceles triangle
------------------------------------------- */
-
-.triangle-isosceles {
-  	position: relative;
-  	padding: 15px;
-  	margin: 1em 0 3em;
-  	color: #000;
-  	background: white;
-  	border: solid 1px #666;
-  	border-radius: 5px;
-}
-
-/* creates triangle */
-.triangle-isosceles:after {
-  	content: "";
-  	display: block; /* reduce the damage in FF3.0 */
-  	position: absolute;
-  	bottom: -15px;
-  	left: 50px;
-  	width: 0;
-  	border-width: 15px 15px 0;
-  	border-style: solid;
-  	border-color: #666 transparent;
-}
-
 
 .thumbnailMI.highlight .back {
                 opacity: 1;
@@ -195,7 +99,6 @@ table .selected{
         transition: opacity 1s;
         opacity: 0;
 }
-
 
 .thumbnailMI  .front{
 	width:100%;
@@ -216,11 +119,15 @@ table .selected{
 	border: solid 4px white;
 }
 
+.thumbnailMI h3{
+	font-size: 120%;
+	margin: 10px;	
+}
+
 .thumbnailMI .controls{
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
-	border: solid 1px white;
 	padding: 2px 3px 2px 3px;
 }
 

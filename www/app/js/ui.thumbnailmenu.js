@@ -58,11 +58,17 @@ var ZEN = (function (ZEN, _, $) {
 						back.data('tag', 'Select');
 
 						var img = $('<img width="' + this.params.size.width + '" height="' + this.params.size.height + '"/>').attr('src', 'app/' + this.params.content.imageurl).appendTo(front);
-						$('<h1/>').text(this.params.content.heading).appendTo(back);
+						$('<h3/>').text(this.params.content.heading).appendTo(back);
 						$('<p/>').text(this.params.content.description).appendTo(back);
 						
 						if(this.params.menu && this.params.menu.length > 0){
 							var controls = $('<div class="controls"/>').appendTo(back);
+							controls.css(
+								{
+									'border': 'solid 1px ' + color
+								}
+	
+							);
 							
 							function addControl(action, icon, label){
 								var control = $('<span class="control"/>').appendTo(controls);

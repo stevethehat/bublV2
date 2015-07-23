@@ -16,7 +16,7 @@ function getBublID(elementID){
 				bublApp.loadPage('bublSelector');
 			},			
 			pages: function(data){	
-				bublApp.loadPage('bublPages', 'slideInRight', 'slideOutLeft');
+				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
 			}
 		},
 		'home': {
@@ -101,7 +101,6 @@ function getBublID(elementID){
 			ToolbarClick: function(data){
 				switch(data.id){
 					case 'pages':
-						alert('here');
 						bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
 						break;
 				}
@@ -194,7 +193,7 @@ function getBublID(elementID){
 			save: function(data){
 				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
 					function(){
-						bublApp.loadPage('bublselector', 'slideInLeft', 'slideOutRight');
+						bublApp.loadPage('bublSelector', 'slideInLeft', 'slideOutRight');
 					}
 				);
 			},

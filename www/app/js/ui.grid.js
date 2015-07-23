@@ -29,6 +29,38 @@ var ZEN = (function (ZEN, _, $) {
 			);
 		}
 
+		Grid.preProcess = function(data){
+			var gridView =
+				{
+					'type': 'View',
+					'layout': { 'style': 'vertical' },
+					'children': []
+				};
+			var row = 0;
+			var currentRow = null;
+			var col = 0;
+			
+			_.each(data['children'],
+				function(child){
+					if(col === 0){
+						// create new row
+						currentRow = {
+							'type': 'View',
+							'layout': { 'style': 'horizontal' },
+							'children': []								
+						};
+						gridView.children.push(currentRow);
+					}	
+					currentRow.children.push(child);
+					col++;
+					if(col === 3){
+						col = 0;
+					}
+				}
+			);
+			return [gridView];	
+		},
+		
 		_.extend(
 			Grid.prototype,
 			{
