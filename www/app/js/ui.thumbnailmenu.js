@@ -57,7 +57,7 @@ var ZEN = (function (ZEN, _, $) {
 						var back = $('<div class="back"/>').appendTo(this.el);
 						back.data('tag', 'Select');
 
-						var img = $('<img />').attr('src', 'app/' + this.params.content.imageurl).appendTo(front);
+						var img = $('<img width="' + this.params.size.width + '" height="' + this.params.size.height + '"/>').attr('src', 'app/' + this.params.content.imageurl).appendTo(front);
 						$('<h1/>').text(this.params.content.heading).appendTo(back);
 						$('<p/>').text(this.params.content.description).appendTo(back);
 						

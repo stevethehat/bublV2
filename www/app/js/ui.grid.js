@@ -1,3 +1,5 @@
+/// <reference path="../../typings/jquery.d.ts"/>
+
 "use strict";
 
 var ZEN = (function (ZEN, _, $) {

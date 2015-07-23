@@ -13,17 +13,17 @@ function getBublID(elementID){
 				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 			},
 			home: function(data){
-				bublApp.loadPage('bublselector');
+				bublApp.loadPage('bublSelector');
 			},			
 			pages: function(data){	
-				bublApp.loadPage('bublpages', 'slideInRight', 'slideOutLeft');
+				bublApp.loadPage('bublPages', 'slideInRight', 'slideOutLeft');
 			}
 		},
 		'home': {
 			
 			
 		},
-		"bublselector":{
+		"bublSelector":{
 			onLoad: function(data, callback){
 				objectStore.getObject('1000', 'withchildren',
 					function(loadedData){
@@ -45,7 +45,7 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentBubl(bublID,
 					function(){
-						bublApp.loadPage('bubleditor', 'slideInRight', 'slideOutLeft');		
+						bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');		
 					}	
 				);
 			},
@@ -63,7 +63,7 @@ function getBublID(elementID){
 						bublApp.variables['bubltitle'] = insertedData['title'];
 						bublApp.setCurrentBubl(insertedData,
 							function(){
-								bublApp.loadPage('bubltemplateselector', 'slideInRight', 'slideOutLeft');						
+								bublApp.loadPage('bublTemplateSelector', 'slideInRight', 'slideOutLeft');						
 							}
 						);
 					}
@@ -72,7 +72,7 @@ function getBublID(elementID){
 			},
 			
 			Share: function(data){
-				bublApp.loadPage('bublshare');
+				bublApp.loadPage('bublShare');
 			},
 			
 			Duplicate: function(data){
@@ -83,7 +83,7 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				objectStore.deleteObject( { 'id': bublID },
 					function(){
-						bublApp.loadPage('bublselector', 'fadeIn', 'fadeOut');
+						bublApp.loadPage('bublSelector', 'fadeIn', 'fadeOut');
 					}
 				);
 			},
@@ -92,21 +92,22 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentBubl(bublID,
 					function(){
-						bublApp.loadPage('bublproperties', 'slideInRight', 'slideOutLeft');		
+						bublApp.loadPage('bublProperties', 'slideInRight', 'slideOutLeft');		
 					}	
 				);
 			}
 		},
-		"bubleditor":{
+		"bublEditor":{
 			ToolbarClick: function(data){
 				switch(data.id){
 					case 'pages':
-						bublApp.loadPage('bublpages', 'fadeIn', 'fadeOut');
+						alert('here');
+						bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
 						break;
 				}
 			}
 		},
-		"bubltemplateselector": {
+		"bublTemplateSelector": {
 			onLoad: function(data, callback){
 				objectStore.getObject('2000', 'withchildren',
 					function(loadedData){
@@ -143,12 +144,12 @@ function getBublID(elementID){
 									bubl['thumbnail'] = data.params.content.imageurl;
 									objectStore.upsertObject(bubl,
 										function(){
-											bublApp.loadPage('bubleditor');																		
+											bublApp.loadPage('bublEditor');																		
 										}
 									);
 								} else {
 									delete bubl['children'];
-									bublApp.loadPage('bubleditor', 'slideInRight', 'slideOutLeft');									
+									bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');									
 								}
 							}
 						);
@@ -156,7 +157,7 @@ function getBublID(elementID){
 				);
 			}
 		},
-		"bublpages": {
+		"bublPages": {
 			onLoad(data, callback){
 				objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 					function(loadedData){
@@ -170,7 +171,7 @@ function getBublID(elementID){
 				)
 			}	
 		},
-		"bublproperties": {
+		"bublProperties": {
 			onLoad: function(data, callback){
 				callback();
 			},

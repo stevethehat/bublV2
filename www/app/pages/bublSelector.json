@@ -29,7 +29,7 @@
 									
 									"type": "Control",
 									"size": { "height": 60 },
-									"label": "$(username)'s bubls"
+									"label": "<h2>$(username)'s bubls</h2>"
 								},
 								{
 									"type": "Control",

@@ -1,3 +1,4 @@
+/// <reference path="../../typings/jquery.d.ts"/>
 //$(function() {
 
 	var bublApp = {
@@ -10,7 +11,7 @@
 
 			
 			self.variables['username'] = 'Steve';
-			self.variables['currentpage'] = 'bublselector';
+			self.variables['currentpage'] = 'bublSelector';
 			//self.variables['currentpage'] = 'assetUpload';
 			
 
@@ -60,6 +61,8 @@
 					};
 					
 					var newPage = {
+						'id': 'isthishere',
+						'after': 'Header',
 						'type': 'View',
 						"size": { "width": "full", "height": "full" },
 						"layout": { "style": "vertical", "align": "left" }, 
@@ -99,27 +102,28 @@
 			var parsedData = self.preParse(newPage);	
 
 			o = ZEN.parse(parsedData, ZEN.objects['BublApp']);
-			//ZEN.objects['BublApp'].resize(true);
+
+			ZEN.log('we have done the resize!!!');
 			self.dump(ZEN.objects['BublApp'].params);				
 
 			//activePage.replaceChildren(parsedData.children);;
-			if(self.lastPage !== null){
+			if (self.lastPage !== null) {
 				self.lastPage.animate(outAnimation, false,
-					function(){
-						ZEN.cleanup();		
+					function () {
+						ZEN.log('out animation done!!');
+						ZEN.cleanup();
 					}
 				);
 			}
 
-			o.show(true);
 			ZEN.objects['BublApp'].resize(true);
-			
+//			o.show(true);
+
 			o.animate(inAnimation, true,
 				function(){
 					//ZEN.objects['BublApp'].resize(true);
 				}
 			);
-			
 			this.lastPage = o;
 			if(self.actions[page] && self.actions[page].afterLoad){
 				self.actions[page].afterLoad(data,
