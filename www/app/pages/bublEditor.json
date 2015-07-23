@@ -22,8 +22,8 @@
 				"size": { "width": 100 }
 			},
 			"children": [
-				{ "type": "IconLabel", "size": { "width": "max" }, "id": "back", "content": { "icon": "fa-angle-left", "label": "Back", "size": 2 } },
-				{ "type": "IconLabel", "id": "pages", "content": { "icon": "fa-file-o", "label": "Pages", "size": 2 } }
+				{ "type": "IconLabel", "size": { "width": "max" }, "tag": "back", "content": { "icon": "fa-angle-left", "label": "Back", "size": 2 } },
+				{ "type": "IconLabel", "tag": "pages", "content": { "icon": "fa-file-o", "label": "Pages", "size": 2 } }
 			]
 		},
 		{

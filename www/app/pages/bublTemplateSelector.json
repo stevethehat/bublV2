@@ -1,6 +1,6 @@
 {
 	"type": "View",
-	"id": "home",
+	"id": "bublTemplateSelector",
 	"show": true,
 	"size": { "width": "max", "height": "max" },
 	"layout": { "style": "vertical" },
@@ -11,9 +11,7 @@
 		"layout": { "style": "vertical", "align": "left" } 
 	},
 	"children": [
-		{
-			"size": { "height" : 40 }
-		},
+		{ "size": { "height" : 40 } },
 		{
 			"layout": { "style": "horizontal" },
 			"children":[
@@ -26,11 +24,11 @@
 								{
 									"type": "Control",
 									"size": { "height": 60 },
-									"label": "$(username)'s bubls"
+									"label": "$(bubltitle)"
 								},
 								{
 									"type": "Control",
-									"label": "Select the bubl you want to edit.",
+									"label": "Select the template you want to use.",
 									"size": { "height": 30 }	
 								},
 								{
@@ -40,22 +38,11 @@
 									"defaults": {
 										"type": "ThumbnailMenu",
 										"size": { "width": 340, "height": 200 },
-										"tag": "Select",
-										"menu":[
-											{ "action": "Share", "icon": "fa-share-square-o", "label": "Share" },
-											{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
-											{ "action": "Delete", "icon": "fa-trash-o", "label": "Delete" },
-											{ "action": "More", "icon": "fa-ellipsis-h", "label": "" }
-										]
+										"actions": {
+											"click": "GridClick"										
+										}
 									},
-									"children": [
-										{ 
-											"type": "Button", 
-											"id": "addBubl", 
-											"tag": "Add",
-											"label": "Add bubl"
-										}		
-									]
+									"children": []								
 								}
 							]
 						}

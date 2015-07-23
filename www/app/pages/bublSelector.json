@@ -1,9 +1,10 @@
 {
 	"type": "View",
-	"id": "home",
+	"id": "bublSelector",
 	"show": true,
 	"size": { "width": "max", "height": "max" },
 	"layout": { "style": "vertical" },
+	"after": "Header",
 	"defaults": { 
 		"type": "View",
 		"show": true,
@@ -16,65 +17,56 @@
 			"size": { "height" : 40 }
 		},
 		{
-			"id": "mainRow",
 			"layout": { "style": "horizontal" },
 			"children":[
+				{ "id": "leftPadding" },
 				{
-					"id": "leftPadding"
-				},
-				{
-					"id": "mainContentArea",
 					"size": { "width" : 1020, "height": 600 },
 					"children":[
 						{
 							"children": [
 								{
-									"type": "Header",
-									"id": "header",
+									
+									"type": "Control",
 									"size": { "height": 60 },
-									"content": "$(bubltitle)"
+									"label": "$(username)'s bubls"
 								},
 								{
-									"type": "Text",
-									"id": "instructions",
-									"content": "Select the page you want to edit.",
+									"type": "Control",
+									"label": "Select the bubl you want to edit.",
 									"size": { "height": 30 }	
 								},
 								{
-									"type": "Grid",
 									"id": "bubleGrid",
+									"type": "Grid",
 									"dimensions": { "columns": 3, "rows": 2 },
 									"defaults": {
-										"type": "ThubmnailMenuItem",
+										"type": "ThumbnailMenu",
 										"size": { "width": 340, "height": 200 },
-										"actions": {
-											"click": "ShowPage"										
-										},
-										"controls":[
+										"tag": "Select",
+										"menu":[
+											{ "action": "Share", "icon": "fa-share-square-o", "label": "Share" },
 											{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
 											{ "action": "Delete", "icon": "fa-trash-o", "label": "Delete" },
 											{ "action": "More", "icon": "fa-ellipsis-h", "label": "" }
 										]
 									},
 									"children": [
-										{ "type": "LabelButton", "id": "addPage", "content": { "icon": "fa-plus", "label": "New page", "size": 4 } }
-									],
-									"actions": {
-										"click": "ListClick"
-									}
+										{ 
+											"type": "Button", 
+											"id": "addBubl", 
+											"tag": "Add",
+											"label": "Add bubl"
+										}		
+									]
 								}
 							]
 						}
 					]
 				},
-				{
-					"id": "rightPadding"					
-				}
+				{  }
 			]
 		},
-		{
-			"id": "bottomPadding",
-			"size": { "height" : 40 }
-		}
+		{ "id": "bottomPadding", "size": { "height" : 40 } }
 	]
 }

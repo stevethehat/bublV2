@@ -1,6 +1,6 @@
 {
 	"type": "View",
-	"id": "editor",
+	"id": "bublProperties",
 	"show": true,
 	"size": { "width": "max", "height": "max" },
 	"layout": { "style": "vertical" },
