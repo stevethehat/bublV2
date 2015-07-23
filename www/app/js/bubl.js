@@ -61,8 +61,7 @@
 					};
 					
 					var newPage = {
-						'id': 'isthishere',
-						'after': 'Header',
+						'after': 'toolbar',
 						'type': 'View',
 						"size": { "width": "full", "height": "full" },
 						"layout": { "style": "vertical", "align": "left" }, 
@@ -134,6 +133,27 @@
 			}
 		},
 		
+		runReplacer: function(data){
+			var self = this;
+			for(item in data){
+				// 	\$\(([abc]+)\)
+				var value = data[item];
+				if(_.isString(value)){
+					data[item] = value.replace(/\$\(([a-z0-9A-Z]+)\)/g, function(a, b){
+						if(self.variables[b]){
+							ZEN.log('replace ' + b + ' = ' + self.variables[b]);
+							return(self.variables[b]);
+						} else {
+							return('no variable - ' + b);
+						}
+					});
+				}
+				if(_.isObject(value)){
+					self.runReplacer(value);
+				}
+			}
+		},
+		
 		preParse: function(data, defaults){
 			var self = this;
 			var childDefaults = {};
@@ -143,58 +163,11 @@
 				$.extend(true, childDefaults, data['defaults']);
 			}
 
-			function runReplacer(data){
-				for(item in data){
-					// 	\$\(([abc]+)\)
-					var value = data[item];
-					if(_.isString(value)){
-						data[item] = value.replace(/\$\(([a-z0-9A-Z]+)\)/g, function(a, b){
-							if(self.variables[b]){
-								ZEN.log('replace ' + b + ' = ' + self.variables[b]);
-								return(self.variables[b]);
-							} else {
-								return('no variable - ' + b);
-							}
-						});
-					}
-					if(_.isObject(value)){
-						runReplacer(value);
-					}
-				}
-			}
-			runReplacer(data);
+			self.runReplacer(data);
 			
 			// process grids... this really isnt the place to put this..
 			if(data['type'] == 'Grid'){
-				var gridView =
-					{
-						'type': 'View',
-						'layout': { 'style': 'vertical' },
-						'children': []
-					};
-				var row = 0;
-				var currentRow = null;
-				var col = 0;
-				
-				_.each(data['children'],
-					function(child){
-						if(col === 0){
-							// create new row
-							currentRow = {
-								'type': 'View',
-								'layout': { 'style': 'horizontal' },
-								'children': []								
-							};
-							gridView.children.push(currentRow);
-						}	
-						currentRow.children.push(child);
-						col++;
-						if(col === 3){
-							col = 0;
-						}
-					}
-				);
-				data.children = [gridView];
+				data.children = ZEN.ui.Grid.preProcess(data);
 			}
 			
 			if(data['children']){
@@ -245,6 +218,10 @@
 					children[i] = $.extend(true, {}, childDefaults, children[i]);
 					self.preParse(children[i], childDefaults);
 				}
+			}
+			
+			if(data.type === 'Application'){
+				alert('at root level');
 			}
 			
 			return(data);

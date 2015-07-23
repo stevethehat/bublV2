@@ -27,6 +27,20 @@
 			]
 		},
 		{
+			"id": "toolbar",
+			"layout": { "style": "horizontal", "align": "left" },
+			"size": { "height": 34, "width": "max" },
+			"defaults": {
+				"type": "Control",
+				"size": { "width": 100 }
+			},
+			"children": [
+				{ "type": "IconLabel", "size": { "width": "max" }, "tag": "home", "content": { "icon": "fa-home", "size": 2 } },
+				{ "type": "IconLabel", "size": { "width": "max" }, "tag": "back", "content": { "icon": "fa-angle-left", "size": 2, "label": "back" } }
+			]
+		},
+
+		{
 			"id": "StatusBar",
 			"class": "statusbar",
 			"size": { "height": 30 }

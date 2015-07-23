@@ -99,6 +99,97 @@
             "show": true,
             "size": {
                 "width": "max",
+                "height": 34
+            },
+            "layout": {
+                "style": "horizontal",
+                "align": "left"
+            },
+            "id": "toolbar",
+            "defaults": {
+                "type": "Control",
+                "size": {
+                    "width": 100
+                }
+            },
+            "children": [
+                {
+                    "type": "View",
+                    "show": true,
+                    "size": {
+                        "width": "max",
+                        "height": "max"
+                    },
+                    "layout": {
+                        "style": "vertical",
+                        "align": "left"
+                    },
+                    "autoadded": true,
+                    "children": [
+                        {
+                            "type": "IconLabel",
+                            "show": true,
+                            "size": {
+                                "width": 100,
+                                "height": "max"
+                            },
+                            "layout": {
+                                "style": "vertical",
+                                "align": "left"
+                            },
+                            "tag": "home",
+                            "content": {
+                                "icon": "fa-home",
+                                "size": 2
+                            },
+                            "initialise": true
+                        }
+                    ],
+                    "initialise": true
+                },
+                {
+                    "type": "View",
+                    "show": true,
+                    "size": {
+                        "width": "max",
+                        "height": "max"
+                    },
+                    "layout": {
+                        "style": "vertical",
+                        "align": "left"
+                    },
+                    "autoadded": true,
+                    "children": [
+                        {
+                            "type": "IconLabel",
+                            "show": true,
+                            "size": {
+                                "width": 100,
+                                "height": "max"
+                            },
+                            "layout": {
+                                "style": "vertical",
+                                "align": "left"
+                            },
+                            "tag": "back",
+                            "content": {
+                                "icon": "fa-angle-left",
+                                "size": 2,
+                                "label": "back"
+                            },
+                            "initialise": true
+                        }
+                    ],
+                    "initialise": true
+                }
+            ],
+            "initialise": true
+        },
+        {
+            "type": "View",
+            "show": true,
+            "size": {
+                "width": "max",
                 "height": 30
             },
             "layout": {

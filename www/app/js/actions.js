@@ -13,7 +13,7 @@ function getBublID(elementID){
 				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 			},
 			home: function(data){
-				bublApp.loadPage('bublSelector');
+				bublApp.loadPage('bublSelector', 'fadeIn', 'fadeOut');
 			},			
 			pages: function(data){	
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');

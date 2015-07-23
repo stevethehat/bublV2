@@ -13,21 +13,6 @@
 
 	"children": [
 		{
-			"id": "toolbar",
-			"layout": { "style": "horizontal", "align": "right" },
-			"size": { "height": 34 },
-			"style": { "padding-top": 2 },
-			"defaults": {
-				"type": "Control",
-				"size": { "width": 100 }
-			},
-			"children": [
-				{ "type": "IconLabel", "tag": "back", "size": { "width": "max" }, "content": { "icon": "fa-angle-left", "label": "Back", "size": 2 } },
-				{ "type": "IconLabel", "tag": "save", "content": { "icon": "fa-floppy-o", "label": "Save", "size": 2 } },
-				{ "type": "IconLabel", "tag": "pages", "content": { "icon": "fa-file-o", "label": "Pages", "size": 2 } }
-			]
-		},
-		{
 			"id": "MainPanel",
 			"layout": { "style": "horizontal" },
 			"children": [
