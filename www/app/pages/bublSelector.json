@@ -14,7 +14,7 @@
 	"children": [
 		{
 			"id": "topPadding",
-			"size": { "height" : 10 }
+			"size": { "height" : 20 }
 		},
 		{
 			"layout": { "style": "horizontal" },

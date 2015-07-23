@@ -95,17 +95,15 @@
 		},
 
 		lastPage: null,
+
 		showPage: function(newPage, page, data, inAnimation, outAnimation){
 			var self = this, o;
 			self.preParse(newPage);
 			var parsedData = self.preParse(newPage);	
 
 			o = ZEN.parse(parsedData, ZEN.objects['BublApp']);
-
-			ZEN.log('we have done the resize!!!');
 			self.dump(ZEN.objects['BublApp'].params);				
 
-			//activePage.replaceChildren(parsedData.children);;
 			if (self.lastPage !== null) {
 				self.lastPage.animate(outAnimation, false,
 					function () {
@@ -116,19 +114,13 @@
 			}
 
 			ZEN.objects['BublApp'].resize(true);
-//			o.show(true);
-
 			o.animate(inAnimation, true,
-				function(){
-					//ZEN.objects['BublApp'].resize(true);
-				}
+				function(){}
 			);
 			this.lastPage = o;
 			if(self.actions[page] && self.actions[page].afterLoad){
 				self.actions[page].afterLoad(data,
-					function(){
-						
-					}
+					function(){}
 				);
 			}
 		},
@@ -219,11 +211,6 @@
 					self.preParse(children[i], childDefaults);
 				}
 			}
-			
-			if(data.type === 'Application'){
-				alert('at root level');
-			}
-			
 			return(data);
 		},
 		
