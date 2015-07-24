@@ -38,6 +38,12 @@
 							self.findID(id, element, callback);
 						}
 					);
+				} else {
+					if(_.isObject(data)){
+						for(var oName in data){
+							self.findID(id, data[oName], callback);
+						}
+					}
 				}
 			}
 		},
