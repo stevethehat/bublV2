@@ -59,21 +59,7 @@
 			
 			self.load('app/pages/' + pageName + '.json', null, 
 				function(data){
-					var defaults = 	{ 
-						"type": "View",
-						"show": true,
-						"size": { "width": "max", "height": "max" },
-						"layout": { "style": "vertical", "align": "left" } 
-					};
-					
-					var newPage = {
-						'after': 'toolbar',
-						'type': 'View',
-						"size": { "width": "full", "height": "full" },
-						"layout": { "style": "vertical", "align": "left" }, 
-						defaults: defaults,
-						children: data['BublApp'].children
-					}
+					var newPage = self.setDefaults(data);
 					
 					if(self.actions[pageName] && self.actions[pageName].onLoad){
 						self.actions[pageName].onLoad(data, function(){
@@ -84,6 +70,23 @@
 					}
 				}	
 			);
+		},
+		
+		setDefaults: function(data){
+			var newPage = {
+				'after': 'toolbar',
+				'type': 'View',
+				"size": { "width": "full", "height": "full" },
+				"layout": { "style": "vertical", "align": "left" }, 
+				defaults: { 
+					"type": "View",
+					"show": true,
+					"size": { "width": "max", "height": "max" },
+					"layout": { "style": "vertical", "align": "left" } 
+				},
+				children: data['BublApp'].children
+			}
+			return newPage;			
 		},
 
 		load: function(url, parent, callback){
