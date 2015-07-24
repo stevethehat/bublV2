@@ -26,5 +26,10 @@
 				]
 			}
 		]
+	},
+	"toolbarButtons":{
+		"children":[
+			
+		]
 	}
 }
