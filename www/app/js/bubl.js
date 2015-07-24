@@ -73,7 +73,8 @@
 		},
 		
 		setDefaults: function(data){
-			var newPage = {
+			var newPage = {};
+			newPage['BublApp'] = {
 				'after': 'toolbar',
 				'type': 'View',
 				"size": { "width": "full", "height": "full" },
@@ -85,6 +86,25 @@
 					"layout": { "style": "vertical", "align": "left" } 
 				},
 				children: data['BublApp'].children
+			}
+			//newPage['toolbarButtons'] = data['toolbarButtons'];
+			newPage['toolbarButtons'] = {
+				'type': 'View',
+				defaults: { 
+					'type': 'IconLabel',
+					"show": true,
+					"size": { "width": "max", "height": "max" },
+					"layout": { "style": "vertical", "align": "left" } 
+				},
+
+				'children': [
+					{
+						"content": {
+							"label": "Text",
+							"icon": "fa-file-text-o"
+						}
+					}
+				]
 			}
 			return newPage;			
 		},
@@ -106,7 +126,10 @@
 		lastElements: {},
 		showPage: function(newDefinition, pageName, data, inAnimation, outAnimation){
 			var self = this;
-			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition, inAnimation, outAnimation);	
+			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition['BublApp'], inAnimation, outAnimation);	
+			//this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], inAnimation, outAnimation);
+			//alert(JSON.stringify(newDefinition['toolbarButtons']));	
+
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
 				self.actions[pageName].afterLoad(data,
 					function(){}
