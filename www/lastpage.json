@@ -107,17 +107,14 @@
             },
             "id": "toolbar",
             "defaults": {
-                "type": "Control",
-                "size": {
-                    "width": 100
-                }
+                "type": "Control"
             },
             "children": [
                 {
                     "type": "View",
                     "show": true,
                     "size": {
-                        "width": "max",
+                        "width": 100,
                         "height": "max"
                     },
                     "layout": {
@@ -130,7 +127,7 @@
                             "type": "IconLabel",
                             "show": true,
                             "size": {
-                                "width": 100,
+                                "width": "max",
                                 "height": "max"
                             },
                             "layout": {
@@ -151,7 +148,7 @@
                     "type": "View",
                     "show": true,
                     "size": {
-                        "width": "max",
+                        "width": 100,
                         "height": "max"
                     },
                     "layout": {
@@ -164,7 +161,7 @@
                             "type": "IconLabel",
                             "show": true,
                             "size": {
-                                "width": 100,
+                                "width": "max",
                                 "height": "max"
                             },
                             "layout": {
