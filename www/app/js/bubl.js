@@ -72,7 +72,7 @@
 						"size": { "width": "full", "height": "full" },
 						"layout": { "style": "vertical", "align": "left" }, 
 						defaults: defaults,
-						children: data.children
+						children: data['BublApp'].children
 					}
 					
 					if(self.actions[pageName] && self.actions[pageName].onLoad){

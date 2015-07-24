@@ -1,72 +1,75 @@
 {
-	"type": "View",
-	"id": "bublSelector",
-	"show": true,
-	"size": { "width": "max", "height": "max" },
-	"layout": { "style": "vertical" },
-	"after": "Header",
-	"defaults": { 
+	"BublApp":	
+	{
 		"type": "View",
+		"id": "bublSelector",
 		"show": true,
 		"size": { "width": "max", "height": "max" },
-		"layout": { "style": "vertical", "align": "left" } 
-	},
-	"children": [
-		{
-			"id": "topPadding",
-			"size": { "height" : 20 }
+		"layout": { "style": "vertical" },
+		"after": "Header",
+		"defaults": { 
+			"type": "View",
+			"show": true,
+			"size": { "width": "max", "height": "max" },
+			"layout": { "style": "vertical", "align": "left" } 
 		},
-		{
-			"layout": { "style": "horizontal" },
-			"children":[
-				{ "id": "leftPadding" },
-				{
-					"size": { "width" : 1020, "height": 600 },
-					"children":[
-						{
-							"children": [
-								{
-									
-									"type": "Control",
-									"size": { "height": 60 },
-									"label": "<h2>$(username)'s bubls</h2>"
-								},
-								{
-									"type": "Control",
-									"label": "Select the bubl you want to edit.",
-									"size": { "height": 30 }	
-								},
-								{
-									"id": "bubleGrid",
-									"type": "Grid",
-									"dimensions": { "columns": 3, "rows": 2 },
-									"defaults": {
-										"type": "ThumbnailMenu",
-										"size": { "width": 340, "height": 200 },
-										"tag": "Select",
-										"menu":[
-											{ "action": "Share", "icon": "fa-share-square-o", "label": "Share" },
-											{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
-											{ "action": "Delete", "icon": "fa-trash-o", "label": "Delete" },
-											{ "action": "More", "icon": "fa-ellipsis-h", "label": "" }
-										]
+		"children": [
+			{
+				"id": "topPadding",
+				"size": { "height" : 20 }
+			},
+			{
+				"layout": { "style": "horizontal" },
+				"children":[
+					{ "id": "leftPadding" },
+					{
+						"size": { "width" : 1020, "height": 600 },
+						"children":[
+							{
+								"children": [
+									{
+										
+										"type": "Control",
+										"size": { "height": 60 },
+										"label": "<h2>$(username)'s bubls</h2>"
 									},
-									"children": [
-										{ 
-											"type": "Button", 
-											"id": "addBubl", 
-											"tag": "Add",
-											"label": "Add bubl"
-										}		
-									]
-								}
-							]
-						}
-					]
-				},
-				{  }
-			]
-		},
-		{ "id": "bottomPadding", "size": { "height" : 40 } }
-	]
+									{
+										"type": "Control",
+										"label": "Select the bubl you want to edit.",
+										"size": { "height": 30 }	
+									},
+									{
+										"id": "bubleGrid",
+										"type": "Grid",
+										"dimensions": { "columns": 3, "rows": 2 },
+										"defaults": {
+											"type": "ThumbnailMenu",
+											"size": { "width": 340, "height": 200 },
+											"tag": "Select",
+											"menu":[
+												{ "action": "Share", "icon": "fa-share-square-o", "label": "Share" },
+												{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
+												{ "action": "Delete", "icon": "fa-trash-o", "label": "Delete" },
+												{ "action": "More", "icon": "fa-ellipsis-h", "label": "" }
+											]
+										},
+										"children": [
+											{ 
+												"type": "Button", 
+												"id": "addBubl", 
+												"tag": "Add",
+												"label": "Add bubl"
+											}		
+										]
+									}
+								]
+							}
+						]
+					},
+					{  }
+				]
+			},
+			{ "id": "bottomPadding", "size": { "height" : 40 } }
+		]
+	}
 }
