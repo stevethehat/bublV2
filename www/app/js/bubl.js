@@ -41,17 +41,17 @@
 				}
 			}
 		},
-		loadPage: function(page, inAnimation, outAnimation){
+		loadPage: function(pageName, inAnimation, outAnimation){
 			var self = this;
 		
 			self.variables['lastpage'] = self.variables['currentpage'];
-			self.variables['currentpage'] = page;
+			self.variables['currentpage'] = pageName;
 			//$('body').empty();
 			
 			ZEN.log('load page');
 			ZEN.log(self.variables);
 			
-			self.load('app/pages/' + page + '.json', null, 
+			self.load('app/pages/' + pageName + '.json', null, 
 				function(data){
 					var defaults = 	{ 
 						"type": "View",
@@ -69,12 +69,12 @@
 						children: data.children
 					}
 					
-					if(self.actions[page] && self.actions[page].onLoad){
-						self.actions[page].onLoad(data, function(){
-							self.showPage(newPage, page, data, inAnimation, outAnimation);
+					if(self.actions[pageName] && self.actions[pageName].onLoad){
+						self.actions[pageName].onLoad(data, function(){
+							self.showPage(newPage, pageName, data, inAnimation, outAnimation);
 						});
 					} else {
-						self.showPage(newPage, page, data, inAnimation, outAnimation);
+						self.showPage(newPage, pageName, data, inAnimation, outAnimation);
 					}
 				}	
 			);
@@ -95,34 +95,39 @@
 		},
 
 		lastPage: null,
+		showPage: function(newDefinition, pageName, data, inAnimation, outAnimation){
+			var self = this;
+			this.lastPage = self.showElement('BublApp', newDefinition, inAnimation, outAnimation);	
+			if(self.actions[pageName] && self.actions[pageName].afterLoad){
+				self.actions[pageName].afterLoad(data,
+					function(){}
+				);
+			}
+		},
 
-		showPage: function(newPage, page, data, inAnimation, outAnimation){
-			var self = this, o;
-			self.preParse(newPage);
-			var parsedData = self.preParse(newPage);	
+		showElement: function(parentID, newDefinition, inAnimation, outAnimation){
+			var self = this, o, cleanup;
+			self.preParse(newDefinition);
+			var parsedData = self.preParse(newDefinition);
 
-			o = ZEN.parse(parsedData, ZEN.objects['BublApp']);
-			self.dump(ZEN.objects['BublApp'].params);				
+			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
+			self.dump(ZEN.objects[parentID].params);				
 
 			if (self.lastPage !== null) {
+				cleanup = self.lastPage;
 				self.lastPage.animate(outAnimation, false,
 					function () {
-						ZEN.log('out animation done!!');
 						ZEN.cleanup();
+						cleanup.remove();
 					}
 				);
 			}
 
-			ZEN.objects['BublApp'].resize(true);
+			ZEN.objects[parentID].resize(true);
 			o.animate(inAnimation, true,
 				function(){}
 			);
-			this.lastPage = o;
-			if(self.actions[page] && self.actions[page].afterLoad){
-				self.actions[page].afterLoad(data,
-					function(){}
-				);
-			}
+			return o;
 		},
 		
 		runReplacer: function(data){
