@@ -53,6 +53,7 @@
 			
 			self.load('app/pages/' + pageName + '.json', null, 
 				function(data){
+					// do the page bits
 					var defaults = 	{ 
 						"type": "View",
 						"show": true,
@@ -68,13 +69,18 @@
 						defaults: defaults,
 						children: data.children
 					}
-					
+					var newPage = _.extend(newPage, data['main']);					
 					if(self.actions[pageName] && self.actions[pageName].onLoad){
-						self.actions[pageName].onLoad(data, function(){
+						self.actions[pageName].onLoad(newPage, function(){
 							self.showPage(newPage, pageName, data, inAnimation, outAnimation);
 						});
 					} else {
 						self.showPage(newPage, pageName, data, inAnimation, outAnimation);
+					}
+					
+					// do the toolbar stuff
+					if (data.hasOwnProperty('toolbarButtons')){
+						self.lastElements['toolbar'] = self.showElement('toolbarButtons', data['toolbarButtons']);
 					}
 				}	
 			);
@@ -95,9 +101,9 @@
 		},
 
 		lastElements: {},
-		showPage: function(newDefinition, pageName, data, inAnimation, outAnimation){
+		showPage: function(pageDefinition, pageName, data, inAnimation, outAnimation){
 			var self = this;
-			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition, inAnimation, outAnimation);	
+			this.lastElements['BublApp'] = self.showElement('BublApp', pageDefinition, inAnimation, outAnimation);	
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
 				self.actions[pageName].afterLoad(data,
 					function(){}

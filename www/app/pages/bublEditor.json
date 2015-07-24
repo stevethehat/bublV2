@@ -1,79 +1,82 @@
 {
-	"type": "View",
-	"id": "editor",
-	"show": true,
-	"size": { "width": "max", "height": "max" },
-	"layout": { "style": "vertical" },
-	"defaults": { 
+	"main":	
+	{
 		"type": "View",
+		"id": "editor",
 		"show": true,
 		"size": { "width": "max", "height": "max" },
-		"layout": { "style": "vertical", "align": "left" } 
-	},
-
-	"children": [
-		{
-			"id": "mainPanel",
-			"layout": { "style": "horizontal" },
-			"children": [
-				{
-					"id": "palette",
-					"size": { "width": 200 },
-					"children":[
-						{
-							"type": "View",
-							"defaults": {
-								"type": "IconLabel",
-								"size": { "height": 38 }
-							},
-							"children": [
-								{	
-									"content": {
-										"label": "Text",
-										"icon": "fa-file-text-o"
+		"layout": { "style": "vertical" },
+		"defaults": { 
+			"type": "View",
+			"show": true,
+			"size": { "width": "max", "height": "max" },
+			"layout": { "style": "vertical", "align": "left" } 
+		},
+	
+		"children": [
+			{
+				"id": "mainPanel",
+				"layout": { "style": "horizontal" },
+				"children": [
+					{
+						"id": "palette",
+						"size": { "width": 200 },
+						"children":[
+							{
+								"type": "View",
+								"defaults": {
+									"type": "IconLabel",
+									"size": { "height": 38 }
+								},
+								"children": [
+									{	
+										"content": {
+											"label": "Text",
+											"icon": "fa-file-text-o"
+										}
+									},
+									{
+										"content": {
+											"label": "Image",
+											"icon": "fa-file-image-o"
+										}										
+									},
+									{
+										"content": {
+											"label": "Video",
+											"icon": "fa-file-movie-o"
+										}
+									},
+									{
+										"content": {
+											"label": "Columns",
+											"icon": "fa-columns"
+										}
+									},
+									{
+										"type": "Uploader"
 									}
-								},
-								{
-									"content": {
-										"label": "Image",
-										"icon": "fa-file-image-o"
-									}										
-								},
-								{
-									"content": {
-										"label": "Video",
-										"icon": "fa-file-movie-o"
-									}
-								},
-								{
-									"content": {
-										"label": "Columns",
-										"icon": "fa-columns"
-									}
-								},
-								{
-									"type": "Uploader"
-								}
-								
-							]
-						}
-					]
-				},
-				{
-					"id": "bublEditor",
-					"color": "#999"
-				},
-				{
-					"id": "properties",
-					"size": { "width": 200 },
-					"children": [
-						{
-							"content": "Text",
-							"icon": "fa-file-text-o"
-						}
-					]
-				}
-			]
-		}
-	]
+									
+								]
+							}
+						]
+					},
+					{
+						"id": "bublEditor",
+						"color": "#999"
+					},
+					{
+						"id": "properties",
+						"size": { "width": 200 },
+						"children": [
+							{
+								"content": "Text",
+								"icon": "fa-file-text-o"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
 }

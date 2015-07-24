@@ -1,27 +1,30 @@
 {
-	"type": "View",
-	"id": "bublProperties",
-	"show": true,
-	"size": { "width": "max", "height": "max" },
-	"layout": { "style": "vertical" },
-	"defaults": { 
+	"main":
+	{
 		"type": "View",
+		"id": "bublProperties",
 		"show": true,
 		"size": { "width": "max", "height": "max" },
-		"layout": { "style": "vertical", "align": "left" } 
-	},
-
-	"children": [
-		{
-			"id": "MainPanel",
-			"layout": { "style": "horizontal" },
-			"children": [
-				{
-					"type": "CodeEditor",
-					"id": "BublEditor",
-					"color": "#999"
-				}
-			]
-		}
-	]
+		"layout": { "style": "vertical" },
+		"defaults": { 
+			"type": "View",
+			"show": true,
+			"size": { "width": "max", "height": "max" },
+			"layout": { "style": "vertical", "align": "left" } 
+		},
+	
+		"children": [
+			{
+				"id": "MainPanel",
+				"layout": { "style": "horizontal" },
+				"children": [
+					{
+						"type": "CodeEditor",
+						"id": "BublEditor",
+						"color": "#999"
+					}
+				]
+			}
+		]
+	}
 }
