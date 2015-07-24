@@ -94,10 +94,10 @@
 			);
 		},
 
-		lastPage: null,
+		lastElements: {},
 		showPage: function(newDefinition, pageName, data, inAnimation, outAnimation){
 			var self = this;
-			this.lastPage = self.showElement('BublApp', newDefinition, inAnimation, outAnimation);	
+			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition, inAnimation, outAnimation);	
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
 				self.actions[pageName].afterLoad(data,
 					function(){}
@@ -113,9 +113,9 @@
 			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
 			self.dump(ZEN.objects[parentID].params);				
 
-			if (self.lastPage !== null) {
-				cleanup = self.lastPage;
-				self.lastPage.animate(outAnimation, false,
+			if (self.lastElements.hasOwnProperty(parentID)) {
+				cleanup = self.lastElements[parentID];
+				self.lastElements[parentID].animate(outAnimation, false,
 					function () {
 						ZEN.cleanup();
 						cleanup.remove();
@@ -236,15 +236,6 @@
 					self.executeAction(message.source.tag, message);	
 				}
 			);
-			
-			/*
-			self.setupObserver('ui.iconlabel',
-				function(message){
-					ZEN.log('observer(ui.iconlabel)', message, $(message.sourceElement));	
-					self.executeAction(message.source.tag, message);	
-				}
-			);
-			*/
 			
 			self.setupObserver('pageevents',
 				function(params){
