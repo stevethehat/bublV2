@@ -81,12 +81,23 @@
 	},
 	"toolbarButtons":{
 		"type": "View",
-		"size": { "width": 100 },
+		"size": { "width": 200 },
+		"layout": { "align": "left", "style": "horizontal" },
 		"children":[
 			{
 				"type": "IconLabel",
+				"tag": "save",
 				"content": {
-					"label": "test",
+					"label": "Save",
+					"icon": "fa-floppy-o"
+				},
+				"size": { "width" : 100 }
+			},
+			{
+				"type": "IconLabel",
+				"tag": "pages",
+				"content": {
+					"label": "Pages",
 					"icon": "fa-files-o"
 				},
 				"size": { "width" : 100 }

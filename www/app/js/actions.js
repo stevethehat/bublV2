@@ -122,20 +122,34 @@ function getBublID(elementID){
 				)
 			},
 			select: function(data){
-				alert(JSON.stringify(data.serialize(), null, 4));
+				var templateID = getBublID(data.id);
+				var templateThumbnail = data.params.content.imageurl;
 				objectStore.upsertObject(
 					{
 						'parentId': '1000',
 						'title': 'New bubl',
 						'description': 'To edit these details click the \'...\' button below.',
-						'thumbnail': 'img/acricketer.png'
+						'thumbnail': templateThumbnail,
+						'template': templateID
 					},
 					function(insertedData){
-						bublApp.variables['bublid'] = insertedData['id'];
+						var bublID = insertedData['id'];
+						bublApp.variables['bublid'] = bublID;
 						bublApp.variables['bubltitle'] = insertedData['title'];
 						bublApp.setCurrentBubl(insertedData,
 							function(){
-								bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');						
+								objectStore.upsertObject(
+									{
+										'parentId': bublID,
+										'title': 'Page 1',
+										'description': 'Description of page', 	
+										'thumbnail': templateThumbnail,
+										'template': templateID
+									},
+									function(){						
+										bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');						
+									}
+								);
 							}
 						);
 					}
@@ -196,7 +210,7 @@ function getBublID(elementID){
 			onLoad(data, callback){
 				objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 					function(loadedData){
-						bublApp.findID('bubleGrid', data, 
+						bublApp.findID('bublGrid', data, 
 							function(element){
 								ZEN.ui.Grid.populate(loadedData.children, element.children);
 								callback();
@@ -204,7 +218,15 @@ function getBublID(elementID){
 						);
 					} 
 				)
-			}	
+			},
+				
+			select: function(data){
+				alert('edit bubl page');	
+			},
+			
+			add: function(data){
+				alert('add bubl page');
+			}
 		},
 		"bublProperties": {
 			onLoad: function(data, callback){

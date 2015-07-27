@@ -17,6 +17,7 @@ var ZEN = (function (ZEN, _, $) {
 		Grid.prototype = new ZEN.ui.Control();
 		
 		Grid.populate = function(children, gridChildren){
+			ZEN.log('populate grid', children);
 			_.each(children,
 				function(child){
 					gridChildren.push(
