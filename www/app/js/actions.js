@@ -51,6 +51,7 @@ function getBublID(elementID){
 			},
 			
 			add: function(data){
+				/*
 				objectStore.upsertObject(
 					{
 						'parentId': '1000',
@@ -68,6 +69,9 @@ function getBublID(elementID){
 						);
 					}
 				);
+				*/
+				bublApp.loadPage('bublNew', 'slideInRight', 'slideOutLeft');						
+
 				//bublApp.loadPage('bublshare');
 			},
 			
@@ -100,6 +104,42 @@ function getBublID(elementID){
 		"bublEditor":{
 			showPages: function(){
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
+			}
+		},
+		"bublNew":{
+			onLoad: function(data, callback){
+				objectStore.getObject('2000', 'withchildren',
+					function(loadedData){
+						bublApp.findID('bubleGrid', data, 
+							function(element){
+								ZEN.ui.Grid.populate(loadedData.children, element.children);
+								// go knows where the first item is comming from... this is a massive bodge..
+								element.children.shift();
+								callback();
+							}
+						);
+					} 
+				)
+			},
+			select: function(data){
+				alert(JSON.stringify(data.serialize(), null, 4));
+				objectStore.upsertObject(
+					{
+						'parentId': '1000',
+						'title': 'New bubl',
+						'description': 'To edit these details click the \'...\' button below.',
+						'thumbnail': 'img/acricketer.png'
+					},
+					function(insertedData){
+						bublApp.variables['bublid'] = insertedData['id'];
+						bublApp.variables['bubltitle'] = insertedData['title'];
+						bublApp.setCurrentBubl(insertedData,
+							function(){
+								bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');						
+							}
+						);
+					}
+				);
 			}
 		},
 		"bublTemplateSelector": {

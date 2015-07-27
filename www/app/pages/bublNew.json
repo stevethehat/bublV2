@@ -1,0 +1,57 @@
+{
+	"BublApp":
+	{
+		"type": "View",
+		"id": "bublNew",
+		"show": true,
+		"size": { "width": "max", "height": "max" },
+		"layout": { "style": "vertical" },
+		"defaults": { 
+			"type": "View",
+			"show": true,
+			"size": { "width": "max", "height": "max" },
+			"layout": { "style": "vertical", "align": "left" } 
+		},
+		"children": [
+			{ "size": { "height" : 40 } },
+			{
+				"layout": { "style": "horizontal" },
+				"children":[
+					{ "id": "leftPadding" },
+					{
+						"size": { "width" : 1020, "height": 600 },
+						"children":[
+							{
+								"children": [
+									{
+										"type": "Control",
+										"size": { "height": 60 },
+										"label": "New bubl"
+									},
+									{
+										"type": "Control",
+										"label": "Select the template you want to use.",
+										"size": { "height": 30 }	
+									},
+									{
+										"id": "bubleGrid",
+										"type": "Grid",
+										"dimensions": { "columns": 3, "rows": 2 },
+										"defaults": {
+											"type": "ThumbnailMenu",
+											"tag": "add",
+											"size": { "width": 340, "height": 200 }
+										},
+										"children": []								
+									}
+								]
+							}
+						]
+					},
+					{  }
+				]
+			},
+			{ "size": { "height" : 40 } }
+		]
+	}
+}
