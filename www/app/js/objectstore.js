@@ -42,6 +42,22 @@
 			});
 		},
 		
+		duplicateObject: function(objectID, callback){
+			var self = this;
+			
+			self.getObject(objectID, null,
+				function(object){
+					delete object['_id'];
+					delete object['id'];
+					self.upsertObject(object,
+						function(){
+							callback();
+						}	
+					);					
+				}	
+			);
+		},
+		
 		deleteObject: function(object, callback){
 			var self = this;
 			

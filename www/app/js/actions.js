@@ -17,7 +17,24 @@ function getBublID(elementID){
 			},			
 			pages: function(data){	
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
-			}
+			},
+
+			duplicate: function(data){
+				var objectID = getBublID(data.id);
+				objectStore.duplicateObject(objectID,
+					function(){
+						bublApp.loadPage(bublApp.variables['currentpage'], 'fadeIn', 'fadeOut');
+					}
+				);
+			}, 
+			delete: function(data){
+				var objectID = getBublID(data.id);
+				objectStore.deleteObject( { 'id': objectID },
+					function(){
+						bublApp.loadPage(bublApp.variables['currentpage'], 'fadeIn', 'fadeOut');
+					}
+				);
+			},
 		},
 		'home': {
 			
@@ -38,10 +55,6 @@ function getBublID(elementID){
 			},
 			
 			select: function(data){
-				var selectorBack = $('#' + data.id + ' .back');
-				bublApp.variables['bublBackgroundColor'] = selectorBack.css('background-color');
-				bublApp.variables['bublColor'] = selectorBack.css('color');
-
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentBubl(bublID,
 					function(){
@@ -51,47 +64,13 @@ function getBublID(elementID){
 			},
 			
 			add: function(data){
-				/*
-				objectStore.upsertObject(
-					{
-						'parentId': '1000',
-						'title': 'New bubl',
-						'description': 'To edit these details click the \'...\' button below.',
-						'thumbnail': 'img/acricketer.png'
-					},
-					function(insertedData){
-						bublApp.variables['bublid'] = insertedData['id'];
-						bublApp.variables['bubltitle'] = insertedData['title'];
-						bublApp.setCurrentBubl(insertedData,
-							function(){
-								bublApp.loadPage('bublTemplateSelector', 'slideInRight', 'slideOutLeft');						
-							}
-						);
-					}
-				);
-				*/
 				bublApp.loadPage('bublNew', 'slideInRight', 'slideOutLeft');						
-
-				//bublApp.loadPage('bublshare');
 			},
 			
 			share: function(data){
 				bublApp.loadPage('bublShare');
 			},
-			
-			duplicate: function(data){
-				alert('duplicate');
-			},
-			
-			delete: function(data){
-				var bublID = getBublID(data.id);
-				objectStore.deleteObject( { 'id': bublID },
-					function(){
-						bublApp.loadPage('bublSelector', 'fadeIn', 'fadeOut');
-					}
-				);
-			},
-			
+						
 			more: function(data){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentBubl(bublID,
@@ -134,8 +113,6 @@ function getBublID(elementID){
 					},
 					function(insertedData){
 						var bublID = insertedData['id'];
-						bublApp.variables['bublid'] = bublID;
-						bublApp.variables['bubltitle'] = insertedData['title'];
 						bublApp.setCurrentBubl(insertedData,
 							function(){
 								objectStore.upsertObject(
@@ -226,6 +203,10 @@ function getBublID(elementID){
 			
 			add: function(data){
 				alert('add bubl page');
+			},
+						
+			delete: function(data){
+				alert('delete');
 			}
 		},
 		"bublProperties": {

@@ -49,10 +49,9 @@
 										"defaults": {
 											"type": "ThumbnailMenu",
 											"size": { "width": 340, "height": 200 },
-											"controls":[
-												{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
-												{ "action": "Delete", "icon": "fa-trash-o", "label": "Delete" },
-												{ "action": "More", "icon": "fa-ellipsis-h", "label": "" }
+											"menu":[
+												{ "action": "duplicate", "icon": "fa-files-o", "label": "Duplicate" },
+												{ "action": "delete", "icon": "fa-trash-o", "label": "Delete" }
 											]
 										},
 										"children": [
