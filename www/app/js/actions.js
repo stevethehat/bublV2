@@ -37,7 +37,7 @@ function getBublID(elementID){
 				)
 			},
 			
-			Select: function(data){
+			select: function(data){
 				var selectorBack = $('#' + data.id + ' .back');
 				bublApp.variables['bublBackgroundColor'] = selectorBack.css('background-color');
 				bublApp.variables['bublColor'] = selectorBack.css('color');
@@ -50,7 +50,7 @@ function getBublID(elementID){
 				);
 			},
 			
-			Add: function(data){
+			add: function(data){
 				objectStore.upsertObject(
 					{
 						'parentId': '1000',
@@ -71,15 +71,15 @@ function getBublID(elementID){
 				//bublApp.loadPage('bublshare');
 			},
 			
-			Share: function(data){
+			share: function(data){
 				bublApp.loadPage('bublShare');
 			},
 			
-			Duplicate: function(data){
+			duplicate: function(data){
 				alert('duplicate');
 			},
 			
-			Delete: function(data){
+			delete: function(data){
 				var bublID = getBublID(data.id);
 				objectStore.deleteObject( { 'id': bublID },
 					function(){
@@ -88,7 +88,7 @@ function getBublID(elementID){
 				);
 			},
 			
-			More: function(data){
+			more: function(data){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentBubl(bublID,
 					function(){
@@ -98,12 +98,8 @@ function getBublID(elementID){
 			}
 		},
 		"bublEditor":{
-			ToolbarClick: function(data){
-				switch(data.id){
-					case 'pages':
-						bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
-						break;
-				}
+			showPages: function(){
+				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
 			}
 		},
 		"bublTemplateSelector": {
@@ -196,17 +192,6 @@ function getBublID(elementID){
 						bublApp.loadPage('bublSelector', 'slideInLeft', 'slideOutRight');
 					}
 				);
-			},
-			ToolbarClick: function(data){
-				switch(data.id){
-					case 'save':
-						objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
-							function(){
-								bublApp.loadPage('bublselector', 'slideInLeft', 'slideOutRight');
-							}
-						); 
-						break;
-				}
 			}
 		}
 	};

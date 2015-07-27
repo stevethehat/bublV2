@@ -113,11 +113,10 @@
 		lastElements: {},
 		showPage: function(newDefinition, pageName, data, inAnimation, outAnimation){
 			var self = this;
-			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition['BublApp'], inAnimation, outAnimation);	
-			this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], 'fadeIn', 'fadeOut');
-			//alert(JSON.stringify(newDefinition['toolbarButtons']));	
-			
-			//alert(JSON.stringify(ZEN.objects['BublApp'].serialize(), null, 4));
+			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition['BublApp'], inAnimation, outAnimation);
+			if(newDefinition['toolbarButtons'] !== undefined){	
+				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], 'fadeIn', 'fadeOut');
+			}
 			self.dump(ZEN.objects['BublApp'].serialize());
 
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
@@ -133,7 +132,6 @@
 			var parsedData = self.preParse(newDefinition);
 
 			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
-			ZEN.log('new object in ' + parentID, o);
 
 			if (self.lastElements.hasOwnProperty(parentID)) {
 				cleanup = self.lastElements[parentID];

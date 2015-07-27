@@ -45,19 +45,19 @@
 										"defaults": {
 											"type": "ThumbnailMenu",
 											"size": { "width": 340, "height": 200 },
-											"tag": "Select",
+											"tag": "select",
 											"menu":[
-												{ "action": "Share", "icon": "fa-share-square-o", "label": "Share" },
-												{ "action": "Duplicate", "icon": "fa-files-o", "label": "Duplicate" },
-												{ "action": "Delete", "icon": "fa-trash-o", "label": "Delete" },
-												{ "action": "More", "icon": "fa-ellipsis-h", "label": "" }
+												{ "action": "share", "icon": "fa-share-square-o", "label": "Share" },
+												{ "action": "duplicate", "icon": "fa-files-o", "label": "Duplicate" },
+												{ "action": "delete", "icon": "fa-trash-o", "label": "Delete" },
+												{ "action": "more", "icon": "fa-ellipsis-h", "label": "" }
 											]
 										},
 										"children": [
 											{ 
 												"type": "Button", 
 												"id": "addBubl", 
-												"tag": "Add",
+												"tag": "add",
 												"label": "Add bubl"
 											}		
 										]
