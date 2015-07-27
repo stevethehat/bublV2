@@ -26,5 +26,20 @@
 				]
 			}
 		]
+	},
+	"toolbarButtons":{
+		"type": "View",
+		"size": { "width": 200 },
+		"children":[
+			{
+				"type": "IconLabel",
+				"tag": "save",
+				"content": {
+					"label": "Save",
+					"icon": "fa-floppy-o"
+				},
+				"size": { "width" : 100 }
+			}
+		]		
 	}
 }
