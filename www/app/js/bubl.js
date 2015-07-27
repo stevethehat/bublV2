@@ -116,8 +116,15 @@
 			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition['BublApp'], inAnimation, outAnimation);
 			if(newDefinition['toolbarButtons'] !== undefined){	
 				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], 'fadeIn', 'fadeOut');
+			} else {
+				var empty = {
+					'type': 'View',
+					'children': []
+				}
+				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons',  empty, 'fadeIn', 'fadeOut');
+				//this.lastElements['toolbarButtons'].remove();
 			}
-			self.dump(ZEN.objects['BublApp'].serialize());
+			self.dump('main', ZEN.objects['BublApp'].serialize());
 
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
 				self.actions[pageName].afterLoad(data,
@@ -130,6 +137,7 @@
 			var self = this, o, cleanup;
 			//self.preParse(newDefinition);
 			var parsedData = self.preParse(newDefinition);
+			self.dump(parentID, parsedData);
 
 			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
 
@@ -144,9 +152,11 @@
 			}
 
 			ZEN.objects[parentID].resize(true);
-			o.animate(inAnimation, true,
-				function(){}
-			);
+			if(o){
+				o.animate(inAnimation, true,
+					function(){}
+				);
+			}
 			return o;
 		},
 		
@@ -217,7 +227,8 @@
 								};
 								if(child['size']){
 									wrapperView['size'] = child['size'];
-									delete child['size'];
+									//delete child['size'];
+									child['size'] = { 'width': 'max', 'height': 'max' };
 								}
 								if(child['id']){
 									wrapperView['id'] = child['id'] + 'AutoWrap';
@@ -309,17 +320,14 @@
 			}
 		},
 		
-		dump: function(object){
+		dump: function(fileName, object){
    			$.ajax({
-        		url: 'api/dump',
+        		url: 'api/dump/' + fileName,
         		type: 'POST',
         		contentType: 'application/json',
         		data: JSON.stringify(object),
         		dataType: 'json',
-				success: function(returnData){
-					ZEN.log('returned data');
-					ZEN.log(returnData);
-				}
+				success: function(returnData){}
 			});
 
 		}
