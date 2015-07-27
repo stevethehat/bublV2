@@ -87,25 +87,12 @@
 				},
 				children: data['BublApp'].children
 			}
-			//newPage['toolbarButtons'] = data['toolbarButtons'];
+			newPage['toolbarButtons'] = data['toolbarButtons'];
+			/*
 			newPage['toolbarButtons'] = {
 				'type': 'View',
-				defaults: { 
-					'type': 'IconLabel',
-					"show": true,
-					"size": { "width": "max", "height": "max" },
-					"layout": { "style": "vertical", "align": "left" } 
-				},
-
-				'children': [
-					{
-						"content": {
-							"label": "Text",
-							"icon": "fa-file-text-o"
-						}
-					}
-				]
-			}
+				'children':[]
+			}*/
 			return newPage;			
 		},
 
@@ -127,8 +114,11 @@
 		showPage: function(newDefinition, pageName, data, inAnimation, outAnimation){
 			var self = this;
 			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition['BublApp'], inAnimation, outAnimation);	
-			//this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], inAnimation, outAnimation);
+			this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], 'fadeIn', 'fadeOut');
 			//alert(JSON.stringify(newDefinition['toolbarButtons']));	
+			
+			//alert(JSON.stringify(ZEN.objects['BublApp'].serialize(), null, 4));
+			self.dump(ZEN.objects['BublApp'].serialize());
 
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
 				self.actions[pageName].afterLoad(data,
@@ -139,11 +129,11 @@
 
 		showElement: function(parentID, newDefinition, inAnimation, outAnimation){
 			var self = this, o, cleanup;
-			self.preParse(newDefinition);
+			//self.preParse(newDefinition);
 			var parsedData = self.preParse(newDefinition);
 
 			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
-			self.dump(ZEN.objects[parentID].params);				
+			ZEN.log('new object in ' + parentID, o);
 
 			if (self.lastElements.hasOwnProperty(parentID)) {
 				cleanup = self.lastElements[parentID];

@@ -31,12 +31,19 @@
 			"layout": { "style": "horizontal", "align": "left" },
 			"size": { "height": 34, "width": "max" },
 			"defaults": {
-				"type": "Control" },
-				"children": [
-					{ "type": "IconLabel", "size": { "width": 100 }, "tag": "home", "content": { "icon": "fa-home", "size": 2 } },
-					{ "type": "IconLabel", "size": { "width": 100 }, "tag": "back", "content": { "icon": "fa-angle-left", "size": 2, "label": "back" } },
-					{ "type": "View", "id": "toolbarButtons", "size": { "width": "max" } }
-				]
+				"size": { "width": 100 }	
+			},
+			"children": [
+				{ "type": "IconLabel", "tag": "home", "content": { "icon": "fa-home", "size": 2 } },
+				{ "type": "IconLabel", "tag": "back", "content": { "icon": "fa-angle-left", "size": 2, "label": "back" } },
+				{ 
+					"id": "toolbarButtons", 
+					"size": { "width": "max" },
+					"defaults": {
+						"size": { "width": 100 }	
+					} 
+				}
+			]
 		},
 
 		{

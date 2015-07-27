@@ -78,5 +78,19 @@
 				]
 			}
 		]
+	},
+	"toolbarButtons":{
+		"type": "View",
+		"size": { "width": 100 },
+		"children":[
+			{
+				"type": "IconLabel",
+				"content": {
+					"label": "test",
+					"icon": "fa-files-o"
+				},
+				"size": { "width" : 100 }
+			}
+		]		
 	}
 }
