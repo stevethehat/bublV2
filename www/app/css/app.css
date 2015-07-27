@@ -81,7 +81,7 @@ p{
 	border-top: solid 1px #aaa;
 }
 
-#toolbar *{
+#toolbar > .zen-view{
 	margin-top: 2px;	
 }
 
