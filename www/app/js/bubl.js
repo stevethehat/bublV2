@@ -122,7 +122,6 @@
 					'children': []
 				}
 				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons',  empty, 'fadeIn', 'fadeOut');
-				//this.lastElements['toolbarButtons'].remove();
 			}
 			self.dump('main', ZEN.objects['BublApp'].serialize());
 
@@ -135,7 +134,6 @@
 
 		showElement: function(parentID, newDefinition, inAnimation, outAnimation){
 			var self = this, o, cleanup;
-			//self.preParse(newDefinition);
 			var parsedData = self.preParse(newDefinition);
 			self.dump(parentID, parsedData);
 
