@@ -2,3 +2,6 @@ node_modules
 npm-debug.log
 app copy
 lastpage.json
+BublApp.json
+main.json
+toolbarButtons.json
