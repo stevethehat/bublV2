@@ -77,11 +77,20 @@ router.get('/:object_id/withdescendents', function(request, response, next) {
 
 router.get('/:object_id/nextorder', function(request, response, next) {
 	requestStart();
+	
+	objectStore.getObject(request.params.object_id, 1,
+		function(object){
+			response.send( { 'nextorder' : object.children.length });		
+		}
+	);
+	
+	/*	
 	objectStore.getNextOrder(request.params.object_id).then(
 		function(object){
 			response.send(JSON.stringify(object, null, 4));		
 		}		
 	);
+	*/
 });
 
 router.post('/', function(request, response, next){
