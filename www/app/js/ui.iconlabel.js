@@ -49,7 +49,10 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('iconLabel');
 						$('<i class="fa ' + this.params.content.icon + ' fa-1x"/>').appendTo(this.el);
 						if(this.params.content.label !== undefined){
-							$('<span>' + this.params.content.label + '</span>').appendTo(this.el);
+							var label = $('<span>' + this.params.content.label + '</span>').appendTo(this.el);
+							if(this.params.title !== undefined){
+								label.attr('title', this.params.title);
+							}
 						}			
 						this.resize();
 					}
