@@ -133,8 +133,12 @@
 		},
 
 		showElement: function(parentID, newDefinition, inAnimation, outAnimation){
+			inAnimation = 'fadeIn';
+			outAnimation = 'fadeOut';
 			var self = this, o, cleanup;
+			//alert(JSON.stringify(newDefinition));
 			var parsedData = self.preParse(newDefinition);
+			//alert(JSON.stringify(parsedData));
 			self.dump(parentID, parsedData);
 
 			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
