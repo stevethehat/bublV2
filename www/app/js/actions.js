@@ -59,7 +59,7 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentObject(['bubl', 'edit'], bublID,
 					function(){
-						bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');		
+						bublApp.loadPage('bublPages', 'slideInRight', 'slideOutLeft');		
 					}	
 				);
 			},
@@ -203,7 +203,7 @@ function getBublID(elementID){
 			},
 				
 			select: function(data){
-				alert('edit bubl page');	
+				bublApp.loadPage('bublEditor');
 			},
 			
 			add: function(data){
