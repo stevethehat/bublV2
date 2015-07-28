@@ -62,8 +62,17 @@
 						]
 					},
 					{
-						"id": "bublEditor",
-						"color": "#999"
+						"children":[
+							{
+								"type": "Control",
+								"label": "<h2>$(bubl.title)</h2>",
+								"size": { "height": 40 }	
+							},
+							{
+								"id": "bublEditor",
+								"color": "#999"
+							}
+						]
 					},
 					{
 						"id": "properties",
