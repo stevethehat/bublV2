@@ -78,6 +78,7 @@
 				'type': 'View',
 				"size": { "width": "full", "height": "full" },
 				"layout": { "style": "vertical", "align": "left" }, 
+				"title": data['BublApp']['title'],
 				defaults: { 
 					"type": "View",
 					"show": true,
@@ -112,6 +113,16 @@
 		lastElements: {},
 		showPage: function(newDefinition, pageName, data, inAnimation, outAnimation){
 			var self = this;
+			self.variables['lastPageTitle'] = self.variables['currentPageTitle'];
+			self.variables['currentPageTitle'] = newDefinition['BublApp']['title'];
+			
+			if(self.variables['lastPageTitle'] !== undefined){
+				$('#backButton').attr('title', 'back to \'' + self.variables['lastPageTitle'] + '\'');
+				$('#backButton').css('display', 'block');
+			} else {
+				$('#backButton').css('display', 'none');
+			}
+			
 			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition['BublApp'], inAnimation, outAnimation);
 			if(newDefinition['toolbarButtons'] !== undefined){	
 				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], 'fadeIn', 'fadeOut');
