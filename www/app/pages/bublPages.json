@@ -3,6 +3,7 @@
 	{
 		"type": "View",
 		"id": "bublPages",
+		"title": "'$(bubl.title)' pages",
 		"show": true,
 		"size": { "width": "max", "height": "max" },
 		"layout": { "style": "vertical" },
@@ -13,10 +14,6 @@
 			"layout": { "style": "vertical", "align": "left" } 
 		},
 		"children": [
-			{
-				"id": "topPadding",
-				"size": { "height" : 40 }
-			},
 			{
 				"id": "mainRow",
 				"layout": { "style": "horizontal" },
@@ -33,8 +30,8 @@
 									{
 										"type": "Control",
 										"id": "header",
-										"size": { "height": 60 },
-										"label": "<h2>$(bubl.title) pages</h2>"
+										"size": { "height": 40 },
+										"label": "<h2>'$(bubl.title)' pages</h2>"
 									},
 									{
 										"type": "Control",

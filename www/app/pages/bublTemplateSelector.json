@@ -25,7 +25,7 @@
 								"children": [
 									{
 										"type": "Control",
-										"size": { "height": 60 },
+										"size": { "height": 40 },
 										"label": "$(bubltitle)"
 									},
 									{

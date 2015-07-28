@@ -16,10 +16,6 @@
 		},
 		"children": [
 			{
-				"id": "topPadding",
-				"size": { "height" : 20 }
-			},
-			{
 				"layout": { "style": "horizontal" },
 				"children":[
 					{ "id": "leftPadding" },
@@ -31,7 +27,7 @@
 									{
 										
 										"type": "Control",
-										"size": { "height": 60 },
+										"size": { "height": 40 },
 										"label": "<h2>$(username)'s bubls</h2>"
 									},
 									{
