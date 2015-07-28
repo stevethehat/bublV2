@@ -12,7 +12,6 @@
 			
 			self.variables['username'] = 'Steve';
 			self.variables['currentpage'] = 'bublSelector';
-			//self.variables['currentpage'] = 'assetUpload';
 			
 
 			url = ZEN.data.querystring['url'] === undefined ? url : ZEN.data.querystring['url'];

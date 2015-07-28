@@ -3,6 +3,7 @@
 	{
 		"type": "View",
 		"id": "editor",
+		"title": "bubl editor",
 		"show": true,
 		"size": { "width": "max", "height": "max" },
 		"layout": { "style": "vertical" },
