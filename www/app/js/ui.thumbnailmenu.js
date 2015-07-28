@@ -58,16 +58,15 @@ var ZEN = (function (ZEN, _, $) {
 						back.data('tag', 'select');
 
 						var img = $('<img width="' + this.params.size.width + '" height="' + this.params.size.height + '"/>').attr('src', 'app/' + this.params.content.imageurl).appendTo(front);
-						$('<h3/>').text(this.params.content.heading).appendTo(back);
-						$('<p/>').text(this.params.content.description).appendTo(back);
-						
+						this.heading = $('<h3/>').text(this.params.content.heading).appendTo(back).data('tag', 'editHeading');
+						this.description = $('<p/>').text(this.params.content.description).appendTo(back).data('tag', 'editDescription');
+
 						if(this.params.menu && this.params.menu.length > 0){
 							var controls = $('<div class="controls"/>').appendTo(back);
 							controls.css(
 								{
 									'border': 'solid 1px ' + color
 								}
-	
 							);
 							
 							function addControl(action, icon, label){
@@ -122,6 +121,12 @@ var ZEN = (function (ZEN, _, $) {
 						this.resize();
 					}
 					return this.el;
+				},
+				editHeading: function(){
+					ZEN.log('edit Heading', this.heading);
+					this.heading.css('z-index', 100000000);
+					this.heading.attr('contenteditable', 'true');
+					
 				}
 			}
 		);

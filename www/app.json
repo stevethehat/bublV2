@@ -45,12 +45,6 @@
 				}
 			]
 		},
-
-		{
-			"id": "StatusBar",
-			"class": "statusbar",
-			"size": { "height": 30 }
-		},
 		{
 			"type": "View",
 			"id": "help",

@@ -164,17 +164,40 @@
 		
 		runReplacer: function(data){
 			var self = this;
-			for(item in data){
+			function getVariable(key){
+				var value = null;
+				var keys = key.split('.');
+				
+				if(keys.length === 1){
+					value = self.variables[keys[0]];
+				} else {
+					var level = null;
+					_.each(keys,
+						function(levelKey){
+							if(level === null){
+								level = self.variables[levelKey];
+							} else {
+								level = level[levelKey];
+							}
+						}	
+					);
+					value = level;
+				}
+				ZEN.log('getVariable ' + key + ' = ' + value);
+				return(value);
+			}
+			for(var item in data){
 				// 	\$\(([abc]+)\)
 				var value = data[item];
 				if(_.isString(value)){
-					data[item] = value.replace(/\$\(([a-z0-9A-Z]+)\)/g, function(a, b){
-						if(self.variables[b]){
-							ZEN.log('replace ' + b + ' = ' + self.variables[b]);
-							return(self.variables[b]);
+					data[item] = value.replace(/\$\(([a-z0-9A-Z.]+)\)/g, function(a, b){
+						var result = getVariable(b);
+						if(result === null){
+							result = 'no variable ' + b;
 						} else {
-							return('no variable - ' + b);
+							ZEN.log('replace ' + b + ' = ' + result);
 						}
+						return(result);
 					});
 				}
 				if(_.isObject(value)){
@@ -300,23 +323,36 @@
 			}			
 		},
 		
-		setCurrentBubl: function(bubl, callback){
+		setCurrentObject: function(keys, object, callback){
 			var self = this;
-			if(_.isObject(bubl)){
-				ZEN.log('set current bubl from object "' + bubl + '"');		
-				self.variables['bubl'] = bubl;
-				self.variables['bubltitle'] = bubl['title'];
-				ZEN.log(self.variables);
-				callback(bubl);				
+			
+			function setObjectForKeys(object){
+				_.each(keys,
+					function(key){
+						ZEN.log('set object for key "' + key + '"', object);
+						self.variables[key] = object;	
+					}
+				);
+				callback(object);				
+			}
+			
+			if(_.isObject(object)){
+				setObjectForKeys(object);
+				/*
+				ZEN.log('set current object from object "' + object + '"');		
+				self.variables['bubl'] = object;
+				self.variables['bubltitle'] = object['title'];
+				*/
 			} else {
-				ZEN.log('set current bubl from id "' + bubl + '"');		
-				objectStore.getObject(bubl, null,
-					function(bubl){
-						ZEN.log(bubl);
-						self.variables['bubl'] = bubl;
-						self.variables['bubltitle'] = bubl['title'];
+				objectStore.getObject(object, null,
+					function(object){
+						setObjectForKeys(object);
+						/*		
+						self.variables['bubl'] = object;
+						self.variables['bubltitle'] = object['title'];
 						ZEN.log(self.variables);
-						callback(bubl);
+						callback(object);
+						*/
 					}	
 				);	
 			}

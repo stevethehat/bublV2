@@ -26,7 +26,7 @@
 									{
 										"type": "Control",
 										"size": { "height": 60 },
-										"label": "New bubl"
+										"label": "<h2>New bubl</h2>"
 									},
 									{
 										"type": "Control",
@@ -40,7 +40,12 @@
 										"defaults": {
 											"type": "ThumbnailMenu",
 											"tag": "add",
-											"size": { "width": 340, "height": 200 }
+											"size": { "width": 340, "height": 200 },
+											"menu":[
+												{ "action": "duplicate", "icon": "fa-files-o", "label": "Duplicate" },
+												{ "action": "delete", "icon": "fa-trash-o", "label": "Delete" },
+												{ "action": "more", "icon": "fa-ellipsis-h", "label": "" }
+											]
 										},
 										"children": []								
 									}

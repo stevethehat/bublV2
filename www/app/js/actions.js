@@ -18,7 +18,6 @@ function getBublID(elementID){
 			pages: function(data){	
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
 			},
-
 			duplicate: function(data){
 				var objectID = getBublID(data.id);
 				objectStore.duplicateObject(objectID,
@@ -35,10 +34,12 @@ function getBublID(elementID){
 					}
 				);
 			},
-		},
-		'home': {
-			
-			
+			editHeading: function(data){
+				data.editHeading();
+			},
+			editDescription: function(data){
+				alert('edit Description');
+			}
 		},
 		"bublSelector":{
 			onLoad: function(data, callback){
@@ -56,7 +57,7 @@ function getBublID(elementID){
 			
 			select: function(data){
 				var bublID = getBublID(data.id);
-				bublApp.setCurrentBubl(bublID,
+				bublApp.setCurrentObject(['bubl', 'edit'], bublID,
 					function(){
 						bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');		
 					}	
@@ -73,9 +74,10 @@ function getBublID(elementID){
 						
 			more: function(data){
 				var bublID = getBublID(data.id);
-				bublApp.setCurrentBubl(bublID,
+				bublApp.setCurrentObject(['bubl', 'properties'], bublID,
 					function(){
-						bublApp.loadPage('bublProperties', 'slideInRight', 'slideOutLeft');		
+						bublApp.loadPage('bublProperties', 'slideInRight', 'slideOutLeft');
+						//popup.show();		
 					}	
 				);
 			}
@@ -113,7 +115,7 @@ function getBublID(elementID){
 					},
 					function(insertedData){
 						var bublID = insertedData['id'];
-						bublApp.setCurrentBubl(insertedData,
+						bublApp.setCurrentObject(['bulb'], insertedData,
 							function(){
 								objectStore.upsertObject(
 									{
@@ -131,6 +133,9 @@ function getBublID(elementID){
 						);
 					}
 				);
+			},
+			more: function(data){
+				alert('edit template ' + data.description);
 			}
 		},
 		"bublTemplateSelector": {
@@ -202,11 +207,41 @@ function getBublID(elementID){
 			},
 			
 			add: function(data){
-				alert('add bubl page');
+				bublApp.loadPage('bublPageNew', 'slideInRight', 'slideOutLeft');
+			}
+		},
+		'bublPageNew':{
+			onLoad: function(data, callback){
+				objectStore.getObject('2000', 'withchildren',
+					function(loadedData){
+						bublApp.findID('bubleGrid', data, 
+							function(element){
+								ZEN.ui.Grid.populate(loadedData.children, element.children);
+								// go knows where the first item is comming from... this is a massive bodge..
+								element.children.shift();
+								callback();
+							}
+						);
+					} 
+				)
 			},
-						
-			delete: function(data){
-				alert('delete');
+			select: function(data){
+				var templateID = getBublID(data.id);
+				var templateThumbnail = data.params.content.imageurl;
+				
+				
+				objectStore.upsertObject(
+					{
+						'parentId': bublApp.variables['bubl'].id,
+						'title': 'New page',
+						'description': 'Description of the page',
+						'thumbnail': templateThumbnail,
+						'template': templateID
+					},
+					function(insertedData){
+						bublApp.loadPage('bublPages', 'slideOutRight', 'slideInLeft');						
+					}
+				);
 			}
 		},
 		"bublProperties": {
@@ -216,7 +251,7 @@ function getBublID(elementID){
 			
 			afterLoad: function(data, callback){
 				var self = this;
-				objectStore.getObject(bublApp.variables['bubl']['id'], 'withdescendents',
+				objectStore.getObject(bublApp.variables['properties']['id'], 'withdescendents',
 					function(object){
 						if(object['children']){
 							delete object['children'];

@@ -16,13 +16,8 @@
 		"children": [
 			{
 				"id": "MainPanel",
-				"layout": { "style": "vertical" },
+				"layout": { "style": "horizontal" },
 				"children": [
-					{
-						"type": "Control",
-						"label": "<h2>Edit '$(properties.title)' properties</h2>",
-						"size": { "height": 40 } 	
-					},
 					{
 						"type": "CodeEditor",
 						"id": "BublEditor",
