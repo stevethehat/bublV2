@@ -45,15 +45,6 @@
 					"icon": "fa-floppy-o"
 				},
 				"size": { "width" : 100 }
-			},
-			{
-				"type": "IconLabel",
-				"tag": "pages",
-				"content": {
-					"label": "Pages",
-					"icon": "fa-files-o"
-				},
-				"size": { "width" : 100 }
 			}
 		]		
 	}

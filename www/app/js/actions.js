@@ -76,7 +76,7 @@ function getBublID(elementID){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentObject(['bubl', 'properties'], bublID,
 					function(){
-						bublApp.loadPage('bublProperties', 'slideInRight', 'slideOutLeft');
+						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');
 						//popup.show();		
 					}	
 				);
@@ -244,7 +244,7 @@ function getBublID(elementID){
 				);
 			}
 		},
-		"bublProperties": {
+		"properties": {
 			onLoad: function(data, callback){
 				callback();
 			},
