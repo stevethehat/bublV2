@@ -245,10 +245,6 @@ function getBublID(elementID){
 			}
 		},
 		"properties": {
-			onLoad: function(data, callback){
-				callback();
-			},
-			
 			afterLoad: function(data, callback){
 				var self = this;
 				objectStore.getObject(bublApp.variables['properties']['id'], 'withdescendents',
