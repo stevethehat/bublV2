@@ -34,7 +34,7 @@
 										"type": "Control",
 										"id": "header",
 										"size": { "height": 60 },
-										"label": "<h2>$(bubltitle) pages</h2>"
+										"label": "<h2>$(bubl.title) pages</h2>"
 									},
 									{
 										"type": "Control",
