@@ -34,6 +34,17 @@ function getBublID(elementID){
 					}
 				);
 			},
+			
+			more: function(data){
+				var bublID = getBublID(data.id);
+				bublApp.setCurrentObject(['bubl', 'properties'], bublID,
+					function(){
+						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');
+						//popup.show();		
+					}	
+				);
+			},
+			
 			editHeading: function(data){
 				data.editHeading();
 			},
@@ -76,21 +87,14 @@ function getBublID(elementID){
 			
 			share: function(data){
 				bublApp.loadPage('bublShare');
-			},
-						
-			more: function(data){
-				var bublID = getBublID(data.id);
-				bublApp.setCurrentObject(['bubl', 'properties'], bublID,
-					function(){
-						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');
-						//popup.show();		
-					}	
-				);
 			}
 		},
 		"bublEditor":{
-			showPages: function(){
+			cancel: function(){
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
+			},
+			save: function(){
+				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');				
 			}
 		},
 		"bublNew":{
@@ -146,9 +150,6 @@ function getBublID(elementID){
 						);
 					}
 				);		
-			},
-			more: function(data){
-				alert('edit template ' + data.description);
 			}
 		},
 		"bublTemplateSelector": {
@@ -224,7 +225,13 @@ function getBublID(elementID){
 			},
 			
 			add: function(data){
-				bublApp.loadPage('bublPageNew', 'slideInRight', 'slideOutLeft');
+				objectStore.getNextOrder(bublApp.variables['bubl'].id,
+					function(orderData){
+						bublApp.variables['newBublPageTitle'] = bublApp.variables['bubl'].title + ' - Page ' + orderData.nextorder; 
+						ZEN.log('set newBublPageTitle = ' + bublApp.variables['newBublPageTitle']);
+						bublApp.loadPage('bublPageNew', 'slideInRight', 'slideOutLeft');
+					}
+				);						
 			}
 		},
 		'bublPageNew':{
@@ -251,7 +258,7 @@ function getBublID(elementID){
 						objectStore.upsertObject(
 							{
 								'parentId': bublApp.variables['bubl'].id,
-								'title': bublApp.variables['bubl'].title + ' page ' + nextOrder.nextorder,
+								'title': bublApp.variables['bubl'].title + ' - Page ' + nextOrder.nextorder,
 								'description': 'Description of the page',
 								'thumbnail': templateThumbnail,
 								'template': templateID
@@ -283,7 +290,7 @@ function getBublID(elementID){
 			save: function(data){
 				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
 					function(){
-						bublApp.loadPage('bublSelector', 'slideInLeft', 'slideOutRight');
+						bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 					}
 				);
 			}

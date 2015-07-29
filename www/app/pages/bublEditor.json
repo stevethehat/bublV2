@@ -105,9 +105,9 @@
 			},
 			{
 				"type": "IconLabel",
-				"tag": "pages",
+				"tag": "cancel",
 				"content": {
-					"label": "Pages",
+					"label": "Cancel",
 					"icon": "fa-files-o"
 				},
 				"size": { "width" : 100 }

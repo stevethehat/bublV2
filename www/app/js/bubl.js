@@ -123,6 +123,8 @@
 				$('#backButton').css('display', 'none');
 			}
 			
+			$('#Header .label').text('bubl (' + pageName + ')');
+			
 			this.lastElements['BublApp'] = self.showElement('BublApp', newDefinition['BublApp'], inAnimation, outAnimation);
 			if(newDefinition['toolbarButtons'] !== undefined){	
 				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons', newDefinition['toolbarButtons'], 'fadeIn', 'fadeOut');

@@ -25,7 +25,7 @@
 									{
 										"type": "Control",
 										"size": { "height": 40 },
-										"label": "<h2>New bubl</h2>"
+										"label": "<h2>$(newBublPageTitle)</h2>"
 									},
 									{
 										"type": "Control",

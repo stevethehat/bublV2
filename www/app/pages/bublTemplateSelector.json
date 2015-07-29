@@ -26,7 +26,7 @@
 									{
 										"type": "Control",
 										"size": { "height": 40 },
-										"label": "$(bubltitle)"
+										"label": "$(page.title) HERE!!!"
 									},
 									{
 										"type": "Control",
