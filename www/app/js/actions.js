@@ -227,7 +227,7 @@
 				var templateID = bublApp.getBublID(data.id);
 				bublUtil.addPage(bublApp.variables['bubl'].id, templateID,
 					function(){
-						bublApp.loadPage('bublPages', 'slideOutRight', 'slideInLeft');
+						bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');
 					}	
 				);				
 			}
