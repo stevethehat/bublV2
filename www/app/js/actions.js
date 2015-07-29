@@ -36,7 +36,7 @@ function getBublID(elementID){
 			},	
 			more: function(data){
 				var bublID = getBublID(data.id);
-				bublApp.setCurrentObject(['bubl', 'properties'], bublID,
+				bublApp.setCurrentObject(['properties'], bublID,
 					function(){
 						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');
 						//popup.show();		
