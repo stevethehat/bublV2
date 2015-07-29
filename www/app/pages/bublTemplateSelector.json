@@ -35,7 +35,7 @@
 									},
 									{
 										"id": "bubleGrid",
-										"type": "Grid",
+										"type": "PagedGrid",
 										"dimensions": { "columns": 3, "rows": 2 },
 										"defaults": {
 											"type": "ThumbnailMenu",

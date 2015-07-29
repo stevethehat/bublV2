@@ -40,7 +40,7 @@
 										"size": { "height": 30 }	
 									},
 									{
-										"type": "Grid",
+										"type": "PagedGrid",
 										"id": "bublGrid",
 										"dimensions": { "columns": 3, "rows": 2 },
 										"defaults": {

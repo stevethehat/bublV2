@@ -7,20 +7,20 @@ var ZEN = (function (ZEN, _, $) {
 	_.extend(ZEN.ui, (function () {
 
 		
-		function Grid (params, parent) {
+		function PagedGrid (params, parent) {
 			if (arguments.length > 0) {
 				ZEN.ui.Control.call(this, params, parent);
 			}
 			return this;
 		}
 
-		Grid.prototype = new ZEN.ui.Control();
+		PagedGrid.prototype = new ZEN.ui.Control();
 		
-		Grid.populate = function(children, gridChildren){
-			ZEN.log('populate grid', children);
+		PagedGrid.populate = function(children, PagedGridChildren){
+			ZEN.log('populate PagedGrid', children);
 			_.each(children,
 				function(child){
-					gridChildren.push(
+					PagedGridChildren.push(
 						{ 
 							'id': 'bubl' + child.id,
 					 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
@@ -30,8 +30,8 @@ var ZEN = (function (ZEN, _, $) {
 			);
 		}
 
-		Grid.preProcess = function(data){
-			var gridView =
+		PagedGrid.preProcess = function(data){
+			var PagedGridView =
 				{
 					'type': 'View',
 					'layout': { 'style': 'vertical' },
@@ -50,7 +50,7 @@ var ZEN = (function (ZEN, _, $) {
 							'layout': { 'style': 'horizontal' },
 							'children': []								
 						};
-						gridView.children.push(currentRow);
+						PagedGridView.children.push(currentRow);
 					}	
 					currentRow.children.push(child);
 					col++;
@@ -59,17 +59,17 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				}
 			);
-			return [gridView];	
+			return [PagedGridView];	
 		},
 		
 		_.extend(
-			Grid.prototype,
+			PagedGrid.prototype,
 			{
 
 				init: function (params, parent) {
 					// call the base class init method
 					ZEN.ui.Control.prototype.init.call(this, params, parent);
-					//ZEN.events.GridHandler (this, this.el);
+					//ZEN.events.PagedGridHandler (this, this.el);
 				},
 
 				label: function () {
@@ -87,7 +87,7 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
-						ZEN.notify ("ui.Grid", message);
+						ZEN.notify ("ui.PagedGrid", message);
 					}
 				},
 
@@ -96,7 +96,7 @@ var ZEN = (function (ZEN, _, $) {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						// this.el.attr('tabindex',0);
-						this.el.addClass('zen-Grid');
+						this.el.addClass('zen-PagedGrid');
 						this.resize();
 					}
 					return this.el;
@@ -104,10 +104,10 @@ var ZEN = (function (ZEN, _, $) {
 			}
 		);
 
-		ZEN.registerType('Grid',Grid);
+		ZEN.registerType('PagedGrid',PagedGrid);
 
 		return {
-			Grid: Grid
+			PagedGrid: PagedGrid
 		};
 		
 

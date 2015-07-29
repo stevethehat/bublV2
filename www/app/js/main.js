@@ -19,7 +19,7 @@
 		 'app/js/popup.js',
 		 'app/js/objectstore.js',
 		 'app/js/actions.js',
-		 'app/js/ui.grid.js',
+		 'app/js/ui.pagedgrid.js',
 		 'app/js/ui.iconlabel.js',
 		 'app/js/ui.thumbnailmenu.js',
 		 'app/js/ui.codeeditor.js',

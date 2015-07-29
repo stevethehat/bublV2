@@ -1,6 +1,3 @@
-function getBublID(elementID){
-	return(elementID.substr(4));
-}
 	bublApp.actions = {
 		'default': {
 			ShowPage: function(data){
@@ -19,7 +16,7 @@ function getBublID(elementID){
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
 			},
 			duplicate: function(data){
-				var objectID = getBublID(data.id);
+				var objectID = bublApp.getBublID(data.id);
 				objectStore.duplicateObject(objectID,
 					function(){
 						bublApp.loadPage(bublApp.variables['currentpage'], 'fadeIn', 'fadeOut');
@@ -27,7 +24,7 @@ function getBublID(elementID){
 				);
 			}, 
 			delete: function(data){
-				var objectID = getBublID(data.id);
+				var objectID = bublApp.getBublID(data.id);
 				objectStore.deleteObject( { 'id': objectID },
 					function(){
 						bublApp.loadPage(bublApp.variables['currentpage'], 'fadeIn', 'fadeOut');
@@ -35,7 +32,7 @@ function getBublID(elementID){
 				);
 			},	
 			more: function(data){
-				var bublID = getBublID(data.id);
+				var bublID = bublApp.getBublID(data.id);
 				bublApp.setCurrentObject(['properties'], bublID,
 					function(){
 						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');
@@ -50,7 +47,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.Grid.populate(loadedData.children, element.children);	
+								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);	
 								callback();
 							}
 						);
@@ -59,7 +56,7 @@ function getBublID(elementID){
 			},
 			
 			select: function(data){
-				var bublID = getBublID(data.id);
+				var bublID = bublApp.getBublID(data.id);
 				bublApp.setCurrentObject(['bubl', 'edit'], bublID,
 					function(){
 						bublApp.loadPage('bublPages', 'slideInRight', 'slideOutLeft');		
@@ -96,7 +93,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.Grid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
 								element.children.shift();
 								callback();
@@ -107,7 +104,7 @@ function getBublID(elementID){
 			},
 			select: function(data){
 				var self = this;
-				var templateID = getBublID(data.id);
+				var templateID = bublApp.getBublID(data.id);
 				var templateThumbnail = data.params.content.imageurl;
 
 				objectStore.upsertObject(
@@ -150,7 +147,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.Grid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
 								element.children.shift();
 								callback();
@@ -166,7 +163,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bublGrid', data, 
 							function(element){
-								ZEN.ui.Grid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
 								callback();
 							}
 						);
@@ -175,7 +172,7 @@ function getBublID(elementID){
 			},
 				
 			select: function(data){
-				bublApp.setCurrentObject(['page'], getBublID(data.id),
+				bublApp.setCurrentObject(['page'], bublApp.getBublID(data.id),
 					function(){
 						bublApp.loadPage('bublEditor');				
 					}	
@@ -198,7 +195,7 @@ function getBublID(elementID){
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.Grid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
 								element.children.shift();
 								callback();
@@ -208,7 +205,7 @@ function getBublID(elementID){
 				)
 			},
 			select: function(data){
-				var templateID = getBublID(data.id);
+				var templateID = bublApp.getBublID(data.id);
 				var templateThumbnail = data.params.content.imageurl;
 				
 				objectStore.getNextOrder(bublApp.variables['bubl'].id,

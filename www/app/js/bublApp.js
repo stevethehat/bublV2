@@ -232,8 +232,8 @@
 			self.runReplacer(data);
 			
 			// process grids... this really isnt the place to put this..
-			if(data['type'] == 'Grid'){
-				data.children = ZEN.ui.Grid.preProcess(data);
+			if(data['type'] == 'PagedGrid'){
+				data.children = ZEN.ui.PagedGrid.preProcess(data);
 			}
 			
 			if(data['children']){
@@ -371,7 +371,10 @@
         		dataType: 'json',
 				success: function(returnData){}
 			});
-
+		},
+		
+		getBublID: function(elementID){
+			return(elementID.substr(4));
 		}
 	};
 	
