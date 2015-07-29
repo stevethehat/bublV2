@@ -119,6 +119,14 @@
 						var bublID = insertedData['id'];
 						bublApp.setCurrentObject(['bubl'], insertedData,
 							function(){
+								bublUtil.addPage(bublApp.variables['bubl'].id, templateID,
+									function(){
+										bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');
+									}	
+								);				
+								
+								
+								/*
 								objectStore.upsertObject(
 									{
 										'parentId': bublID,
@@ -134,7 +142,7 @@
 											}
 										);						
 									}
-								);
+								);*/
 							}
 						);
 					}
@@ -206,24 +214,11 @@
 			},
 			select: function(data){
 				var templateID = bublApp.getBublID(data.id);
-				var templateThumbnail = data.params.content.imageurl;
-				
-				objectStore.getNextOrder(bublApp.variables['bubl'].id,
-					function(nextOrder){
-						objectStore.upsertObject(
-							{
-								'parentId': bublApp.variables['bubl'].id,
-								'title': bublApp.variables['bubl'].title + ' - Page ' + nextOrder.nextorder,
-								'description': 'Description of the page',
-								'thumbnail': templateThumbnail,
-								'template': templateID
-							},
-							function(insertedData){
-								bublApp.loadPage('bublPages', 'slideOutRight', 'slideInLeft');						
-							}
-						);						
+				bublUtil.addPage(bublApp.variables['bubl'].id, templateID,
+					function(){
+						bublApp.loadPage('bublPages', 'slideOutRight', 'slideInLeft');
 					}	
-				);
+				);				
 			}
 		},
 		"properties": {
