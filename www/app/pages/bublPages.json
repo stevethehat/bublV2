@@ -53,12 +53,14 @@
 											]
 										},
 										"children": [
-											{ 
-												"type": "Button", 
-												"id": "addPage", 
+											{
+												"type": "IconLabel", 
 												"tag": "add",
-												"label": "Add page"
-											}		
+												"content": {
+													"label": "Add page",
+													"icon": "fa-plus"
+												}
+											}
 										]
 									}
 								]

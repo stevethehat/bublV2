@@ -27,18 +27,6 @@ var bublUtil = {
 				);
 			}	
 		);
-		/*
-				objectStore.upsertObject(
-					{
-						'parentId': '1000',
-						'title': bublApp.variables['newBublTitle'],
-						'description': 'To edit these details click the \'...\' button below.',
-						'thumbnail': templateThumbnail,
-						'template': templateID
-					},
-					function(insertedData){
-						var bublID = insertedData['id'];
-		*/
 	},
 	
 	addPage: function(bublID, templateID, callback){
@@ -56,7 +44,8 @@ var bublUtil = {
 										'title': bublData.title + ' - Page ' + nextOrder.nextorder,
 										'description': 'Description of the page',
 										'thumbnail': templateThumbnail,
-										'template': templateID
+										'template': templateID,
+										'layout': template.layout
 									},
 									function(insertedData){
 										callback(insertedData);

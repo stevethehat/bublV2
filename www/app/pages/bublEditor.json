@@ -108,7 +108,7 @@
 				"tag": "cancel",
 				"content": {
 					"label": "Cancel",
-					"icon": "fa-files-o"
+					"icon": "fa-thumbs-o-down"
 				},
 				"size": { "width" : 100 }
 			}

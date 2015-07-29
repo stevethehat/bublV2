@@ -208,6 +208,7 @@
 				);						
 			}
 		},
+		
 		'bublPageNew':{
 			onLoad: function(data, callback){
 				objectStore.getObject('2000', 'withchildren',

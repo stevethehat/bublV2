@@ -52,10 +52,12 @@
 										},
 										"children": [
 											{ 
-												"type": "Button", 
-												"id": "addBubl", 
+												"type": "IconLabel", 
 												"tag": "add",
-												"label": "Add bubl"
+												"content": {
+													"label": "Add bubl",
+													"icon": "fa-plus"
+												}
 											}		
 										]
 									}
