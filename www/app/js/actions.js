@@ -33,8 +33,7 @@ function getBublID(elementID){
 						bublApp.loadPage(bublApp.variables['currentpage'], 'fadeIn', 'fadeOut');
 					}
 				);
-			},
-			
+			},	
 			more: function(data){
 				var bublID = getBublID(data.id);
 				bublApp.setCurrentObject(['bubl', 'properties'], bublID,
@@ -43,13 +42,6 @@ function getBublID(elementID){
 						//popup.show();		
 					}	
 				);
-			},
-			
-			editHeading: function(data){
-				data.editHeading();
-			},
-			editDescription: function(data){
-				alert('edit Description');
 			}
 		},
 		"bublSelector":{
@@ -166,41 +158,7 @@ function getBublID(elementID){
 						);
 					} 
 				)
-			}/*,
-			GridClick: function(data){
-				objectStore.getObject(bublApp.variables['bublid'], 'withchildren',
-					function(bubl){
-						var page = 0;
-						if(bubl.children){
-							page = bubl.children.length;
-						}
-						objectStore.upsertObject(
-							{
-								'parentId': bublApp.variables['bublid'],
-								'title': 'New page ' + page,
-								'description': 'New page.',
-								'thumbnail': data.params.content.imageurl
-							},
-							function(insertedData){
-								bublApp.variables['bublpageid'] = insertedData['id'];
-								
-								if(page === 0){
-									delete bubl['children'];
-									bubl['thumbnail'] = data.params.content.imageurl;
-									objectStore.upsertObject(bubl,
-										function(){
-											bublApp.loadPage('bublEditor');																		
-										}
-									);
-								} else {
-									delete bubl['children'];
-									bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');									
-								}
-							}
-						);
-					}
-				);
-			}*/
+			}
 		},
 		"bublPages": {
 			onLoad(data, callback){
@@ -293,6 +251,10 @@ function getBublID(elementID){
 						bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 					}
 				);
+			},
+			
+			cancel: function(){
+				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 			}
 		}
 	};

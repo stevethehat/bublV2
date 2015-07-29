@@ -45,7 +45,17 @@
 					"icon": "fa-floppy-o"
 				},
 				"size": { "width" : 100 }
+			},
+			{
+				"type": "IconLabel",
+				"tag": "cancel",
+				"content": {
+					"label": "Cancel",
+					"icon": "fa-files-o"
+				},
+				"size": { "width" : 100 }
 			}
+
 		]		
 	}
 }
