@@ -105,6 +105,17 @@
 			select: function(data){
 				var self = this;
 				var templateID = bublApp.getBublID(data.id);
+				
+				bublUtil.addBubl(1000, templateID,
+					function(bublData){
+						bublApp.setCurrentObject(['bubl'], bublData,
+							function(){
+								bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');		
+							}
+						);
+					}	
+				);
+				/*
 				var templateThumbnail = data.params.content.imageurl;
 
 				objectStore.upsertObject(
@@ -126,7 +137,7 @@
 								);				
 								
 								
-								/*
+								-- this was commented out
 								objectStore.upsertObject(
 									{
 										'parentId': bublID,
@@ -142,11 +153,11 @@
 											}
 										);						
 									}
-								);*/
+								); -- to here
 							}
 						);
 					}
-				);		
+				);*/		
 			}
 		},
 		"bublTemplateSelector": {
