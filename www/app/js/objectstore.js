@@ -76,6 +76,20 @@
 					callback(returnData);
 				}
 			});
+		},
+		
+		getNextOrder: function(objectID, callback){
+			var self = this;
+
+   			$.ajax({
+        		url: self.apiRoot + '/' + objectID + '/nextorder',
+        		contentType: 'application/json',
+        		dataType: 'json',
+				success: function(returnData){
+					callback(returnData);
+				}
+			});
+			
 		}
 	};
 //});

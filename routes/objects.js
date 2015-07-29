@@ -80,7 +80,11 @@ router.get('/:object_id/nextorder', function(request, response, next) {
 	
 	objectStore.getObject(request.params.object_id, 1,
 		function(object){
-			response.send( { 'nextorder' : object.children.length });		
+			if(object.children !== undefined){
+				response.send( { 'nextorder' : Number(object.children.length) +1 });					
+			} else {
+				response.send( { 'nextorder' : 1 });		
+			}
 		}
 	);
 	

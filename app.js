@@ -44,7 +44,7 @@ app.all('/*', function(req, res, next) {
 
 		bodyParser.json()(req, res, next); 
 		console.log(req.body);
-		bodyParser.urlencoded({ extended: false });		
+		bodyParser.urlencoded({ extended: false, limit: '10mb' });		
 	} else {
 		/*
 	  	req.rawBody = '';

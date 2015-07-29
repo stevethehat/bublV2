@@ -146,9 +146,7 @@
 			inAnimation = 'fadeIn';
 			outAnimation = 'fadeOut';
 			var self = this, o, cleanup;
-			//alert(JSON.stringify(newDefinition));
 			var parsedData = self.preParse(newDefinition);
-			//alert(JSON.stringify(parsedData));
 			self.dump(parentID, parsedData);
 
 			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
@@ -187,7 +185,11 @@
 							if(level === null){
 								level = self.variables[levelKey];
 							} else {
-								level = level[levelKey];
+								if(level && level.hasOwnProperty(levelKey)){
+									level = level[levelKey];								
+								} else {
+									level = 'unknown variable ' + levelKey;
+								}
 							}
 						}	
 					);
@@ -341,6 +343,7 @@
 					function(key){
 						ZEN.log('set object for key "' + key + '"', object);
 						self.variables[key] = object;	
+						ZEN.log('variables = ', self.variables);
 					}
 				);
 				callback(object);				
@@ -348,21 +351,10 @@
 			
 			if(_.isObject(object)){
 				setObjectForKeys(object);
-				/*
-				ZEN.log('set current object from object "' + object + '"');		
-				self.variables['bubl'] = object;
-				self.variables['bubltitle'] = object['title'];
-				*/
 			} else {
 				objectStore.getObject(object, null,
 					function(object){
 						setObjectForKeys(object);
-						/*		
-						self.variables['bubl'] = object;
-						self.variables['bubltitle'] = object['title'];
-						ZEN.log(self.variables);
-						callback(object);
-						*/
 					}	
 				);	
 			}

@@ -13,7 +13,6 @@
 			"layout": { "style": "vertical", "align": "left" } 
 		},
 		"children": [
-			{ "size": { "height" : 40 } },
 			{
 				"layout": { "style": "horizontal" },
 				"children":[
@@ -25,8 +24,8 @@
 								"children": [
 									{
 										"type": "Control",
-										"size": { "height": 60 },
-										"label": "<h2>New bubl</h2>"
+										"size": { "height": 40 },
+										"label": "<h2>$(newBublTitle)</h2>"
 									},
 									{
 										"type": "Control",

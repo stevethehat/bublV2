@@ -65,7 +65,13 @@ function getBublID(elementID){
 			},
 			
 			add: function(data){
-				bublApp.loadPage('bublNew', 'slideInRight', 'slideOutLeft');						
+				objectStore.getNextOrder(1000,
+					function(orderData){
+						bublApp.variables['newBublTitle'] = 'New bubl ' + orderData.nextorder; 
+						ZEN.log('set newBublTitle = ' + bublApp.variables['newBublTitle']);
+						bublApp.loadPage('bublNew', 'slideInRight', 'slideOutLeft');
+					}
+				);						
 			},
 			
 			share: function(data){
@@ -89,6 +95,7 @@ function getBublID(elementID){
 		},
 		"bublNew":{
 			onLoad: function(data, callback){
+				var self = this;
 				objectStore.getObject('2000', 'withchildren',
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
@@ -103,24 +110,26 @@ function getBublID(elementID){
 				)
 			},
 			select: function(data){
+				var self = this;
 				var templateID = getBublID(data.id);
 				var templateThumbnail = data.params.content.imageurl;
+
 				objectStore.upsertObject(
 					{
 						'parentId': '1000',
-						'title': 'New bubl',
+						'title': bublApp.variables['newBublTitle'],
 						'description': 'To edit these details click the \'...\' button below.',
 						'thumbnail': templateThumbnail,
 						'template': templateID
 					},
 					function(insertedData){
 						var bublID = insertedData['id'];
-						bublApp.setCurrentObject(['bulb'], insertedData,
+						bublApp.setCurrentObject(['bubl'], insertedData,
 							function(){
 								objectStore.upsertObject(
 									{
 										'parentId': bublID,
-										'title': 'Page 1',
+										'title': bublApp.variables['newBublTitle'] + ' - Page 1',
 										'description': 'Description of page', 	
 										'thumbnail': templateThumbnail,
 										'template': templateID
@@ -132,7 +141,7 @@ function getBublID(elementID){
 							}
 						);
 					}
-				);
+				);		
 			},
 			more: function(data){
 				alert('edit template ' + data.description);
@@ -229,18 +238,21 @@ function getBublID(elementID){
 				var templateID = getBublID(data.id);
 				var templateThumbnail = data.params.content.imageurl;
 				
-				
-				objectStore.upsertObject(
-					{
-						'parentId': bublApp.variables['bubl'].id,
-						'title': 'New page',
-						'description': 'Description of the page',
-						'thumbnail': templateThumbnail,
-						'template': templateID
-					},
-					function(insertedData){
-						bublApp.loadPage('bublPages', 'slideOutRight', 'slideInLeft');						
-					}
+				objectStore.getNextOrder(bublApp.variables['bubl'].id,
+					function(nextOrder){
+						objectStore.upsertObject(
+							{
+								'parentId': bublApp.variables['bubl'].id,
+								'title': bublApp.variables['bubl'].title + ' page ' + nextOrder.nextorder,
+								'description': 'Description of the page',
+								'thumbnail': templateThumbnail,
+								'template': templateID
+							},
+							function(insertedData){
+								bublApp.loadPage('bublPages', 'slideOutRight', 'slideInLeft');						
+							}
+						);						
+					}	
 				);
 			}
 		},
