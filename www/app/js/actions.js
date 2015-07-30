@@ -147,6 +147,9 @@
 						);
 					} 
 				)
+			},
+			add: function(data){
+				alert('add template');
 			}
 		},
 		"bublPages": {
@@ -200,8 +203,10 @@
 			select: function(data){
 				var templateID = bublApp.getBublID(data.id);
 				bublUtil.addPage(bublApp.variables['bubl'].id, templateID,
-					function(){
-						bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');
+					function(newPage){
+						bublApp.setCurrentObject(['page'], newPage, function(){
+							bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');
+						});
 					}	
 				);				
 			}
