@@ -82,6 +82,15 @@
 			}
 		},
 		"bublEditor":{
+			onLoad: function(data, callback){
+				bublApp.findID('bublEditor', data, 
+					function(element){
+						var layout = bublApp.variables['page'].layout;
+						element.children = [layout];
+						callback();
+					}
+				);
+			},
 			cancel: function(){
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
 			},
