@@ -10,6 +10,7 @@ var bublUtil = {
 							{
 								'parentId': '1000',
 								'title': 'New bubl ' + nextOrder.nextorder,
+								'order': nextOrder.nextorder,
 								'description': 'To edit these details click the \'...\' button below.',
 								'thumbnail': templateThumbnail,
 								'template': templateID
@@ -42,6 +43,7 @@ var bublUtil = {
 									{
 										'parentId': bublID,
 										'title': bublData.title + ' - Page ' + nextOrder.nextorder,
+										'order': nextOrder.nextorder,
 										'description': 'Description of the page',
 										'thumbnail': templateThumbnail,
 										'template': templateID,
