@@ -24,7 +24,8 @@
 		 'app/js/ui.iconlabel.js',
 		 'app/js/ui.thumbnailmenu.js',
 		 'app/js/ui.codeeditor.js',
-		 'app/js/ui.uploader.js'
+		 'app/js/ui.uploader.js',
+		 'app/js/ui.contenteditable.js'
 		 ],
 		function () {
 			var url = 'app.json';
