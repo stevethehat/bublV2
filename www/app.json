@@ -36,6 +36,7 @@
 			"children": [
 				{ "type": "IconLabel", "tag": "home", "content": { "icon": "fa-home", "size": 2 }, "size": { "width": 30 } },
 				{ "type": "IconLabel", "tag": "back", "id": "backButton", "content": { "icon": "fa-angle-left", "size": 2, "label": "back" } },
+				{ "type": "IconLabel", "tag": "advanced", "id": "advancedButton", "content": { "icon": "fa-cog", "size": 2, "label": "advanced" } },
 				{ 
 					"id": "toolbarButtons", 
 					"size": { "width": "max" },
