@@ -18,8 +18,8 @@ var bublUtil = {
 							function(bublData){
 								var bublID = bublData['id'];
 								self.addPage(bublID, templateID, 
-									function(){
-										callback(bublData)
+									function(pageData){
+										callback(bublData, pageData);
 									}	
 								);
 							}
