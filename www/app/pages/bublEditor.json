@@ -80,8 +80,9 @@
 						"size": { "width": 200 },
 						"children": [
 							{
-								"content": "Text",
-								"icon": "fa-file-text-o"
+								"type": "CodeEditor",
+								"id": "BublElementEditor",
+								"color": "#999"
 							}
 						]
 					}
