@@ -307,6 +307,13 @@
 				}
 			);
 			
+			self.setupObserver('ui.contenteditable',
+				function(message){
+					ZEN.log('observer(ui.contenteditable)', message, $(message.sourceElement));	
+					//self.executeAction(message.source.tag, message);	
+				}
+			);
+
 			self.setupObserver('pageevents',
 				function(params){
 					if(params.event === 'imageloaded'){
