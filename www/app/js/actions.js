@@ -39,6 +39,9 @@
 						//popup.show();		
 					}	
 				);
+			},
+			advanced: function(){
+				bublApp.loadPage('bublTemplateSelector');
 			}
 		},
 		"bublSelector":{
