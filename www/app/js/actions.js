@@ -131,49 +131,6 @@
 						);
 					}	
 				);
-				/*
-				var templateThumbnail = data.params.content.imageurl;
-
-				objectStore.upsertObject(
-					{
-						'parentId': '1000',
-						'title': bublApp.variables['newBublTitle'],
-						'description': 'To edit these details click the \'...\' button below.',
-						'thumbnail': templateThumbnail,
-						'template': templateID
-					},
-					function(insertedData){
-						var bublID = insertedData['id'];
-						bublApp.setCurrentObject(['bubl'], insertedData,
-							function(){
-								bublUtil.addPage(bublApp.variables['bubl'].id, templateID,
-									function(){
-										bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');
-									}	
-								);				
-								
-								
-								-- this was commented out
-								objectStore.upsertObject(
-									{
-										'parentId': bublID,
-										'title': bublApp.variables['newBublTitle'] + ' - Page 1',
-										'description': 'Description of page', 	
-										'thumbnail': templateThumbnail,
-										'template': templateID
-									},
-									function(insertedData){
-										bublApp.setCurrentObject(['page'], insertedData,
-											function(){						
-												bublApp.loadPage('bublEditor', 'slideInRight', 'slideOutLeft');
-											}
-										);						
-									}
-								); -- to here
-							}
-						);
-					}
-				);*/		
 			}
 		},
 		"bublTemplateSelector": {
