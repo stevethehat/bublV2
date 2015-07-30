@@ -119,10 +119,14 @@
 				var templateID = bublApp.getBublID(data.id);
 				
 				bublUtil.addBubl(1000, templateID,
-					function(bublData){
+					function(bublData, pageData){
 						bublApp.setCurrentObject(['bubl'], bublData,
 							function(){
-								bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');		
+								bublApp.setCurrentObject(['page'], pageData,
+									function(){
+										bublApp.loadPage('bublEditor', 'slideOutRight', 'slideInLeft');		
+									}
+								)		
 							}
 						);
 					}	
