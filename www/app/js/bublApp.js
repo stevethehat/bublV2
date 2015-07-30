@@ -329,9 +329,10 @@
 
 			var action = null;
 			var sourceElement = $(message.sourceElement);
+			var currentPage = self.actions[self.variables.currentpage]; 
 			
 			// check if we have a page specific action
-			if(self.actions[self.variables.currentpage][actionName]){
+			if(currentPage[actionName]){
 				action = self.actions[self.variables.currentpage][actionName]; 								
 			} else if (self.actions['default'][actionName]){
 				action = self.actions['default'][actionName]; 								
@@ -340,7 +341,7 @@
 			if(action !== null){
 				action(message.source, sourceElement);
 			} else {
-				ZEN.log(actionName + ' not found');
+				ZEN.log(actionName + ' not found for ' + currentPage);
 			}			
 		},
 		
