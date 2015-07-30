@@ -16,52 +16,6 @@ var ZEN = (function (ZEN, _, $) {
 
 		ContentEditable.prototype = new ZEN.ui.Control();
 		
-		ContentEditable.populate = function(children, ContentEditableChildren){
-			ZEN.log('populate ContentEditable', children);
-			_.each(children,
-				function(child){
-					ContentEditableChildren.push(
-						{ 
-							'id': 'bubl' + child.id,
-					 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
-						}				
-					);
-				}
-			);
-		}
-
-		ContentEditable.preProcess = function(data){
-			var ContentEditableView =
-				{
-					'type': 'View',
-					'layout': { 'style': 'vertical' },
-					'children': []
-				};
-			var row = 0;
-			var currentRow = null;
-			var col = 0;
-			
-			_.each(data['children'],
-				function(child){
-					if(col === 0){
-						// create new row
-						currentRow = {
-							'type': 'View',
-							'layout': { 'style': 'horizontal' },
-							'children': []								
-						};
-						ContentEditableView.children.push(currentRow);
-					}	
-					currentRow.children.push(child);
-					col++;
-					if(col === 3){
-						col = 0;
-					}
-				}
-			);
-			return [ContentEditableView];	
-		},
-		
 		_.extend(
 			ContentEditable.prototype,
 			{
@@ -70,6 +24,7 @@ var ZEN = (function (ZEN, _, $) {
 					// call the base class init method
 					ZEN.ui.Control.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
+					ZEN.events.buttonHandler (this, this.el);
 				},
 
 				label: function () {
@@ -87,6 +42,15 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
+						this.el.attr('contenteditable', 'true');
+						var backgroundColor = this.el.css('background-color');
+						var color = this.el.css('color');
+						this.el.css(
+							{
+								'color': backgroundColor,
+								'background-color': color
+							}
+						);
 						ZEN.notify ("ui.contenteditable", message);
 					}
 				},
@@ -97,6 +61,7 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						// this.el.attr('tabindex',0);
 						this.el.addClass('zen-contenteditable');
+						this.el.text(this.params.label);
 						this.resize();
 					}
 					return this.el;
