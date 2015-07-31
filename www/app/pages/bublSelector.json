@@ -31,8 +31,8 @@
 										"label": "<h2>$(username)'s bubls</h2>"
 									},
 									{
-										"type": "Control",
-										"label": "Select the bubl you want to edit.",
+										"type": "CompoundElement",
+										"label": "<p>Select the bubl you want to edit, or <span data-tag=\"add\"><i class=\"fa fa-plus fa-x1\"/> add a new bubl</span>.</p>",
 										"size": { "height": 30 }	
 									},
 									{
@@ -50,16 +50,7 @@
 												{ "action": "more", "icon": "fa-ellipsis-h", "label": "" }
 											]
 										},
-										"children": [
-											{ 
-												"type": "IconLabel", 
-												"tag": "add",
-												"content": {
-													"label": "Add bubl",
-													"icon": "fa-plus"
-												}
-											}		
-										]
+										"children":[]
 									}
 								]
 							}

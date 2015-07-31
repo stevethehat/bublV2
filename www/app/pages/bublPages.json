@@ -34,9 +34,8 @@
 										"label": "<h2>'$(bubl.title)' pages</h2>"
 									},
 									{
-										"type": "Control",
-										"id": "instructions",
-										"label": "Select the page you want to edit.",
+										"type": "CompoundElement",
+										"label": "<p>Select the page you want to edit, or <span data-tag=\"add\"><i class=\"fa fa-plus fa-x1\"/> add a new page</span>.</p>",
 										"size": { "height": 30 }	
 									},
 									{
@@ -52,16 +51,7 @@
 												{ "action": "more", "icon": "fa-ellipsis-h", "label": "" }
 											]
 										},
-										"children": [
-											{
-												"type": "IconLabel", 
-												"tag": "add",
-												"content": {
-													"label": "Add page",
-													"icon": "fa-plus"
-												}
-											}
-										]
+										"children": []
 									}
 								]
 							}
