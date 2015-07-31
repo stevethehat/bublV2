@@ -6,9 +6,6 @@
 			ShowHelp: function(data){
 				alert('show help ' + data.object.params.id);
 			},
-			back: function(data){
-				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
-			},
 			home: function(data){
 				bublApp.loadPage('bublSelector', 'fadeIn', 'fadeOut');
 			},			
@@ -91,11 +88,31 @@
 					}
 				);
 			},
-			cancel: function(){
-				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
-			},
 			save: function(){
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');				
+			},
+			cancel: function(data){
+				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
+			},
+			savecontrol: function(data){
+				var element = bublApp.variables['contentelement'];
+				var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
+				var parentID = element.parent.id;
+				 				
+				ZEN.cleanup();
+				element.remove();
+
+				var parsedData = bublApp.preParse(content);
+				var o = ZEN.parse(parsedData, ZEN.objects[parentID]);
+				ZEN.objects[parentID].show(true);
+				ZEN.objects['bublEditor'].resize(true);				
+	
+				/*
+				element.params = content;
+				alert('save control' + JSON.stringify(content, null, 4));
+				bublApp.showElement(element.parent.id, content);
+				ZEN.log('save control', bublApp.variables['contentelement']);
+				*/
 			}
 		},
 		"bublNew":{
@@ -147,6 +164,13 @@
 						);
 					} 
 				)
+			},
+			select: function(data){
+				bublApp.setCurrentObject(['properties'], bublApp.getBublID(data.id),
+					function(){
+						bublApp.loadPage('properties');				
+					}	
+				);
 			},
 			add: function(data){
 				alert('add template');

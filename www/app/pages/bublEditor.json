@@ -77,12 +77,22 @@
 					},
 					{
 						"id": "properties",
-						"size": { "width": 200 },
+						"size": { "width": 300 },
 						"children": [
 							{
 								"type": "CodeEditor",
 								"id": "BublElementEditor",
-								"color": "#999"
+								"color": "#999",
+								"size": { "height": 400 }
+							},
+							{
+								"tag": "savecontrol",
+								"type": "IconLabel",
+								"content": {
+									"label": "Done",
+									"icon": "fa-floppy-o"
+								},
+								"size": { "height": 30 }
 							}
 						]
 					}

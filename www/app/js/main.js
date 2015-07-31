@@ -26,7 +26,10 @@
 		 'app/js/ui.codeeditor.js',
 		 'app/js/ui.uploader.js',
 		 'app/js/ui.contenteditable.js',
-		 'app/js/ui.compoundelement.js'
+		 'app/js/ui.compoundelement.js',
+		 
+		 'app/js/ui.bublview.js'
+		 
 		 ],
 		function () {
 			var url = 'app.json';

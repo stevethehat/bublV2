@@ -33,15 +33,14 @@ var ZEN = (function (ZEN, _, $) {
 					
 					if(isTagged){
 						if (message.type === 'highlight') {
-							element.addClass('pulse animated');
-							element.css('color', '#ccc');
+							element.addClass('wobble animated');
+							element.css( { 'color': '#348EBF', 'cursor': 'pointer'} );
 						} else {
-							element.removeClass('pulse animated');
-							element.css('color', 'black');
+							element.removeClass('wobble animated');
+							element.css( { 'color': 'black', 'cursor': 'auto'} );
 						}
 		
 						if(message.type === 'active'){
-							alert(element.data('tag'));
 							ZEN.log('got action:', element.data('tag') + ' ' + message.type);
 							bublApp.executeAction(element.data('tag'), message);
 						}

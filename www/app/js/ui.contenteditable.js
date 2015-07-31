@@ -42,7 +42,8 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
-						this.el.attr('contenteditable', 'true');
+						//this.el.attr('contenteditable', 'true');
+						/*
 						var backgroundColor = this.el.css('background-color');
 						var color = this.el.css('color');
 						this.el.css(
@@ -51,7 +52,8 @@ var ZEN = (function (ZEN, _, $) {
 								'background-color': color
 							}
 						);
-						ZEN.notify ("ui.contenteditable", message);
+						*/
+						ZEN.notify ("ui.bublcontrol", message);
 					}
 				},
 
@@ -61,7 +63,7 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						// this.el.attr('tabindex',0);
 						this.el.addClass('zen-contenteditable');
-						this.el.text(this.params.label);
+						this.el.html(this.params.label);
 						this.resize();
 					}
 					return this.el;

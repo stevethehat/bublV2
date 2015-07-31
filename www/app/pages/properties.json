@@ -44,7 +44,7 @@
 					"label": "Save",
 					"icon": "fa-floppy-o"
 				},
-				"size": { "width" : 100 }
+				"size": { "width" : 60 }
 			},
 			{
 				"type": "IconLabel",

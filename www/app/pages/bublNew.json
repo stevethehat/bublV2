@@ -57,5 +57,22 @@
 			},
 			{ "size": { "height" : 40 } }
 		]
+	},
+		"toolbarButtons":{
+		"type": "View",
+		"size": { "width": 200 },
+		"layout": { "align": "left", "style": "horizontal" },
+		"children":[
+			{
+				"type": "IconLabel",
+				"tag": "cancel",
+				"content": {
+					"label": "Cancel",
+					"icon": "fa-thumbs-o-down"
+				},
+				"size": { "width" : 100 }
+			}
+		]		
 	}
+
 }
