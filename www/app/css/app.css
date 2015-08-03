@@ -177,7 +177,7 @@ p{
 .uploader .progress{
 	height: 20px;
 	margin: 10px;
-	border: solid 1px green;
+	border: solid 1px #aaa;
 	/*margin: 10px;*/
 }
 
