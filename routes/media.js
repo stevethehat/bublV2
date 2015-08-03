@@ -15,8 +15,8 @@ router.post('/capture',
 
 		console.log(JSON.stringify(object));
 		
-		var filePath = path.resolve('../bubl/www/app/img/' + fileName);
-		var thumbnailFilePath = path.resolve('../bubl/www/app/img/100x100/' + fileName);
+		var filePath = path.resolve('../bubl/www/app/img/assets/' + fileName);
+		var thumbnailFilePath = path.resolve('../bubl/www/app/img/assets/100x100/' + fileName);
 		
 		object['filePath'] = filePath;
 		object['thumbnailFilePath'] = thumbnailFilePath;
