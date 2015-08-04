@@ -94,10 +94,16 @@
 			cancel: function(data){
 				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
 			},
+			addcontrol: function(data){
+				alert('add control = "' + data.params.content.label + '"');
+			},
 			savecontrol: function(data){
+				var self = this;
 				var element = bublApp.variables['contentelement'];
 				var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
 				var parentID = element.parent.id;
+				
+				//bublUtil.previousSibling(element.parent);
 				 				
 				ZEN.cleanup();
 				element.remove();
@@ -113,6 +119,23 @@
 				bublApp.showElement(element.parent.id, content);
 				ZEN.log('save control', bublApp.variables['contentelement']);
 				*/
+			},
+			parentcontrol: function(data){
+				function getParent(element){
+					if(element.parent.params.autoadded === true){
+						return(getParent(element.parent));
+					} else {
+						return(element.parent);
+					}
+				}
+				var element = bublApp.variables['contentelement'];
+				var parent = getParent(element);				
+				
+				bublApp.setCurrentObject(['contentelement'], parent,
+					function(){
+						ZEN.objects['BublElementEditor'].setContent(JSON.stringify(parent.params, null, 4));
+					}
+				);
 			}
 		},
 		"bublNew":{

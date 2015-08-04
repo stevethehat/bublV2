@@ -181,3 +181,14 @@ p{
 	/*margin: 10px;*/
 }
 
+.contentareadrop{
+	width: 100%;
+	height: 100%;
+	margin:10 10 10 10;
+	border: dashed 1px #aaa;
+	cursor: pointer;
+}
+
+.selected .contentareadrop{
+	background-color: #bbb;
+}

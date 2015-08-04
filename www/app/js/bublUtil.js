@@ -60,5 +60,25 @@ var bublUtil = {
 		
 			}	
 		)		
+	},
+	previousSibling: function(element){
+		var parent = element.parent;
+		var result = null;
+		var found = false;
+		_.each(parent.children,
+			function(sibling){
+				if(!found){
+					if(sibling.id === element.id){
+						ZEN.log('found ' + sibling.id + ' = ' + element.id);
+						found = true;
+					} else {
+						ZEN.log('NOT found');
+						result = sibling;
+					}
+				}
+			}
+		);
+		alert(JSON.stringify(result.params));
+		return(result);
 	}
 }

@@ -27,7 +27,8 @@
 								"type": "View",
 								"defaults": {
 									"type": "IconLabel",
-									"size": { "height": 38 }
+									"size": { "height": 38 },
+									"tag": "addcontrol"
 								},
 								"children": [
 									{	
@@ -86,13 +87,28 @@
 								"size": { "height": 400 }
 							},
 							{
-								"tag": "savecontrol",
-								"type": "IconLabel",
-								"content": {
-									"label": "Done",
-									"icon": "fa-floppy-o"
-								},
-								"size": { "height": 30 }
+								"type": "View",
+								"layout": { "align": "left", "style": "horizontal" },
+								"size": { "height": 30 },
+								"children":[
+									{
+										"tag": "parentcontrol",
+										"type": "IconLabel",
+										"size": { "width": 50 },
+										"content": {
+											"label": "Up",
+											"icon": "fa-chevron-up"
+										}
+									},									
+									{
+										"tag": "savecontrol",
+										"type": "IconLabel",
+										"content": {
+											"label": "Done",
+											"icon": "fa-floppy-o"
+										}
+									}									
+								]	
 							}
 						]
 					}

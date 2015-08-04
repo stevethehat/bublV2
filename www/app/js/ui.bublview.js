@@ -20,10 +20,9 @@ var ZEN = (function (ZEN, _, $) {
 				init: function (params, parent) {
 					// call the base class init method
 					ZEN.ui.View.prototype.init.call(this, params, parent);
-					
-					ZEN.events.buttonHandler(this, this.el);
 				},
 
+				/*
 				notify: function (message) {
 					message.source = this;
 
@@ -36,16 +35,20 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
+						ZEN.log('active on bublView');
 						ZEN.notify ("ui.bublcontrol", message);
 					}
 				},
-
+				*/
 				label: function () {
 				},
 				
 				getElement: function () {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
+						if(this.params.css !== undefined){
+							this.el.css(this.params.css);
+						}
 						this.resize();
 					}
 					return this.el;

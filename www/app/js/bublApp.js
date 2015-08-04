@@ -13,8 +13,16 @@
 			self.variables['username'] = 'Steve';
 			self.variables['currentpage'] = 'bublSelector';
 			
-
-			url = ZEN.data.querystring['url'] === undefined ? url : ZEN.data.querystring['url'];
+			var id = ZEN.data.querystring['id'];
+			if(id === undefined){
+				self.initApp();			
+			} else {
+				self.initPlayer(id);
+			}
+		},
+		
+		initApp: function(){
+			var self = this;
 			self.setupObservers();
 			self.load('app.json', null,
 				function(parsedData){
@@ -23,8 +31,13 @@
 
 					self.loadPage(self.variables['currentpage'], 'fadeIn');
 				}	
-			);
+			);			
 		},
+		
+		initPlayer: function(){
+			
+		},
+		
 		findID: function(id, data, callback){
 			var self = this;
 			if(data.id && data.id === id){
@@ -244,7 +257,7 @@
 				// check that if there is more than one child that is not a view & if there is.. wrap them all
 				var children = data['children'];
 				
-				if(data['type'] === 'View' && children.length > 1){
+				if((data['type'] === 'View' || data['type'] === 'BublView') && children.length > 1){
 					var wrapChildren = false;
 					for(var i = 0; i < children.length; i++){
 						var child = children[i];
@@ -252,7 +265,7 @@
 						if(childType === undefined){
 							childType = childDefaults['type']
 						}
-						if(String(childType) !== String('View')){
+						if(String(childType) !== String('View') || String(childType) !== String('BublView')){
 							wrapChildren = true;
 							break;
 						}

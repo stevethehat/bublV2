@@ -1,0 +1,14 @@
+{
+    "type": "ContentEditable",
+    "show": true,
+    "size": {
+        "width": "max",
+        "height": "max"
+    },
+    "layout": {
+        "style": "vertical",
+        "align": "left"
+    },
+    "label": "<p>!!!another content editable area maybe..</p>",
+    "initialise": true
+}

@@ -1,0 +1,13 @@
+{
+	"type": "Application",
+	"id": "BublApp",
+	"show": true,
+	"defaults": { 
+		"type": "View",
+		"show": true,
+		"size": { "width": "max", "height": "max" },
+		"layout": { "style": "vertical", "align": "left" } 
+	},			
+	"children":[
+	]
+}

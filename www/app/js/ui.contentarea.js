@@ -7,17 +7,17 @@ var ZEN = (function (ZEN, _, $) {
 	_.extend(ZEN.ui, (function () {
 
 		
-		function ContentEditable (params, parent) {
+		function ContentArea (params, parent) {
 			if (arguments.length > 0) {
 				ZEN.ui.Control.call(this, params, parent);
 			}
 			return this;
 		}
 
-		ContentEditable.prototype = new ZEN.ui.Control();
+		ContentArea.prototype = new ZEN.ui.Control();
 		
 		_.extend(
-			ContentEditable.prototype,
+			ContentArea.prototype,
 			{
 
 				init: function (params, parent) {
@@ -42,19 +42,14 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
-						//this.el.attr('contenteditable', 'true');
-						/*
-						var backgroundColor = this.el.css('background-color');
-						var color = this.el.css('color');
-						this.el.css(
-							{
-								'color': backgroundColor,
-								'background-color': color
-							}
-						);
-						*/
-						ZEN.log('active on content editable');
-						ZEN.notify ("ui.bublcontrol", message);
+						ZEN.notify ("ui.bublcontentarea", message);
+						
+						if(bublApp.variables['selectedcontentarea'] !== undefined){						
+							bublApp.variables['selectedcontentarea'].el.removeClass('selected');
+						}						
+						
+						this.el.addClass('selected');
+						bublApp.variables['selectedcontentarea'] = this;
 					}
 				},
 
@@ -62,9 +57,9 @@ var ZEN = (function (ZEN, _, $) {
 				getElement: function () {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
-						// this.el.attr('tabindex',0);
-						this.el.addClass('zen-contenteditable');
-						this.el.html(this.params.label);
+						this.el.addClass('zen-contentarea');
+						var dropArea = $('<div/>').addClass('contentareadrop').appendTo(this.el);
+						var instructions = $('<p>Add content here</p>').appendTo(dropArea);
 						this.resize();
 					}
 					return this.el;
@@ -72,10 +67,10 @@ var ZEN = (function (ZEN, _, $) {
 			}
 		);
 
-		ZEN.registerType('ContentEditable',ContentEditable);
+		ZEN.registerType('ContentArea',ContentArea);
 
 		return {
-			ContentEditable: ContentEditable
+			ContentArea: ContentArea
 		};
 		
 
