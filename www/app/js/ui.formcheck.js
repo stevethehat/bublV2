@@ -7,17 +7,17 @@ var ZEN = (function (ZEN, _, $) {
 	_.extend(ZEN.ui, (function () {
 
 		
-		function FormEdit (params, parent) {
+		function FormCheck (params, parent) {
 			if (arguments.length > 0) {
 				ZEN.ui.Control.call(this, params, parent);
 			}
 			return this;
 		}
 
-		FormEdit.prototype = new ZEN.ui.Control();
+		FormCheck.prototype = new ZEN.ui.Control();
 		
 		_.extend(
-			FormEdit.prototype,
+			FormCheck.prototype,
 			{
 				init: function (params, parent) {
 					// call the base class init method
@@ -33,7 +33,7 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
 						var label = $('<label>' + this.params.label + '</label>').appendTo(container);
-						var edit = $('<input type="text" placeholder="' + this.params.placeholder + '"/>').attr('data-source', this.params.source).appendTo(container);
+						var edit = $('<input type="checkbox" placeholder="' + this.params.placeholder + '"/>').attr('data-source', this.params.source).appendTo(container);
 						this.resize();
 					}
 					return this.el;
@@ -41,10 +41,10 @@ var ZEN = (function (ZEN, _, $) {
 			}
 		);
 
-		ZEN.registerType('FormEdit', FormEdit);
+		ZEN.registerType('FormCheck', FormCheck);
 
 		return {
-			FormEdit: FormEdit
+			FormCheck: FormCheck
 		};
 		
 

@@ -1,0 +1,17 @@
+{
+	"title": "Text",	
+	"fields":[
+		{
+			"type": "FormEdit",
+			"label": "Url",
+			"placeholder": "Please enter the image url",
+			"source": ""
+		},	
+		{
+			"type": "FormEdit",
+			"label": "Description",
+			"placeholder": "Please enter the image description",
+			"source": ""
+		}	
+	]
+}

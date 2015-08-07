@@ -15,6 +15,7 @@
 
 		 'app/js/ui.formselect.js',
 		 'app/js/ui.formedit.js',
+		 'app/js/ui.formcheck.js',
 
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',

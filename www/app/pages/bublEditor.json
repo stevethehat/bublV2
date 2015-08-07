@@ -88,7 +88,7 @@
 								"type": "CodeEditor",
 								"id": "BublElementEditor",
 								"color": "#999",
-								"size": { "height": 400 }
+								"size": { "height": 200 }
 							},
 							{
 								"type": "View",

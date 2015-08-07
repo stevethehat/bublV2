@@ -33,7 +33,7 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
 						var label = $('<label>select</label>').appendTo(container);
-						var select = $('<select/>').appendTo(container); 
+						var select = $('<select/>').data('source', this.params.source).appendTo(container); 
 						this.resize();
 					}
 					return this.el;

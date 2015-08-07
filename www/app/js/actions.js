@@ -110,8 +110,11 @@
 			savecontrol: function(data){
 				var self = this;
 				var element = bublApp.variables['contentelement'];
-				var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
+				//var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
 				var parentID = element.parent.id;
+				
+				bublForm.save(element);
+				content = element.params;
 				 				
 				ZEN.cleanup();
 				element.remove();

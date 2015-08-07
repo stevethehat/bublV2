@@ -1,0 +1,22 @@
+{
+	"title": "Video",
+	"fields":[
+		{
+			"type": "FormEdit",
+			"label": "Video Url",
+			"placeholder": "Please enter the video url",
+			"source": "content.url"
+		},	
+		{
+			"type": "FormEdit",
+			"label": "Description",
+			"placeholder": "Please enter the video description",
+			"source": "content.description"
+		},	
+		{
+			"type": "FormCheck",
+			"label": "Auto Play",
+			"source": "content.autoplay"
+		}	
+	]
+}
