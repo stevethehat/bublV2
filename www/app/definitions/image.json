@@ -1,0 +1,14 @@
+{
+	"fields":[
+		{
+			"type": "FormEdit",
+			"label": "Url",
+			"value": ""
+		},	
+		{
+			"type": "FormEdit",
+			"label": "Description",
+			"value": ""
+		}	
+	]
+}

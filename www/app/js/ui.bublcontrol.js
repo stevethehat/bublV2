@@ -7,17 +7,17 @@ var ZEN = (function (ZEN, _, $) {
 	_.extend(ZEN.ui, (function () {
 
 		
-		function ContentArea (params, parent) {
+		function BublControl (params, parent) {
 			if (arguments.length > 0) {
 				ZEN.ui.Control.call(this, params, parent);
 			}
 			return this;
 		}
 
-		ContentArea.prototype = new ZEN.ui.Control();
+		BublControl.prototype = new ZEN.ui.Control();
 		
 		_.extend(
-			ContentArea.prototype,
+			BublControl.prototype,
 			{
 
 				init: function (params, parent) {
@@ -42,7 +42,7 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
-						ZEN.notify ("ui.bublcontentarea", message);
+						ZEN.notify ("ui.bublcontrol", message);
 						
 						if(bublApp.variables['contentelement'] !== undefined){						
 							bublApp.variables['contentelement'].el.removeClass('selected');
@@ -67,10 +67,10 @@ var ZEN = (function (ZEN, _, $) {
 			}
 		);
 
-		ZEN.registerType('ContentArea',ContentArea);
+		ZEN.registerType('BublControl',BublControl);
 
 		return {
-			ContentArea: ContentArea
+			BublControl: BublControl
 		};
 		
 

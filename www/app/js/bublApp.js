@@ -275,7 +275,7 @@
 						var viewWrappedChildren = [];
 						for(var i = 0; i < children.length; i++){
 							var child = children[i];
-							if(child.type !== 'View'){
+							if(child.type !== 'View' && child.type !== 'BublView'){
 								var wrapperView = {
 									'type': 'View',
 									'autoadded': true,
@@ -335,10 +335,11 @@
 			self.setupObserver('ui.bublcontrol',
 				function(message){
 					ZEN.log('observer(ui.bublcontrol)', message, $(message.sourceElement));
-					ZEN.log('show editor', message.source);	
+					ZEN.log('show editor', message.source);
 					bublApp.setCurrentObject(['contentelement'], message.source,
 						function(){
 							ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
+							bublForm.showForm('PropertiesForm', 'image.json');
 						}
 					);
 				}

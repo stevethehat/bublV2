@@ -13,10 +13,14 @@
 		 'zen/js/ui.button.js',
 		 'zen/js/ui.menu.js',
 
+		 'app/js/ui.formselect.js',
+		 'app/js/ui.formedit.js',
+
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',
 		 'app/js/bublApp.js',
 		 'app/js/bublUtil.js',
+		 'app/js/bublForm.js',
 		 'app/js/popup.js',
 		 'app/js/objectstore.js',
 		 'app/js/actions.js',
@@ -25,9 +29,12 @@
 		 'app/js/ui.thumbnailmenu.js',
 		 'app/js/ui.codeeditor.js',
 		 'app/js/ui.uploader.js',
+		 'app/js/ui.bublcontrol.js',
 		 'app/js/ui.contentarea.js',
 		 'app/js/ui.contenteditable.js',
 		 'app/js/ui.compoundelement.js',
+		 'app/js/ui.bublimage.js',
+		 'app/js/ui.bublvideo.js',
 		 
 		 'app/js/ui.bublview.js'
 		 

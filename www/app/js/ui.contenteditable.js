@@ -42,29 +42,22 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
-						//this.el.attr('contenteditable', 'true');
-						/*
-						var backgroundColor = this.el.css('background-color');
-						var color = this.el.css('color');
-						this.el.css(
-							{
-								'color': backgroundColor,
-								'background-color': color
-							}
-						);
-						*/
 						ZEN.log('active on content editable');
 						ZEN.notify ("ui.bublcontrol", message);
 					}
 				},
-
 				
 				getElement: function () {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						// this.el.attr('tabindex',0);
 						this.el.addClass('zen-contenteditable');
-						this.el.html(this.params.label);
+						
+						if(this.params.label !== undefined){
+							this.el.html(this.params.label);						
+						} else {
+							this.el.html('<p>Enter your text here</p>');
+						}
 						this.resize();
 					}
 					return this.el;

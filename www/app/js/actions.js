@@ -95,15 +95,23 @@
 				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
 			},
 			addcontrol: function(data){
-				alert('add control = "' + data.params.content.label + '"');
+				var contentArea = bublApp.variables['contentelement'];
+				ZEN.log('add control', bublApp.variables);
+				var parentID = contentArea.parent.id;
+				ZEN.cleanup();
+				contentArea.remove();
+				
+				var newControl = ZEN.parse({ 'type': data.params.content.addtype }, ZEN.objects[parentID]);
+				ZEN.objects[parentID].show(true);
+				ZEN.objects['bublEditor'].resize(true);		
+				
+				ZEN.notify ("ui.bublcontrol", { 'source': newControl });		
 			},
 			savecontrol: function(data){
 				var self = this;
 				var element = bublApp.variables['contentelement'];
 				var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
 				var parentID = element.parent.id;
-				
-				//bublUtil.previousSibling(element.parent);
 				 				
 				ZEN.cleanup();
 				element.remove();
@@ -112,13 +120,6 @@
 				var o = ZEN.parse(parsedData, ZEN.objects[parentID]);
 				ZEN.objects[parentID].show(true);
 				ZEN.objects['bublEditor'].resize(true);				
-	
-				/*
-				element.params = content;
-				alert('save control' + JSON.stringify(content, null, 4));
-				bublApp.showElement(element.parent.id, content);
-				ZEN.log('save control', bublApp.variables['contentelement']);
-				*/
 			},
 			parentcontrol: function(data){
 				function getParent(element){
