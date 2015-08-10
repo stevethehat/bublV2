@@ -61,6 +61,27 @@ var bublUtil = {
 			}	
 		)		
 	},
+
+	addTemplate: function(callback){
+		objectStore.getNextOrder(2000,
+			function(nextOrder){
+				objectStore.upsertObject(
+					{
+						'parentId': '2000',
+						'title': 'Template ' + nextOrder.nextorder,
+						'order': nextOrder.nextorder,
+						'description': 'Description of the template',
+						'thumbnail': 'img/layout1.png',
+						'layout': {}
+					},
+					function(insertedData){
+						callback(insertedData);
+					}
+				);													
+			}	
+		);
+	},
+	
 	previousSibling: function(element){
 		var parent = element.parent;
 		var result = null;

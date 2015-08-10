@@ -85,12 +85,6 @@
 						"size": { "width": 300 },
 						"children": [
 							{
-								"type": "CodeEditor",
-								"id": "BublElementEditor",
-								"color": "#999",
-								"size": { "height": 200 }
-							},
-							{
 								"type": "View",
 								"layout": { "align": "left", "style": "horizontal" },
 								"size": { "height": 30 },
@@ -117,6 +111,12 @@
 							{
 								"type": "View",
 								"id": "PropertiesForm"
+							},
+							{
+								"type": "CodeEditor",
+								"id": "BublElementEditor",
+								"color": "#999",
+								"size": { "height": 200 }
 							}
 						]
 					}

@@ -151,7 +151,11 @@
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
-								element.children.shift();
+								/*
+								if(element.children.length > 1){
+									element.children.shift();								
+								}
+								*/
 								callback();
 							}
 						);
@@ -185,7 +189,11 @@
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
-								element.children.shift();
+								/*
+								if(element.children.length > 1){
+									element.children.shift();	
+								}
+								*/							
 								callback();
 							}
 						);
@@ -200,7 +208,11 @@
 				);
 			},
 			add: function(data){
-				alert('add template');
+				bublUtil.addTemplate(
+					function(templateData){
+						bublApp.loadPage('bublTemplateSelector');				
+					}
+				)
 			}
 		},
 		"bublPages": {
@@ -244,7 +256,11 @@
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
-								element.children.shift();
+								/*
+								if(element.children.length > 1){
+									element.children.shift();
+								}
+								*/
 								callback();
 							}
 						);

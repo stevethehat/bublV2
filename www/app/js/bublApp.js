@@ -339,7 +339,7 @@
 					bublApp.setCurrentObject(['contentelement'], message.source,
 						function(){
 							ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
-							bublForm.showForm('PropertiesForm', message.source.params.type + '.json');
+							bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json');
 						}
 					);
 				}

@@ -20,12 +20,13 @@ var ZEN = (function (ZEN, _, $) {
 			ZEN.log('populate PagedGrid', children);
 			_.each(children,
 				function(child){
-					PagedGridChildren.push(
-						{ 
+					var childContent = { 
 							'id': 'bubl' + child.id,
+							'type': 'ThumbnailMenu',
 					 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
-						}				
-					);
+						};				
+
+					PagedGridChildren.push(childContent);
 				}
 			);
 		}
@@ -59,6 +60,8 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				}
 			);
+			
+			ZEN.log('Grid = ', PagedGridView);
 			return [PagedGridView];	
 		},
 		
