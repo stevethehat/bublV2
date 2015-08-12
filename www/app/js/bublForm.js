@@ -111,7 +111,6 @@ var bublForm = {
 					value = element.val();
 				}
 				ZEN.log('found element (' + source + ') = ' + value, element);
-				alert('set value ' + source + ' = ' + value);
 				
 				self.setValue(object.params, source, value);	
 			}
