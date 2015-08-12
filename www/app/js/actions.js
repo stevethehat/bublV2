@@ -105,6 +105,16 @@
 				)
 				//ZEN.log('bubl page content = ', JSON.stringify(content, null, 4));
 			},
+			source: function(data){
+				alert('show source');
+				var bublID = bublApp.variables['page'].id;
+				bublApp.setCurrentObject(['properties'], bublID,
+					function(){
+						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');
+						//popup.show();		
+					}	
+				);
+			},
 			cancel: function(data){
 				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
 			},

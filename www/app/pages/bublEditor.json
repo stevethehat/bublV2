@@ -103,7 +103,7 @@
 										"type": "IconLabel",
 										"content": {
 											"label": "Done",
-											"icon": "fa-floppy-o"
+											"icon": "fa-check"
 										}
 									}									
 								]	
@@ -129,6 +129,15 @@
 		"size": { "width": 200 },
 		"layout": { "align": "left", "style": "horizontal" },
 		"children":[
+			{
+				"type": "IconLabel",
+				"tag": "source",
+				"content": {
+					"label": "Source",
+					"icon": "fa-ellipsis-h"
+				},
+				"size": { "width" : 80 }
+			},
 			{
 				"type": "IconLabel",
 				"tag": "save",
