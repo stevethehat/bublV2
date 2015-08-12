@@ -7,7 +7,7 @@
 				alert('show help ' + data.object.params.id);
 			},
 			home: function(data){
-				bublApp.loadPage('bublSelector', 'fadeIn', 'fadeOut');
+				bublApp.loadPage('home', 'fadeIn', 'fadeOut');
 			},			
 			pages: function(data){	
 				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');
@@ -40,6 +40,11 @@
 			advanced: function(){
 				bublApp.loadPage('bublTemplateSelector');
 			}
+		},
+		"home":{
+			select: function(data){
+				alert('select clicked ' + data.id);
+			}	
 		},
 		"bublSelector":{
 			onLoad: function(data, callback){
