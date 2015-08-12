@@ -50,6 +50,7 @@ var ZEN = (function (ZEN, _, $) {
 						
 						this.el.addClass('selected');
 						bublApp.variables['contentelement'] = this;
+						ZEN.notify('ui.bublcontrol', message);
 					}
 				},
 

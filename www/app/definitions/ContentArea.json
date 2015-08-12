@@ -1,0 +1,15 @@
+{
+	"title": "Content area..",	
+	"fields":[	
+		{
+			"type": "FormEdit",
+			"label": "Width",
+			"source": "parent.size.width"
+		},	
+		{
+			"type": "FormEdit",
+			"label": "Height",
+			"source": "parent.size.height"
+		}		
+	]
+}
