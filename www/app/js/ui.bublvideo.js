@@ -31,7 +31,8 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('zen-video');
 												
 						if(this.params.content && this.params.content.url !== undefined){
-							var video = $('<video width="' + this.parent.el.width() + '" height="' + this.parent.el.height() + '"/>').appendTo(this.el);
+							//var video = $('<video width="' + this.parent.el.width() + '" height="' + this.parent.el.height() + '" controls/>').appendTo(this.el);
+							var video = $('<video width="100%" height="100%" controls/>').appendTo(this.el);
 							var source = $('<source src="' + this.params.content.url + '" type="video/mp4"/>').appendTo(video);
 						} else {
 							this.el.html('<p>Please select a video</p>');						

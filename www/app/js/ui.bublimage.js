@@ -30,7 +30,8 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-image');
 						if(this.params.content && this.params.content.url !== undefined){
-							this.el.html('<img width="' + this.parent.el.width() + '" height="' + this.parent.el.height() + '" src="' + this.params.content.url + '"/>');
+							//this.el.html('<img width="' + this.parent.el.width() + '" height="' + this.parent.el.height() + '" src="' + this.params.content.url + '"/>');
+							this.el.html('<img width="100%" height="100%" src="' + this.params.content.url + '"/>');
 						} else {
 							this.el.html('<p>Please select an image</p>');						
 						}
