@@ -222,3 +222,7 @@ p{
 	width: 100%;
 }
 
+.thumbnailMI *{
+	cursor: pointer;
+}
+
