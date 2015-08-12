@@ -29,7 +29,7 @@ router.post('/',
 router.post('/:dump_file', 
 	function(request, response, next){
 		var object = request.body;
-		dumpFile('../bubl/www/' + request.params.dump_file + '.json', object);		
+		dumpFile('../bubl/www/dumps/' + request.params.dump_file + '.json', object);		
 		response.send('ok');
 	}
 ); 	
