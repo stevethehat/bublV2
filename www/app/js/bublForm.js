@@ -97,8 +97,6 @@ var bublForm = {
 		}
 		
 		var level = params;
-		alert(JSON.stringify(level, null, 4));
-
 		for(var i=0; i < sourceBits.length; i++){
 			var sourceBit = sourceBits[i];
 			if(i === sourceBits.length -1){
@@ -112,7 +110,6 @@ var bublForm = {
 				}
 			}
 		}
-		alert(JSON.stringify(params, null, 4));
 	},
 	save: function(object){
 		var self = this;
