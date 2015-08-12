@@ -34,8 +34,7 @@
 				"size": { "width": 100 }	
 			},
 			"children": [
-				{ "type": "IconLabel", "tag": "home", "content": { "icon": "fa-home", "size": 2 }, "size": { "width": 30 } },
-				{ "type": "IconLabel", "tag": "advanced", "id": "advancedButton", "content": { "icon": "fa-cog", "size": 2, "label": "Advanced" } },
+				{ "type": "IconLabel", "tag": "home", "content": { "icon": "fa-home", "size": 2, "label": "Home" }, "size": { "width": 80 } },
 				{ 
 					"id": "toolbarButtons", 
 					"size": { "width": "max" },
