@@ -89,7 +89,16 @@
 				);
 			},
 			save: function(){
-				bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');				
+				var content = ZEN.objects['BublPageRoot'].serialize();
+				bublApp.variables['page'].layout = content.params;
+				
+				objectStore.upsertObject(bublApp.variables['page'],
+					function(savedData){
+						bublApp.dump('savedpage', savedData);
+						bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');						
+					}
+				)
+				//ZEN.log('bubl page content = ', JSON.stringify(content, null, 4));
 			},
 			cancel: function(data){
 				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
@@ -98,8 +107,8 @@
 				var contentArea = bublApp.variables['contentelement'];
 				ZEN.log('add control', bublApp.variables);
 				var parentID = contentArea.parent.id;
+				contentArea.remove(true);
 				ZEN.cleanup();
-				contentArea.remove();
 				
 				var newControl = ZEN.parse({ 'type': data.params.content.addtype }, ZEN.objects[parentID]);
 				ZEN.objects[parentID].show(true);
@@ -116,8 +125,8 @@
 				bublForm.save(element);
 				content = element.params;
 				 				
+				element.remove(true);
 				ZEN.cleanup();
-				element.remove();
 
 				var parsedData = bublApp.preParse(content);
 				var o = ZEN.parse(parsedData, ZEN.objects[parentID]);
