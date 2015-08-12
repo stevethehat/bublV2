@@ -102,22 +102,32 @@ var ZEN = (function (ZEN, _, $) {
 							var cssColor = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
 							return(cssColor);
 						}
-						img.on('load',
-							function(){
-						        var htmlImage = img.get(0);
-						        var colorThief = new ColorThief();
-						        var palette = colorThief.getPalette(htmlImage);
-		
-								backColor = cssColor(palette[2]);	
-								color = cssColor(palette[1]);	
-								back.css(
-									{
-										'background-color': backColor,
-										'color': color	
-									}
-								);
-							}	
-						);				
+						
+						if(this.params.content.backcolor === undefined && this.params.content.color === undefined){
+							img.on('load',
+								function(){
+							        var htmlImage = img.get(0);
+							        var colorThief = new ColorThief();
+							        var palette = colorThief.getPalette(htmlImage);
+			
+									backColor = cssColor(palette[2]);	
+									color = cssColor(palette[1]);	
+									back.css(
+										{
+											'background-color': backColor,
+											'color': color	
+										}
+									);
+								}	
+							);
+						} else {
+							back.css(
+								{
+									'background-color': this.params.content.backcolor,
+									'color': this.params.content.color	
+								}
+							);							
+						}				
 						this.resize();
 					}
 					return this.el;
