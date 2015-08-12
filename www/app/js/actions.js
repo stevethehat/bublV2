@@ -43,7 +43,20 @@
 		},
 		"home":{
 			select: function(data){
-				alert('select clicked ' + data.id);
+				switch(data.id){
+					case 'bubls':
+						bublApp.loadPage('bublSelector');
+						break;
+					case 'assets':
+						alert('goto asset management');
+						break;
+					case 'templates':
+						bublApp.loadPage('bublTemplateSelector');
+						break;
+					case 'users':
+						alert('goto user management');
+						break;
+				}
 			}	
 		},
 		"bublSelector":{
