@@ -11,7 +11,7 @@
 
 			
 			self.variables['username'] = 'Steve';
-			self.variables['currentpage'] = 'bublSelector';
+			self.variables['currentpage'] = 'home';
 			
 			var id = ZEN.data.querystring['id'];
 			if(id === undefined){
