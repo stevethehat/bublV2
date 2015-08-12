@@ -50,6 +50,8 @@ var bublUtil = {
 										'layout': template.layout
 									},
 									function(insertedData){
+										bublApp.dump('newpage', insertedData);
+
 										callback(insertedData);
 									}
 								);													
