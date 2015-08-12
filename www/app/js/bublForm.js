@@ -39,7 +39,7 @@ var bublForm = {
 					'placeholder': field.placeholder,
 					'size': { 'width': 'max', 'height': 40 },
 					'source': field.source,
-					'value': self.getValue(object.params, field.source) 	
+					'value': self.getValue(object, field.source) 	
 				};
 				processedDefinition.children.push(fieldDefinition);
 			}	
@@ -59,10 +59,16 @@ var bublForm = {
 	
 		ZEN.objects['properties'].resize(true);				
 	},
-	getValue: function(params, source){
+	getValue: function(object, source){
 		var sourceBits = source.split('.');
 		var result = null;
-		var level = params;
+		var level = object.params;
+		
+		if(sourceBits[0] === 'parent'){
+			sourceBits.shift();
+			level = object.parent.params;
+		}
+		
 		for(var i=0; i < sourceBits.length; i++){
 			var sourceBit = sourceBits[i];
 			if(i === sourceBits.length -1){
@@ -79,11 +85,20 @@ var bublForm = {
 		ZEN.log('get value "' + source + '" = "' + result + '"');
 		return(result);
 	},
-	setValue: function(params, source, value){
+	setValue: function(object, source, value){
 		ZEN.log('set value "' + source + '"');
 		
 		var sourceBits = source.split('.');
+		var params = object.params;
+
+		if(sourceBits[0] === 'parent'){
+			sourceBits.shift();
+			params = object.parent.params;
+		}
+		
 		var level = params;
+		alert(JSON.stringify(level, null, 4));
+
 		for(var i=0; i < sourceBits.length; i++){
 			var sourceBit = sourceBits[i];
 			if(i === sourceBits.length -1){
@@ -97,6 +112,7 @@ var bublForm = {
 				}
 			}
 		}
+		alert(JSON.stringify(params, null, 4));
 	},
 	save: function(object){
 		var self = this;
@@ -112,7 +128,7 @@ var bublForm = {
 				}
 				ZEN.log('found element (' + source + ') = ' + value, element);
 				
-				self.setValue(object.params, source, value);	
+				self.setValue(object, source, value);	
 			}
 		);
 	}
