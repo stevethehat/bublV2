@@ -39,6 +39,14 @@
 			},
 			advanced: function(){
 				bublApp.loadPage('bublTemplateSelector');
+			},
+			gridprevious: function(){
+				bublApp.variables['gridcurrentpage'] = bublApp.variables['gridcurrentpage'] -1;
+				bublApp.loadPage(bublApp.variables['currentpage'], 'fadeIn', 'fadeOut');
+			},
+			gridnext: function(){
+				bublApp.variables['gridcurrentpage'] = bublApp.variables['gridcurrentpage'] +1;
+				bublApp.loadPage(bublApp.variables['currentpage'], 'fadeIn', 'fadeOut');
 			}
 		},
 		"home":{
@@ -65,7 +73,7 @@
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);	
+								ZEN.ui.PagedGrid.populate(loadedData, element.children);	
 								callback();
 							}
 						);
@@ -186,7 +194,7 @@
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
 								/*
 								if(element.children.length > 1){
@@ -224,7 +232,7 @@
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
 								/*
 								if(element.children.length > 1){
@@ -258,7 +266,7 @@
 					function(loadedData){
 						bublApp.findID('bublGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								callback();
 							}
 						);
@@ -291,7 +299,7 @@
 					function(loadedData){
 						bublApp.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
 								/*
 								if(element.children.length > 1){
@@ -321,7 +329,7 @@
 					function(loadedData){
 						bublApp.findID('bublGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);	
+								ZEN.ui.PagedGrid.populate(loadedData, element.children);	
 								callback();
 							}
 						);

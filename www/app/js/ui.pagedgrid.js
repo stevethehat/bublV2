@@ -16,9 +16,19 @@ var ZEN = (function (ZEN, _, $) {
 
 		PagedGrid.prototype = new ZEN.ui.Control();
 		
-		PagedGrid.populate = function(children, PagedGridChildren){
-			ZEN.log('populate PagedGrid', children);
-			_.each(children,
+		PagedGrid.populate = function(object, PagedGridChildren){
+			ZEN.log('populate PagedGrid', object.children);
+	
+			var page = bublApp.variables['gridcurrentpage'];
+			if(page === undefined){
+				page = 0;
+				bublApp.variables['gridcurrentpage'] = 0;
+			}
+			bublApp.variables['gridnumpages'] = Math.ceil(object.children.length / 6);
+			var pageStart = page * 6;
+			var pageChildren = object.children.slice(pageStart, pageStart + 6);
+			 			
+			_.each(pageChildren,
 				function(child){
 					var childContent = { 
 							'id': 'bubl' + child.id,
@@ -64,6 +74,46 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				}
 			);
+			
+			//alert('num pages = ' + bublApp.variables['gridnumpages']);
+			
+			var numPages = bublApp.variables['gridnumpages']; 
+			if(numPages > 1){
+				var page = bublApp.variables['gridcurrentpage'];
+				var pager = {
+					'type': 'View',
+					'layout': { 'style': 'horizontal' },
+					'margin': { 'top': 10 },
+					'children': []								
+				}
+				if(page > 0){
+					pager.children.push(
+						{
+							'type': 'IconLabel',
+							'tag': 'gridprevious',
+							'content': {
+								'label': 'Previous',
+								'icon': 'fa-chevron-left'
+							},
+							'size': { 'width' : 100 }
+						}						
+					);					
+				} 
+				if(page < (numPages -1)){
+					pager.children.push(
+						{
+							'type': 'IconLabel',
+							'tag': 'gridnext',
+							'content': {
+								'label': 'Next',
+								'icon': 'fa-chevron-right'
+							},
+							'size': { 'width' : 80 }							
+						}
+					);
+				}
+				PagedGridView.children.push(pager);
+			}
 			
 			ZEN.log('Grid = ', PagedGridView);
 			return [PagedGridView];	
