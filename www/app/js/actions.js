@@ -48,7 +48,7 @@
 						bublApp.loadPage('bublSelector');
 						break;
 					case 'assets':
-						alert('goto asset management');
+						bublApp.loadPage('bublAssets');
 						break;
 					case 'templates':
 						bublApp.loadPage('bublTemplateSelector');
@@ -314,6 +314,38 @@
 					}	
 				);				
 			}
+		},
+		"bublAssets": {
+			onLoad: function(data, callback){
+				objectStore.getObject('3000', 'withchildren',
+					function(loadedData){
+						bublApp.findID('bublGrid', data, 
+							function(element){
+								ZEN.ui.PagedGrid.populate(loadedData.children, element.children);	
+								callback();
+							}
+						);
+					} 
+				)
+			},
+			
+			select: function(data){
+				var bublID = bublApp.getBublID(data.id);
+				bublApp.setCurrentObject(['properties', 'edit'], bublID,
+					function(){
+						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');		
+					}	
+				);
+			},
+			
+			add: function(data){
+				bublUtil.addAsset(
+					function(newPage){
+						bublApp.loadPage('bublAssets', 'slideInRight', 'slideOutLeft');		
+					}	
+				);				
+			},
+			
 		},
 		"properties": {
 			afterLoad: function(data, callback){

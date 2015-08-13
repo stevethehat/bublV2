@@ -1,0 +1,71 @@
+{
+	"BublApp":
+	{
+		"type": "View",
+		"id": "bublAssets",
+		"title": "'Assets",
+		"show": true,
+		"size": { "width": "max", "height": "max" },
+		"layout": { "style": "vertical" },
+		"defaults": { 
+			"type": "View",
+			"show": true,
+			"size": { "width": "max", "height": "max" },
+			"layout": { "style": "vertical", "align": "left" } 
+		},
+		"children": [
+			{
+				"id": "mainRow",
+				"layout": { "style": "horizontal" },
+				"children":[
+					{
+						"id": "leftPadding"
+					},
+					{
+						"id": "mainContentArea",
+						"size": { "width" : 1020, "height": 600 },
+						"children":[
+							{
+								"children": [
+									{
+										"type": "Control",
+										"id": "header",
+										"size": { "height": 40 },
+										"label": "<h2>Assets</h2>"
+									},
+									{
+										"type": "CompoundElement",
+										"label": "<p>Select the asset you want to edit, or <span data-tag=\"add\"><i class=\"fa fa-plus fa-x1\"/> add a new asset</span>.</p>",
+										"size": { "height": 30 }	
+									},
+									{
+										"type": "PagedGrid",
+										"id": "bublGrid",
+										"dimensions": { "columns": 3, "rows": 2 },
+										"defaults": {
+											"type": "ThumbnailMenu",
+											"size": { "width": 340, "height": 200 },
+											"menu":[
+												{ "action": "duplicate", "icon": "fa-files-o", "label": "Duplicate" },
+												{ "action": "delete", "icon": "fa-trash-o", "label": "Delete" },
+												{ "action": "more", "icon": "fa-ellipsis-h", "label": "" }
+											]
+										},
+										"children": []
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "rightPadding"					
+					}
+				]
+			},
+			{
+				"id": "bottomPadding",
+				"size": { "height" : 40 }
+			}
+		]
+	}
+}

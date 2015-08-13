@@ -26,6 +26,10 @@ var ZEN = (function (ZEN, _, $) {
 					 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
 						};				
 
+					if(child.thumbnail.indexOf('/defaults/') != -1){
+						childContent.content.color ='#fff';
+						childContent.content.backcolor ='#aaa';						
+					}
 					PagedGridChildren.push(childContent);
 				}
 			);

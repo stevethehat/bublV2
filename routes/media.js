@@ -5,6 +5,9 @@ var _ = require('underscore');
 var media = require('../lib/media');
 var path = require('path');
 
+// dummy images here.. http://dummyimage.com/
+// e.g. http://dummyimage.com/340x200/fff/aaa.png&text=New+asset
+
 
 router.post('/capture',
 	function(request, response, next){ 

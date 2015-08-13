@@ -51,7 +51,7 @@
 												"id": "bubls",
 												"content":{
 													"heading": "My bubls",
-													"imageurl": "img/mybubls.png",
+													"imageurl": "img/defaults/mybubls.png",
 													"description": "Create, edit & manage bubls.."
 												}
 											},
@@ -59,7 +59,7 @@
 												"id": "assets",
 												"content":{
 													"heading": "Manage assets",
-													"imageurl": "img/assets.png",
+													"imageurl": "img/defaults/assets.png",
 													"description": "Upload, delete & assign assets to be used within bubl presentations."
 												}
 											},
@@ -67,7 +67,7 @@
 												"id": "templates",
 												"content":{
 													"heading": "Manage templates",
-													"imageurl": "img/templates.png",
+													"imageurl": "img/defaults/templates.png",
 													"description": "Create new templates & styings for your bubls."
 												}
 											},
@@ -75,7 +75,7 @@
 												"id": "users",												
 												"content":{
 													"heading": "Manage users",
-													"imageurl": "img/users.png",
+													"imageurl": "img/defaults/users.png",
 													"description": "Create and manage users and their abilities."
 												}
 											}											

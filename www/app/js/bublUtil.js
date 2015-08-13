@@ -64,6 +64,25 @@ var bublUtil = {
 		)		
 	},
 
+	addAsset: function(callback){
+		objectStore.getNextOrder(3000,
+			function(nextOrder){
+				objectStore.upsertObject(
+					{
+						'parentId': '3000',
+						'title': 'Asset ' + nextOrder.nextorder,
+						'order': nextOrder.nextorder,
+						'description': 'Description of the asset',
+						'thumbnail': 'img/defaults/newasset.png'
+					},
+					function(insertedData){
+						callback(insertedData);
+					}
+				);													
+			}	
+		);
+	},
+
 	addTemplate: function(callback){
 		objectStore.getNextOrder(2000,
 			function(nextOrder){
