@@ -16,7 +16,7 @@ var ZEN = (function (ZEN, _, $) {
 
 		PagedGrid.prototype = new ZEN.ui.Control();
 		
-		PagedGrid.populate = function(object, PagedGridChildren){
+		PagedGrid.populate = function(object, PagedGridChildren, sortOrder){
 			ZEN.log('populate PagedGrid', object.children);
 	
 			var page = bublApp.variables['gridcurrentpage'];
@@ -24,6 +24,25 @@ var ZEN = (function (ZEN, _, $) {
 				page = 0;
 				bublApp.variables['gridcurrentpage'] = 0;
 			}
+			
+			if(sortOrder === undefined){
+				sortOrder = 'asc';
+			}
+			
+			if(sortOrder === 'asc'){
+				object.children.sort(
+					function(a, b){
+						return(a.order > b.order);
+					}
+				);
+			} else {
+				object.children.sort(
+					function(a, b){
+						return(a.order < b.order);
+					}
+				);				
+			}
+			
 			bublApp.variables['gridnumpages'] = Math.ceil(object.children.length / 6);
 			var pageStart = page * 6;
 			var pageChildren = object.children.slice(pageStart, pageStart + 6);

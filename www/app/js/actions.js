@@ -329,7 +329,7 @@
 					function(loadedData){
 						bublApp.findID('bublGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData, element.children);	
+								ZEN.ui.PagedGrid.populate(loadedData, element.children, 'desc');	
 								callback();
 							}
 						);
