@@ -63,6 +63,11 @@
 			var self = this;
 		
 			self.variables['lastpage'] = self.variables['currentpage'];
+			
+			if(pageName !== self.variables['currentpage']){
+				delete bublApp.variables['gridnumpages']
+				delete bublApp.variables['gridcurrentpage']
+			}
 			self.variables['currentpage'] = pageName;
 			//$('body').empty();
 			
@@ -128,7 +133,7 @@
 			var self = this;
 			self.variables['lastPageTitle'] = self.variables['currentPageTitle'];
 			self.variables['currentPageTitle'] = newDefinition['BublApp']['title'];
-			
+						
 			if(self.variables['lastPageTitle'] !== undefined){
 				$('#backButton').attr('title', 'back to \'' + self.variables['lastPageTitle'] + '\'');
 				$('#backButton').css('display', 'block');
