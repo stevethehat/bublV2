@@ -74,6 +74,7 @@ var ZEN = (function (ZEN, _, $) {
 			var row = 0;
 			var currentRow = null;
 			var col = 0;
+			var rowsAdded = 0;
 			
 			_.each(data['children'],
 				function(child){
@@ -85,6 +86,7 @@ var ZEN = (function (ZEN, _, $) {
 							'children': []								
 						};
 						PagedGridView.children.push(currentRow);
+						rowsAdded++;
 					}	
 					currentRow.children.push(child);
 					col++;
@@ -93,6 +95,19 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				}
 			);
+			
+			if(rowsAdded === 1){
+				currentRow = {
+					'type': 'View',
+					'layout': { 'style': 'horizontal' },
+					'children': [
+						{
+							'type': 'View'
+						}
+					]								
+				};
+				PagedGridView.children.push(currentRow);				
+			}
 			
 			//alert('num pages = ' + bublApp.variables['gridnumpages']);
 			
