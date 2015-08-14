@@ -1,0 +1,17 @@
+{
+	"title": "Asset",
+	"fields":[
+		{
+			"type": "FormEdit",
+			"label": "Image Url",
+			"placeholder": "Please enter the image url",
+			"source": "content.url"
+		},	
+		{
+			"type": "FormEdit",
+			"label": "Description",
+			"placeholder": "Please enter the image description",
+			"source": "content.description"
+		}	
+	]
+}
