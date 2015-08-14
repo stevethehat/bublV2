@@ -2,6 +2,28 @@ var bublForm = {
 	showForm: function(parentView, object, definitionFileName){
 		var self = this;		
 		// create definition
+		self.loadForm(definitionFileName,
+			function(data){
+				self.displayForm(parentView, object, data);
+			}
+		);
+	},
+	
+	insertForm: function(parentView, object, definitionFileName, callback){
+		var self = this;
+		self.loadForm(definitionFileName, 
+			function(data){
+				var processedDefinition = self.processDefinition(object, data);
+				parentView['children'] = [processedDefinition];
+				bublApp.dump('insertedform', parentView);
+				callback();
+			}	
+		);
+	},
+	
+	loadForm: function(definitionFileName, callback){
+		var self = this;		
+		// create definition
 		$.ajax(
 			{
 				'type': 'GET',
@@ -9,14 +31,13 @@ var bublForm = {
 				'url': 'app/definitions/' + definitionFileName,
 				'cache': false,
 				success: function (data) {
-					self.displayForm(parentView, object, data);
+					callback(data);
 				}
 			}			
 		);
 	},
-	displayForm: function(parentView, object, definition){
+	processDefinition: function(object, definition){
 		var self = this;
-		var form = ZEN.objects[parentView]; 		
 		var processedDefinition = {
 			'type': 'View',
 			'id': 'form',
@@ -44,9 +65,15 @@ var bublForm = {
 				processedDefinition.children.push(fieldDefinition);
 			}	
 		);
+		return(processedDefinition)
+	},
+	displayForm: function(parentView, object, definition){
+		var self = this;
+		var form = ZEN.objects[parentView];
+		var parentID = form.parent.id;
 		
-		//alert(JSON.stringify(processedDefinition, null, 4));
-
+		var processedDefinition = self.processDefinition(object, definition);
+		
 		ZEN.cleanup();
 		if(ZEN.objects['form'] !== undefined){
 			ZEN.objects['form'].remove();
@@ -57,32 +84,38 @@ var bublForm = {
 		ZEN.parse(processedDefinition, ZEN.objects['PropertiesForm']);		
 		form.show(true);
 	
-		ZEN.objects['properties'].resize(true);				
+		//ZEN.objects['properties'].resize(true);
+		ZEN.objects[parentID].resize(true);						
 	},
 	getValue: function(object, source){
-		var sourceBits = source.split('.');
-		var result = null;
-		var level = object.params;
-		
-		if(sourceBits[0] === 'parent'){
-			sourceBits.shift();
-			level = object.parent.params;
-		}
-		
-		for(var i=0; i < sourceBits.length; i++){
-			var sourceBit = sourceBits[i];
-			if(i === sourceBits.length -1){
-				result = level[sourceBit];
-			} else {
-				if(level.hasOwnProperty(sourceBit)){
-					level = level[sourceBit];
+		try{
+			var sourceBits = source.split('.');
+			var result = null;
+			var level = object.params;
+			
+			if(sourceBits[0] === 'parent'){
+				sourceBits.shift();
+				level = object.parent.params;
+			}
+			
+			for(var i=0; i < sourceBits.length; i++){
+				var sourceBit = sourceBits[i];
+				if(i === sourceBits.length -1){
+					result = level[sourceBit];
 				} else {
-					level[sourceBit] = {}
-					level = level[sourceBit];
+					if(level.hasOwnProperty(sourceBit)){
+						level = level[sourceBit];
+					} else {
+						level[sourceBit] = {}
+						level = level[sourceBit];
+					}
 				}
 			}
+			ZEN.log('get value "' + source + '" = "' + result + '"');
+		} catch(exception) {
+			ZEN.log('get value error "' + source + '"  ("' + exception + ')');
+			result = '';
 		}
-		ZEN.log('get value "' + source + '" = "' + result + '"');
 		return(result);
 	},
 	setValue: function(object, source, value){

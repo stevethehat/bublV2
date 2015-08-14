@@ -356,6 +356,44 @@
 			
 		},
 		"properties": {
+			onLoad: function(data, callback){
+				var self = this;
+				objectStore.getObject(bublApp.variables['properties']['id'], 'withdescendents',
+					function(object){
+						if(object['children']){
+							delete object['children'];
+						}
+						
+						bublApp.findID('propertiesForm', data, 
+							function(formView){
+								bublForm.insertForm(formView, object, object.type + '.json', 
+									function(){
+										bublApp.preParse(data, {});
+										callback();
+									}	
+								);
+							}
+						);
+						
+						//bublForm.showForm('propertiesForm', object, object.type + '.json');
+						//callback();
+					}	
+				);
+			},
+			
+			save: function(data){
+				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
+					function(){
+						bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
+					}
+				);
+			},
+			
+			cancel: function(){
+				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
+			}
+		},
+		"rawproperties": {
 			afterLoad: function(data, callback){
 				var self = this;
 				objectStore.getObject(bublApp.variables['properties']['id'], 'withdescendents',
