@@ -13,7 +13,8 @@ var bublUtil = {
 								'order': nextOrder.nextorder,
 								'description': 'To edit these details click the \'...\' button below.',
 								'thumbnail': templateThumbnail,
-								'template': templateID
+								'template': templateID,
+								'type': 'bubl'
 							},
 							function(bublData){
 								var bublID = bublData['id'];
@@ -47,7 +48,8 @@ var bublUtil = {
 										'description': 'Description of the page',
 										'thumbnail': templateThumbnail,
 										'template': templateID,
-										'layout': template.layout
+										'layout': template.layout,
+										'type': 'page'
 									},
 									function(insertedData){
 										bublApp.dump('newpage', insertedData);
@@ -73,7 +75,8 @@ var bublUtil = {
 						'title': 'Asset ' + nextOrder.nextorder,
 						'order': nextOrder.nextorder,
 						'description': 'Description of the asset',
-						'thumbnail': 'img/defaults/newasset.png'
+						'thumbnail': 'img/defaults/newasset.png',
+						'type': 'asset'
 					},
 					function(insertedData){
 						callback(insertedData);
@@ -93,6 +96,7 @@ var bublUtil = {
 						'order': nextOrder.nextorder,
 						'description': 'Description of the template',
 						'thumbnail': 'img/layout1.png',
+						'type': 'template',
 						'layout': {}
 					},
 					function(insertedData){
