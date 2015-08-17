@@ -18,6 +18,7 @@
 		 'app/js/ui.formcheck.js',
 		 'app/js/ui.formcolor.js',
 		 'app/js/ui.formdatalist.js',
+		 'app/js/ui.formrange.js',
 
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',
