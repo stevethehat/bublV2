@@ -344,7 +344,31 @@
 					bublApp.setCurrentObject(['contentelement'], message.source,
 						function(){
 							ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
-							bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json');
+							var standard = {
+								'fields': [
+									{
+										'type': 'FormRange',
+										'label': 'Top margin',
+										'source': 'margin.top'
+									},
+									{
+										'type': 'FormRange',
+										'label': 'Bottom margin',
+										'source': 'margin.bottom'
+									},
+									{
+										'type': 'FormRange',
+										'label': 'Left margin',
+										'source': 'margin.left'
+									},
+									{
+										'type': 'FormRange',
+										'label': 'Right margin',
+										'source': 'margin.right'
+									}
+								]
+							}
+							bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json', standard);
 						}
 					);
 				}
