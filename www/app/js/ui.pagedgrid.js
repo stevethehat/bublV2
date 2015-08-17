@@ -29,6 +29,10 @@ var ZEN = (function (ZEN, _, $) {
 				sortOrder = 'asc';
 			}
 			
+			if(object.children === undefined){
+				object.children = [];
+			}
+			
 			if(sortOrder === 'asc'){
 				object.children.sort(
 					function(a, b){
