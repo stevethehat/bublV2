@@ -58,6 +58,9 @@ var ZEN = (function (ZEN, _, $) {
 						} else {
 							this.el.html('<p>Enter your text here</p>');
 						}
+						if(this.params.css !== undefined){
+							this.el.css(this.params.css);
+						}
 						this.resize();
 					}
 					return this.el;
