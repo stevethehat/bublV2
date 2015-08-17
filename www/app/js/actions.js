@@ -366,7 +366,7 @@
 						
 						bublApp.findID('propertiesForm', data, 
 							function(formView){
-								bublForm.insertForm(formView, object, object.type + '.json', 
+								bublForm.insertForm(formView, { 'params' : object }, object.type + '.json', 
 									function(){
 										bublApp.preParse(data, {});
 										callback();
@@ -382,11 +382,14 @@
 			},
 			
 			save: function(data){
-				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
-					function(){
+				var paramsObject = { 'params' : bublApp.variables['properties'] };
+				bublForm.updateObject(paramsObject);
+				
+				objectStore.upsertObject(paramsObject.params, 
+					function(upsertedData){
 						bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
-					}
-				);
+					}	
+				)
 			},
 			
 			cancel: function(){

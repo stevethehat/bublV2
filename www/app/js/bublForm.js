@@ -13,6 +13,7 @@ var bublForm = {
 		var self = this;
 		self.loadForm(definitionFileName, 
 			function(data){
+				ZEN.log('insert form ', object);
 				var processedDefinition = self.processDefinition(object, data);
 				parentView['children'] = [processedDefinition];
 				bublApp.dump('insertedform', parentView);
@@ -159,6 +160,25 @@ var bublForm = {
 				ZEN.log('found element (' + source + ') = ' + value, element);
 				
 				self.setValue(object, source, value);	
+			}
+		);
+	},
+	updateObject: function(object){
+		var self = this;
+		
+		$('.formElementContainer input').each(
+			function(index, element){
+				element = $(element);
+				var value = null;
+				var source = element.attr('data-source');
+				if(element.attr('type') === 'checkbox'){
+					value = element.attr('checked');
+				} else {
+					value = element.val();
+				}
+				ZEN.log('found element (' + source + ') = ' + value, element);
+				
+				self.setValue(object, source, value);
 			}
 		);
 	}

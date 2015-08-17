@@ -35,14 +35,38 @@
 										"label": "<h2>Properties</h2>"
 									},
 									{
-										"type": "CompoundElement",
-										"label": "<p>properties of an object</span>.</p>",
+										"type": "Contol",
+										"label": "<p>properties of an object.</p>",
 										"size": { "height": 30 }	
 									},
 									{
 										"type": "View",
 										"id": "propertiesForm",
 										"children": []
+									},
+									{
+										"type": "View",
+										"layout": { "style": "horizontal" },
+										"children": [
+											{
+												"type": "IconLabel",
+												"tag": "save",
+												"content": {
+													"label": "Save",
+													"icon": "fa-floppy-o"
+												},
+												"size": { "width" : 60 }
+											},
+											{
+												"type": "IconLabel",
+												"tag": "cancel",
+												"content": {
+													"label": "Cancel",
+													"icon": "fa-thumbs-o-down"
+												},
+												"size": { "width" : 80 }
+											}
+										]
 									}
 								]
 							}
