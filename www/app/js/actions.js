@@ -127,11 +127,10 @@
 				//ZEN.log('bubl page content = ', JSON.stringify(content, null, 4));
 			},
 			source: function(data){
-				alert('show source');
 				var bublID = bublApp.variables['page'].id;
 				bublApp.setCurrentObject(['properties'], bublID,
 					function(){
-						bublApp.loadPage('properties', 'slideInRight', 'slideOutLeft');
+						bublApp.loadPage('rawproperties', 'slideInRight', 'slideOutLeft');
 						//popup.show();		
 					}	
 				);
@@ -248,7 +247,7 @@
 			select: function(data){
 				bublApp.setCurrentObject(['properties'], bublApp.getBublID(data.id),
 					function(){
-						bublApp.loadPage('properties');				
+						bublApp.loadPage('rawproperties');				
 					}	
 				);
 			},
