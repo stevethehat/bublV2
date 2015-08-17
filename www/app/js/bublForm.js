@@ -1,9 +1,10 @@
 var bublForm = {
-	showForm: function(parentView, object, definitionFileName){
+	showForm: function(parentView, object, definitionFileName, standardElements){
 		var self = this;		
 		// create definition
 		self.loadForm(definitionFileName,
 			function(data){
+				data.fields = data.fields.concat(standardElements.fields);
 				self.displayForm(parentView, object, data);
 			}
 		);
@@ -160,9 +161,15 @@ var bublForm = {
 				}
 				ZEN.log('found element (' + source + ') = ' + value, element);
 				
+				if(element.attr('data-type') === 'Number'){
+					value = Number(value);
+				}
+				
 				self.setValue(object, source, value);	
 			}
 		);
+		
+		ZEN.log('for save ', object);
 	},
 	updateObject: function(object){
 		var self = this;
