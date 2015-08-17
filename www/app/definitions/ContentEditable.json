@@ -7,26 +7,39 @@
 			"source": "label"
 		},
 		{
-			"type": "FormSelect",
+			"type": "FormDataList",
 			"label": "Font",
 			"source": "css.font-family",
 			"options":[
-				{ "label": "Arial", "value": "arial"},	
-				{ "label": "Futura", "value": "furura"}
+				{ "value": "Arial"},	
+				{ "value": "Futura"}
 			]
 		},
 		{
-			"type": "FormSelect",
+			"type": "FormDataList",
 			"label": "Font size",
 			"source": "css.font-size",
 			"options":[
-				{ "label": "10", "value": "10px"},	
-				{ "label": "12", "value": "12px"},	
-				{ "label": "14", "value": "14px"},	
-				{ "label": "16", "value": "15px"},	
-				{ "label": "18", "value": "18px"},	
-				{ "label": "20", "value": "20px"}	
+				{ "value": "10px"},	
+				{ "value": "12px"},	
+				{ "value": "14px"},	
+				{ "value": "15px"},	
+				{ "value": "18px"},	
+				{ "value": "20px"},	
+				{ "value": "24px"},	
+				{ "value": "28px"},	
+				{ "value": "32px"}	
 			]
+		},
+		{
+			"type": "FormColor",
+			"label": "Color",
+			"source": "css.color"
+		},
+		{
+			"type": "FormColor",
+			"label": "Background color",
+			"source": "css.background-color"
 		}
 	]
 }
