@@ -5,6 +5,28 @@
 			"type": "FormEdit",
 			"label": "Text",
 			"source": "label"
+		},
+		{
+			"type": "FormSelect",
+			"label": "Font",
+			"source": "css.font-family",
+			"options":[
+				{ "label": "Arial", "value": "arial"},	
+				{ "label": "Futura", "value": "furura"}
+			]
+		},
+		{
+			"type": "FormSelect",
+			"label": "Font size",
+			"source": "css.font-size",
+			"options":[
+				{ "label": "10", "value": "10px"},	
+				{ "label": "12", "value": "12px"},	
+				{ "label": "14", "value": "14px"},	
+				{ "label": "16", "value": "15px"},	
+				{ "label": "18", "value": "18px"},	
+				{ "label": "20", "value": "20px"}	
+			]
 		}
 	]
 }
