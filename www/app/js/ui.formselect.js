@@ -32,8 +32,15 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
-						var label = $('<label>select</label>').appendTo(container);
-						var select = $('<select/>').data('source', this.params.source).appendTo(container); 
+						var label = $('<label>' + this.params.label + '</label>').appendTo(container);
+						var select = $('<select/>').attr('data-source', this.params.source).appendTo(container); 
+						
+						_.each(this.params.options,
+							function(option){
+								var option = $('<option>' + option.label + '</option>').attr('value', option.value).appendTo(select);
+							}	
+						);
+						select.val(this.params.value)
 						this.resize();
 					}
 					return this.el;

@@ -61,7 +61,8 @@ var bublForm = {
 					'placeholder': field.placeholder,
 					'size': { 'width': 'max', 'height': 40 },
 					'source': field.source,
-					'value': self.getValue(object, field.source) 	
+					'value': self.getValue(object, field.source),
+					'options': field.options 	
 				};
 				processedDefinition.children.push(fieldDefinition);
 			}	
@@ -147,7 +148,7 @@ var bublForm = {
 	},
 	save: function(object){
 		var self = this;
-		$('.formElementContainer input').each(
+		$('.formElementContainer input, .formElementContainer select').each(
 			function(index, element){
 				element = $(element);
 				var value = null;
