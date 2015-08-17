@@ -164,9 +164,10 @@
 				ZEN.cleanup();
 
 				var parsedData = bublApp.preParse(content);
-				var o = ZEN.parse(parsedData, ZEN.objects[parentID]);
+				var newElement = ZEN.parse(parsedData, ZEN.objects[parentID]);
 				ZEN.objects[parentID].show(true);
-				ZEN.objects['bublEditor'].resize(true);				
+				ZEN.objects['bublEditor'].resize(true);
+				bublApp.variables['contentelement'] = newElement;								
 			},
 			parentcontrol: function(data){
 				function getParent(element){
