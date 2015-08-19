@@ -347,24 +347,34 @@
 							var standard = {
 								'fields': [
 									{
+										"type": "FormColor",
+										"label": "Color",
+										"source": "css.color"
+									},
+									{
+										"type": "FormColor",
+										"label": "Background color",
+										"source": "css.background-color"
+									},
+									{
 										'type': 'FormRange',
 										'label': 'Top margin',
-										'source': 'margin.top'
+										'source': 'parent.margin.top'
 									},
 									{
 										'type': 'FormRange',
 										'label': 'Bottom margin',
-										'source': 'margin.bottom'
+										'source': 'parent.margin.bottom'
 									},
 									{
 										'type': 'FormRange',
 										'label': 'Left margin',
-										'source': 'margin.left'
+										'source': 'parent.margin.left'
 									},
 									{
 										'type': 'FormRange',
 										'label': 'Right margin',
-										'source': 'margin.right'
+										'source': 'parent.margin.right'
 									}
 								]
 							}

@@ -30,16 +30,6 @@
 				{ "value": "28px"},	
 				{ "value": "32px"}	
 			]
-		},
-		{
-			"type": "FormColor",
-			"label": "Color",
-			"source": "css.color"
-		},
-		{
-			"type": "FormColor",
-			"label": "Background color",
-			"source": "css.background-color"
 		}
 	]
 }
