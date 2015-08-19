@@ -25,46 +25,88 @@
 						"children":[
 							{
 								"type": "View",
-								"defaults": {
-									"type": "IconLabel",
-									"size": { "height": 38 },
-									"tag": "addcontrol"
-								},
+								"style": { "align": "vertical" },
+								"bgColour": "#f00",
+								"size": { "width": 200 },
 								"children": [
-									{	
-										"content": {
-											"label": "Text",
-											"icon": "fa-file-text-o",
-											"addtype": "ContentEditable" 
-										}
-									},
 									{
-										"content": {
-											"label": "Image",
-											"icon": "fa-file-image-o",
-											"addtype": "BublImage" 
-										}										
-									},
-									{
-										"content": {
-											"label": "Video",
-											"icon": "fa-file-movie-o",
-											"addtype": "BublVideo" 											
-										}
-									},
-									{
-										"content": {
-											"label": "Columns",
-											"icon": "fa-columns",
-											"addtype": "BublColumns" 											
-										}
-									},
-									{
-										"type": "Uploader"
+										"type": "View",
+										"defaults": {
+											"type": "IconLabel",
+											"size": { "height": 38 },
+											"tag": "addcontrol"
+										},
+										"children": [
+											{	
+												"content": {
+													"label": "Text",
+													"icon": "fa-file-text-o",
+													"addtype": "ContentEditable" 
+												}
+											},
+											{
+												"content": {
+													"label": "Image",
+													"icon": "fa-file-image-o",
+													"addtype": "BublImage" 
+												}										
+											},
+											{
+												"content": {
+													"label": "Video",
+													"icon": "fa-file-movie-o",
+													"addtype": "BublVideo" 											
+												}
+											},
+											{
+												"content": {
+													"label": "Columns",
+													"icon": "fa-columns",
+													"addtype": "BublColumns" 											
+												}
+											}
+										]
 									}
-									
 								]
-							}
+							},
+							{
+								"type": "View",
+								"style": { "align": "vertical" },
+								"bgColour": "#f00",
+								"size": { "width": 200, "height": 120 },
+								"children": [
+									{
+										"type": "Uploader",
+										"size": { "height": 120 }
+									}
+								]
+							},
+							{
+								"type": "List",
+								"id": "AssetList",
+								"size": { "height": "max" },
+								"bgColour": "red",
+								"controls": [
+									{
+										"type": "Button",
+										"label": "but1",
+										"bgColour": "#a00",
+
+										"size": {
+											"height": 50, "width": 200
+										},
+
+										"margin": {
+											"bottom": 10, "width": 200
+										}
+									}
+								]
+							},
+							{
+								"type": "Control",
+								"size": { "width": 200, "height": 40 },
+								"label": "down the bottom"
+							}									
 						]
 					},
 					{
