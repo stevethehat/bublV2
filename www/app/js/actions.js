@@ -140,12 +140,18 @@
 			},
 			addcontrol: function(data){
 				var contentArea = bublApp.variables['contentelement'];
+				var newControlParams = {
+					'type': data.params.content.addtype,
+					'css': contentArea.params.css,
+					'margin': contentArea.params.margin
+				}
+				
 				ZEN.log('add control', bublApp.variables);
 				var parentID = contentArea.parent.id;
 				contentArea.remove(true);
 				ZEN.cleanup();
 				
-				var newControl = ZEN.parse({ 'type': data.params.content.addtype }, ZEN.objects[parentID]);
+				var newControl = ZEN.parse(newControlParams, ZEN.objects[parentID]);
 				ZEN.objects[parentID].show(true);
 				ZEN.objects['bublEditor'].resize(true);		
 				
