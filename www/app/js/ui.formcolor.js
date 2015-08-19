@@ -33,12 +33,11 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
 						var label = $('<label>' + this.params.label + '</label>').appendTo(container);
-						var edit = $('<input type="color"/>')
+						var edit = $('<input type="color" value="' + this.params.value +'"/>')
+							.attr('id', 'colorpicker' + this.id)
 							.attr('data-source', this.params.source)
-							.attr('value', this.params.value)
 							.appendTo(container);
 							
-						alert(this.params.value + ' -- ' + edit[0].outerHTML);
 						this.resize();
 					}
 					return this.el;
