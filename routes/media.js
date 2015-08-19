@@ -17,6 +17,11 @@ router.post('/capture',
 		var fileName = object.fileName;
 		var width = object.width;
 		var height = object.height;
+		var delay = object.delay;
+		
+		if(delay === undefined){
+			delay = 0;
+		}
 
 		console.log(JSON.stringify(object));
 		
@@ -26,11 +31,12 @@ router.post('/capture',
 		object['filePath'] = filePath;
 		object['thumbnailFilePath'] = thumbnailFilePath;
 		
-		media.capture(url, filePath, width, height, 
+		media.capture(url, filePath, width, height, delay,
 			function(){
 				media.resize(filePath, thumbnailFilePath, width, height,
 					function(info){
-						response.send({'result': 'ok', 'request': object, 'info': info });
+						//response.send({'result': 'ok', 'request': object, 'info': info });
+						response.write(JSON.stringify({'result': 'ok', 'request': object, 'info': info }, null, 4));
 						console.log('done');			
 					}
 				)
