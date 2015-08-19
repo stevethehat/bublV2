@@ -45,13 +45,7 @@ var bublForm = {
 			'id': 'form',
 			'layout': { 'style': 'vertical' },
 			'size': { 'width': 'max' },
-			'children': [
-				{
-					"type": "Control",
-					"label": "<h2>" + definition.title + "</h2>",
-					'size': { 'width': 'max', 'height': 40 }	
-				}
-			]
+			'children': []
 		};
 
 		_.each(definition.fields,
