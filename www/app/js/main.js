@@ -12,6 +12,7 @@
 		 'zen/js/ui.slider.js',
 		 'zen/js/ui.button.js',
 		 'zen/js/ui.menu.js',
+		 'zen/js/ui.list.js',
 
 		 'app/js/ui.formselect.js',
 		 'app/js/ui.formedit.js',
@@ -19,6 +20,7 @@
 		 'app/js/ui.formcolor.js',
 		 'app/js/ui.formdatalist.js',
 		 'app/js/ui.formrange.js',
+		 'app/js/ui.formnumber.js',
 
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',
