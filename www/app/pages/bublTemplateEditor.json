@@ -1,0 +1,70 @@
+{
+	"BublApp":
+	{
+		"type": "View",
+		"id": "bublProperties",
+		"show": true,
+		"size": { "width": "max", "height": "max" },
+		"layout": { "style": "vertical" },
+		"defaults": { 
+			"type": "View",
+			"show": true,
+			"size": { "width": "max", "height": "max" },
+			"layout": { "style": "vertical", "align": "left" } 
+		},
+	
+		"children": [
+			{
+				"id": "MainPanel",
+				"layout": { "style": "vertical" },
+				"children": [
+					{
+						"type": "Control",
+						"label": "<h2>Edit '$(properties.title)' properties</h2>",
+						"size": { "height": 40 } 	
+					},
+					{
+						"type": "CodeEditor",
+						"id": "BublEditor",
+						"color": "#999"
+					}
+				]
+			}
+		]
+	},
+	"toolbarButtons":{
+		"type": "View",
+		"size": { "width": 200 },
+		"layout": { "align": "left", "style": "horizontal" },
+		"children":[
+			{
+				"type": "IconLabel",
+				"tag": "preview",
+				"content": {
+					"label": "Preview",
+					"icon": "fa-camera"
+				},
+				"size": { "width" : 90 }
+			},
+			{
+				"type": "IconLabel",
+				"tag": "save",
+				"content": {
+					"label": "Save",
+					"icon": "fa-floppy-o"
+				},
+				"size": { "width" : 60 }
+			},
+			{
+				"type": "IconLabel",
+				"tag": "cancel",
+				"content": {
+					"label": "Cancel",
+					"icon": "fa-thumbs-o-down"
+				},
+				"size": { "width" : 100 }
+			}
+
+		]		
+	}
+}
