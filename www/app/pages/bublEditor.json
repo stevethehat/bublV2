@@ -153,12 +153,6 @@
 							{
 								"type": "View",
 								"id": "PropertiesForm"
-							},
-							{
-								"type": "CodeEditor",
-								"id": "BublElementEditor",
-								"color": "#999",
-								"size": { "height": 200 }
 							}
 						]
 					}
