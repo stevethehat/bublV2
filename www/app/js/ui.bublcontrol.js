@@ -53,7 +53,6 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				},
 
-				
 				getElement: function () {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
@@ -63,6 +62,19 @@ var ZEN = (function (ZEN, _, $) {
 						this.resize();
 					}
 					return this.el;
+				},
+				
+				setupStylingDiv: function(){
+					var self = this;
+					self.stylingDiv = $('<div/>').appendTo(this.el);
+					
+					//alert('setup styling div ' + self.stylingDiv.html());
+					if(self.params.styling !== undefined){
+						if(self.params.styling.margin){
+							delete self.params.styling['margin'];
+						}
+						self.stylingDiv.css(self.params.styling);	
+					}
 				}
 			}
 		);

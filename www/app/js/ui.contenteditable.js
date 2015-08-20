@@ -9,12 +9,12 @@ var ZEN = (function (ZEN, _, $) {
 		
 		function ContentEditable (params, parent) {
 			if (arguments.length > 0) {
-				ZEN.ui.Control.call(this, params, parent);
+				ZEN.ui.BublControl.call(this, params, parent);
 			}
 			return this;
 		}
 
-		ContentEditable.prototype = new ZEN.ui.Control();
+		ContentEditable.prototype = new ZEN.ui.BublControl();
 		
 		_.extend(
 			ContentEditable.prototype,
@@ -22,7 +22,7 @@ var ZEN = (function (ZEN, _, $) {
 
 				init: function (params, parent) {
 					// call the base class init method
-					ZEN.ui.Control.prototype.init.call(this, params, parent);
+					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
 					ZEN.events.buttonHandler (this, this.el);
 				},
@@ -48,15 +48,20 @@ var ZEN = (function (ZEN, _, $) {
 				},
 				
 				getElement: function () {
+					var self = this;
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						// this.el.attr('tabindex',0);
 						this.el.addClass('zen-contenteditable');
+						self.setupStylingDiv();
 						
-						if(this.params.label !== undefined){
-							this.el.html(this.params.label);						
+						
+						if(this.params.label !== undefined && this.params.label !== ''){
+							self.stylingDiv.html(this.params.label);						
 						} else {
-							this.el.html('<p>Enter your text here</p>');
+							if(bublApp.displayMode === 'app'){
+								self.stylingDiv.html('<p>Enter your text here</p>');
+							}
 						}
 						this.resize();
 					}

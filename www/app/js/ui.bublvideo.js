@@ -26,16 +26,18 @@ var ZEN = (function (ZEN, _, $) {
 				},
 				
 				getElement: function () {
+					var self = this;
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-video');
-												
+						self.setupStylingDiv();
+									
 						if(this.params.content && this.params.content.url !== undefined){
 							//var video = $('<video width="' + this.parent.el.width() + '" height="' + this.parent.el.height() + '" controls/>').appendTo(this.el);
-							var video = $('<video width="100%" height="100%" controls/>').appendTo(this.el);
+							var video = $('<video width="100%" height="100%" controls/>').appendTo(self.stylingDiv);
 							var source = $('<source src="' + this.params.content.url + '" type="video/mp4"/>').appendTo(video);
 						} else {
-							this.el.html('<p>Please select a video</p>');						
+							self.stylingDiv.html('<p>Please select a video</p>');						
 						}
 						this.resize();
 					}

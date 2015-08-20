@@ -33,10 +33,13 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
 						var label = $('<label>' + this.params.label + '</label>').appendTo(container);
-						var edit = $('<input type="text" placeholder="' + this.params.placeholder + '"/>')
+						var edit = $('<input type="text""/>')
 							.attr('data-source', this.params.source)
 							.val(this.params.value)
 							.appendTo(container);
+						if(this.params.placeholder !== undefined){
+							edit.attr('placeholder', this.params.placeholder);
+						}						
 						this.resize();
 					}
 					return this.el;

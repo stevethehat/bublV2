@@ -59,8 +59,11 @@ var ZEN = (function (ZEN, _, $) {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
-						var dropArea = $('<div/>').addClass('contentareadrop').appendTo(this.el);
-						var instructions = $('<p>Add content here</p>').appendTo(dropArea);
+						var dropArea = $('<div/>').appendTo(this.el);
+						if(bublApp.displayMode === 'app'){
+							dropArea.addClass('contentareadrop');
+							var instructions = $('<p>Add content here</p>').appendTo(dropArea);
+						}
 						this.resize();
 					}
 					return this.el;

@@ -386,22 +386,22 @@
 									{
 										'type': 'FormRange',
 										'label': 'Top margin',
-										'source': 'parent.margin.top'
+										'source': 'styling.margin-top'
 									},
 									{
 										'type': 'FormRange',
 										'label': 'Bottom margin',
-										'source': 'parent.margin.bottom'
+										'source': 'styling.margin-bottom'
 									},
 									{
 										'type': 'FormRange',
 										'label': 'Left margin',
-										'source': 'parent.margin.left'
+										'source': 'styling.margin-left'
 									},
 									{
 										'type': 'FormRange',
 										'label': 'Right margin',
-										'source': 'parent.margin.right'
+										'source': 'styling.margin-right'
 									}
 								]
 							}
