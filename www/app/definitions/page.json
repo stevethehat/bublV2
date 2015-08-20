@@ -1,12 +1,6 @@
 {
 	"title": "Bubl page",
-	"fields":[
-		{
-			"type": "FormEdit",
-			"label": "Image Url",
-			"placeholder": "Please enter the image url",
-			"source": "thumbnail"
-		},	
+	"fields":[	
 		{
 			"type": "FormEdit",
 			"label": "Title",
