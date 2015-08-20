@@ -126,5 +126,53 @@ var bublUtil = {
 		);
 		alert(JSON.stringify(result.params));
 		return(result);
+	},
+	
+	generateThumbnail: function(id, callback){
+		var data = {
+			'url': 'http://localhost:3000/index.html?id=' + id,
+			'fileName': id + '-thumbnail.png',
+			'width': 340,
+			'height': 200,
+			'delay': 1000
+		}
+		/*
+		$.post('api/media/capture',
+			data,
+			function(){
+				alert('thumbnail callback');
+				callback();	
+			}
+		);
+		*/
+		
+		/*
+		$.ajax({
+			url: 'api/media/capture',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			dataType: 'json',
+			success: function(returnData){
+				alert('ok ' + returnData);
+				callback();
+			},
+			error: function(returnData){
+				alert('error ' + returnData);
+				callback();
+			}
+		});
+		*/
+		
+		$.ajax({
+			url: 'api/media/capture',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			dataType: 'json',
+			complete: function(returnData){
+				callback();
+			}		
+		});
 	}
 }
