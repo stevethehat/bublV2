@@ -121,9 +121,11 @@ p{
   	left:0;
 }
 
+/*
 .thumbnailMI{
-	border: solid 4px white;
+	border: solid 2px white;
 }
+*/
 
 .thumbnailMI h3{
 	font-size: 120%;
