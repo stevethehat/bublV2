@@ -3,12 +3,6 @@
 	"fields":[
 		{
 			"type": "FormEdit",
-			"label": "Image Url",
-			"placeholder": "Please enter the image url",
-			"source": "thumbnail"
-		},	
-		{
-			"type": "FormEdit",
 			"label": "Title",
 			"placeholder": "Please enter the image title",
 			"source": "title"
