@@ -42,6 +42,22 @@
 			});
 		},
 		
+		updateObject: function(objectID, updateObject, callback){
+			var self = this;
+			
+			self.getObject(objectID, null,
+				function(object){
+					object = _.extend(object, updateObject);
+					//alert('update object ' + JSON.stringify(object, null, 4));
+					self.upsertObject(object,
+						function(){
+							callback();
+						}	
+					);					
+				}	
+			);
+		},
+		
 		duplicateObject: function(objectID, callback){
 			var self = this;
 			
