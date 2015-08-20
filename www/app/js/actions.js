@@ -116,15 +116,24 @@
 			},
 			save: function(){
 				var content = ZEN.objects['BublPageRoot'].serialize();
-				bublApp.variables['page'].layout = content.params;
-				
+				var page = bublApp.variables['page']; 
+				page.layout = content.params;
+				page.thumbnail = 'img/assets/340x200/' + page.id + '-thumbnail.png?rqsb=' + new Date().getTime();
 				objectStore.upsertObject(bublApp.variables['page'],
 					function(savedData){
-						bublApp.dump('savedpage', savedData);
-						bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');						
+						bublUtil.generateThumbnail(savedData.id,
+							function(){
+								bublApp.dump('savedpage', savedData);
+								bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');														
+							}	
+						);
 					}
 				)
 				//ZEN.log('bubl page content = ', JSON.stringify(content, null, 4));
+			},
+			preview: function(data){
+				var bublID = bublApp.variables['page'].id;
+				window.open('index.html?id=' + bublID, '_blank');
 			},
 			source: function(data){
 				var bublID = bublApp.variables['page'].id;
@@ -164,6 +173,7 @@
 				var parentID = element.parent.id;
 				
 				bublForm.save(element);
+				bublForm.removeForm();
 				content = element.params;
 				 				
 				element.remove(true);
@@ -188,7 +198,7 @@
 				
 				bublApp.setCurrentObject(['contentelement'], parent,
 					function(){
-						ZEN.objects['BublElementEditor'].setContent(JSON.stringify(parent.params, null, 4));
+						//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(parent.params, null, 4));
 					}
 				);
 			}
@@ -254,7 +264,7 @@
 			select: function(data){
 				bublApp.setCurrentObject(['properties'], bublApp.getBublID(data.id),
 					function(){
-						bublApp.loadPage('rawproperties');				
+						bublApp.loadPage('bublTemplateEditor');				
 					}	
 				);
 			},
@@ -429,5 +439,39 @@
 			cancel: function(){
 				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 			}
+		},
+		"bublTemplateEditor": {
+			afterLoad: function(data, callback){
+				var self = this;
+				objectStore.getObject(bublApp.variables['properties']['id'], 'withdescendents',
+					function(object){
+						if(object['children']){
+							delete object['children'];
+						}
+						var editor = ZEN.objects['BublEditor'];
+						ZEN.log('editor = ', editor);
+						editor.setContent(JSON.stringify(object, null, 4));
+						callback();
+					}	
+				);
+			},
+			
+			preview: function(){
+				var bublID = bublApp.variables['properties']['id'];
+				window.open('index.html?id=' + bublID, '_blank');
+			},
+			
+			save: function(data){
+				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
+					function(){
+						bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
+					}
+				);
+			},
+			
+			cancel: function(){
+				bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
+			}
 		}
+
 	};
