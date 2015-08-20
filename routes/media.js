@@ -35,9 +35,11 @@ router.post('/capture',
 			function(){
 				media.resize(filePath, thumbnailFilePath, width, height,
 					function(info){
-						//response.send({'result': 'ok', 'request': object, 'info': info });
-						response.write(JSON.stringify({'result': 'ok', 'request': object, 'info': info }, null, 4));
-						console.log('done');			
+						response.send({'result': 'ok', 'request': object, 'info': info });
+						//response.write(JSON.stringify({'result': 'ok', 'request': object, 'info': info }, null, 4));
+						//response.send('{}');
+						//next();
+						console.log('done');	
 					}
 				)
 			}
