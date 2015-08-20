@@ -84,6 +84,22 @@ var bublForm = {
 		//ZEN.objects['properties'].resize(true);
 		ZEN.objects[parentID].resize(true);						
 	},
+	
+	removeForm: function(){
+		var form = ZEN.objects['PropertiesForm'];
+		$('#' + form.id + ' div').each(
+			function(index, element){
+				element = $(element);
+				ZEN.log('remove form element ', element);
+				var object = ZEN.objects[element.attr('id')];
+				if(object !== undefined){ 
+					object.remove();
+				}
+			}
+		);	
+		ZEN.cleanup();
+	},
+	
 	getValue: function(object, source){
 		try{
 			var sourceBits = source.split('.');
@@ -159,10 +175,11 @@ var bublForm = {
 					value = Number(value);
 				}
 				
-				self.setValue(object, source, value);	
+				self.setValue(object, source, value);
 			}
 		);
-		
+
+		ZEN.cleanup();		
 		ZEN.log('for save ', object);
 	},
 	updateObject: function(object){
