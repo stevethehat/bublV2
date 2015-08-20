@@ -167,6 +167,15 @@
 		"children":[
 			{
 				"type": "IconLabel",
+				"tag": "preview",
+				"content": {
+					"label": "Preview",
+					"icon": "fa-camera"
+				},
+				"size": { "width" : 90 }
+			},
+			{
+				"type": "IconLabel",
 				"tag": "source",
 				"content": {
 					"label": "Source",
