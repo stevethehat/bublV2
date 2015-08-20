@@ -467,14 +467,28 @@
 			preview: function(){
 				var bublID = bublApp.variables['properties']['id'];
 				window.open('index.html?id=' + bublID, '_blank');
-			},
+			},			
 			
 			save: function(data){
+				var template = JSON.parse(ZEN.objects['BublEditor'].getContent());
+				template.thumbnail = 'img/assets/340x200/' + template.id + '-thumbnail.png?rqsb=' + new Date().getTime();
+
+				objectStore.upsertObject(template,
+					function(savedData){
+						bublUtil.generateThumbnail(savedData.id,
+							function(){
+								bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
+							}
+						);
+					}
+				);				
+				/*
 				objectStore.upsertObject(JSON.parse(ZEN.objects['BublEditor'].getContent()),
 					function(){
 						bublApp.loadPage(bublApp.variables['lastpage'], 'slideInLeft', 'slideOutRight');
 					}
 				);
+				*/
 			},
 			
 			cancel: function(){
