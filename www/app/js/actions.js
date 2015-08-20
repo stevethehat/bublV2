@@ -124,12 +124,21 @@
 						bublUtil.generateThumbnail(savedData.id,
 							function(){
 								bublApp.dump('savedpage', savedData);
-								bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');														
+
+								if(Number(page.order) === 1){
+									alert('update page thumbnail');
+									objectStore.updateObject(page.parentId, { 'thumbnail': page.thumbnail },
+										function(){
+											bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');																						
+										}
+									);							
+								} else {
+									bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');																				
+								}
 							}	
 						);
 					}
 				)
-				//ZEN.log('bubl page content = ', JSON.stringify(content, null, 4));
 			},
 			preview: function(data){
 				var bublID = bublApp.variables['page'].id;
