@@ -126,7 +126,6 @@
 								bublApp.dump('savedpage', savedData);
 
 								if(Number(page.order) === 1){
-									alert('update page thumbnail');
 									objectStore.updateObject(page.parentId, { 'thumbnail': page.thumbnail },
 										function(){
 											bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');																						
