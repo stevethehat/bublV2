@@ -67,8 +67,8 @@ app.all('/*', function(req, res, next) {
 
 app.use('/api/objects', objects);
 app.use('/api/dump', dump);
-app.use('/bublv2', bublv2);
 app.use('/api/media', media);
+app.use('/bublv2', bublv2);
 
 
 // catch 404 and forward to error handler
