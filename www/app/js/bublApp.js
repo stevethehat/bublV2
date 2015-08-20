@@ -34,8 +34,33 @@
 			);			
 		},
 		
-		initPlayer: function(){
+		initPlayer: function(id){
+			var self = this;
+			var base = {
+				'type': 'Application',
+				'id': 'BublApp',
+				'show': true,
+				'defaults': { 
+					'type': 'View',
+					'show': true,
+					'size': { 'width': 'max', 'height': 'max' },
+					'layout': { 'style': 'vertical', 'align': 'left' } 
+				}
+			}
 			
+			objectStore.getObject(id, null,
+				function(object){
+					base.children = [object.layout]
+					ZEN.log('init player', base);
+					
+					if(object.type === 'template'){
+						base = self.preParse(base, {});
+					}
+					
+					ZEN.init(base);
+					ZEN.objects['BublPageRoot'].show(true);
+				}
+			);
 		},
 		
 		findID: function(id, data, callback){
@@ -343,7 +368,7 @@
 					ZEN.log('show editor', message.source);
 					bublApp.setCurrentObject(['contentelement'], message.source,
 						function(){
-							ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
+							//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
 							var standard = {
 								'fields': [
 									{
