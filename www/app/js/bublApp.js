@@ -15,8 +15,10 @@
 			
 			var id = ZEN.data.querystring['id'];
 			if(id === undefined){
+				self.displayMode = 'app';
 				self.initApp();			
 			} else {
+				self.displayMode = 'player';
 				self.initPlayer(id);
 			}
 		},
