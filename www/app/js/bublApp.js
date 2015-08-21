@@ -373,7 +373,7 @@
 							//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
 							ZEN.data.load('app/definitions/style.json', {},
 								function (standard) {
-									alert('loaded standard styles ' + JSON.stringify(standard, null, 4));
+									//alert('loaded standard styles ' + JSON.stringify(standard, null, 4));
 									bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json', standard);
 								}
 							);
