@@ -1,34 +1,75 @@
 {
 	"fields": [
 		{
-			"type": "FormColor",
-			"label": "Color",
-			"source": "css.color"
+			"type": "combo",
+			"label": "Colors",
+			"fields": [
+				{
+					"type": "FormColor",
+					"source": "css.color"
+				},
+				{
+					"type": "FormColor",
+					"source": "css.background-color"
+				}		
+			]
 		},
 		{
-			"type": "FormColor",
-			"label": "Background color",
-			"source": "css.background-color"
+			"type": "combo",
+			"label": "Margins",
+			"fields":[
+				{
+					"type": "FormNumber",
+					"label": "Top",
+					"source": "styling.padding-top"
+				},
+				{
+					"type": "FormNumber",
+					"label": "Bottom",
+					"source": "styling.padding-bottom"
+				},
+				{
+					"type": "FormNumber",
+					"label": "Left",
+					"source": "styling.padding-left"
+				},
+				{
+					"type": "FormNumber",
+					"label": "Right",
+					"source": "styling.padding-right"
+				}		
+			]
 		},
 		{
-			"type": "FormRange",
-			"label": "Top margin",
-			"source": "styling.margin-top"
-		},
-		{
-			"type": "FormRange",
-			"label": "Bottom margin",
-			"source": "styling.margin-bottom"
-		},
-		{
-			"type": "FormRange",
-			"label": "Left margin",
-			"source": "styling.margin-left"
-		},
-		{
-			"type": "FormRange",
-			"label": "Right margin",
-			"source": "styling.margin-right"
+			"type": "combo",
+			"label": "Border",
+			"fields":[
+				{
+					"type": "FormNumber",
+					"label": "Width",
+					"source": "styling.border-width"
+				},
+				{
+					"type": "FormDataList",
+					"label": "Style",
+					"source": "styling.border-style",
+					"options":[
+						{ "value": "solid"},	
+						{ "value": "dashed"},	
+						{ "value": "dotted"}	
+					]					
+				},
+				{
+					"type": "FormColor",
+					"label": "Color",
+					"source": "styling.border-color"
+				},
+				{
+					"type": "FormNumber",
+					"label": "Corners",
+					"source": "styling.border-radius"
+				}	
+			]
 		}
 	]
 }

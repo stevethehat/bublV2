@@ -50,20 +50,51 @@ var bublForm = {
 
 		_.each(definition.fields,
 			function(field){
-				var fieldDefinition = {
-					'type': field.type,
-					'label': field.label,
-					'placeholder': field.placeholder,
-					'size': { 'width': 'max', 'height': 40 },
-					'source': field.source,
-					'value': self.getValue(object, field.source),
-					'options': field.options 	
-				};
-				processedDefinition.children.push(fieldDefinition);
+				if(field.type === 'combo'){
+					var group = {
+						'type': 'View',
+						'layout': { 'style': 'horizontal' },
+						'size': { 'width': 'max' },
+						'children': []
+					}			
+					
+					if(field.label !== undefined){
+						processedDefinition.children.push(
+							{
+								'type': 'Control',
+								'label': field.label,
+								'size': { 'width': 'max', 'height': 24 }
+							}
+						);	
+					}
+					processedDefinition.children.push(group);
+					_.each(field.fields,
+						function(subField){
+							self.processFieldDefinition(object, subField, group.children);		
+						}
+					);
+				} else {
+					self.processFieldDefinition(object, field, processedDefinition.children);	
+				}
 			}	
 		);
 		return(processedDefinition)
 	},
+	
+	processFieldDefinition: function(object, field, group){
+		var self = this;
+		var fieldDefinition = {
+			'type': field.type,
+			'label': field.label,
+			'placeholder': field.placeholder,
+			'size': { 'width': 'max', 'height': 40 },
+			'source': field.source,
+			'value': self.getValue(object, field.source),
+			'options': field.options 	
+		};
+		group.push(fieldDefinition);		
+	},
+	
 	displayForm: function(parentView, object, definition){
 		var self = this;
 		var form = ZEN.objects[parentView];

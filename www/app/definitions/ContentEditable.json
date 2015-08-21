@@ -7,34 +7,33 @@
 			"source": "label"
 		},
 		{
-			"type": "FormDataList",
+			"type": "combo",
 			"label": "Font",
-			"source": "css.font-family",
-			"options":[
-				{ "value": "Arial"},	
-				{ "value": "Futura"}
+			"fields": [
+				{
+					"type": "FormDataList",
+					"source": "css.font-family",
+					"options":[
+						{ "value": "Arial"},	
+						{ "value": "Futura"}
+					]
+				},
+				{
+					"type": "FormDataList",
+					"source": "css.font-size",
+					"options":[
+						{ "value": "10px"},	
+						{ "value": "12px"},	
+						{ "value": "14px"},	
+						{ "value": "15px"},	
+						{ "value": "18px"},	
+						{ "value": "20px"},	
+						{ "value": "24px"},	
+						{ "value": "28px"},	
+						{ "value": "32px"}	
+					]
+				}				
 			]
-		},
-		{
-			"type": "FormDataList",
-			"label": "Font size",
-			"source": "css.font-size",
-			"options":[
-				{ "value": "10px"},	
-				{ "value": "12px"},	
-				{ "value": "14px"},	
-				{ "value": "15px"},	
-				{ "value": "18px"},	
-				{ "value": "20px"},	
-				{ "value": "24px"},	
-				{ "value": "28px"},	
-				{ "value": "32px"}	
-			]
-		},
-		{
-			"type": "FormNumber",
-			"label": "Corners",
-			"source": "styling.corner-radius"
 		}
 	]
 }
