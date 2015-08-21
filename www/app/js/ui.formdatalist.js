@@ -5,8 +5,6 @@
 var ZEN = (function (ZEN, _, $) {
 	ZEN.namespace('ui');
 	_.extend(ZEN.ui, (function () {
-
-		
 		function FormDataList (params, parent) {
 			if (arguments.length > 0) {
 				ZEN.ui.Control.call(this, params, parent);
@@ -32,7 +30,9 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
-						var label = $('<label>' + this.params.label + '</label>').appendTo(container);
+						if(this.params.label != undefined){
+							var label = $('<label>' + this.params.label + '</label>').appendTo(container);
+						}
 						var input = $('<input/>').attr('list', this.id + 'list').attr('data-source', this.params.source).appendTo(container);
 						var select = $('<datalist/>').attr('id', this.id + 'list').appendTo(container); 
 						
