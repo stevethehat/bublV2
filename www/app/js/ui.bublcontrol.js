@@ -69,12 +69,11 @@ var ZEN = (function (ZEN, _, $) {
 					self.stylingDiv = $('<div/>').appendTo(this.el);
 					
 					//alert('setup styling div ' + self.stylingDiv.html());
-					if(self.params.styling !== undefined){
-						if(self.params.styling.margin){
-							delete self.params.styling['margin'];
-						}
-						self.stylingDiv.css(self.params.styling);	
+					if(self.params.styling === undefined){
+						self.params.styling = {};
 					}
+					self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' })
+					self.stylingDiv.css(self.params.styling);	
 				}
 			}
 		);
