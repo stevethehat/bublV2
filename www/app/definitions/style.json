@@ -70,6 +70,27 @@
 					"source": "styling.border-radius"
 				}	
 			]
+		},
+		{
+			"type": "combo",
+			"label": "Shadow",
+			"fields": [
+				{
+					"type": "FormNumber",
+					"label": "Horizontal",
+					"source": "styling.border-width"
+				},
+				{
+					"type": "FormNumber",
+					"label": "Vertical",
+					"source": "styling.border-width"
+				},
+				{
+					"type": "FormColor",
+					"label": "Color",
+					"source": "styling.border-color"
+				}
+			]
 		}
 	]
 }
