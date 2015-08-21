@@ -103,6 +103,14 @@ var ZEN = (function (ZEN, _, $) {
 							return(cssColor);
 						}
 						
+						function getContrastYIQ(hexcolor){
+							var r = parseInt(hexcolor.substr(0,2),16);
+							var g = parseInt(hexcolor.substr(2,2),16);
+							var b = parseInt(hexcolor.substr(4,2),16);
+							var yiq = ((r*299)+(g*587)+(b*114))/1000;
+							return (yiq >= 128) ? 'black' : 'white';
+						}
+						
 						if(this.params.content.backcolor === undefined && this.params.content.color === undefined){
 							img.on('load',
 								function(){
@@ -111,7 +119,8 @@ var ZEN = (function (ZEN, _, $) {
 							        var palette = colorThief.getPalette(htmlImage);
 			
 									backColor = cssColor(palette[2]);	
-									color = cssColor(palette[1]);	
+									//color = cssColor(palette[1]);
+									color = getContrastYIQ(backColor);	
 									back.css(
 										{
 											'background-color': backColor,
