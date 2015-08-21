@@ -1,0 +1,34 @@
+{
+	"fields": [
+		{
+			"type": "FormColor",
+			"label": "Color",
+			"source": "css.color"
+		},
+		{
+			"type": "FormColor",
+			"label": "Background color",
+			"source": "css.background-color"
+		},
+		{
+			"type": "FormRange",
+			"label": "Top margin",
+			"source": "styling.margin-top"
+		},
+		{
+			"type": "FormRange",
+			"label": "Bottom margin",
+			"source": "styling.margin-bottom"
+		},
+		{
+			"type": "FormRange",
+			"label": "Left margin",
+			"source": "styling.margin-left"
+		},
+		{
+			"type": "FormRange",
+			"label": "Right margin",
+			"source": "styling.margin-right"
+		}
+	]
+}

@@ -371,41 +371,12 @@
 					bublApp.setCurrentObject(['contentelement'], message.source,
 						function(){
 							//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
-							var standard = {
-								'fields': [
-									{
-										"type": "FormColor",
-										"label": "Color",
-										"source": "css.color"
-									},
-									{
-										"type": "FormColor",
-										"label": "Background color",
-										"source": "css.background-color"
-									},
-									{
-										'type': 'FormRange',
-										'label': 'Top margin',
-										'source': 'styling.margin-top'
-									},
-									{
-										'type': 'FormRange',
-										'label': 'Bottom margin',
-										'source': 'styling.margin-bottom'
-									},
-									{
-										'type': 'FormRange',
-										'label': 'Left margin',
-										'source': 'styling.margin-left'
-									},
-									{
-										'type': 'FormRange',
-										'label': 'Right margin',
-										'source': 'styling.margin-right'
-									}
-								]
-							}
-							bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json', standard);
+							ZEN.data.load('app/definitions/style.json', {},
+								function (standard) {
+									alert('loaded standard styles ' + JSON.stringify(standard, null, 4));
+									bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json', standard);
+								}
+							);
 						}
 					);
 				}
