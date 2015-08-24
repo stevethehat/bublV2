@@ -124,7 +124,7 @@
 					},
 					{
 						"id": "properties",
-						"size": { "width": 300 },
+						"size": { "width": 260 },
 						"children": [
 							{
 								"type": "View",
