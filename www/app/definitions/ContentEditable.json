@@ -4,7 +4,8 @@
 		{
 			"type": "FormEdit",
 			"label": "Text",
-			"source": "label"
+			"source": "label",
+			"default": "Enter your text here"
 		},
 		{
 			"type": "combo",
@@ -12,15 +13,16 @@
 			"fields": [
 				{
 					"type": "FormDataList",
-					"source": "css.font-family",
+					"source": "styling.font-family",
 					"options":[
 						{ "value": "Arial"},	
 						{ "value": "Futura"}
-					]
+					],
+					"default": "Arial"
 				},
 				{
 					"type": "FormDataList",
-					"source": "css.font-size",
+					"source": "styling.font-size",
 					"options":[
 						{ "value": "10px"},	
 						{ "value": "12px"},	
@@ -31,7 +33,8 @@
 						{ "value": "24px"},	
 						{ "value": "28px"},	
 						{ "value": "32px"}	
-					]
+					],
+					"default": "16px"
 				}				
 			]
 		}
