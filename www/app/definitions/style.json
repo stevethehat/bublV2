@@ -6,11 +6,13 @@
 			"fields": [
 				{
 					"type": "FormColor",
-					"source": "css.color"
+					"source": "css.color",
+					"default": "#fff"
 				},
 				{
 					"type": "FormColor",
-					"source": "css.background-color"
+					"source": "css.background-color",
+					"default": "#fff"
 				}		
 			]
 		},
@@ -21,22 +23,26 @@
 				{
 					"type": "FormNumber",
 					"label": "Top",
-					"source": "styling.padding-top"
+					"source": "styling.padding-top",
+					"default": "4"
 				},
 				{
 					"type": "FormNumber",
 					"label": "Bottom",
-					"source": "styling.padding-bottom"
+					"source": "styling.padding-bottom",
+					"default": "4"					
 				},
 				{
 					"type": "FormNumber",
 					"label": "Left",
-					"source": "styling.padding-left"
+					"source": "styling.padding-left",
+					"default": "4"
 				},
 				{
 					"type": "FormNumber",
 					"label": "Right",
-					"source": "styling.padding-right"
+					"source": "styling.padding-right",
+					"default": "4"
 				}		
 			]
 		},
@@ -47,7 +53,8 @@
 				{
 					"type": "FormNumber",
 					"label": "Width",
-					"source": "styling.border-width"
+					"source": "styling.border-width",
+					"default": "0"
 				},
 				{
 					"type": "FormDataList",
@@ -57,17 +64,20 @@
 						{ "value": "solid"},	
 						{ "value": "dashed"},	
 						{ "value": "dotted"}	
-					]					
+					],
+					"default": "solid"					
 				},
 				{
 					"type": "FormColor",
 					"label": "Color",
-					"source": "styling.border-color"
+					"source": "styling.border-color",
+					"default": "#fff"
 				},
 				{
 					"type": "FormNumber",
 					"label": "Corners",
-					"source": "styling.border-radius"
+					"source": "styling.border-radius",
+					"default": "0"
 				}	
 			]
 		},
@@ -77,18 +87,26 @@
 			"fields": [
 				{
 					"type": "FormNumber",
-					"label": "Horizontal",
-					"source": "styling.border-width"
+					"label": "H",
+					"source": "styling.box-shadow.[0]",
+					"default": "0"
 				},
 				{
 					"type": "FormNumber",
-					"label": "Vertical",
-					"source": "styling.border-width"
+					"label": "V",
+					"source": "styling.box-shadow.[1]",
+					"default": "0"
+				},
+				{
+					"type": "FormNumber",
+					"label": "Size",
+					"source": "styling.box-shadow.[2]",
+					"default": "0"
 				},
 				{
 					"type": "FormColor",
 					"label": "Color",
-					"source": "styling.border-color"
+					"source": "styling.box-shadow.[3]"
 				}
 			]
 		}

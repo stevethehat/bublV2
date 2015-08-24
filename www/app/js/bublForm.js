@@ -83,13 +83,14 @@ var bublForm = {
 	
 	processFieldDefinition: function(object, field, group){
 		var self = this;
+		var value = self.getValue(object, field.source, field.default);
 		var fieldDefinition = {
 			'type': field.type,
 			'label': field.label,
 			'placeholder': field.placeholder,
 			'size': { 'width': 'max', 'height': 40 },
 			'source': field.source,
-			'value': self.getValue(object, field.source),
+			'value': value,
 			'options': field.options 	
 		};
 		group.push(fieldDefinition);		
@@ -131,7 +132,8 @@ var bublForm = {
 		ZEN.cleanup();
 	},
 	
-	getValue: function(object, source){
+	getValue: function(object, source, defaultValue){
+		var self = this;
 		try{
 			var sourceBits = source.split('.');
 			var result = null;
@@ -145,7 +147,15 @@ var bublForm = {
 			for(var i=0; i < sourceBits.length; i++){
 				var sourceBit = sourceBits[i];
 				if(i === sourceBits.length -1){
-					result = level[sourceBit];
+					if(sourceBit.indexOf('[') === 0){
+						var index = Number(sourceBit.replace('[', '').replace(']', ''));
+						var levelBits = level[sourceBit].split(' ');
+						if(index < levelBits.length){
+							result = levelBits[index];
+						}
+					} else {
+						result = level[sourceBit];
+					}
 				} else {
 					if(level.hasOwnProperty(sourceBit)){
 						level = level[sourceBit];
@@ -154,11 +164,16 @@ var bublForm = {
 						level = level[sourceBit];
 					}
 				}
-			}
-			ZEN.log('get value "' + source + '" = "' + result + '"');
+			}				
+			ZEN.log('get value "' + source + '" = "' + result + '"');			
 		} catch(exception) {
 			ZEN.log('get value error "' + source + '"  ("' + exception + ')');
-			result = '';
+			result = null;
+		}
+		
+		if(result === null || result === undefined){
+			result = defaultValue;
+			ZEN.log('get value "' + source + '" = DEFAULT "' + result + '"');
 		}
 		return(result);
 	},
@@ -177,6 +192,16 @@ var bublForm = {
 		for(var i=0; i < sourceBits.length; i++){
 			var sourceBit = sourceBits[i];
 			if(i === sourceBits.length -1){
+				if(sourceBit.indexOf('[') === 0){
+					var index = Number(sourceBit.replace('[', '').replace(']', ''));
+					var levelBits = level[sourceBit].split(' ');
+					if(index < levelBits.length){
+						levelBits[index] = value;
+					}
+					level[sourceBit] = levelBits.join(' ');
+				} else {
+					level[sourceBit] = value;
+				}
 				level[sourceBit] = value;
 			} else {
 				if(level.hasOwnProperty(sourceBit)){
