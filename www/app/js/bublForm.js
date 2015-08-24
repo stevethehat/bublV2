@@ -38,6 +38,42 @@ var bublForm = {
 			}			
 		);
 	},
+	processDefinitionLevel: function(object, processedDefinition, orientation, field){
+		var self = this;
+		var group = {
+			'type': 'View',
+			'size': { 'width': 'max' },
+			'children': []
+		}
+		
+		if(field.type === 'combo'){
+			group.layout = { 'style': 'horizontal' };						
+		} else {
+			group.layout = { 'style': 'vertical' };						
+		}			
+		
+		if(field.label !== undefined){
+			processedDefinition.children.push(
+				{
+					'type': 'Control',
+					'label': field.label,
+					'size': { 'width': 'max', 'height': 24 }
+				}
+			);	
+		}
+		processedDefinition.children.push(group);
+		_.each(field.fields,
+			function(subField){
+				if(subField.type === 'combo'){
+					self.processDefinitionLevel(object, processedDefinition, 'horizontal', subField);
+				} else if (subField.type === 'group'){
+					self.processDefinitionLevel(object, processedDefinition, 'vertical', subField);
+				} else {
+					self.processFieldDefinition(object, subField, group.children);
+				}		
+			}
+		);
+	},
 	processDefinition: function(object, definition){
 		var self = this;
 		var processedDefinition = {
@@ -47,32 +83,13 @@ var bublForm = {
 			'size': { 'width': 'max' },
 			'children': []
 		};
-
+		
 		_.each(definition.fields,
 			function(field){
 				if(field.type === 'combo'){
-					var group = {
-						'type': 'View',
-						'layout': { 'style': 'horizontal' },
-						'size': { 'width': 'max' },
-						'children': []
-					}			
-					
-					if(field.label !== undefined){
-						processedDefinition.children.push(
-							{
-								'type': 'Control',
-								'label': field.label,
-								'size': { 'width': 'max', 'height': 24 }
-							}
-						);	
-					}
-					processedDefinition.children.push(group);
-					_.each(field.fields,
-						function(subField){
-							self.processFieldDefinition(object, subField, group.children);		
-						}
-					);
+					self.processDefinitionLevel(object, processedDefinition, 'horizontal', field);
+				} else if(field.type === 'group') {
+					self.processDefinitionLevel(object, processedDefinition, 'vertical', field);
 				} else {
 					self.processFieldDefinition(object, field, processedDefinition.children);	
 				}
@@ -93,7 +110,8 @@ var bublForm = {
 			'value': value,
 			'options': field.options 	
 		};
-		group.push(fieldDefinition);		
+		group.push(fieldDefinition);
+		ZEN.log('process field definition');		
 	},
 	
 	displayForm: function(parentView, object, definition){
@@ -131,7 +149,6 @@ var bublForm = {
 		);	
 		ZEN.cleanup();
 	},
-	
 	getValue: function(object, source, defaultValue){
 		var self = this;
 		try{
@@ -147,11 +164,18 @@ var bublForm = {
 			for(var i=0; i < sourceBits.length; i++){
 				var sourceBit = sourceBits[i];
 				if(i === sourceBits.length -1){
-					if(sourceBit.indexOf('[') === 0){
-						var index = Number(sourceBit.replace('[', '').replace(']', ''));
-						var levelBits = level[sourceBit].split(' ');
+					if(sourceBit.indexOf('[') !== -1){
+						var tempSourceBit = sourceBit.substr(0, sourceBit.indexOf('[')); 
+						var index = Number(sourceBit.substr(sourceBit.indexOf('[')).replace('[', '').replace(']', ''));
+						var compoundValue = level[tempSourceBit];
+						var levelBits = [null];
+						if(compoundValue !== undefined){
+							levelBits = compoundValue.split(' ');
+						}
 						if(index < levelBits.length){
 							result = levelBits[index];
+						} else {
+							result = null;
 						}
 					} else {
 						result = level[sourceBit];
@@ -192,17 +216,20 @@ var bublForm = {
 		for(var i=0; i < sourceBits.length; i++){
 			var sourceBit = sourceBits[i];
 			if(i === sourceBits.length -1){
-				if(sourceBit.indexOf('[') === 0){
-					var index = Number(sourceBit.replace('[', '').replace(']', ''));
-					var levelBits = level[sourceBit].split(' ');
-					if(index < levelBits.length){
-						levelBits[index] = value;
+				if(sourceBit.indexOf('[') !== -1){
+					var tempSourceBit = sourceBit.substr(0, sourceBit.indexOf('[')); 
+					var index = Number(sourceBit.substr(sourceBit.indexOf('[')).replace('[', '').replace(']', ''));
+					var compoundValue = level[tempSourceBit];
+					var levelBits = [null];
+					if(compoundValue !== undefined){
+						levelBits = compoundValue.split(' ');
 					}
-					level[sourceBit] = levelBits.join(' ');
+					levelBits[index] = value;
+					level[tempSourceBit] = levelBits.join(' ');
 				} else {
 					level[sourceBit] = value;
 				}
-				level[sourceBit] = value;
+				//level[sourceBit] = value;
 			} else {
 				if(level.hasOwnProperty(sourceBit)){
 					level = level[sourceBit];
@@ -234,7 +261,6 @@ var bublForm = {
 				self.setValue(object, source, value);
 			}
 		);
-
 		ZEN.cleanup();		
 		ZEN.log('for save ', object);
 	},
