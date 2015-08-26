@@ -174,7 +174,7 @@ var bublForm = {
 						var index = Number(sourceBit.substr(sourceBit.indexOf('[')).replace('[', '').replace(']', ''));
 						var compoundValue = level[tempSourceBit];
 						var levelBits = [null];
-						if(compoundValue !== undefined){
+						if(compoundValue !== undefined && compoundValue !== null && _.isString(compoundValue)){
 							levelBits = compoundValue.split(' ');
 						}
 						if(index < levelBits.length){
@@ -226,7 +226,7 @@ var bublForm = {
 					var index = Number(sourceBit.substr(sourceBit.indexOf('[')).replace('[', '').replace(']', ''));
 					var compoundValue = level[tempSourceBit];
 					var levelBits = [null];
-					if(compoundValue !== undefined){
+					if(compoundValue !== undefined && compoundValue !== null && _.isString(compoundValue)){
 						levelBits = compoundValue.split(' ');
 					}
 					levelBits[index] = value;
