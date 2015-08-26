@@ -31,6 +31,7 @@ var ZEN = (function (ZEN, _, $) {
 				},
 
 				notify: function (message) {
+					var self = this;
 					message.source = this;
 
 					ZEN.log(message.type);
@@ -40,7 +41,10 @@ var ZEN = (function (ZEN, _, $) {
 					} else {
 						this.el.removeClass('hover');
 					}
-					
+					self.addActionEvents(message);					
+				},
+				
+				addActionEvents: function(message){
 					if(bublApp.displayMode === 'app'){
 						if(message.type === 'active') {
 							ZEN.notify ("ui.bublcontrol", message);
