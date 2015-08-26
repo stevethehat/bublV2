@@ -156,44 +156,13 @@
 				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
 			},
 			addcontrol: function(data){
-				var contentArea = bublApp.variables['contentelement'];
-				var newControlParams = {
-					'type': data.params.content.addtype,
-					'css': contentArea.params.css,
-					'margin': contentArea.params.margin
-				}
-				
-				ZEN.log('add control', bublApp.variables);
-				var parentID = contentArea.parent.id;
-				contentArea.remove(true);
-				ZEN.cleanup();
-				
-				var newControl = ZEN.parse(newControlParams, ZEN.objects[parentID]);
-				ZEN.objects[parentID].show(true);
-				ZEN.objects['bublEditor'].resize(true);		
-				
-				ZEN.notify ("ui.bublcontrol", { 'source': newControl });		
+				bublEditor.addControl(data);
 			},
 			savecontrol: function(data){
-				var self = this;
-				var element = bublApp.variables['contentelement'];
-				//var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
-				var parentID = element.parent.id;
-				
-				bublForm.save(element);
-				bublForm.removeForm();
-				content = element.params;
-				 				
-				element.remove(true);
-				ZEN.cleanup();
-
-				var parsedData = bublApp.preParse(content);
-				var newElement = ZEN.parse(parsedData, ZEN.objects[parentID]);
-				ZEN.objects[parentID].show(true);
-				ZEN.objects['bublEditor'].resize(true);
-				bublApp.variables['contentelement'] = newElement;								
+				bublEditor.saveControl(data);
 			},
 			parentcontrol: function(data){
+				alert('up to parent');
 				function getParent(element){
 					if(element.parent.params.autoadded === true){
 						return(getParent(element.parent));
