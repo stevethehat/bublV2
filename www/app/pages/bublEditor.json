@@ -64,6 +64,13 @@
 													"icon": "fa-columns",
 													"addtype": "BublColumns" 											
 												}
+											},
+											{
+												"content": {
+													"label": "Rows",
+													"icon": "fa-columns fa-rotate-90",
+													"addtype": "BublRows" 											
+												}
 											}
 										]
 									}
