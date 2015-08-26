@@ -40,16 +40,29 @@ var ZEN = (function (ZEN, _, $) {
 					} else {
 						this.el.removeClass('hover');
 					}
-
-					if(message.type === 'active') {
-						ZEN.notify ("ui.bublcontrol", message);
+					
+					if(bublApp.displayMode === 'app'){
+						if(message.type === 'active') {
+							ZEN.notify ("ui.bublcontrol", message);
 						
-						if(bublApp.variables['contentelement'] !== undefined){						
-							bublApp.variables['contentelement'].el.removeClass('selected');
-						}						
+							if(bublApp.variables['contentelement'] !== undefined){						
+								bublApp.variables['contentelement'].el.removeClass('selected');
+							}						
 						
-						this.el.addClass('selected');
-						bublApp.variables['contentelement'] = this;
+							this.el.addClass('selected');
+							bublApp.variables['contentelement'] = this;
+						}
+					} else {
+						if(this.params.actions !== undefined && this.params.actions.hoveranimate !== undefined){
+							if (message.type === 'highlight') {
+								this.el.addClass(this.params.actions.hoveranimate + ' animated');
+							} else {
+								this.el.removeClass(this.params.actions.hoveranimate + ' animated');
+							}
+						}
+						if(message.type === 'active'){
+							alert('active ' + this.id);
+						}
 					}
 				},
 
