@@ -9,12 +9,12 @@ var ZEN = (function (ZEN, _, $) {
 		
 		function ContentArea (params, parent) {
 			if (arguments.length > 0) {
-				ZEN.ui.Control.call(this, params, parent);
+				ZEN.ui.BublControl.call(this, params, parent);
 			}
 			return this;
 		}
 
-		ContentArea.prototype = new ZEN.ui.Control();
+		ContentArea.prototype = new ZEN.ui.BublControl();
 		
 		_.extend(
 			ContentArea.prototype,
@@ -22,7 +22,7 @@ var ZEN = (function (ZEN, _, $) {
 
 				init: function (params, parent) {
 					// call the base class init method
-					ZEN.ui.Control.prototype.init.call(this, params, parent);
+					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
 					ZEN.events.buttonHandler (this, this.el);
 				},
@@ -56,10 +56,13 @@ var ZEN = (function (ZEN, _, $) {
 
 				
 				getElement: function () {
+					var self = this;
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
-						var dropArea = $('<div/>').appendTo(this.el);
+						self.setupStylingDiv();
+
+						var dropArea = $('<div/>').appendTo(self.stylingDiv);
 						if(bublApp.displayMode === 'app'){
 							dropArea.addClass('contentareadrop');
 							var instructions = $('<p>Add content here</p>').appendTo(dropArea);
