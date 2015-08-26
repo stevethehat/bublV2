@@ -101,12 +101,17 @@ var bublForm = {
 	processFieldDefinition: function(object, field, group){
 		var self = this;
 		var value = self.getValue(object, field.source, field.default);
+		if(field.datatype === 'px' && value !== undefined && value != null && _.isString(value)){
+			value = value.replace('px', '');
+		}
+		
 		var fieldDefinition = {
 			'type': field.type,
 			'label': field.label,
 			'placeholder': field.placeholder,
 			'size': { 'width': 'max', 'height': 40 },
 			'source': field.source,
+			'datatype': field.datatype,
 			'value': value,
 			'options': field.options 	
 		};
@@ -257,12 +262,16 @@ var bublForm = {
 				if(element.attr('data-type') === 'Number'){
 					value = Number(value);
 				}
+				if(element.attr('data-type') === 'px'){
+					value = value.replace('px', '') + 'px';
+				}
 				
 				self.setValue(object, source, value);
 			}
 		);
 		ZEN.cleanup();		
 		ZEN.log('for save ', object);
+		//alert(JSON.stringify(object.params));
 	},
 	updateObject: function(object){
 		var self = this;
