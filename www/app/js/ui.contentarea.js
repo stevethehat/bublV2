@@ -31,6 +31,7 @@ var ZEN = (function (ZEN, _, $) {
 				},
 
 				notify: function (message) {
+					var self = this;
 					message.source = this;
 
 					ZEN.log(message.type);
@@ -52,6 +53,7 @@ var ZEN = (function (ZEN, _, $) {
 						bublApp.variables['contentelement'] = this;
 						ZEN.notify('ui.bublcontrol', message);
 					}
+					self.addActionEvents(message);					
 				},
 
 				
