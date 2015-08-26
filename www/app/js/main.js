@@ -25,6 +25,7 @@
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',
 		 'app/js/bublApp.js',
+		 'app/js/bublEditor.js',
 		 'app/js/bublUtil.js',
 		 'app/js/bublForm.js',
 		 'app/js/popup.js',
