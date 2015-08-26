@@ -34,6 +34,10 @@ var ZEN = (function (ZEN, _, $) {
 							var label = $('<label>' + this.params.label + '</label>').appendTo(container);
 						}
 						var input = $('<input/>').attr('list', this.id + 'list').attr('data-source', this.params.source).appendTo(container);
+						//alert('datalist (' + this.params.source + '=) datatype = ' + this.params['datatype']);
+						if(this.params['datatype'] !== undefined){
+							input.attr('data-type', this.params['datatype']);
+						}
 						var select = $('<datalist/>').attr('id', this.id + 'list').appendTo(container); 
 						
 						_.each(this.params.options,
