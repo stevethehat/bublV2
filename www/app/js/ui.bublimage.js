@@ -22,7 +22,7 @@ var ZEN = (function (ZEN, _, $) {
 
 				init: function (params, parent) {
 					// call the base class init method
-					ZEN.ui.Control.prototype.init.call(this, params, parent);
+					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
 					ZEN.events.buttonHandler (this, this.el);
 				},
 				getElement: function () {
