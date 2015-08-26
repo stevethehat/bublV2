@@ -35,10 +35,14 @@ var ZEN = (function (ZEN, _, $) {
 						var label = $('<label>' + this.params.label + '</label>').appendTo(container);
 						var edit = $('<input type="number"/>')
 							.attr('data-source', this.params.source)
-							.attr('data-type', 'Number')
 							.attr('value', this.params.value)
 							.appendTo(container);
-							
+
+						if(this.params.datatype !== undefined){
+							edit.attr('data-type', this.params.datatype);
+						} else {
+							edit.attr('data-type', 'Number');
+						}							
 						this.resize();
 					}
 					return this.el;
