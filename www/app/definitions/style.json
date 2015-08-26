@@ -33,24 +33,28 @@
 							"type": "FormNumber",
 							"label": "Top",
 							"source": "styling.padding-top",
+							"datatype": "px",
 							"default": "4"
 						},
 						{
 							"type": "FormNumber",
 							"label": "Bottom",
 							"source": "styling.padding-bottom",
+							"datatype": "px",
 							"default": "4"					
 						},
 						{
 							"type": "FormNumber",
 							"label": "Left",
 							"source": "styling.padding-left",
+							"datatype": "px",
 							"default": "4"
 						},
 						{
 							"type": "FormNumber",
 							"label": "Right",
 							"source": "styling.padding-right",
+							"datatype": "px",
 							"default": "4"
 						}		
 					]
@@ -63,6 +67,7 @@
 							"type": "FormNumber",
 							"label": "Width",
 							"source": "styling.border-width",
+							"datatype": "px",
 							"default": "0"
 						},
 						{
@@ -86,6 +91,7 @@
 							"type": "FormNumber",
 							"label": "Corners",
 							"source": "styling.border-radius",
+							"datatype": "px",
 							"default": "0"
 						}	
 					]
@@ -98,18 +104,21 @@
 							"type": "FormNumber",
 							"label": "H",
 							"source": "styling.box-shadow[0]",
+							"datatype": "px",
 							"default": "0"
 						},
 						{
 							"type": "FormNumber",
 							"label": "V",
 							"source": "styling.box-shadow[1]",
+							"datatype": "px",
 							"default": "0"
 						},
 						{
 							"type": "FormNumber",
 							"label": "Size",
 							"source": "styling.box-shadow[2]",
+							"datatype": "px",
 							"default": "0"
 						},
 						{
@@ -121,6 +130,16 @@
 					]
 				}		
 			] 
+		},
+		{
+			"type": "group",
+			"fields":[
+				{
+					"type": "FormEdit",
+					"label": "Animation",
+					"source": "actions.hoveranimate" 
+				}
+			]
 		}
 	]
 }

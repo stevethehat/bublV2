@@ -34,7 +34,8 @@
 						{ "value": "28px"},	
 						{ "value": "32px"}	
 					],
-					"default": "16px"
+					"default": "16px",
+					"datatype": "px"
 				}				
 			]
 		}
