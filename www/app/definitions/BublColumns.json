@@ -1,17 +1,10 @@
 {
-	"title": "Columns",
+	"title": "Image",
 	"fields":[
 		{
-			"type": "FormEdit",
-			"label": "Url",
-			"placeholder": "Please enter the image url",
-			"value": ""
-		},	
-		{
-			"type": "FormEdit",
-			"label": "Description",
-			"placeholder": "Please enter the image description",
-			"value": ""
-		}	
+			"type": "FormNumber",
+			"label": "Columns",
+			"source": "content.columns"
+		}
 	]
 }
