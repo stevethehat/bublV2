@@ -30,6 +30,7 @@ var ZEN = (function (ZEN, _, $) {
 				label: function () {
 				},
 
+				/*
 				notify: function (message) {
 					message.source = this;
 
@@ -46,6 +47,7 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.notify ("ui.bublcontrol", message);
 					}
 				},
+				*/
 				
 				getElement: function () {
 					var self = this;
@@ -54,7 +56,6 @@ var ZEN = (function (ZEN, _, $) {
 						// this.el.attr('tabindex',0);
 						this.el.addClass('zen-contenteditable');
 						self.setupStylingDiv();
-						
 						
 						if(this.params.label !== undefined && this.params.label !== ''){
 							self.stylingDiv.html(this.params.label);						
