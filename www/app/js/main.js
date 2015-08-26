@@ -42,6 +42,7 @@
 		 'app/js/ui.compoundelement.js',
 		 'app/js/ui.bublimage.js',
 		 'app/js/ui.bublvideo.js',
+		 'app/js/ui.bublcolumns.js',
 		 
 		 'app/js/ui.bublview.js'
 		 
