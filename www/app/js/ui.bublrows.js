@@ -7,17 +7,17 @@ var ZEN = (function (ZEN, _, $) {
 	_.extend(ZEN.ui, (function () {
 
 		
-		function BublColumns (params, parent) {
+		function BublRows (params, parent) {
 			if (arguments.length > 0) {
 				ZEN.ui.BublControl.call(this, params, parent);
 			}
 			return this;
 		}
 
-		BublColumns.prototype = new ZEN.ui.BublControl();
+		BublRows.prototype = new ZEN.ui.BublControl();
 		
 		_.extend(
-			BublColumns.prototype,
+			BublRows.prototype,
 			{
 
 				init: function (params, parent) {
@@ -29,7 +29,7 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
-						this.el.addClass('zen-columns');
+						this.el.addClass('zen-rows');
 						self.setupStylingDiv();
 						
 						if(this.params.content && this.params.content.url !== undefined){
@@ -38,7 +38,7 @@ var ZEN = (function (ZEN, _, $) {
 						} else {
 							if(bublApp.displayMode === 'app'){
 								//alert(this.params.content.columns + ' columns');
-								self.stylingDiv.html('<p>Columns</p>');
+								self.stylingDiv.html('<p>Rows</p>');
 							}						
 						}
 						this.resize();
@@ -48,10 +48,10 @@ var ZEN = (function (ZEN, _, $) {
 			}
 		);
 
-		ZEN.registerType('BublColumns', BublColumns);
+		ZEN.registerType('BublRows', BublRows);
 
 		return {
-			BublColumns: BublColumns
+			BublRows: BublRows
 		};
 		
 

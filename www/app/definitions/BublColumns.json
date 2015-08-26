@@ -1,10 +1,10 @@
 {
-	"title": "Image",
+	"title": "Columns",
 	"fields":[
 		{
 			"type": "FormNumber",
 			"label": "Columns",
-			"source": "content.columns"
+			"source": "layout.columns"
 		}
 	]
 }

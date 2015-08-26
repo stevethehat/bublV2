@@ -1,0 +1,10 @@
+{
+	"title": "Rows",
+	"fields":[
+		{
+			"type": "FormNumber",
+			"label": "Rows",
+			"source": "layout.rows"
+		}
+	]
+}
