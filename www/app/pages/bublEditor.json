@@ -91,7 +91,7 @@
 							{
 								"type": "List",
 								"id": "AssetList",
-								"size": { "height": "max" },
+								"size": { "height": "max", "width": 200 },
 								"bgColour": "red",
 								"controls": [
 									{
@@ -108,12 +108,7 @@
 										}
 									}
 								]
-							},
-							{
-								"type": "Control",
-								"size": { "width": 200, "height": 40 },
-								"label": "down the bottom"
-							}									
+							}								
 						]
 					},
 					{
