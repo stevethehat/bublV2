@@ -6,6 +6,7 @@
 			"fields": [
 				{
 					"type": "combo",
+					"id": "colors",
 					"fields": [
 						{
 							"type": "FormColor",
@@ -34,28 +35,28 @@
 							"label": "Top",
 							"source": "styling.padding-top",
 							"datatype": "px",
-							"default": "4"
+							"default": "0"
 						},
 						{
 							"type": "FormNumber",
 							"label": "Bottom",
 							"source": "styling.padding-bottom",
 							"datatype": "px",
-							"default": "4"					
+							"default": "0"					
 						},
 						{
 							"type": "FormNumber",
 							"label": "Left",
 							"source": "styling.padding-left",
 							"datatype": "px",
-							"default": "4"
+							"default": "0"
 						},
 						{
 							"type": "FormNumber",
 							"label": "Right",
 							"source": "styling.padding-right",
 							"datatype": "px",
-							"default": "4"
+							"default": "0"
 						}		
 					]
 				},
@@ -135,9 +136,18 @@
 			"type": "group",
 			"fields":[
 				{
-					"type": "FormEdit",
+					"type": "FormSelect",
 					"label": "Animation",
-					"source": "actions.hoveranimate" 
+					"source": "actions.hoveranimate",
+					"options": [
+						{ "label": "Pulse", "value": "pulse" },
+						{ "label": "Flash", "value": "flase" },
+						{ "label": "Wobble", "value": "wobble" },
+						{ "label": "Jello", "value": "jello" },
+						{ "label": "Tada", "value": "tada" },
+						{ "label": "Rubber band", "value": "rubberBand" },
+						{ "label": "Swing", "value": "swing" }
+					] 
 				}
 			]
 		}
