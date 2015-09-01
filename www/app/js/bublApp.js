@@ -65,27 +65,6 @@
 			);
 		},
 		
-		findID: function(id, data, callback){
-			var self = this;
-			if(data.id && data.id === id){
-				ZEN.log('found ID');
-				callback(data);
-			} else {
-				if(data.children){
-					_.each(data.children,
-						function(element){
-							self.findID(id, element, callback);
-						}
-					);
-				} else {
-					if(_.isObject(data)){
-						for(var oName in data){
-							self.findID(id, data[oName], callback);
-						}
-					}
-				}
-			}
-		},
 		loadPage: function(pageName, inAnimation, outAnimation){
 			var self = this;
 		

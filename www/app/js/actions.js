@@ -71,7 +71,7 @@
 			onLoad: function(data, callback){
 				objectStore.getObject('1000', 'withchildren',
 					function(loadedData){
-						bublApp.findID('bubleGrid', data, 
+						bublUtil.findID('bubleGrid', data, 
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData, element.children);	
 								callback();
@@ -106,10 +106,11 @@
 		},
 		"bublEditor":{
 			onLoad: function(data, callback){
-				bublApp.findID('bublEditor', data, 
+				bublUtil.findID('bublEditor', data, 
 					function(element){
 						var layout = bublApp.variables['page'].layout;
 						element.children = [layout];
+						
 						callback();
 					}
 				);
@@ -185,7 +186,7 @@
 				var self = this;
 				objectStore.getObject('2000', 'withchildren',
 					function(loadedData){
-						bublApp.findID('bubleGrid', data, 
+						bublUtil.findID('bubleGrid', data, 
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
@@ -223,7 +224,7 @@
 			onLoad: function(data, callback){
 				objectStore.getObject('2000', 'withchildren',
 					function(loadedData){
-						bublApp.findID('bubleGrid', data, 
+						bublUtil.findID('bubleGrid', data, 
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
@@ -257,7 +258,7 @@
 			onLoad(data, callback){
 				objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 					function(loadedData){
-						bublApp.findID('bublGrid', data, 
+						bublUtil.findID('bublGrid', data, 
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								callback();
@@ -290,7 +291,7 @@
 			onLoad: function(data, callback){
 				objectStore.getObject('2000', 'withchildren',
 					function(loadedData){
-						bublApp.findID('bubleGrid', data, 
+						bublUtil.findID('bubleGrid', data, 
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData, element.children);
 								// go knows where the first item is comming from... this is a massive bodge..
@@ -320,7 +321,7 @@
 			onLoad: function(data, callback){
 				objectStore.getObject('3000', 'withchildren',
 					function(loadedData){
-						bublApp.findID('bublGrid', data, 
+						bublUtil.findID('bublGrid', data, 
 							function(element){
 								ZEN.ui.PagedGrid.populate(loadedData, element.children, 'desc');	
 								callback();
@@ -357,7 +358,7 @@
 							delete object['children'];
 						}
 						
-						bublApp.findID('propertiesForm', data, 
+						bublUtil.findID('propertiesForm', data, 
 							function(formView){
 								bublForm.insertForm(formView, { 'params' : object }, object.type + '.json', 
 									function(){
