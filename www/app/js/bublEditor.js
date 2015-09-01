@@ -8,23 +8,50 @@ var bublEditor = {
 				//self.executeAction(message.source.tag, message);	
 			}
 		);
-		
+				
 		bublApp.setupObserver('ui.bublcontrol',
 			function(message){
 				ZEN.log('observer(ui.bublcontrol)', message, $(message.sourceElement));
-				ZEN.log('show editor', message.source);
+				bublApp.variables['contentelementparent'] = bublApp.variables['contentelement'];
 				bublApp.setCurrentObject(['contentelement'], message.source,
 					function(){
 						//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
 						ZEN.data.load('app/definitions/style.json', {},
 							function (standard) {
-								bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json', standard);
+								self.setupPropertiesForm(standard,
+									function(standard){
+										bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json', standard);
+									}
+								);
 							}
 						);
 					}
 				);
 			}
 		);		
+	},
+	setupPropertiesForm: function(form, callback){
+		// add actions 
+		var clickActions = {
+			'type': 'FormSelect',
+			'label': 'Click Action',
+			'options': [],
+			'source': 'actions.active'
+		}
+		clickActions.options.push( { 'label': 'Show page 1', 'value': 'page1' });
+		clickActions.options.push( { 'label': 'Show page 2', 'value': 'page2' });
+		clickActions.options.push( { 'label': 'Show page 3', 'value': 'page3' });
+		form.fields[form.fields.length -1].fields.push(clickActions);
+		
+		bublUtil.findID('colors', form, 
+			function(colors){
+				var parent = bublApp.variables['contentelementparent'];
+				colors.fields[0].default = parent.params.styling['color'];
+				colors.fields[1].default = parent.params.styling['background-color'];
+				
+				callback(form);
+			}
+		);
 	},
 	addControl: function(data){
 		var contentArea = bublApp.variables['contentelement'];
@@ -80,26 +107,7 @@ var bublEditor = {
 	},
 	setupChildViews: function(content, children, orientation){
 		var self = this;
-		
-		/*
-		if(content.children === undefined){
-			content.children = [];
-		}
-		if(content.children.length === 0){
-			var view = {
-				'type': 'View', 
-				'children': [], 
-				'layout': {},
-				'size': { 'width': 'max', 'height': 'max' },
-				'defaults': {
-					'size': { 'width': 'max', 'height': 'max' },
-					'layout': { 'style': 'vertical', 'align': 'left' } 					
-				}
-			}
-			content.children.push(view);	
-		}
-		*/
-		
+				
 		content = {
 			'type': 'View', 
 			'children': [], 
