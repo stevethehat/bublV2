@@ -155,6 +155,9 @@
 			savecontrol: function(data){
 				bublEditor.saveControl(data);
 			},
+			deletecontrol: function(data){
+				bublEditor.deleteControl(data);
+			},
 			parentcontrol: function(data){
 				alert('up to parent');
 				function getParent(element){

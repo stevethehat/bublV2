@@ -166,6 +166,20 @@ var bublEditor = {
 		ZEN.objects['bublEditor'].resize(true);
 		bublApp.variables['contentelement'] = newElement;										
 	},
+	deleteControl: function(data){
+		var currentElement = bublApp.variables['contentelement'];
+		var parent = ZEN.objects[currentElement.parent.id];
+		currentElement.remove(true);
+		ZEN.cleanup();
+		ZEN.parse(
+			{
+				'type': 'ContentArea',
+				'size': { 'width': 'max', 'height': 'max' }
+			}	
+		,parent)
+		parent.show(true);
+		ZEN.objects['bublEditor'].resize(true);
+	},
 	setupChildViews: function(content, children, orientation){
 		var self = this;
 				
