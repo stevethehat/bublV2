@@ -59,11 +59,16 @@
 				}
 			}
 			ZEN.init(base);
-			self.loadPlayerPage(id);
+			self.loadPlayerPage(id, 'fadeIn');
 		},
 		
-		loadPlayerPage: function(id){
-			var self = this;			
+		loadPlayerPage: function(id, inAnimate){
+			var self = this;
+			
+			if(inAnimate === undefined || inAnimate === null || inAnimate === ''){
+				inAnimate = 'fadeIn';
+			}
+						
 			objectStore.getObject(id, null,
 				function(object){
 					/*
@@ -71,8 +76,8 @@
 						base = self.preParse(base, {});
 					}
 					*/
-					var inAnimate = 'bounceInDown';
-					var outAnimate = 'bounceOutDown';
+					//var inAnimate = 'bounceInDown';
+					//var outAnimate = 'bounceOutDown';
 					
 					var currentPageId = bublApp.variables['currentPlayerPageID'];
 					

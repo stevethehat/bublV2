@@ -65,7 +65,12 @@ var ZEN = (function (ZEN, _, $) {
 							}
 						}
 						if(message.type === 'active'){
-							alert('active ' + this.id);
+							if(this.params.actions.active.startsWith('showpage')){
+								var pageID = this.params.actions.active.substr(8);
+								bublApp.loadPlayerPage(pageID, this.params.actions.activeanimation);
+								//alert('show page ' + pageID);								
+							}
+							return(false);
 						}
 					}
 				},
