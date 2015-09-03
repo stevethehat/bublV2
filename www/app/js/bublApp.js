@@ -59,42 +59,70 @@
 				}
 			}
 			ZEN.init(base);
+			self.loadPlayerPage(id);
 		},
 		
 		loadPlayerPage: function(id){
-			var self = this;
-			var base = {
-				'type': 'Application',
-				'id': 'BublApp',
-				'show': true,
-				'children':[
-					{
-						'type': 'View',
-						'id': 'bublPlayer',
-						'size': { 'width': 'max', 'height': 'max' },
-						'layout': { 'style': 'vertical', 'align': 'left' },
-						'children': []
-					}	
-				],
-				'defaults': { 
-					'type': 'View',
-					'show': true,
-					'size': { 'width': 'max', 'height': 'max' },
-					'layout': { 'style': 'vertical', 'align': 'left' }
-				}
-			}
-			
+			var self = this;			
 			objectStore.getObject(id, null,
 				function(object){
-					base.children[0]['children'] = [object.layout]
-					ZEN.log('init player', base);
-					
+					/*
 					if(object.type === 'template'){
 						base = self.preParse(base, {});
 					}
+					*/
+					var inAnimate = 'bounceInDown';
+					var outAnimate = 'bounceOutDown';
 					
-					ZEN.init(base);
+					var currentPageId = bublApp.variables['currentPlayerPageID'];
+					
+					ZEN.log('load page ' + id + ' from ' + currentPageId);
+					
+					var currentPage = ZEN.objects['BublPageRoot'];
+					if(currentPageId === id){
+						// dont load it twice
+						ZEN.log('DONT DO IT TWICE!!!!');
+						return;
+					}
+					object.layout.size['width'] = 'full';
+					object.layout.size['height'] = 'full';
+					var playerPage = ZEN.parse(object.layout, ZEN.objects['bublPlayer']);
+
+					if(currentPage !== undefined){
+						ZEN.log('do OUT Animate');
+						//currentPage.animate(outAnimate, false,
+						//	function () {
+								/*
+								ZEN.cleanup();
+								currentPage.remove();
+								*/
+						//	}
+						//);
+					} else {
+						
+					}
+					bublApp.variables['currentPlayerPageID'] = id;
+					ZEN.objects['bublPlayer'].resize();					
 					ZEN.objects['bublPlayer'].show(true);
+					
+					ZEN.log('do IN Animate');
+					playerPage.animate(inAnimate, true, 
+						function(){
+							currentPage.remove();
+							ZEN.cleanup();
+						}	
+					);
+					/*
+					if(currentPage !== undefined){
+						ZEN.log('do IN Animate');
+						playerPage.animate(inAnimate, true, 
+							function(){
+								currentPage.remove();
+								ZEN.cleanup();
+							}	
+						);
+					}
+					*/
 				}
 			);
 		},

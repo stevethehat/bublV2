@@ -9,5 +9,9 @@
 		"layout": { "style": "vertical", "align": "left" } 
 	},			
 	"children":[
+		{
+			"type": "View",
+			"id": "bublPlayer"
+		}
 	]
 }
