@@ -128,6 +128,15 @@
 										}
 									},									
 									{
+										"tag": "deletecontrol",
+										"type": "IconLabel",
+										"size": { "width": 70 },
+										"content": {
+											"label": "Delete",
+											"icon": "fa-trash-o"
+										}
+									},									
+									{
 										"tag": "savecontrol",
 										"type": "IconLabel",
 										"content": {
