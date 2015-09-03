@@ -38,19 +38,47 @@ var bublEditor = {
 			'options': [],
 			'source': 'actions.active'
 		}
-		clickActions.options.push( { 'label': 'Show page 1', 'value': 'page1' });
-		clickActions.options.push( { 'label': 'Show page 2', 'value': 'page2' });
-		clickActions.options.push( { 'label': 'Show page 3', 'value': 'page3' });
-		form.fields[form.fields.length -1].fields.push(clickActions);
-		
-		bublUtil.findID('colors', form, 
-			function(colors){
-				var parent = bublApp.variables['contentelementparent'];
-				colors.fields[0].default = parent.params.styling['color'];
-				colors.fields[1].default = parent.params.styling['background-color'];
 				
-				callback(form);
-			}
+		objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
+			function(data){
+				clickActions.options.push( { 'label': 'No action', 'value': '' });		
+
+				_.each(data.children,
+					function(page){
+						clickActions.options.push( { 'label': 'Goto - ' + page.title, 'value': 'showpage' + page.id });		
+					}
+				);
+				form.fields[form.fields.length -1].fields.push(clickActions);
+				var clickTransitions = {
+					'type': 'FormDataList',
+					'label': 'Transition',
+					'source': 'actions.activeanimation',
+					'options': [
+						{ "value": "bounceInDown" },	
+						{ "value": "bounceInUp" },	
+						{ "value": "bounceInLeft" },	
+						{ "value": "bounceInRight" },	
+						{ "value": "slideInDown" },	
+						{ "value": "slideInUp" },	
+						{ "value": "slideInLeft" },	
+						{ "value": "slideInRight" },	
+						{ "value": "fadeIn" },	
+						{ "value": "flipInX" },	
+						{ "value": "flipInY" }	
+					]
+				}
+				form.fields[form.fields.length -1].fields.push(clickTransitions);
+				
+				bublUtil.findID('colors', form, 
+					function(colors){
+						var parent = bublApp.variables['contentelementparent'];
+						colors.fields[0].default = parent.params.styling['color'];
+						colors.fields[1].default = parent.params.styling['background-color'];
+						
+						callback(form);
+					}
+				);				
+			}	
 		);
 	},
 	addControl: function(data){
