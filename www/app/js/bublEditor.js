@@ -1,4 +1,37 @@
 var bublEditor = {
+	load: function(data, callback){
+		var pageDefinition = data;
+		bublUtil.findID('bublEditor', pageDefinition, 
+			function(element){
+				var layout = bublApp.variables['page'].layout;
+				element.children = [layout];
+			
+				objectStore.getObject('3000', 'withchildren',
+					function(data){
+						//var assetList = ZEN.objects['AssetList'];
+						bublUtil.findID('AssetList', pageDefinition,
+							function(assetList){
+								_.each(data.children,
+									function(asset){
+										assetList['controls'].push(
+											{
+												'type': 'Control',
+												'label': '',
+												'image': 'app/' + asset.thumbnail,
+												'size': { 'height': 50, 'width': 200 },
+												'margin': { 'bottom': 10 }
+											}
+										);										
+									}
+								);
+								callback();								
+							}
+						);
+					}
+				);
+			}
+		);
+	},
 	setupObservers: function(){
 		var self = this;
 		bublApp.setupObserver('ui.contenteditable',

@@ -106,14 +106,7 @@
 		},
 		"bublEditor":{
 			onLoad: function(data, callback){
-				bublUtil.findID('bublEditor', data, 
-					function(element){
-						var layout = bublApp.variables['page'].layout;
-						element.children = [layout];
-						
-						callback();
-					}
-				);
+				bublEditor.load(data, callback);
 			},
 			save: function(){
 				var content = ZEN.objects['BublPageRoot'].serialize();
