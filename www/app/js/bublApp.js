@@ -42,17 +42,51 @@
 				'type': 'Application',
 				'id': 'BublApp',
 				'show': true,
+				'children':[
+					{
+						'type': 'View',
+						'id': 'bublPlayer',
+						'size': { 'width': 'max', 'height': 'max' },
+						'layout': { 'style': 'vertical', 'align': 'left' },
+						'children': []
+					}	
+				],
 				'defaults': { 
 					'type': 'View',
 					'show': true,
 					'size': { 'width': 'max', 'height': 'max' },
-					'layout': { 'style': 'vertical', 'align': 'left' } 
+					'layout': { 'style': 'vertical', 'align': 'left' }
+				}
+			}
+			ZEN.init(base);
+		},
+		
+		loadPlayerPage: function(id){
+			var self = this;
+			var base = {
+				'type': 'Application',
+				'id': 'BublApp',
+				'show': true,
+				'children':[
+					{
+						'type': 'View',
+						'id': 'bublPlayer',
+						'size': { 'width': 'max', 'height': 'max' },
+						'layout': { 'style': 'vertical', 'align': 'left' },
+						'children': []
+					}	
+				],
+				'defaults': { 
+					'type': 'View',
+					'show': true,
+					'size': { 'width': 'max', 'height': 'max' },
+					'layout': { 'style': 'vertical', 'align': 'left' }
 				}
 			}
 			
 			objectStore.getObject(id, null,
 				function(object){
-					base.children = [object.layout]
+					base.children[0]['children'] = [object.layout]
 					ZEN.log('init player', base);
 					
 					if(object.type === 'template'){
@@ -60,11 +94,11 @@
 					}
 					
 					ZEN.init(base);
-					ZEN.objects['BublPageRoot'].show(true);
+					ZEN.objects['bublPlayer'].show(true);
 				}
 			);
 		},
-		
+
 		loadPage: function(pageName, inAnimation, outAnimation){
 			var self = this;
 		
