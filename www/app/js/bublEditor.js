@@ -44,13 +44,12 @@ var bublEditor = {
 
 		bublApp.setupObserver('ui.asset',
 			function(message){
-				alert('image control clicked');
 				bublEditor.addControl(
 					{ 
 						'params': {
 							'content': {
 								'addtype': 'BublImage',
-								'url': 'app/img/stirling.png'
+								'url': message.source.params.image
 							}
 						}
 					}
