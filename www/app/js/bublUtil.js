@@ -177,27 +177,32 @@ var bublUtil = {
 	},
 	findID: function(id, data, callback){
 		var self = this;
-		if(data.id && data.id === id){
-			ZEN.log('found ID');
-			callback(data);
-		} else {
-			var children = data.children;
-			if(children === undefined){
-				children = data.fields;
-			}
-			if(children){
-				_.each(children,
-					function(element){
-						self.findID(id, element, callback);
-					}
-				);
+		if(data !== undefined){			
+			if(data.id && data.id === id){
+				ZEN.log('found ID');
+				callback(data);
 			} else {
-				if(_.isObject(data)){
-					for(var oName in data){
-						self.findID(id, data[oName], callback);
+				var children = data.children;
+				if(children === undefined){
+					children = data.fields;
+				}
+				if(children){
+					_.each(children,
+						function(element){
+							self.findID(id, element, callback);
+						}
+					);
+				} else {
+					if(_.isObject(data)){
+						for(var oName in data){
+							self.findID(id, data[oName], callback);
+						}
 					}
 				}
 			}
+		} else {
+			ZEN.log('no data supplied to findID');
+			callback(null);
 		}
 	}
 }
