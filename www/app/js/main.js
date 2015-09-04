@@ -11,6 +11,7 @@
 		 'zen/js/ui.textpanel.js',
 		 'zen/js/ui.slider.js',
 		 'zen/js/ui.button.js',
+		 'app/js/ui.asset.js',
 		 'zen/js/ui.menu.js',
 		 'zen/js/ui.list.js',
 

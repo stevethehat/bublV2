@@ -15,7 +15,7 @@ var bublEditor = {
 									function(asset){
 										assetList['controls'].push(
 											{
-												'type': 'Control',
+												'type': 'Asset',
 												'label': '',
 												'image': 'app/' + asset.thumbnail,
 												'size': { 'height': 50, 'width': 200 },
@@ -41,6 +41,22 @@ var bublEditor = {
 				//self.executeAction(message.source.tag, message);	
 			}
 		);
+
+		bublApp.setupObserver('ui.asset',
+			function(message){
+				alert('image control clicked');
+				bublEditor.addControl(
+					{ 
+						'params': {
+							'content': {
+								'addtype': 'BublImage',
+								'url': 'app/img/stirling.png'
+							}
+						}
+					}
+				);
+			}
+		);		
 				
 		bublApp.setupObserver('ui.bublcontrol',
 			function(message){
@@ -127,17 +143,14 @@ var bublEditor = {
 			'margin': contentArea.params.margin
 		}
 		
-		ZEN.log('add control', bublApp.variables);
+		delete data.params.content['addtype'];
+		newControlParams['content'] = data.params.content;
 		
-		/*
-		"position": { "bottom": 10, "right": 10 },
-		"size": { "width": 40, "height": 40 },
-		*/
+		ZEN.log('add control', bublApp.variables);
 		
 		var parentID = contentArea.parent.id;
 		contentArea.remove(true);
 		ZEN.cleanup();
-		//var parentID = contentArea.id;
 		
 		var newControl = ZEN.parse(newControlParams, ZEN.objects[parentID]);
 		ZEN.objects[parentID].show(true);
