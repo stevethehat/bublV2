@@ -3,121 +3,107 @@
 var ZEN = (function (ZEN, _, $) {
 	ZEN.namespace('ui');
 	_.extend(ZEN.ui, (function () {
-
-		
-		function Uploader (params, parent) {
-			if (arguments.length > 0) {
-				ZEN.ui.Control.call(this, params, parent);
-			}
-			return this;
+	
+	function Uploader (params, parent) {
+		if (arguments.length > 0) {
+			ZEN.ui.Control.call(this, params, parent);
 		}
+		return this;
+	}
 
-		Uploader.prototype = new ZEN.ui.Control();
+	Uploader.prototype = new ZEN.ui.Control();
 
-		_.extend(
-			Uploader.prototype,
-			{
+	_.extend(Uploader.prototype,
+		{
+			init: function (params, parent) {
+				// call the base class init method
+				ZEN.ui.Control.prototype.init.call(this, params, parent);
+				//ZEN.events.GridHandler (this, this.el);
+			},
 
-				init: function (params, parent) {
-					// call the base class init method
-					ZEN.ui.Control.prototype.init.call(this, params, parent);
-					//ZEN.events.GridHandler (this, this.el);
-				},
+			label: function () {
+			},
 
-				label: function () {
-				},
+			notify: function (message) {
+				message.source = this;
 
-				notify: function (message) {
-					message.source = this;
-
-					ZEN.log(message.type);
-					
-					if (message.type === 'highlight') {
-						this.el.addClass('hover');
-					} else {
-						this.el.removeClass('hover');
-					}
-
-					if(message.type === 'active') {
-						ZEN.notify ("ui.Grid", message);
-					}
-				},
-
-				getElement: function () {
-					var self = this;
-					if (this.el === null) {
-						ZEN.ui.Base.prototype.getElement.call(this);
-						// this.el.attr('tabindex',0);
-						this.el.addClass('zen-Uploader');
-						self.setupUploader();
-						this.resize();
-					}
-					return this.el;
-				}, 
-
-				setupUploader: function(){
-					var self = this;
-
-					var id = this.el.attr('id') + 'uploaded';	
-					var dropArea = $('<div class="uploader" id="' + id + '" style="width:100%; height: 100%; "/>').appendTo(this.el);
-					$('<span><i class="fa fa-cloud-upload fa-2x"/> Drag file here to upload</span>').appendTo(dropArea);
-					var progressHolder = $('<div class="progress"/>').appendTo(dropArea);
-					self.percentage = $('<span/>').appendTo(progressHolder);
+				ZEN.log(message.type);
 				
-					$('#' + id).on(
-					    'dragover',
-					    function(e) {
-					        e.preventDefault();
-					        e.stopPropagation();
-					    }
-					);
-					$('#' + id).on(
-					    'dragenter',
-					    function(e) {
-					        e.preventDefault();
-					        e.stopPropagation();
-					    }
-					);
-					//http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=test.jpg
-					$('#' + id).on(
-					    'drop',
-					    function(e){
-					        if(e.originalEvent.dataTransfer){
-					            if(e.originalEvent.dataTransfer.files.length) {
-					                e.preventDefault();
-					                e.stopPropagation();
-					                /*UPLOAD FILES HERE*/
-									self.file = e.originalEvent.dataTransfer.files[0];
-									self.fileName = self.file.name;				
-									$.ajax('http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=' + self.fileName,
-										{
-											'success':
-												function(data){
-													self.uploadUrl = data.uploadUrl;
-													self.assetUrl = data.assetUrl;
-													//self.uploadUrl = data.uploadUrl.replace('https://bubblestore.blob.core.windows.net', 'http://localhost:3001');
-													//alert('upload url = ' + self.uploadUrl);
-													// replace https://bubblestore.blob.core.windows.net
-													// with http://localhost:3000
-													
-													self.uploadFile();
-													/*
-													$.get('api/upload/init', {
-														'uploadUrl': data.uploadUrl,
-														function(){
-															alert('done init');
-															self.uploadFile(data);
-														}	
-													});*/
-												}
-										}
-									);
-					            }   
-					        }
-					    }
-					);
-				},
-				uploadChunk: function(callback){
+				if (message.type === 'highlight') {
+					this.el.addClass('hover');
+				} else {
+					this.el.removeClass('hover');
+				}
+
+				if(message.type === 'active') {
+					ZEN.notify ("ui.Grid", message);
+				}
+			},
+
+			getElement: function () {
+				var self = this;
+				if (this.el === null) {
+					ZEN.ui.Base.prototype.getElement.call(this);
+					// this.el.attr('tabindex',0);
+					this.el.addClass('zen-Uploader');
+					self.setupUploader();
+					this.resize();
+				}
+				return this.el;
+			}, 
+
+			setupUploader: function(){
+				var self = this;
+
+				var id = this.el.attr('id') + 'uploaded';	
+				var dropArea = $('<div class="uploader" id="' + id + '" style="width:100%; height: 100%; "/>').appendTo(this.el);
+				$('<span><i class="fa fa-cloud-upload fa-2x"/>Drag a file here to upload</span>').appendTo(dropArea);
+				var progressHolder = $('<div class="progress"/>').appendTo(dropArea);
+				//self.percentage = $('<div class="progressCount"/>').appendTo(progressHolder);
+				self.percentageBar = $('<div class="progressBar"/>').appendTo(progressHolder);
+			
+				$('#' + id).on(
+					'dragover',
+					function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				);
+				$('#' + id).on(
+					'dragenter',
+					function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				);
+				//http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=test.jpg
+				$('#' + id).on(
+					'drop',
+					function(e){
+						if(e.originalEvent.dataTransfer){
+							self.percentageBar.css('width', '0%');
+							if(e.originalEvent.dataTransfer.files.length) {
+								e.preventDefault();
+								e.stopPropagation();
+								/*UPLOAD FILES HERE*/
+								self.file = e.originalEvent.dataTransfer.files[0];
+								self.fileName = self.file.name;				
+								$.ajax('http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=' + self.fileName,
+									{
+										'success':
+											function(data){
+												self.uploadUrl = data.uploadUrl;
+												self.assetUrl = data.assetUrl;													
+												self.uploadFile();
+											}
+									}
+								);
+							}   
+						}
+					}
+				);
+			},
+			uploadChunk: function(callback){
 				var self = this;
 				var reader = new FileReader();
 				var sliceStart = self.currentFilePosition;
@@ -166,6 +152,7 @@ var ZEN = (function (ZEN, _, $) {
 			},
 
 			blocks: [],
+			
 			sendBlock: function(fileSlice, callback){
 				var self = this;
 				var blockID =  self.generateBlockID(self.blockID);
@@ -178,7 +165,12 @@ var ZEN = (function (ZEN, _, $) {
                 var requestData = new Uint8Array(fileSlice);
 				ZEN.log('send block >> ' + uri + ' (' + requestData.length + ')');
 				self.percentageValue = self.currentFilePosition / self.fileSize * 100;
-				self.percentage.text(self.percentageValue + ' %');
+				var percentage = Math.ceil(self.percentageValue);
+				if(percentage >100){
+					percentage = 100;
+				}
+				//self.percentage.text(percentage + ' %');
+				self.percentageBar.css('width', percentage + '%');
 				ZEN.log(self.percentageValue + ' % done');
                 $.ajax({
                     url: uri,
@@ -235,8 +227,6 @@ var ZEN = (function (ZEN, _, $) {
 			
 			getSecureUrl: function(callback){
 				var self = this;
-				var uri = 'http://bublv2apitest.azurewebsites.net/api/storage/getaccessurls?expiryInMins=100';
-				var urlList = '"['+ self.assetUrl + ']"';
 						
 				$.ajax({
                 	url: 'http://bublv2apitest.azurewebsites.net/api/storage/getaccessurls/?expiryInMins=100',
@@ -244,7 +234,7 @@ var ZEN = (function (ZEN, _, $) {
                 	contentType: 'application/json',
                 	data: "['" + self.assetUrl + "']",
                 	success: function(res) {
-						alert(JSON.stringify(res, null, 4));
+						callback(res);
                 	},
                 	error: function(res) {
                     	console.log(res);
@@ -255,8 +245,6 @@ var ZEN = (function (ZEN, _, $) {
 			
 			uploadFile: function(uploadDetails){
 				var self = this;
-				//self.uploadUrl = uploadDetails.uploadUrl.substr(8);
-				//self.uploadUrl = 'http://localhost:3000/api/upload';
 				self.currentFilePosition = 0;
 				self.maxChunkSize = 256 * 1024;
 				self.bytesRemaining = self.file.size;
@@ -274,23 +262,23 @@ var ZEN = (function (ZEN, _, $) {
 				self.uploadChunk(
 					function(){
 						self.getSecureUrl(
-							function(url){
-								alert('done');						
+							function(urlInfo){
+								alert('done' + JSON.stringify(urlInfo, null, 4));						
 							}
 						)
 					}
 				);				
 			}
-			}
-		);
+		}
+	);
 
-		ZEN.registerType('Uploader', Uploader);
+	ZEN.registerType('Uploader', Uploader);
 
-		return {
-			Uploader: Uploader
-		};
+	return {
+		Uploader: Uploader
+	};
 		
 
-	}()));
-	return ZEN;
+}()));
+return ZEN;
 }(ZEN || {}, _, $));

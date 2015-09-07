@@ -178,9 +178,22 @@ p{
 }
 .uploader .progress{
 	height: 20px;
-	margin: 10px;
 	border: solid 1px #aaa;
-	/*margin: 10px;*/
+}
+
+.uploader .progress div.progressCount{
+	padding: 0px 0px 0px 10px;
+	width: 60px;
+	background-color: pink;
+	border: 0px;
+	float:left;
+}
+
+.uploader .progress div.progressBar{
+	padding: 0;
+	background-color: #444;
+	height: 100%;
+	width: 0px;
 }
 
 .contentareadrop{
