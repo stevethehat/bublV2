@@ -45,6 +45,7 @@
 		 'app/js/ui.bublvideo.js',
 		 'app/js/ui.bublcolumns.js',
 		 'app/js/ui.bublrows.js',
+		 'app/js/ui.bublslides.js',
 		 
 		 'app/js/ui.bublview.js'
 		 

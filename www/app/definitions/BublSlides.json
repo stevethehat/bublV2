@@ -1,0 +1,10 @@
+{
+	"title": "Slides",
+	"fields":[
+		{
+			"type": "FormNumber",
+			"label": "Slides",
+			"source": "layout.slides"
+		}
+	]
+}

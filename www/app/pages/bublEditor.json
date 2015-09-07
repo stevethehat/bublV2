@@ -71,6 +71,23 @@
 													"icon": "fa-columns fa-rotate-90",
 													"addtype": "BublRows" 											
 												}
+											},
+											{
+												"content": {
+													"label": "Slides",
+													"icon": "fa-clone",
+													"addtype": "BublSlides",
+													"children": [
+														{
+															"type": "ContentArea",
+															"size": { "width": "full", "height": "full" }
+														},
+														{
+															"type": "ContentArea",
+															"size": { "width": "full", "height": "full" }
+														}
+													]											
+												}
 											}
 										]
 									}
