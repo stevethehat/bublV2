@@ -93,10 +93,10 @@ var ZEN = (function (ZEN, _, $) {
 										{
 											'success':
 												function(data){
-													alert(JSON.stringify(data, null, 4));
 													self.uploadUrl = data.uploadUrl;
+													self.assetUrl = data.assetUrl;
 													//self.uploadUrl = data.uploadUrl.replace('https://bubblestore.blob.core.windows.net', 'http://localhost:3001');
-													alert(self.uploadUrl);
+													//alert('upload url = ' + self.uploadUrl);
 													// replace https://bubblestore.blob.core.windows.net
 													// with http://localhost:3000
 													
@@ -165,13 +165,15 @@ var ZEN = (function (ZEN, _, $) {
 				return(btoa("block-" + self.pad(self.blockID, 6)).replace(/=/g, 'a'));
 			},
 
+			blocks: [],
 			sendBlock: function(fileSlice, callback){
 				var self = this;
 				var blockID =  self.generateBlockID(self.blockID);
+				self.blocks.push(blockID);
 				self.blockID++;
        
-				var uri = self.uploadUrl + '/block?comp=block&blockid=' + blockID;
-				alert(uri);
+				var uri = self.uploadUrl + '&comp=block&blockid=' + blockID;
+				//alert('upload url = ' + uri);
 				
                 var requestData = new Uint8Array(fileSlice);
 				ZEN.log('send block >> ' + uri + ' (' + requestData.length + ')');
@@ -205,10 +207,11 @@ var ZEN = (function (ZEN, _, $) {
 				ZEN.log('upload block list');
 				
 			    var requestBody = '<?xml version="1.0" encoding="utf-8"?><BlockList>';
-    			for (var i = 0; i < self.blockID; i++) {
-        			requestBody += '<Latest>' + self.generateBlockID(i) + '</Latest>';
+    			for (var i = 0; i < self.blocks.length; i++) {
+        			requestBody += '<Latest>' + self.blocks[i] + '</Latest>';
     			}
     			requestBody += '</BlockList>';	
+				
 				ZEN.log(requestBody);
 				
 				$.ajax({
@@ -228,6 +231,26 @@ var ZEN = (function (ZEN, _, $) {
 			            console.log(err);
 			        }
     			});
+			},
+			
+			getSecureUrl: function(callback){
+				var self = this;
+				var uri = 'http://bublv2apitest.azurewebsites.net/api/storage/getaccessurls?expiryInMins=100';
+				var urlList = '"['+ self.assetUrl + ']"';
+						
+				$.ajax({
+                	url: 'http://bublv2apitest.azurewebsites.net/api/storage/getaccessurls/?expiryInMins=100',
+                	method: 'POST',
+                	contentType: 'application/json',
+                	data: "['" + self.assetUrl + "']",
+                	success: function(res) {
+						alert(JSON.stringify(res, null, 4));
+                	},
+                	error: function(res) {
+                    	console.log(res);
+                    	alert('Error has occured.');
+                	}
+            	});						
 			},
 			
 			uploadFile: function(uploadDetails){
@@ -250,7 +273,11 @@ var ZEN = (function (ZEN, _, $) {
 				
 				self.uploadChunk(
 					function(){
-						alert('done');
+						self.getSecureUrl(
+							function(url){
+								alert('done');						
+							}
+						)
 					}
 				);				
 			}
