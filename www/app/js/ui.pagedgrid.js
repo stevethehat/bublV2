@@ -16,7 +16,7 @@ var ZEN = (function (ZEN, _, $) {
 
 		PagedGrid.prototype = new ZEN.ui.Control();
 		
-		PagedGrid.populate = function(object, PagedGridChildren, sortOrder){
+		PagedGrid.populate = function(object, PagedGridChildren, sortOrder, callback){
 			ZEN.log('populate PagedGrid', object.children);
 	
 			var page = bublApp.variables['gridcurrentpage'];
@@ -25,7 +25,7 @@ var ZEN = (function (ZEN, _, $) {
 				bublApp.variables['gridcurrentpage'] = 0;
 			}
 			
-			if(sortOrder === undefined){
+			if(sortOrder === undefined || sortOrder === null){
 				sortOrder = 'asc';
 			}
 			
@@ -59,6 +59,7 @@ var ZEN = (function (ZEN, _, $) {
 					 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
 						};				
 
+					bublAssets.addSecureUrlRequest(child.thumbnail);
 					if(child.thumbnail.indexOf('/defaults/') != -1){
 						childContent.content.color ='#fff';
 						childContent.content.backcolor ='#aaa';						
@@ -66,6 +67,7 @@ var ZEN = (function (ZEN, _, $) {
 					PagedGridChildren.push(childContent);
 				}
 			);
+			bublAssets.processSecureUrlRequests(callback);
 		}
 
 		PagedGrid.preProcess = function(data){

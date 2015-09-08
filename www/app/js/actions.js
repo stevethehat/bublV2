@@ -73,8 +73,7 @@
 					function(loadedData){
 						bublUtil.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData, element.children);	
-								callback();
+								ZEN.ui.PagedGrid.populate(loadedData, element.children, null, callback);	
 							}
 						);
 					} 
@@ -184,14 +183,13 @@
 					function(loadedData){
 						bublUtil.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData, element.children, null, callback);
 								// go knows where the first item is comming from... this is a massive bodge..
 								/*
 								if(element.children.length > 1){
 									element.children.shift();								
 								}
 								*/
-								callback();
 							}
 						);
 					} 
@@ -222,14 +220,13 @@
 					function(loadedData){
 						bublUtil.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData, element.children, null, callback);
 								// go knows where the first item is comming from... this is a massive bodge..
 								/*
 								if(element.children.length > 1){
 									element.children.shift();	
 								}
 								*/							
-								callback();
 							}
 						);
 					} 
@@ -256,8 +253,7 @@
 					function(loadedData){
 						bublUtil.findID('bublGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData, element.children);
-								callback();
+								ZEN.ui.PagedGrid.populate(loadedData, element.children, null, callback);
 							}
 						);
 					} 
@@ -289,14 +285,13 @@
 					function(loadedData){
 						bublUtil.findID('bubleGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData, element.children);
+								ZEN.ui.PagedGrid.populate(loadedData, element.children, null, callback);
 								// go knows where the first item is comming from... this is a massive bodge..
 								/*
 								if(element.children.length > 1){
 									element.children.shift();
 								}
 								*/
-								callback();
 							}
 						);
 					} 
@@ -319,8 +314,7 @@
 					function(loadedData){
 						bublUtil.findID('bublGrid', data, 
 							function(element){
-								ZEN.ui.PagedGrid.populate(loadedData, element.children, 'desc');	
-								callback();
+								ZEN.ui.PagedGrid.populate(loadedData, element.children, 'desc', callback);	
 							}
 						);
 					} 
@@ -337,7 +331,7 @@
 			},
 			
 			add: function(data){
-				bublUtil.addAsset(
+				bublUtil.addAsset(null,
 					function(newPage){
 						bublApp.loadPage('bublAssets', 'slideInRight', 'slideOutLeft');		
 					}	
