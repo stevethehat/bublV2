@@ -196,6 +196,11 @@ p{
 	width: 0px;
 }
 
+.uploader input{
+	width:140px;
+	height:24px;
+}
+
 .contentareadrop{
 	width: 100%;
 	height: 100%;
