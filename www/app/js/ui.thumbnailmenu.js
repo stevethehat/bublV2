@@ -54,10 +54,13 @@ var ZEN = (function (ZEN, _, $) {
 						var backColor = '';
 						var color = '';	
 						var front = $('<div class="front"/>').appendTo(this.el);		
-						var back = $('<div class="back"/>').appendTo(this.el);
+						//var back = $('<div class="back"/>').appendTo(this.el).css({ 'background-color': 'white', 'color': 'black' });
+						var back = $('<div class="back"/>').css({ 'background-color': 'white', 'color': 'black' }).appendTo(this.el);
 						back.data('tag', 'select');
-
-						var img = $('<img width="' + this.params.size.width + '" height="' + this.params.size.height + '"/>').attr('src', 'app/' + this.params.content.imageurl).appendTo(front);
+						
+						var src = bublAssets.getSecureUrl(this.params.content.imageurl)
+						
+						var img = $('<img width="' + this.params.size.width + '" height="' + this.params.size.height + '"/>').attr('src', src).appendTo(front);
 						this.heading = $('<h3/>').text(this.params.content.heading).appendTo(back).data('tag', 'editHeading');
 						this.description = $('<p/>').text(this.params.content.description).appendTo(back).data('tag', 'editDescription');
 
@@ -117,8 +120,10 @@ var ZEN = (function (ZEN, _, $) {
 							        var htmlImage = img.get(0);
 							        var colorThief = new ColorThief();
 							        var palette = colorThief.getPalette(htmlImage);
-			
+									
 									backColor = cssColor(palette[2]);	
+									//alert('src = ' + backColor);
+			
 									//color = cssColor(palette[1]);
 									color = getContrastYIQ(backColor);	
 									back.css(

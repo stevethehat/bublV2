@@ -40,7 +40,7 @@
 									},
 									{
 										"type": "Uploader",
-										"size": { "height": 120 }
+										"size": { "height": 70 }
 									},
 									{
 										"type": "PagedGrid",

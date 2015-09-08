@@ -54,10 +54,13 @@ var ZEN = (function (ZEN, _, $) {
 
 			setupUploader: function(){
 				var self = this;
+				self.fileIndex = 0;
+				self.asset = bublApp.variables['properties'];				
 
 				var id = this.el.attr('id') + 'uploaded';	
 				var dropArea = $('<div class="uploader" id="' + id + '" style="width:100%; height: 100%; "/>').appendTo(this.el);
-				$('<span><i class="fa fa-cloud-upload fa-2x"/>Drag a file here to upload</span>').appendTo(dropArea);
+				$('<i class="fa fa-cloud-upload fa-2x"/><span style="margin-left:4px;display:inline">Drag a file here to upload, or select files</span>').appendTo(dropArea);
+				this.selector = $('<input type="file" multiple/>').appendTo(dropArea);
 				var progressHolder = $('<div class="progress"/>').appendTo(dropArea);
 				//self.percentage = $('<div class="progressCount"/>').appendTo(progressHolder);
 				self.percentageBar = $('<div class="progressBar"/>').appendTo(progressHolder);
@@ -76,33 +79,56 @@ var ZEN = (function (ZEN, _, $) {
 						e.stopPropagation();
 					}
 				);
+				this.selector.on('change',
+					function(e){
+						self.uploadFiles(e, e.target.files);
+					}
+				);
+				
 				//http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=test.jpg
 				$('#' + id).on(
 					'drop',
 					function(e){
 						if(e.originalEvent.dataTransfer){
-							self.percentageBar.css('width', '0%');
-							if(e.originalEvent.dataTransfer.files.length) {
-								e.preventDefault();
-								e.stopPropagation();
-								/*UPLOAD FILES HERE*/
-								self.file = e.originalEvent.dataTransfer.files[0];
-								self.fileName = self.file.name;				
-								$.ajax('http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=' + self.fileName,
-									{
-										'success':
-											function(data){
-												self.uploadUrl = data.uploadUrl;
-												self.assetUrl = data.assetUrl;													
-												self.uploadFile();
-											}
-									}
-								);
-							}   
+							self.uploadFiles(e, e.originalEvent.dataTransfer.files);   
 						}
 					}
 				);
 			},
+			
+			uploadFiles: function(e, files){
+				var self = this;
+								
+				if(files.length) {
+					e.preventDefault();
+					e.stopPropagation();
+					self.blocks = [];
+					
+					var file = files[self.fileIndex]
+					self.fileIndex++;
+					self.percentageBar.css('width', '0%');
+
+					/*UPLOAD FILES HERE*/
+					self.file = file;
+					self.fileName = self.file.name;
+					$.ajax('http://bublv2apitest.azurewebsites.net/api/storage/getuploadurl/?filename=' + self.fileName,
+						{
+							'success':
+								function(data){
+									self.uploadUrl = data.uploadUrl;
+									self.assetUrl = data.assetUrl;													
+									self.uploadFile();
+									if(self.fileIndex < files.length){
+										self.uploadFiles(e, files);
+									} else {
+										self.fileIndex = 0;				
+									}
+								}
+						}
+					);							
+				}	
+			},
+			
 			uploadChunk: function(callback){
 				var self = this;
 				var reader = new FileReader();
@@ -263,7 +289,14 @@ var ZEN = (function (ZEN, _, $) {
 					function(){
 						self.getSecureUrl(
 							function(urlInfo){
-								alert('done' + JSON.stringify(urlInfo, null, 4));						
+								if(self.asset === undefined){
+									bublUtil.addAsset(urlInfo[0].OriginalUrl,
+										function(newAsset){
+											//alert('done ' + self.asset + ' ' + JSON.stringify(newAsset, null, 4));
+											// we need to put page reload here																
+										}
+									)
+								}
 							}
 						)
 					}

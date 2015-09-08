@@ -66,19 +66,25 @@ var bublUtil = {
 		)		
 	},
 
-	addAsset: function(callback){
+	addAsset: function(url, callback){
 		objectStore.getNextOrder(3000,
 			function(nextOrder){
+				var thumbnail = 'img/defaults/newasset.png';
+				if(url !== undefined && url !== null){
+					thumbnail = url;
+				}
 				objectStore.upsertObject(
 					{
 						'parentId': '3000',
 						'title': 'Asset ' + nextOrder.nextorder,
 						'order': nextOrder.nextorder,
 						'description': 'Description of the asset',
-						'thumbnail': 'img/defaults/newasset.png',
+						'thumbnail': thumbnail,
+						'url': url,
 						'type': 'asset'
 					},
 					function(insertedData){
+						//alert(JSON.stringify(insertedData, null, 4));
 						callback(insertedData);
 					}
 				);													
