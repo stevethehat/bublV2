@@ -26,6 +26,7 @@
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',
 		 'app/js/bublApp.js',
+		 'app/js/bublAssets.js',
 		 'app/js/bublEditor.js',
 		 'app/js/bublUtil.js',
 		 'app/js/bublForm.js',
@@ -45,9 +46,9 @@
 		 'app/js/ui.bublvideo.js',
 		 'app/js/ui.bublcolumns.js',
 		 'app/js/ui.bublrows.js',
-		 'app/js/ui.bublslides.js',
 		 
-		 'app/js/ui.bublview.js'
+		 'app/js/ui.bublview.js',
+		 'app/js/ui.bublslides.js'
 		 
 		 ],
 		function () {
