@@ -50,17 +50,27 @@ var ZEN = (function (ZEN, _, $) {
 			bublApp.variables['gridnumpages'] = Math.ceil(object.children.length / 6);
 			var pageStart = page * 6;
 			var pageChildren = object.children.slice(pageStart, pageStart + 6);
-			 			
+						 			
 			_.each(pageChildren,
 				function(child){
+					var imageUrl = null;
+					if(child.thumbnails !== undefined){
+						imageUrl = child.thumbnails['340x200'];
+					}
+
+					if(imageUrl === undefined || imageUrl === null){
+						imageUrl = 'img/defaults/unknown.png';
+					}
+
 					var childContent = { 
 							'id': 'bubl' + child.id,
 							'type': 'ThumbnailMenu',
-					 	 	'content': { 'imageurl': child.thumbnail, 'heading': child.title, 'description': child.description } 
+					 	 	'content': { 'imageurl': imageUrl, 'heading': child.title, 'description': child.description },
+							'data': child 
 						};				
 
-					bublAssets.addSecureUrlRequest(child.thumbnail);
-					if(child.thumbnail.indexOf('/defaults/') != -1){
+					bublAssets.addSecureUrlRequest(imageUrl);
+					if(imageUrl.indexOf('/defaults/') != -1){
 						childContent.content.color ='#fff';
 						childContent.content.backcolor ='#aaa';						
 					}

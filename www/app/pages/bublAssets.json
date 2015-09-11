@@ -52,6 +52,7 @@
 											"menu":[
 												{ "action": "duplicate", "icon": "fa-files-o", "label": "Duplicate" },
 												{ "action": "delete", "icon": "fa-trash-o", "label": "Delete" },
+												{ "action": "info", "icon": "fa-info", "label": "Info" },
 												{ "action": "more", "icon": "fa-ellipsis-h", "label": "" }
 											]
 										},

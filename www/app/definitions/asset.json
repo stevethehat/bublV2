@@ -5,7 +5,7 @@
 			"type": "FormEdit",
 			"label": "Image Url",
 			"placeholder": "Please enter the image url",
-			"source": "thumbnail"
+			"source": "url"
 		},	
 		{
 			"type": "FormEdit",

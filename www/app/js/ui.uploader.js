@@ -186,7 +186,6 @@ var ZEN = (function (ZEN, _, $) {
 				self.blockID++;
        
 				var uri = self.uploadUrl + '&comp=block&blockid=' + blockID;
-				//alert('upload url = ' + uri);
 				
                 var requestData = new Uint8Array(fileSlice);
 				ZEN.log('send block >> ' + uri + ' (' + requestData.length + ')');
@@ -195,7 +194,7 @@ var ZEN = (function (ZEN, _, $) {
 				if(percentage >100){
 					percentage = 100;
 				}
-				//self.percentage.text(percentage + ' %');
+
 				self.percentageBar.css('width', percentage + '%');
 				ZEN.log(self.percentageValue + ' % done');
                 $.ajax({
@@ -290,10 +289,11 @@ var ZEN = (function (ZEN, _, $) {
 						self.getSecureUrl(
 							function(urlInfo){
 								if(self.asset === undefined){
-									bublUtil.addAsset(urlInfo[0].OriginalUrl,
+									bublAssets.add(urlInfo[0].OriginalUrl,
 										function(newAsset){
 											//alert('done ' + self.asset + ' ' + JSON.stringify(newAsset, null, 4));
-											// we need to put page reload here																
+											// we need to put page reload here
+											bublApp.loadPage('bublAssets');																
 										}
 									)
 								}

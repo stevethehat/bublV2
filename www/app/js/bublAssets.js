@@ -5,20 +5,20 @@ var bublAssets = {
 	addSecureUrlRequest: function(url){
 		var self = this;
 		
-		if(url.startsWith('https://bubblestore')){
-			if(!self.secureUrls.hasOwnProperty(url)){
-				self.pendingSecureUrlRequests.push(url); 
-			}
-		} else {
-			self.secureUrls[url] = 'app/' + url;
+		if(url !== undefined && url !== null){
+			if(url.startsWith('https://bubblestore')){
+				if(!self.secureUrls.hasOwnProperty(url)){
+					self.pendingSecureUrlRequests.push(url); 
+				}
+			} else {
+				self.secureUrls[url] = 'app/' + url;
+			}			
 		}
 	},
 	processSecureUrlRequests: function(callback){
 		var self = this;
-		//alert(JSON.stringify(self.pendingSecureUrlRequests));
 		
 		if(self.pendingSecureUrlRequests.length > 0){
-			//alert('do secure url lookup ' + JSON.stringify(self.pendingSecureUrlRequests));
 			$.ajax({
 				url: 'http://bublv2apitest.azurewebsites.net/api/storage/getaccessurls/?expiryInMins=100',
 				method: 'POST',
@@ -42,6 +42,7 @@ var bublAssets = {
 			callback();
 		}									
 	},
+	
 	getSecureUrl: function(url){
 		var self = this;
 		var secureUrl = '';
@@ -54,5 +55,73 @@ var bublAssets = {
 			}
 		}	
 		return(secureUrl);		
+	},
+	
+	lookupSecureUrl: function(url, callback){
+		var self = this;
+		self.addSecureUrlRequest(url);
+		self.processSecureUrlRequests(
+			function(){
+				var secureUrl = self.secureUrls[url];
+				callback(secureUrl);
+			}
+		);
+	},
+	
+	add: function(url, callback){
+		var self = this;
+		objectStore.getNextOrder(3000,
+			function(nextOrder){
+				var thumbnail = 'img/defaults/newasset.png';
+				if(url !== undefined && url !== null){
+					thumbnail = url;
+				}
+				var newAsset = {
+					'parentId': '3000',
+					'title': 'Asset ' + nextOrder.nextorder,
+					'order': nextOrder.nextorder,
+					'description': 'Description of the asset',
+					'thumbnails': {'340x200': 'img/defaults/generatingthumbnail.png'},
+					'url': url,
+					'type': 'asset'
+				};
+					
+				self.lookupSecureUrl(url,
+					function(secureUrl){
+						self.generateThumbnails(secureUrl,
+							function(thumbnailInfo){
+								_.each(thumbnailInfo['responseJSON']['response'],
+									function(thumbnail){
+										newAsset['thumbnails'][thumbnail.width + 'x' + thumbnail.height] = thumbnail.url
+									}
+								)
+								
+								//alert(JSON.stringify(newAsset.thumbnails, null, 4));
+								objectStore.upsertObject(
+									newAsset, callback								
+								);														
+							}
+						);
+					}
+				);
+			}	
+		);
+	},
+	
+	generateThumbnails: function(uri, callback){
+		var data = {
+			'uri': uri,
+			'sizes': ['340x200', '100x100']
+		}
+		$.ajax({
+			url: 'api/media/thumbnails',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			dataType: 'json',
+			complete: function(returnData){
+				callback(returnData);
+			}		
+		});
 	}
 }

@@ -47,6 +47,40 @@ router.post('/capture',
 	}
 ); 	
 
+
+
+router.all('/thumbnails', 
+	function(request, response, next){
+		var object = request.body;
+		var fileName = object.uri;
+		var sizes = object.sizes;
+		var result = '';
+		
+		console.log('thumbnailing "' + fileName + '"');
+		if(fileName.lastIndexOf('http') === 0){
+			// download first
+			var filePath = media.generateTempFileName(fileName);
+			media.download(fileName, filePath,
+				function(){
+					media.generateThumbnails(sizes, filePath,
+						function(thumbnailInfo){
+							console.log('thumbnail response ' + JSON.stringify(thumbnailInfo, null, 4));
+							response.send({'result': 'ok', 'request': object, 'response': thumbnailInfo });						
+						}
+					);
+				}
+			)
+		} else {
+			var filePath = path.resolve('../bubl/www/app/img/assets/' + fileName);
+			media.generateThumbnails(sizes, filePath,
+				function(thumbnailInfo){
+					response.send({'result': 'ok', 'request': object, 'response': thumbnailInfo });											
+				}
+			)			
+		}				
+	}
+); 	
+
 router.all('/resize', 
 	function(request, response, next){
 		var object = request.body;

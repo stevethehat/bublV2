@@ -66,32 +66,6 @@ var bublUtil = {
 		)		
 	},
 
-	addAsset: function(url, callback){
-		objectStore.getNextOrder(3000,
-			function(nextOrder){
-				var thumbnail = 'img/defaults/newasset.png';
-				if(url !== undefined && url !== null){
-					thumbnail = url;
-				}
-				objectStore.upsertObject(
-					{
-						'parentId': '3000',
-						'title': 'Asset ' + nextOrder.nextorder,
-						'order': nextOrder.nextorder,
-						'description': 'Description of the asset',
-						'thumbnail': thumbnail,
-						'url': url,
-						'type': 'asset'
-					},
-					function(insertedData){
-						//alert(JSON.stringify(insertedData, null, 4));
-						callback(insertedData);
-					}
-				);													
-			}	
-		);
-	},
-
 	addTemplate: function(callback){
 		objectStore.getNextOrder(2000,
 			function(nextOrder){
@@ -142,33 +116,6 @@ var bublUtil = {
 			'height': 200,
 			'delay': 1000
 		}
-		/*
-		$.post('api/media/capture',
-			data,
-			function(){
-				alert('thumbnail callback');
-				callback();	
-			}
-		);
-		*/
-		
-		/*
-		$.ajax({
-			url: 'api/media/capture',
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify(data),
-			dataType: 'json',
-			success: function(returnData){
-				alert('ok ' + returnData);
-				callback();
-			},
-			error: function(returnData){
-				alert('error ' + returnData);
-				callback();
-			}
-		});
-		*/
 		
 		$.ajax({
 			url: 'api/media/capture',

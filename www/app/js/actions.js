@@ -331,13 +331,18 @@
 			},
 			
 			add: function(data){
-				bublUtil.addAsset(null,
+				bublAssets.add(null,
 					function(newPage){
 						bublApp.loadPage('bublAssets', 'slideInRight', 'slideOutLeft');		
 					}	
 				);				
 			},
 			
+			info: function(data){
+				var self = this;
+				
+				alert('image info');
+			}
 		},
 		"properties": {
 			onLoad: function(data, callback){
