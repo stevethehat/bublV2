@@ -115,7 +115,7 @@ var bublAssets = {
 	generateThumbnails: function(uri, callback){
 		var data = {
 			'uri': uri,
-			'sizes': ['340x200', '100x100']
+			'sizes': ['340x200', '200x100']
 		}
 		$.ajax({
 			url: 'api/media/thumbnails',
