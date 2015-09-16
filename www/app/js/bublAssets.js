@@ -68,7 +68,11 @@ var bublAssets = {
 		);
 	},
 	
-	add: function(url, callback){
+	getFileName: function(uri){
+		return(uri.substr(uri.lastIndexOf('/') +1));	
+	},
+	
+	add: function(fileName, url, callback){
 		var self = this;
 		objectStore.getNextOrder(3000,
 			function(nextOrder){
@@ -80,7 +84,7 @@ var bublAssets = {
 					'parentId': '3000',
 					'title': 'Asset ' + nextOrder.nextorder,
 					'order': nextOrder.nextorder,
-					'description': 'Description of the asset',
+					'description': fileName,
 					'thumbnails': {'340x200': 'img/defaults/generatingthumbnail.png'},
 					'url': url,
 					'type': 'asset'
