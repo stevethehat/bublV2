@@ -289,7 +289,7 @@ var ZEN = (function (ZEN, _, $) {
 						self.getSecureUrl(
 							function(urlInfo){
 								if(self.asset === undefined){
-									bublAssets.add(urlInfo[0].OriginalUrl,
+									bublAssets.add(self.file.name, urlInfo[0].OriginalUrl,
 										function(newAsset){
 											//alert('done ' + self.asset + ' ' + JSON.stringify(newAsset, null, 4));
 											// we need to put page reload here
