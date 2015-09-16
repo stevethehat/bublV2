@@ -17,7 +17,7 @@ var bublEditor = {
 											{
 												'type': 'Asset',
 												'label': '',
-												'image': 'app/' + asset.thumbnail,
+												'image': 'app/' + asset.thumbnails['200x100'],
 												'size': { 'height': 50, 'width': 200 },
 												'margin': { 'bottom': 10 }
 											}
