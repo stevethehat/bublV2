@@ -111,7 +111,11 @@
 				var content = ZEN.objects['BublPageRoot'].serialize();
 				var page = bublApp.variables['page']; 
 				page.layout = content.params;
-				page.thumbnail = 'img/assets/340x200/' + page.id + '-thumbnail.png?rqsb=' + new Date().getTime();
+				if(!page.thumbnails){
+					page.thumbnails = {};
+				}
+				var thumbnail = 'img/assets/340x200/' + page.id + '-thumbnail.png?rqsb=' + new Date().getTime();
+				page.thumbnails['340x200'] = thumbnail;
 				objectStore.upsertObject(bublApp.variables['page'],
 					function(savedData){
 						bublUtil.generateThumbnail(savedData.id,
@@ -119,7 +123,7 @@
 								bublApp.dump('savedpage', savedData);
 
 								if(Number(page.order) === 1){
-									objectStore.updateObject(page.parentId, { 'thumbnail': page.thumbnail },
+									objectStore.updateObject(page.parentId, { 'thumbnails': { '340x200': thumbnail } },
 										function(){
 											bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');																						
 										}
