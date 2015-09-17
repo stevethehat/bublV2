@@ -116,14 +116,24 @@
 				}
 				var thumbnail = 'img/assets/340x200/' + page.id + '-thumbnail.png?rqsb=' + new Date().getTime();
 				page.thumbnails['340x200'] = thumbnail;
-				objectStore.upsertObject(bublApp.variables['page'],
-					function(savedData){
-						bublUtil.generateThumbnail(savedData.id,
-							function(){
+				var pageData = bublApp.variables['page'];
+				
+				bublUtil.generateThumbnail(page.id,
+					function(thumbnailData){	
+						pageData['majorColor'] = thumbnailData['info']['majorColor'];
+						pageData['contrastColor'] = thumbnailData['info']['contrastColor'];
+						objectStore.upsertObject(pageData,
+							function(savedData){
 								bublApp.dump('savedpage', savedData);
 
 								if(Number(page.order) === 1){
-									objectStore.updateObject(page.parentId, { 'thumbnails': { '340x200': thumbnail } },
+									var bublUpdateData = { 
+										'thumbnails': { '340x200': thumbnail },
+										'majorColor': pageData['majorColor'],
+										'contrastColor': pageData['contrastColor']
+									};
+									objectStore.updateObject(page.parentId, 
+										bublUpdateData,
 										function(){
 											bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');																						
 										}
@@ -131,10 +141,10 @@
 								} else {
 									bublApp.loadPage('bublPages', 'fadeIn', 'fadeOut');																				
 								}
-							}	
+							}
 						);
 					}
-				)
+				);
 			},
 			preview: function(data){
 				var bublID = bublApp.variables['page'].id;
