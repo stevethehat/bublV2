@@ -37,6 +37,7 @@
 				success: function(returnData){
 					ZEN.log('returned data');
 					ZEN.log(returnData);
+					//alert(JSON.stringify(returnData, null, 4));
 					callback(returnData);
 				}
 			});
