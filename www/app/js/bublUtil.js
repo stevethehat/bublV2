@@ -124,7 +124,7 @@ var bublUtil = {
 			data: JSON.stringify(data),
 			dataType: 'json',
 			complete: function(returnData){
-				callback();
+				callback(returnData['responseJSON']);
 			}		
 		});
 	},

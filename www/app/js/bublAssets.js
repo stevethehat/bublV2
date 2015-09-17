@@ -96,11 +96,20 @@ var bublAssets = {
 							function(thumbnailInfo){
 								_.each(thumbnailInfo['responseJSON']['response'],
 									function(thumbnail){
+										var majorColor = thumbnail['majorColor'];
+										if(majorColor !== undefined){
+											newAsset['majorColor'] = majorColor;
+										}
+										var contrastColor = thumbnail['contrastColor'];
+										if(contrastColor !== undefined){
+											newAsset['contrastColor'] = contrastColor;
+										}
 										newAsset['thumbnails'][thumbnail.width + 'x' + thumbnail.height] = thumbnail.url
 									}
 								)
 								
-								//alert(JSON.stringify(newAsset.thumbnails, null, 4));
+								//alert('add asset ' + JSON.stringify(newAsset, null, 4));
+								
 								objectStore.upsertObject(
 									newAsset, callback								
 								);														
@@ -124,6 +133,7 @@ var bublAssets = {
 			data: JSON.stringify(data),
 			dataType: 'json',
 			complete: function(returnData){
+				//alert(JSON.stringify(returnData['responseJSON'], null, 4));
 				callback(returnData);
 			}		
 		});
