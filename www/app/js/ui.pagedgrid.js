@@ -65,7 +65,13 @@ var ZEN = (function (ZEN, _, $) {
 					var childContent = { 
 							'id': 'bubl' + child.id,
 							'type': 'ThumbnailMenu',
-					 	 	'content': { 'imageurl': imageUrl, 'heading': child.title, 'description': child.description },
+					 	 	'content': { 
+								'imageurl': imageUrl, 
+								'heading': child.title, 
+								'description': child.description, 
+								'backcolor': child['majorColor'], 
+								'color': child['contrastColor'] 
+							},
 							'data': child 
 						};				
 

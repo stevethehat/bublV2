@@ -46,6 +46,7 @@ var ZEN = (function (ZEN, _, $) {
 				},
 				
 				getElement: function () {
+					var self = this;
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-ThumbnailMenu');
@@ -115,6 +116,7 @@ var ZEN = (function (ZEN, _, $) {
 						}
 						
 						if(this.params.content.backcolor === undefined && this.params.content.color === undefined){
+							//alert('work out background color ' + JSON.stringify(self.params.content, null, 4));
 							img.on('load',
 								function(){
 							        var htmlImage = img.get(0);
