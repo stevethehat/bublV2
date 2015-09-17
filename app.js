@@ -34,7 +34,7 @@ app.all('/*', function(req, res, next) {
 	console.log('===================================================================================================');
 
 	
-	console.log('adding cors headers');
+	//console.log('adding cors headers');
   	res.header("Access-Control-Allow-Origin", "*");
   	res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
   	res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
