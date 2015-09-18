@@ -40,43 +40,57 @@
 											{	
 												"content": {
 													"label": "Text",
-													"icon": "fa-file-text-o",
-													"addtype": "ContentEditable" 
-												}
+													"icon": "fa-file-text-o"
+												},
+												"addcontent": {
+													"type": "ContentEditable"
+												} 
 											},
 											{
 												"content": {
 													"label": "Image",
-													"icon": "fa-file-image-o",
-													"addtype": "BublImage" 
-												}										
+													"icon": "fa-file-image-o"
+												},
+												"addcontent":{
+													"type": "BublImage"  														
+												} 
+										
 											},
 											{
 												"content": {
 													"label": "Video",
-													"icon": "fa-file-movie-o",
-													"addtype": "BublVideo" 											
-												}
+													"icon": "fa-file-movie-o"
+												},
+												"addcontent": {
+													"type": "BublVideo"													
+												} 																							
 											},
 											{
 												"content": {
 													"label": "Columns",
-													"icon": "fa-columns",
-													"addtype": "BublColumns" 											
-												}
+													"icon": "fa-columns"
+												},
+												"addcontent": {
+													"type": "BublColumns"													
+												} 																							
 											},
 											{
 												"content": {
 													"label": "Rows",
-													"icon": "fa-columns fa-rotate-90",
-													"addtype": "BublRows" 											
-												}
+													"icon": "fa-columns fa-rotate-90"
+												},
+												"addcontent":{
+													"type": "BublRows" 																								
+												}												
 											},
 											{
 												"content": {
 													"label": "Slides",
-													"icon": "fa-clone",
-													"addtype": "BublSlides",
+													"icon": "fa-clone"
+												},
+												"addcontent":{
+													"type": "BublSlides",
+													"size": { "width": "max", "height": "max" },
 													"children": [
 														{
 															"type": "ContentArea",
@@ -87,7 +101,7 @@
 															"size": { "width": "full", "height": "full" }
 														}
 													]											
-												}
+												}												
 											}
 										]
 									}
@@ -165,7 +179,8 @@
 							},
 							{
 								"type": "View",
-								"id": "PropertiesForm"
+								"id": "PropertiesForm",
+								"scroll": true
 							}
 						]
 					}
