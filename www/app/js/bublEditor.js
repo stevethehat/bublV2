@@ -47,9 +47,9 @@ var bublEditor = {
 				bublEditor.addControl(
 					{ 
 						'params': {
-							'content': {
-								'addtype': 'BublImage',
-								'url': message.source.params.image
+							'addcontent':{
+								'type': 'BublImage',
+								'url': message.source.params.image									
 							}
 						}
 					}
@@ -136,15 +136,11 @@ var bublEditor = {
 			positioning = contentArea.params.childtype;
 		}
 		
-		var newControlParams = {
-			'type': data.params.content.addtype,
-			'css': contentArea.params.css,
-			'margin': contentArea.params.margin
-		}
-		
-		delete data.params.content['addtype'];
-		newControlParams['content'] = data.params.content;
-		
+		var newControlParams = {};
+		newControlParams['type'] = data.params.addcontent.type;
+		newControlParams['content'] = data.params.addcontent;
+		newControlParams['margin'] = contentArea.params.margin; 
+				
 		ZEN.log('add control', bublApp.variables);
 		
 		var parentID = contentArea.parent.id;
