@@ -290,7 +290,12 @@
 						bublApp.loadPage('bublPageNew', 'slideInRight', 'slideOutLeft');
 					}
 				);						
-			}
+			},
+			
+			preview: function(data){
+				alert('preview');
+				window.open('index.html?id=' + bublApp.getBublID(data.id), '_blank');
+			},
 		},
 		
 		'bublPageNew':{
