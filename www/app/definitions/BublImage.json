@@ -20,7 +20,9 @@
 			"options":[
 				{ "label": "None", "value": "none" },	
 				{ "label": "Grayscale", "value": "grayscale" },
-				{ "label": "Sepia", "value": "sepia" }
+				{ "label": "Sepia", "value": "sepia" },
+				{ "label": "Opacity", "value": "opacity" },
+				{ "label": "Brightness", "value": "brightness" }
 			]
 		}
 		,
@@ -39,7 +41,9 @@
 			"options":[
 				{ "label": "None", "value": "none" },	
 				{ "label": "Grayscale", "value": "grayscale" },
-				{ "label": "Sepia", "value": "sepia" }
+				{ "label": "Sepia", "value": "sepia" },
+				{ "label": "Opacity", "value": "opacity" },
+				{ "label": "Brightness", "value": "brightness" }
 			]
 		},
 		{
