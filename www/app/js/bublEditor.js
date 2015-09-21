@@ -49,7 +49,9 @@ var bublEditor = {
 						'params': {
 							'addcontent':{
 								'type': 'BublImage',
-								'url': message.source.params.image									
+								'content': {
+									'url': message.source.params.image																	
+								}
 							}
 						}
 					}
@@ -63,16 +65,22 @@ var bublEditor = {
 				bublApp.variables['contentelementparent'] = bublApp.variables['contentelement'];
 				bublApp.setCurrentObject(['contentelement'], message.source,
 					function(){
-						//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
-						ZEN.data.load('app/definitions/style.json', {},
-							function (standard) {
-								self.setupPropertiesForm(standard,
-									function(standard){
-										bublForm.showForm('PropertiesForm', message.source, message.source.params.type + '.json', standard);
-									}
-								);
-							}
-						);
+						self.showPropertiesForCurrentElement();
+					}
+				);
+			}
+		);		
+	},
+	
+	showPropertiesForCurrentElement: function(){
+		var self = this;
+		//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
+		var currentElement = bublApp.variables['contentelement'];
+		ZEN.data.load('app/definitions/style.json', {},
+			function (standard) {
+				self.setupPropertiesForm(standard,
+					function(standard){
+						bublForm.showForm('PropertiesForm', currentElement, currentElement.params.type + '.json', standard);
 					}
 				);
 			}
@@ -136,10 +144,19 @@ var bublEditor = {
 			positioning = contentArea.params.childtype;
 		}
 		
+		/*
 		var newControlParams = {};
 		newControlParams['type'] = data.params.addcontent.type;
 		newControlParams['content'] = data.params.addcontent;
 		newControlParams['margin'] = contentArea.params.margin; 
+		newControlParams['children'] = data.params.addcontent.children;
+		if(newControlParams['content'].hasOwnProperty('children')){
+			delete newControlParams['content']['children'];
+		}
+		*/
+		var newControlParams = data.params.addcontent;
+		
+		alert(JSON.stringify(newControlParams, null, 4));
 				
 		ZEN.log('add control', bublApp.variables);
 		
@@ -161,7 +178,12 @@ var bublEditor = {
 		
 		bublForm.save(element);
 		bublForm.removeForm();
-		content = element.params;
+		//content = element.params;
+		content = element.serialize()['params'];
+		
+		ZEN.log('content ' + JSON.stringify(content, null, 4));
+		ZEN.log('params ' + JSON.stringify(element.params, null, 4));
+		
 						
 		element.remove(true);
 		ZEN.cleanup();

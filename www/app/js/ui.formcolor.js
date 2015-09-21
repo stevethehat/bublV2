@@ -32,12 +32,28 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
-						var label = $('<label>' + this.params.label + '</label>').appendTo(container);
+						if(this.params.label !== undefined){
+							var label = $('<label>' + this.params.label + '</label>').appendTo(container);
+						}
 						var edit = $('<input type="color" value="' + this.params.value +'"/>')
 							.attr('id', 'colorpicker' + this.id)
 							.attr('data-source', this.params.source)
 							.appendTo(container);
+
+						//if we have a palette defined then use it
+						if(true){
+							edit.attr('list', 'colorpickerlist' + this.id)
 							
+							var dataList = $('<datalist/>')
+								.attr('id', 'colorpickerlist' + this.id)
+								.appendTo(container);
+								
+							$('<option value="#AA3F39"/>').appendTo(dataList);
+							$('<option value="#3B1807D"/>').appendTo(dataList);
+							$('<option value="#B1807D"/>').appendTo(dataList);
+							$('<option value="#AD0900"/>').appendTo(dataList);
+							$('<option value="#401412"/>').appendTo(dataList);
+						}
 						this.resize();
 					}
 					return this.el;

@@ -31,6 +31,8 @@ var ZEN = (function (ZEN, _, $) {
 					try{
 						if(self.getSetting(this.params.content.inactivefilter, 'none') !== 'none'){
 							this.el.css('-webkit-filter', this.params.content.inactivefilter + '(' + this.params.content.inactivefiltervalue + '%)');
+						} else {
+							this.el.css('-webkit-filter', '');
 						}
 					} catch(error){
 						

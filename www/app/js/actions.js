@@ -172,7 +172,6 @@
 				bublEditor.deleteControl(data);
 			},
 			parentcontrol: function(data){
-				alert('up to parent');
 				function getParent(element){
 					if(element.parent.params.autoadded === true){
 						return(getParent(element.parent));
@@ -182,9 +181,11 @@
 				}
 				var element = bublApp.variables['contentelement'];
 				var parent = getParent(element);				
-				
+
+				alert(JSON.stringify(parent.params, null, 4));				
 				bublApp.setCurrentObject(['contentelement'], parent,
 					function(){
+						bublEditor.showPropertiesForCurrentElement();
 						//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(parent.params, null, 4));
 					}
 				);

@@ -29,6 +29,16 @@ var ZEN = (function (ZEN, _, $) {
 
 				label: function () {
 				},
+				
+				getSetting: function(setting, defaultValue){
+					var result = defaultValue;
+					try{
+						result = setting;
+					} catch(error) {
+						
+					}
+					return(result);
+				},
 
 				notify: function (message) {
 					var self = this;
@@ -94,7 +104,7 @@ var ZEN = (function (ZEN, _, $) {
 					if(self.params.styling === undefined){
 						self.params.styling = {};
 					}
-					self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' })
+					self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' }, self.params.css);
 					self.stylingDiv.css(self.params.styling);	
 				}
 			}

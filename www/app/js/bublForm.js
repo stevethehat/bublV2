@@ -34,6 +34,13 @@ var bublForm = {
 				'cache': false,
 				success: function (data) {
 					callback(data);
+				},
+				error: function(){
+					callback(
+						{
+							'fields': []		
+						}
+					);
 				}
 			}			
 		);

@@ -94,11 +94,17 @@
 													"children": [
 														{
 															"type": "ContentArea",
-															"size": { "width": "full", "height": "full" }
+															"position": { "top": 0, "left": 0, "bottom": 0, "right": 0 },
+															"styling":{
+																"background-color": "#ff0000"
+															}
 														},
 														{
 															"type": "ContentArea",
-															"size": { "width": "full", "height": "full" }
+															"position": { "top": 0, "left": 0, "bottom": 0, "right": 0 },
+															"styling":{
+																"background-color": "#00ff00"
+															}
 														}
 													]											
 												}												

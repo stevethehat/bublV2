@@ -9,7 +9,7 @@ var ZEN = (function (ZEN, _, $) {
 		
 		function BublSlides (params, parent) {
 			if (arguments.length > 0) {
-				ZEN.ui.BublControl.call(this, params, parent);
+				ZEN.ui.BublView.call(this, params, parent);
 			}
 			return this;
 		}
@@ -46,7 +46,7 @@ var ZEN = (function (ZEN, _, $) {
 						self.initSlides();
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-slides');
-						self.setupStylingDiv();
+						//self.setupStylingDiv();
 						
 						alert(this.params.layout.slides + ' slides');
 						

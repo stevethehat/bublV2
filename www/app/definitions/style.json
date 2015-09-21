@@ -10,12 +10,12 @@
 					"fields": [
 						{
 							"type": "FormColor",
-							"source": "styling.color",
+							"source": "css.color",
 							"default": "#ffffff"
 						},
 						{
 							"type": "FormColor",
-							"source": "styling.background-color",
+							"source": "css.background-color",
 							"default": "#1C6A85"
 						}		
 					]
