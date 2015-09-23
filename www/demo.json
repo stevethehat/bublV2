@@ -1,0 +1,165 @@
+{
+	"type": "Application",
+	"id": "BublApp",
+	"children":[
+		{
+			"type": "BublView",
+			"id": "page-1",
+			"size": { "width": 1366, "height": 768 },
+			"position": { "top": "middle", "left": "middle" },
+			"show": true,
+			"children": [
+				{
+					"type": "BublView",
+					"size": { "width": "full", "height": "full" },
+					"cssClass": "demobubl",
+					"children":[
+						{
+							"type": "BublView",
+							"id": "title",
+							"position": { "top": 10, "left": 100 },
+							"size": { "width": 600, "height": 80},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "title"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "logo",
+							"position": { "top": 10, "left": 1040 },
+							"size": { "width": 200, "height": 80},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "logo"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "box1",
+							"position": { "top": 100, "left": 100 },
+							"size": { "width": 150, "height": 150},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "box 1"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "box2",
+							"position": { "top": 260, "left": 100 },
+							"size": { "width": 150, "height": 150},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "box 2"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "box3",
+							"position": { "top": 100, "left": 700 },
+							"size": { "width": 150, "height": 150},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "box 3"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "box4",
+							"position": { "top": 260, "left": 700 },
+							"size": { "width": 150, "height": 150},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "box 4"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "box5",							
+							"position": { "top": 100, "left": 860 },
+							"size": { "width": 150, "height": 150},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "box 5"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "box6",							
+							"position": { "top": 260, "left": 860 },
+							"size": { "width": 150, "height": 150},
+							"cssClass": "box",
+							"children":[
+								{
+									"type": "Button",
+									"label": "box 6"
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "textbox",							
+							"position": { "top": 420, "left": 100 },
+							"size": { "width": 600, "height": 160 },
+							"cssClass": "box",
+							"children": [
+								{
+									"type": "Control",
+									"label": "this is some text ... blah.. blah  ... blah.. blah  ... blah.. blah  ... blah.. blah  ... blah.. blah  ... blah.. blah  ... blah.. blah  ... blah.. blah  ... blah.. blah "
+								}
+							]
+						},
+						{
+							"type": "BublView",
+							"id": "videobox",							
+							"position": { "top": 100, "left": 260 },
+							"size": { "width": 430, "height": 310 },
+							"cssClass": "box",
+							"children": [
+								{
+									"type": "Control",
+									"label": "video"
+								}
+							]
+						},						
+						{
+							"type": "BublView",
+							"id": "image",							
+							"position": { "top": 240, "left": 1040 },
+							"size": { "width": 200, "height": 200 },
+							"cssClass": "box",
+							"children": [
+								{
+									"type": "Control",
+									"label": "image"
+								}
+							]
+						}						
+					]
+				}
+			]			
+		}
+	]
+}
