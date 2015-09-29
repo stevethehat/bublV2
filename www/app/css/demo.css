@@ -1,7 +1,8 @@
 .demobubl{
-	background-color: red;
+	background-color: green;
 }
 
 .box{
-	background-color: yellow;
+	border: 1px solid black;
+	color: black;
 }
