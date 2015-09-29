@@ -9,12 +9,12 @@ var ZEN = (function (ZEN, _, $) {
 		
 		function BublControl (params, parent) {
 			if (arguments.length > 0) {
-				ZEN.ui.Control.call(this, params, parent);
+				ZEN.ui.LayoutControl.call(this, params, parent);
 			}
 			return this;
 		}
 
-		BublControl.prototype = new ZEN.ui.Control();
+		BublControl.prototype = new ZEN.ui.LayoutControl();
 		
 		_.extend(
 			BublControl.prototype,
@@ -22,7 +22,7 @@ var ZEN = (function (ZEN, _, $) {
 
 				init: function (params, parent) {
 					// call the base class init method
-					ZEN.ui.Control.prototype.init.call(this, params, parent);
+					ZEN.ui.LayoutControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
 					ZEN.events.buttonHandler (this, this.el);
 				},
@@ -105,7 +105,12 @@ var ZEN = (function (ZEN, _, $) {
 						self.params.styling = {};
 					}
 					self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' }, self.params.css);
-					self.stylingDiv.css(self.params.styling);	
+					//self.stylingDiv.css(self.params.styling);	
+				},
+				
+				setupControlPropertiesForm: function(form, callback){
+					callback();
+					//alert('setup properties form ' + this.type + ' ' + JSON.stringify(form, null, 4));
 				}
 			}
 		);

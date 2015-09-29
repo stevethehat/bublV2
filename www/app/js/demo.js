@@ -14,6 +14,7 @@
 		 'app/js/ui.asset.js',
 		 'zen/js/ui.menu.js',
 		 'zen/js/ui.list.js',
+		 'zen/js/ui.layoutcontrol.js',
 
 		 'app/js/ui.formselect.js',
 		 'app/js/ui.formedit.js',
@@ -47,6 +48,7 @@
 		 'app/js/ui.bublvideo.js',
 		 'app/js/ui.bublcolumns.js',
 		 'app/js/ui.bublrows.js',
+		 'app/js/ui.msMenuBox.js',
 		 
 		 'app/js/ui.bublview.js',
 		 'app/js/ui.bublslides.js'
