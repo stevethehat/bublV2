@@ -1,1 +1,464 @@
-{"type": "Application", "id": "BublApp", "children": [{"position": {"top": "middle", "left": "middle"}, "show": true, "type": "BublView", "children": [{"show": true, "zIndex": 14.0, "position": {"top": 30.0, "left": 1142.0}, "type": "BublView", "children": [{"content": {"url": "http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/eb4dd018-5fc7-4f05-ada9-ea373c72e393.png"}, "type": "BublImage"}], "css": {"background-color": "rgba(0,0,0,0)"}, "size": {"width": 182.0, "height": 44.0}}, {"show": true, "zIndex": 13.0, "position": {"top": 150.0, "left": 128.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url()", "font-size": "48px", "font-family": "Calibri"}, "label": "<p>Health</p>"}], "css": {"background-color": "rgba(0,0,0,0)"}, "size": {"width": 523.0, "height": 88.0}}, {"show": true, "zIndex": 12.0, "position": {"top": 250.0, "left": 128.0}, "type": "BublView", "children": [{"content": {"url": "http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/d5903897-1d1c-4283-8741-5b41ce3736f9.mp4"}, "type": "BublVideo"}], "css": {"background-color": "rgba(0,0,0,0)"}, "size": {"width": 301.0, "height": 170.0}}, {"show": true, "zIndex": 11.0, "position": {"top": 248.0, "left": 443.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url()", "font-size": "16px", "font-family": "Calibri"}, "label": "<p>This is where the CTM will type a personal message to his/her customer. The video on this page will be from the CTM too, but it will be a pre-recorded video that will be used for everyone.</p>"}], "css": {"background-color": "rgba(0,0,0,0)"}, "size": {"width": 286.0, "height": 100.0}}, {"show": true, "zIndex": 10.0, "position": {"top": 356.0, "left": 443.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url()", "font-size": "24px", "font-family": "Comic Sans MS"}, "label": "<p>Marleen Reininger</p>"}], "css": {"background-color": "rgba(0,0,0,0)"}, "size": {"width": 260.0, "height": 44.0}}, {"show": true, "zIndex": 9.0, "position": {"top": 407.0, "left": 454.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url()", "font-size": "12px", "font-family": "Calibri"}, "label": "<p>Marleen Reininger, Corporate Account Manager, Microsoft UK</p>"}], "css": {"background-color": "rgba(0,0,0,0)"}, "size": {"width": 289.0, "height": 17.0}}, {"show": true, "zIndex": 8.0, "position": {"top": 454.0, "left": 128.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url(http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/0145f98c-9b9c-4145-9314-8feae80ae5af.png)", "font-size": "16px", "font-family": "Calibri"}, "label": "<p>CEO and COO</p>"}], "css": {"background-color": "rgba(0,158,73,255)"}, "size": {"width": 196.0, "height": 95.0}}, {"show": true, "zIndex": 7.0, "position": {"top": 454.0, "left": 334.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url(http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/1b88388b-52d5-40ca-b66a-0286ade10d4e.png)", "font-size": "16px", "font-family": "Calibri"}, "label": "<p>Finance </p><p>Directors</p>"}], "css": {"background-color": "rgba(108,56,167,255)"}, "size": {"width": 196.0, "height": 95.0}}, {"show": true, "zIndex": 6.0, "position": {"top": 454.0, "left": 540.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url(http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/678a3d88-f1c7-4957-b153-556e3f0d01e9.jpg)", "font-size": "16px", "font-family": "Calibri"}, "label": "<p>The Future Decoded</p>"}], "css": {"background-color": "rgba(186,20,26,255)"}, "size": {"width": 196.0, "height": 95.0}}, {"show": true, "zIndex": 5.0, "position": {"top": 559.0, "left": 128.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url(http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/f9698563-6090-46c1-b916-8f12e1f179c3.png)", "font-size": "16px", "font-family": "Calibri"}, "label": "<p>Clinicians and</p><p>Nurses</p>"}], "css": {"background-color": "rgba(0,178,148,255)"}, "size": {"width": 196.0, "height": 95.0}}, {"show": true, "zIndex": 4.0, "position": {"top": 558.0, "left": 334.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url(http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/295d290b-bc1d-4fe5-a981-5582b5f4a7b1.png)", "font-size": "16px", "font-family": "Calibri"}, "label": "<p>CCIO</p>"}], "css": {"background-color": "rgba(255,140,0,255)"}, "size": {"width": 196.0, "height": 95.0}}, {"show": true, "zIndex": 3.0, "position": {"top": 559.0, "left": 540.0}, "type": "BublView", "children": [{"type": "ContentEditable", "css": {"color": "rgba(255,255,255,255)", "background-image": "url(http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/c737ba6b-5889-4f43-bc67-ef8ff3b1510d.jpg)", "font-size": "16px", "font-family": "Calibri"}, "label": "<p>Next Steps</p>"}], "css": {"background-color": "rgba(235,60,0,255)"}, "size": {"width": 196.0, "height": 95.0}}, {"show": true, "zIndex": 2.0, "position": {"top": 103.0, "left": 74.0}, "type": "BublView", "children": [{"type": "ContentEditable", "label": "BubbleRectangle"}], "css": {"background-color": "rgba(68,35,89,255)"}, "size": {"width": 714.0, "height": 604.0}}, {"show": true, "zIndex": 1.0, "position": {"top": -1.0, "left": -1.0}, "type": "BublView", "children": [{"content": {"url": "http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/712b1a0a-74b9-4c6b-ab2c-e3c70e5c06a2.png"}, "type": "BublImage"}], "css": {"background-color": "rgba(0,0,0,0)"}, "size": {"width": 1367.0, "height": 772.0}}], "size": {"width": 1366, "height": 768}}]}
+{
+    "type":"Application",
+    "id":"BublApp",
+    "children":[
+        {
+            "position":{
+                "top":"middle",
+                "left":"middle"
+            },
+            "show":true,
+            "type":"BublView",
+            "children":[
+                {
+                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/b5cd6788-2baf-46e3-92b6-b6b59eb188d7/Assets/971a020e-590f-49d0-be84-9c41b52a43c9.jpg",
+                    "oldid":"WIN12_Julian_06",
+                    "oldtype":"BubbleImage",
+                    "position":{
+                        "top":0,
+                        "left":0
+                    },
+                    "cssClass":"WIN12Julian06-22",
+                    "type":"BublView",
+                    "children":[
+                        {
+                            "opacity":1.0,
+                            "auto added control":true,
+                            "type":"Control",
+                            "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/b5cd6788-2baf-46e3-92b6-b6b59eb188d7/Assets/971a020e-590f-49d0-be84-9c41b52a43c9.jpg",
+                            "oldid":"WIN12_Julian_06",
+                            "oldtype":"BubbleImage",
+                            "cssClass":"WIN12Julian06-22"
+                        },
+                        {
+                            "oldid":"Rectangle Layer 3",
+                            "oldtype":"BubbleRectangle",
+                            "position":{
+                                "top":103,
+                                "left":63
+                            },
+                            "cssClass":"RectangleLayer3-20",
+                            "type":"BublView",
+                            "children":[
+                                {
+                                    "opacity":0.8,
+                                    "auto added control":true,
+                                    "type":"Control",
+                                    "oldid":"Rectangle Layer 3",
+                                    "oldtype":"BubbleRectangle",
+                                    "cssClass":"RectangleLayer3-20 ms-dk-purple"
+                                },
+                                {
+                                    "opacity":1.0,
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/d5903897-1d1c-4283-8741-5b41ce3736f9.mp4",
+                                    "content":{
+                                        "url":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/d5903897-1d1c-4283-8741-5b41ce3736f9.mp4"
+                                    },
+                                    "oldid":"FEEBUB Marleen Reininger_copy",
+                                    "oldtype":"BubbleVideo",
+                                    "position":{
+                                        "top":147,
+                                        "left":54
+                                    },
+                                    "cssClass":"FEEBUBMarleenReiningercopy-9",
+                                    "type":"BublVideo",
+                                    "size":{
+                                        "width":301,
+                                        "height":170
+                                    }
+                                },
+                                {
+                                    "opacity":1.0,
+                                    "image":"",
+                                    "label":"<p>Communications & Media</p>",
+                                    "oldid":"Communications & Med",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":47,
+                                        "left":54
+                                    },
+                                    "cssClass":"CommunicationsMed-19 text",
+                                    "type":"ContentEditable",
+                                    "size":{
+                                        "width":523,
+                                        "height":88
+                                    }
+                                },
+                                {
+                                    "opacity":1.0,
+                                    "image":"",
+                                    "label":"<p>This is where the CTM will type a personal message to his/her customer. The video on this page will be from the CTM too, but it will be a pre-recorded video that will be used for everyone.</p>",
+                                    "oldid":"This is where the CT_copy",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":145,
+                                        "left":380
+                                    },
+                                    "cssClass":"ThisiswheretheCTcopy-12 text",
+                                    "type":"ContentEditable",
+                                    "size":{
+                                        "width":286,
+                                        "height":100
+                                    }
+                                },
+                                {
+                                    "opacity":0.75,
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/c737ba6b-5889-4f43-bc67-ef8ff3b1510d.jpg",
+                                    "label":"<p>Next Steps</p>",
+                                    "oldid":"Next Steps",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":456,
+                                        "left":466
+                                    },
+                                    "cssClass":"NextSteps-13 text ms-menuControl ms-red",
+                                    "type":"msMenuBox",
+                                    "size":{
+                                        "width":196,
+                                        "height":95
+                                    }
+                                },
+                                {
+                                    "opacity":0.75,
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/678a3d88-f1c7-4957-b153-556e3f0d01e9.jpg",
+                                    "label":"<p>Microsoft Vision</p>",
+                                    "oldid":"Microsoft Vision",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":351,
+                                        "left":466
+                                    },
+                                    "cssClass":"MicrosoftVision-14 text ms-menuControl ms-dk-red",
+                                    "type":"msMenuBox",
+                                    "size":{
+                                        "width":196,
+                                        "height":95
+                                    }
+                                },
+                                {
+                                    "opacity":0.75,
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/cfdc9f68-9a00-4850-b8ee-1a91031c256c.png",
+                                    "label":"<p>Work Anywhere with Windows 10 </p><p>and Devices</p>",
+                                    "oldid":"Work Anywhere with W",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":456,
+                                        "left":260
+                                    },
+                                    "cssClass":"WorkAnywherewithW-15 text ms-menuControl ms-orange",
+                                    "type":"msMenuBox",
+                                    "size":{
+                                        "width":196,
+                                        "height":95
+                                    }
+                                },
+                                {
+                                    "opacity":0.75,
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/796dab6b-0367-4f4f-ba5b-bdcdcd629897.png",
+                                    "label":"<p>Informed,\u00acData Driven\u00acDecisions</p>",
+                                    "oldid":"Informed, Data Drive",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":351,
+                                        "left":260
+                                    },
+                                    "cssClass":"InformedDataDrive-16 text ms-menuControl ms-purple",
+                                    "type":"msMenuBox",
+                                    "size":{
+                                        "width":196,
+                                        "height":95
+                                    }
+                                },
+                                {
+                                    "opacity":0.75,
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/1667c04c-5153-40a5-a6d0-8b69abc97c30.png",
+                                    "label":"<p>Cloud on\u00acYour Terms</p>",
+                                    "oldid":"Cloud on Your Terms",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":456,
+                                        "left":54
+                                    },
+                                    "cssClass":"CloudonYourTerms-17 text ms-menuControl ms-teal",
+                                    "type":"msMenuBox",
+                                    "size":{
+                                        "width":196,
+                                        "height":95
+                                    }
+                                },
+                                {
+                                    "opacity":0.75,
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/6eece1da-7c49-4c2a-8526-03bba78dbd08.png",
+                                    "label":"<p>Cloud Productivity </p><p>and Business </p><p>Processes</p>",
+                                    "oldid":"Cloud Productivity  ",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":351,
+                                        "left":54
+                                    },
+                                    "cssClass":"CloudProductivity-18 text ms-menuControl ms-green",
+                                    "type":"msMenuBox",
+                                    "size":{
+                                        "width":196,
+                                        "height":95
+                                    }
+                                },
+                                {
+                                    "opacity":1.0,
+                                    "image":"",
+                                    "label":"<p>Marleen Reininger</p>",
+                                    "oldid":"Marleen Reininger_copy",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":253,
+                                        "left":380
+                                    },
+                                    "cssClass":"MarleenReiningercopy-10 text",
+                                    "type":"ContentEditable",
+                                    "size":{
+                                        "width":260,
+                                        "height":44
+                                    }
+                                },
+                                {
+                                    "opacity":1.0,
+                                    "image":"",
+                                    "label":"<p>Corporate Account Manager, Microsoft UK</p>",
+                                    "oldid":"Corporate Account Ma_copy",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":296,
+                                        "left":380
+                                    },
+                                    "cssClass":"CorporateAccountMacopy-11 text",
+                                    "type":"ContentEditable",
+                                    "size":{
+                                        "width":309,
+                                        "height":32
+                                    }
+                                }
+                            ],
+                            "size":{
+                                "width":714,
+                                "height":604
+                            }
+                        },
+                        {
+                            "oldid":"Featured Content Panel",
+                            "oldtype":"BubbleRectangle",
+                            "position":{
+                                "top":103,
+                                "left":789
+                            },
+                            "cssClass":"FeaturedContentPanel-7",
+                            "type":"BublView",
+                            "children":[
+                                {
+                                    "opacity":0.8,
+                                    "auto added control":true,
+                                    "type":"Control",
+                                    "oldid":"Featured Content Panel",
+                                    "oldtype":"BubbleRectangle",
+                                    "cssClass":"FeaturedContentPanel-7 ms-dk-purple"
+                                },
+                                {
+                                    "opacity":1.0,
+                                    "image":"",
+                                    "label":"<p>Here you can write something about the extra content you're featuring.</p><p>You can make it more personal by relating to a customer call or meeting and highlight there's more information available through the relevant topics on the left.</p>",
+                                    "oldid":"Featured Text",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":110,
+                                        "left":26
+                                    },
+                                    "cssClass":"FeaturedText-2 text",
+                                    "type":"ContentEditable",
+                                    "size":{
+                                        "width":284,
+                                        "height":145
+                                    }
+                                },
+                                {
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/37e6cfa9-f1a6-47ca-ae5d-c9304e4603fa.png",
+                                    "oldid":"Sample-Powerpoint-Do",
+                                    "oldtype":"BubbleFileIcon",
+                                    "position":{
+                                        "top":257,
+                                        "left":26
+                                    },
+                                    "cssClass":"SamplePowerpointDo-3",
+                                    "type":"BublView",
+                                    "children":[
+                                        {
+                                            "opacity":1.0,
+                                            "auto added control":true,
+                                            "type":"Control",
+                                            "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/37e6cfa9-f1a6-47ca-ae5d-c9304e4603fa.png",
+                                            "oldid":"Sample-Powerpoint-Do",
+                                            "oldtype":"BubbleFileIcon",
+                                            "cssClass":"SamplePowerpointDo-3"
+                                        }
+                                    ],
+                                    "size":{
+                                        "width":260,
+                                        "height":70
+                                    }
+                                },
+                                {
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/aca34bf1-3d0b-4037-bd5a-673a4f2ba6d9.png",
+                                    "oldid":"Sample-PDF",
+                                    "oldtype":"BubbleFileIcon",
+                                    "position":{
+                                        "top":337,
+                                        "left":26
+                                    },
+                                    "cssClass":"SamplePDF-4",
+                                    "type":"BublView",
+                                    "children":[
+                                        {
+                                            "opacity":1.0,
+                                            "auto added control":true,
+                                            "type":"Control",
+                                            "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/13a95efc-89c9-4272-af81-0c2916bbb1fc/Assets/aca34bf1-3d0b-4037-bd5a-673a4f2ba6d9.png",
+                                            "oldid":"Sample-PDF",
+                                            "oldtype":"BubbleFileIcon",
+                                            "cssClass":"SamplePDF-4"
+                                        }
+                                    ],
+                                    "size":{
+                                        "width":260,
+                                        "height":70
+                                    }
+                                },
+                                {
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/5d98846b-ee4a-4737-a982-c5e7ba72fd97.png",
+                                    "oldid":"Sample-Word-Document",
+                                    "oldtype":"BubbleFileIcon",
+                                    "position":{
+                                        "top":417,
+                                        "left":26
+                                    },
+                                    "cssClass":"SampleWordDocument-5",
+                                    "type":"BublView",
+                                    "children":[
+                                        {
+                                            "opacity":1.0,
+                                            "auto added control":true,
+                                            "type":"Control",
+                                            "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/5d98846b-ee4a-4737-a982-c5e7ba72fd97.png",
+                                            "oldid":"Sample-Word-Document",
+                                            "oldtype":"BubbleFileIcon",
+                                            "cssClass":"SampleWordDocument-5"
+                                        }
+                                    ],
+                                    "size":{
+                                        "width":260,
+                                        "height":70
+                                    }
+                                },
+                                {
+                                    "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/fdf71ca7-e7cf-49eb-b62c-14e2064bc38f.png",
+                                    "oldid":"Sample-Excel-Documen",
+                                    "oldtype":"BubbleFileIcon",
+                                    "position":{
+                                        "top":497,
+                                        "left":26
+                                    },
+                                    "cssClass":"SampleExcelDocumen-6",
+                                    "type":"BublView",
+                                    "children":[
+                                        {
+                                            "opacity":1.0,
+                                            "auto added control":true,
+                                            "type":"Control",
+                                            "image":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Uid/4169b14a-d51f-4a48-9180-ac417afa679a/Assets/fdf71ca7-e7cf-49eb-b62c-14e2064bc38f.png",
+                                            "oldid":"Sample-Excel-Documen",
+                                            "oldtype":"BubbleFileIcon",
+                                            "cssClass":"SampleExcelDocumen-6"
+                                        }
+                                    ],
+                                    "size":{
+                                        "width":260,
+                                        "height":70
+                                    }
+                                },
+                                {
+                                    "opacity":1.0,
+                                    "image":"",
+                                    "label":"<p>Featured</p>",
+                                    "oldid":"Featured Title",
+                                    "oldtype":"BubbleText",
+                                    "position":{
+                                        "top":62,
+                                        "left":26
+                                    },
+                                    "cssClass":"FeaturedTitle-1 text",
+                                    "type":"ContentEditable",
+                                    "size":{
+                                        "width":271,
+                                        "height":44
+                                    }
+                                }
+                            ],
+                            "size":{
+                                "width":330,
+                                "height":604
+                            }
+                        },
+                        {
+                            "opacity":1.0,
+                            "content":{
+                                "url":"http://bubblestorage.blob.core.windows.net/bubble/Lid/35/Cid/176/Uid/b5cd6788-2baf-46e3-92b6-b6b59eb188d7/Assets/0423f303-9ea9-438b-918e-d2cb975da166.png"
+                            },
+                            "oldid":"ms-logo-2012",
+                            "oldtype":"BubbleImage",
+                            "position":{
+                                "top":30,
+                                "left":1142
+                            },
+                            "cssClass":"mslogo2012-21",
+                            "type":"BublImage",
+                            "size":{
+                                "width":182,
+                                "height":44
+                            }
+                        },
+                        {
+                            "oldid":"DO NOT EDIT BELOW THIS",
+                            "oldtype":"BubbleRectangle",
+                            "position":{
+                                "top":710,
+                                "left":789
+                            },
+                            "cssClass":"DONOTEDITBELOWTHIS-8",
+                            "type":"BublView",
+                            "children":[
+                                {
+                                    "opacity":0.9,
+                                    "auto added control":true,
+                                    "type":"Control",
+                                    "oldid":"DO NOT EDIT BELOW THIS",
+                                    "bgColour":"#FFFFFF",
+                                    "oldtype":"BubbleRectangle",
+                                    "cssClass":"DONOTEDITBELOWTHIS-8"
+                                }
+                            ],
+                            "size":{
+                                "width":330,
+                                "height":6
+                            }
+                        }
+                    ],
+                    "size":{
+                        "width":1366,
+                        "height":768
+                    }
+                }
+            ],
+            "size":{
+                "width":1366,
+                "height":768
+            }
+        }
+    ]
+}

@@ -6,3 +6,67 @@
 	border: 1px solid black;
 	color: black;
 }
+
+@font-face {
+  font-family: 'Calibri';
+  src: url('fonts/Calibri.ttf');
+}
+@font-face {
+  font-family: 'Calibri';
+  src: url('fonts/Calibri Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Calibri';
+  src: url('fonts/Calibri Italic.ttf');
+  font-style: italic;
+} 
+@font-face {
+  font-family: 'Calibri';
+  src: url('fonts/Calibri Bold Italic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+.ms-menu-box.green {
+	background-color: #296;
+}
+
+.ms-menu-box.icon-1 {
+	
+}
+
+.ms-menu-box .label {
+	width: 100%;
+	height: 100%;
+	padding: 10px 40px 10px 10px;
+	font-family: Calibri;
+}
+
+.text{
+	font-family: 'Calibri';
+	color: white;
+}
+
+.ms-blue .bg-colour { background-color: #002050; } 
+.ms-red .bg-colour { background-color: #EB3C00; }
+.ms-dk-red .bg-colour { background-color: #BA141A; }
+.ms-orange .bg-colour { background-color: #FF8C00; }
+.ms-purple .bg-colour { background-color: #6C38A7; }
+.ms-teal .bg-colour { background-color: #00B294; }
+.ms-green .bg-colour { background-color: #009E49; }
+.ms-dk-purple .bg-colour { background-color: #442359; }
+
+.ms-menuControl {
+}
+
+.ms-menuControl .bg-colour {
+	width: 100%; height: 100%; position: absolute;
+}
+
+.ms-menuControl .bg-image {
+	width: 100%; height: 100%; position: absolute;
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
