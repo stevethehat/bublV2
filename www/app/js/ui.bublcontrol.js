@@ -21,7 +21,9 @@ var ZEN = (function (ZEN, _, $) {
 			{
 
 				init: function (params, parent) {
-					// call the base class init method
+					this.colourLayer = null;
+					this.imageLayer = null;
+		// call the base class init method
 					ZEN.ui.LayoutControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
 					ZEN.events.buttonHandler (this, this.el);
@@ -40,6 +42,7 @@ var ZEN = (function (ZEN, _, $) {
 					return(result);
 				},
 
+				/*
 				notify: function (message) {
 					var self = this;
 					message.source = this;
@@ -53,7 +56,7 @@ var ZEN = (function (ZEN, _, $) {
 					}
 					self.addActionEvents(message);					
 				},
-				
+				*/
 				addActionEvents: function(message){
 					if(bublApp.displayMode === 'app'){
 						if(message.type === 'active') {
@@ -89,8 +92,9 @@ var ZEN = (function (ZEN, _, $) {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
+						this.setupStylingDiv();
 						var dropArea = $('<div/>').addClass('contentareadrop').appendTo(this.el);
-						var instructions = $('<p>Add content here</p>').appendTo(dropArea);
+						var instructions = $('<p>Add content here %s</p>' % this.type).appendTo(dropArea);
 						this.resize();
 					}
 					return this.el;
@@ -98,7 +102,13 @@ var ZEN = (function (ZEN, _, $) {
 				
 				setupStylingDiv: function(){
 					var self = this;
-					self.stylingDiv = $('<div/>').appendTo(this.el);
+					
+					this.imageLayer = $('<div class="bg-image" />');
+					this.imageLayer.prependTo(this.el);						 
+					this.colourLayer = $('<div class="bg-colour" />');
+					this.colourLayer.prependTo(this.el);
+					
+					self.stylingDiv = $('<div/>').appendTo(this.imageLayer);
 					
 					//alert('setup styling div ' + self.stylingDiv.html());
 					if(self.params.styling === undefined){
@@ -108,10 +118,44 @@ var ZEN = (function (ZEN, _, $) {
 					//self.stylingDiv.css(self.params.styling);	
 				},
 				
+				opacity: function (value) {
+					if (value !== undefined) {
+						this._opacity = value;
+						//if(this.colourLayer !== null && this.colourLayer !== undefined){
+						if(true){
+							this.colourLayer.css('opacity',this._opacity);
+						} else {
+							alert('no color layer for ' + this.type)
+						}
+						return this;
+					} else {
+						return this._opacity;
+					}
+				},
+
+				image: function (value) {
+					if (value !== undefined) {
+						this._image = value;
+						//if(this.imageLayer !== null && this.imageLayer !== undefined){
+						if(true){
+							this.imageLayer.css({
+								'background-image':'url('+this._image+')'
+							});
+						} else {
+							alert('no image layer for ' + this.type)
+						}
+						return this;
+					} else {
+						return this._image;
+					}
+				},
+								
 				setupControlPropertiesForm: function(form, callback){
 					callback();
 					//alert('setup properties form ' + this.type + ' ' + JSON.stringify(form, null, 4));
 				}
+				
+				
 			}
 		);
 
