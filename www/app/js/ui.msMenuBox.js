@@ -56,8 +56,7 @@ var ZEN = (function (ZEN, _, $) {
 					} else {
 						return this._image;
 					}
-				},
-				
+				}
 			}
 		);
 
