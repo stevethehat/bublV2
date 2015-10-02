@@ -182,7 +182,7 @@
 				var element = bublApp.variables['contentelement'];
 				var parent = getParent(element);				
 
-				alert(JSON.stringify(parent.params, null, 4));				
+				//alert(JSON.stringify(parent.params, null, 4));				
 				bublApp.setCurrentObject(['contentelement'], parent,
 					function(){
 						bublEditor.showPropertiesForCurrentElement();
@@ -263,7 +263,7 @@
 			}
 		},
 		"bublPages": {
-			onLoad(data, callback){
+			onLoad: function(data, callback){
 				objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 					function(loadedData){
 						bublUtil.findID('bublGrid', data, 
