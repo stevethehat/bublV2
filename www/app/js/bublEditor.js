@@ -154,7 +154,7 @@ var bublEditor = {
 			delete newControlParams['content']['children'];
 		}
 		*/
-		var newControlParams = data.params.addcontent;
+		var newControlParams = _.clone(data.params.addcontent);
 		
 		alert(JSON.stringify(newControlParams, null, 4));
 				
