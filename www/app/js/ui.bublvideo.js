@@ -21,7 +21,7 @@ var ZEN = (function (ZEN, _, $) {
 			{
 				init: function (params, parent) {
 					// call the base class init method
-					ZEN.ui.Control.prototype.init.call(this, params, parent);
+					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
 					ZEN.events.buttonHandler (this, this.el);
 				},
 				
@@ -31,7 +31,7 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-video');
 						self.setupStylingDiv();
-									
+								
 						if(this.params.content && this.params.content.url !== undefined){
 							//var video = $('<video width="' + this.parent.el.width() + '" height="' + this.parent.el.height() + '" controls/>').appendTo(this.el);
 							var video = $('<video width="100%" height="100%" controls/>').appendTo(self.stylingDiv);
