@@ -55,7 +55,25 @@
 		 
 		 ],
 		function () {
-			var url = 'demo.json';
+			
+			function getUrlVars(){
+				var vars = [], hash;
+				var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+				for(var i = 0; i < hashes.length; i++)
+				{
+					hash = hashes[i].split('=');
+					vars.push(hash[0]);
+					vars[hash[0]] = hash[1];
+				}
+				return vars;
+			}
+			var urlVars = getUrlVars();
+			var bubl = urlVars['bubl'];
+			var page = urlVars['page'];
+			var url = 'demoexample' + bubl + '_' + page + '.json';
+			var css_url = 'app/css/demoexample' + bubl + '_' + page + '.css'
+			
+	        $('head').append('<link rel="stylesheet" href="' + css_url + '" type="text/css" />');
 			
 			ZEN.data.load(
 				url, {},
