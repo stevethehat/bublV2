@@ -32,6 +32,8 @@ var ZEN = (function (ZEN, _, $) {
 						this.colourLayer = $('<div class="bg-colour" />');
 						this.colourLayer.prependTo(this.el);
 						this.resize();
+						this.el.attr('title', this.params.content.bgtop + ' ' + this.params.content.bgleft + ' ' + this.params.content.bgwidth + 'x' + this.params.content.bgheight)
+						//this.imageLayer.css('background-size', this.params.content.bgwidth + ' ' + this.params.content.bgheight);
 					}
 					return this.el;
 				},
@@ -49,9 +51,12 @@ var ZEN = (function (ZEN, _, $) {
 				image: function (value) {
 					if (value !== undefined) {
 						this._image = value;
-						this.imageLayer.css({
-							'background-image':'url('+this._image+')'
-						});
+						var backgroundDetails = {
+							'background-image':'url('+this._image+')',
+							'background-size': this.params.content.bgwidth + 'px ' + this.params.content.bgheight + 'px',
+							'background-position': 'top ' + this.params.content.bgtop + 'px left ' + this.params.content.bgleft + 'px'
+						}
+						this.imageLayer.css(backgroundDetails);
 						return this;
 					} else {
 						return this._image;
