@@ -5,6 +5,12 @@
 			"type": "FormNumber",
 			"label": "Slides",
 			"source": "layout.slides"
+		},
+		{
+			"type": "FormSlideSelector",
+			"label": "Current slide",
+			"source": "layout.currentslide",
+			"id": "currentslide"
 		}
 	]
 }

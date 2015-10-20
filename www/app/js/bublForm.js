@@ -5,7 +5,12 @@ var bublForm = {
 		self.loadForm(definitionFileName,
 			function(data){
 				data.fields = data.fields.concat(standardElements.fields);
-				self.displayForm(parentView, object, data);
+				
+				object.setupControlPropertiesForm(data,
+					function(){
+						self.displayForm(parentView, object, data);				
+					}
+				)
 			}
 		);
 	},
@@ -68,6 +73,7 @@ var bublForm = {
 				}
 			);	
 		}
+				
 		processedDefinition.children.push(group);
 		_.each(field.fields,
 			function(subField){
@@ -122,8 +128,16 @@ var bublForm = {
 			'value': value,
 			'options': field.options 	
 		};
+		
+		if(field.params !== undefined && field.params !== null){
+			processedDefinition.children[0].params = _.clone(field.params);
+		}
+		//var fieldDefinition = {};
+		_.extend(fieldDefinition, field);
+		//var fieldDefinition = _.clone(field);
+		
 		group.push(fieldDefinition);
-		ZEN.log('process field definition');		
+		ZEN.log('process field definition', fieldDefinition);		
 	},
 	
 	displayForm: function(parentView, object, definition){

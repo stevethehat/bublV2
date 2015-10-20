@@ -14,6 +14,7 @@
 		 'app/js/ui.asset.js',
 		 'zen/js/ui.menu.js',
 		 'zen/js/ui.list.js',
+		 'zen/js/ui.layoutcontrol.js',
 
 		 'app/js/ui.formselect.js',
 		 'app/js/ui.formedit.js',
@@ -22,6 +23,7 @@
 		 'app/js/ui.formdatalist.js',
 		 'app/js/ui.formrange.js',
 		 'app/js/ui.formnumber.js',
+		 'app/js/ui.formslideselector.js',
 
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',
@@ -48,7 +50,8 @@
 		 'app/js/ui.bublrows.js',
 		 
 		 'app/js/ui.bublview.js',
-		 'app/js/ui.bublslides.js'
+		 'app/js/ui.bublslides.js',
+		 'app/js/ui.msMenuBox.js'
 		 
 		 ],
 		function () {

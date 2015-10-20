@@ -48,12 +48,28 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('zen-slides');
 						//self.setupStylingDiv();
 						
-						alert(this.params.layout.slides + ' slides');
+						//alert(this.params.layout.slides + ' slides');
 						
 						//self.stylingDiv.html('<p>Slides!!!</p>');
 						this.resize();
 					}
 					return this.el;
+				},
+				setupControlPropertiesForm: function(form, callback){
+					bublUtil.findID('currentslide', form,
+						function(slideSelector){
+							
+							/*
+							if(slideSelector.params === undefined || slideSelector.params === null){
+								slideSelector.params = {};
+							}
+							*/
+							slideSelector.min = 1;
+							slideSelector.max = 2;
+							slideSelector.default = 1;
+							callback();	
+						} 
+					)
 				}
 			}
 		);

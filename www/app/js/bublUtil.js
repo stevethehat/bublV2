@@ -65,6 +65,7 @@ var bublUtil = {
 			}	
 		)		
 	},
+	
 
 	addTemplate: function(callback){
 		objectStore.getNextOrder(2000,

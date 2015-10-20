@@ -61,11 +61,11 @@
 .ms-menuControl {
 }
 
-.ms-menuControl .bg-colour {
+.zen-view .bg-colour {
 	width: 100%; height: 100%; position: absolute;
 }
 
-.ms-menuControl .bg-image {
+.zen-view .bg-image {
 	width: 100%; height: 100%; position: absolute;
 	background-repeat: no-repeat;
 	background-position: bottom right;
