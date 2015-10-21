@@ -16,17 +16,6 @@
 		 'zen/js/ui.list.js',
 		 'zen/js/ui.layoutcontrol.js',
 
-		 'app/js/ui.formselect.js',
-		 'app/js/ui.formedit.js',
-		 'app/js/ui.formcheck.js',
-		 'app/js/ui.formcolor.js',
-		 'app/js/ui.formdatalist.js',
-		 'app/js/ui.formrange.js',
-		 'app/js/ui.formnumber.js',
-		 'app/js/ui.formslideselector.js',
-
-		 'app/lib/color-thief.js',
-		 'app/lib/ace/src/ace.js',
 		 'app/js/bublApp.js',
 		 'app/js/bublAssets.js',
 		 'app/js/bublEditor.js',
@@ -51,11 +40,11 @@
 		 'app/js/ui.msMenuBox.js',
 		 
 		 'app/js/ui.bublview.js',
-		 'app/js/ui.bublslides.js'
+		 'app/js/ui.bublslides.js',
+		 'app/js/ui.bublcss.js'
 		 
 		 ],
 		function () {
-			
 			function getUrlVars(){
 				var vars = [], hash;
 				var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -70,10 +59,10 @@
 			var urlVars = getUrlVars();
 			var bubl = urlVars['bubl'];
 			var page = urlVars['page'];
-			var url = 'demoexample' + bubl + '_' + page + '.json';
+			var url = 'v2definitions/demoexample' + bubl + '_' + page + '.json';
 			var css_url = 'app/css/demoexample' + bubl + '_' + page + '.css'
 			
-	        $('head').append('<link rel="stylesheet" href="' + css_url + '" type="text/css" />');
+	        //$('head').append('<link rel="stylesheet" href="' + css_url + '" type="text/css" />');
 			
 			ZEN.data.load(
 				url, {},

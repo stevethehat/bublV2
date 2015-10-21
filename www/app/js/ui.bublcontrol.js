@@ -115,7 +115,8 @@ var ZEN = (function (ZEN, _, $) {
 						self.params.styling = {};
 					}
 					self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' }, self.params.css);
-					//self.stylingDiv.css(self.params.styling);	
+					//self.stylingDiv.css(self.params.styling);
+					//alert(JSON.stringify(self.params.styling));	
 				},
 				
 				opacity: function (value) {

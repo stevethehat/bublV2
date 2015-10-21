@@ -51,7 +51,8 @@
 		 
 		 'app/js/ui.bublview.js',
 		 'app/js/ui.bublslides.js',
-		 'app/js/ui.msMenuBox.js'
+		 'app/js/ui.msMenuBox.js',
+		 'app/js/ui.bublcss.js'
 		 
 		 ],
 		function () {
