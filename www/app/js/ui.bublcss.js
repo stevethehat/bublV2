@@ -31,9 +31,7 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					if (this.el === null) {
 						//alert('in bubl css ' + JSON.stringify(this.params.definition, null, 2));
-						var allStyles = '';
-						//alert(styles);
-						
+						var allStyles = '';						
 						$.each(this.params.definition,
 							function(index, styleDefinition){
 								ZEN.log('class = ' + styleDefinition.class);
@@ -43,21 +41,11 @@ var ZEN = (function (ZEN, _, $) {
 									$('.' + styleDefinition.class).css(style, styleDefinition.styles[style]);
 									ZEN.log('set .' + styleDefinition.class + ' ' + style + ' = ' + styleDefinition.styles[style])								
 								}
-								if(css != ''){
-									ZEN.log(css);
-									allStyles = allStyles + '\n.' + styleDefinition.class + '{' + css + '\n}';
-									$('.' + styleDefinition.class).css(styleDefinition.styles);								
-								} else {
-									ZEN.log('no styles');
-								}
 							}
 						);
-						//var styles = $('head').append($('<style type="text.css">' + allStyles + '</style>'));
-						//var styles = $('head').append($('<style type="text/css">' + allStyles + '</style>'));
 						var styles = $('head').append($('<style type="text/css"/>'));
 						this.el = styles;
 						
-						//ZEN.log(styles.html());
 						this.resize();
 					}
 					return this.el;
@@ -66,7 +54,6 @@ var ZEN = (function (ZEN, _, $) {
 		);
 
 		ZEN.registerType('BublCSS',BublCSS);
-
 		return {
 			BublCSS: BublCSS
 		};

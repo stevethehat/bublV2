@@ -113,8 +113,10 @@
 					ZEN.log('do IN Animate');
 					playerPage.animate(inAnimate, true, 
 						function(){
-							currentPage.remove();
-							ZEN.cleanup();
+							if(currentPage !== undefined){
+								currentPage.remove();
+								ZEN.cleanup();
+							}
 						}	
 					);
 					/*
@@ -144,7 +146,6 @@
 				delete bublApp.variables['gridcurrentpage']
 			}
 			self.variables['currentpage'] = pageName;
-			//$('body').empty();
 			
 			ZEN.log('load page "' + pageName + '"');
 			ZEN.log(self.variables);
@@ -181,11 +182,6 @@
 				children: data['BublApp'].children
 			}
 			newPage['toolbarButtons'] = data['toolbarButtons'];
-			/*
-			newPage['toolbarButtons'] = {
-				'type': 'View',
-				'children':[]
-			}*/
 			return newPage;			
 		},
 
