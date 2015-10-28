@@ -246,3 +246,6 @@ p{
 	cursor: pointer;
 }
 
+#bublEditor{
+	overflow: scroll;
+}

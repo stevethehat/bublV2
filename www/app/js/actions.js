@@ -295,7 +295,6 @@
 			},
 			
 			preview: function(data){
-				alert('preview');
 				window.open('player.html?id=' + bublApp.getBublID(data.id), '_blank');
 			},
 		},

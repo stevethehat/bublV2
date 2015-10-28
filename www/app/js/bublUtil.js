@@ -111,11 +111,11 @@ var bublUtil = {
 	
 	generateThumbnail: function(id, callback){
 		var data = {
-			'url': 'http://localhost:3000/index.html?id=' + id,
+			'url': 'http://localhost:3000/player.html?id=' + id,
 			'fileName': id + '-thumbnail.png',
 			'width': 340,
 			'height': 200,
-			'delay': 1000
+			'delay': 3000
 		}
 		
 		$.ajax({
