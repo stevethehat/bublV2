@@ -45,6 +45,26 @@ var ZEN = (function (ZEN, _, $) {
 				label: function () {
 				},
 				
+				addControl: function(controls, action, icon, label){
+					var control = $('<span class="control"/>').appendTo(controls);
+					control.data('tag', action);
+					$('<i title="' + label + '" class="fa ' + icon + ' fa-1x"/>').appendTo(control).data('tag', action);
+					$('<span>' + label + '</span>').appendTo(control).data('tag', action);
+				},
+				
+				cssColor: function(color){
+					var cssColor = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
+					return(cssColor);
+				},
+						
+				getContrastYIQ: function(hexcolor){
+					var r = parseInt(hexcolor.substr(0,2),16);
+					var g = parseInt(hexcolor.substr(2,2),16);
+					var b = parseInt(hexcolor.substr(4,2),16);
+					var yiq = ((r*299)+(g*587)+(b*114))/1000;
+					return (yiq >= 128) ? 'black' : 'white';
+				},
+
 				getElement: function () {
 					var self = this;
 					if (this.el === null) {
@@ -72,17 +92,10 @@ var ZEN = (function (ZEN, _, $) {
 									'border': 'solid 1px ' + color
 								}
 							);
-							
-							function addControl(action, icon, label){
-								var control = $('<span class="control"/>').appendTo(controls);
-								control.data('tag', action);
-								$('<i title="' + label + '" class="fa ' + icon + ' fa-1x"/>').appendTo(control).data('tag', action);
-								$('<span>' + label + '</span>').appendTo(control).data('tag', action);
-							}
-							
+														
 							_.each(this.params.menu,
 								function(control){
-									addControl(control.action, control.icon, control.label);		
+									self.addControl(controls, control.action, control.icon, control.label);		
 								}
 							);
 							front.bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', 
@@ -101,20 +114,7 @@ var ZEN = (function (ZEN, _, $) {
 								}
 							);
 						}					
-						
-						function cssColor(color){
-							var cssColor = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
-							return(cssColor);
-						}
-						
-						function getContrastYIQ(hexcolor){
-							var r = parseInt(hexcolor.substr(0,2),16);
-							var g = parseInt(hexcolor.substr(2,2),16);
-							var b = parseInt(hexcolor.substr(4,2),16);
-							var yiq = ((r*299)+(g*587)+(b*114))/1000;
-							return (yiq >= 128) ? 'black' : 'white';
-						}
-						
+												
 						if(this.params.content.backcolor === undefined && this.params.content.color === undefined){
 							//alert('work out background color ' + JSON.stringify(self.params.content, null, 4));
 							img.on('load',
@@ -123,11 +123,11 @@ var ZEN = (function (ZEN, _, $) {
 							        var colorThief = new ColorThief();
 							        var palette = colorThief.getPalette(htmlImage);
 									
-									backColor = cssColor(palette[2]);	
+									backColor = self.cssColor(palette[2]);	
 									//alert('src = ' + backColor);
 			
 									//color = cssColor(palette[1]);
-									color = getContrastYIQ(backColor);	
+									color = self.getContrastYIQ(backColor);	
 									back.css(
 										{
 											'background-color': backColor,

@@ -313,67 +313,70 @@
 		preParse: function(data, defaults){
 			var self = this;
 			var childDefaults = {};
-			$.extend(true, childDefaults, defaults);
-						
-			if(data['defaults']){
-				$.extend(true, childDefaults, data['defaults']);
-			}
+			if(data['id'] !== 'BublPageRoot'){
 
-			self.runReplacer(data);
-			
-			// process grids... this really isnt the place to put this..
-			if(data['type'] == 'PagedGrid'){
-				data.children = ZEN.ui.PagedGrid.preProcess(data);
-			}
-			
-			if(data['children']){
-				// check that if there is more than one child that is not a view & if there is.. wrap them all
-				var children = data['children'];
+				$.extend(true, childDefaults, defaults);
+							
+				if(data['defaults']){
+					$.extend(true, childDefaults, data['defaults']);
+				}
+	
+				self.runReplacer(data);
 				
-				if((data['type'] === 'View' || data['type'] === 'BublView') && children.length > 1){
-					var wrapChildren = false;
-					for(var i = 0; i < children.length; i++){
-						var child = children[i];
-						var childType = child['type'];
-						if(childType === undefined){
-							childType = childDefaults['type']
-						}
-						if(String(childType) !== String('View') || String(childType) !== String('BublView')){
-							wrapChildren = true;
-							break;
-						}
-					}
+				// process grids... this really isnt the place to put this..
+				if(data['type'] == 'PagedGrid'){
+					data.children = ZEN.ui.PagedGrid.preProcess(data);
+				}
+				
+				if(data['children']){
+					// check that if there is more than one child that is not a view & if there is.. wrap them all
+					var children = data['children'];
 					
-					if(wrapChildren){
-						var viewWrappedChildren = [];
+					if((data['type'] === 'View' || data['type'] === 'BublView') && children.length > 1){
+						var wrapChildren = false;
 						for(var i = 0; i < children.length; i++){
 							var child = children[i];
-							if(child.type !== 'View' && child.type !== 'BublView'){
-								var wrapperView = {
-									'type': 'View',
-									'autoadded': true,
-									'children': [child]
-								};
-								if(child['size']){
-									wrapperView['size'] = child['size'];
-									//delete child['size'];
-									child['size'] = { 'width': 'max', 'height': 'max' };
-								}
-								if(child['id']){
-									wrapperView['id'] = child['id'] + 'AutoWrap';
-								}
-								viewWrappedChildren.push(wrapperView);
-							} else {
-								viewWrappedChildren.push(child);
+							var childType = child['type'];
+							if(childType === undefined){
+								childType = childDefaults['type']
+							}
+							if(String(childType) !== String('View') || String(childType) !== String('BublView')){
+								wrapChildren = true;
+								break;
 							}
 						}
-						data['children'] = viewWrappedChildren;
-						children = viewWrappedChildren;
-					}	
-				}
-				for(var i = 0; i < children.length; i++){
-					children[i] = $.extend(true, {}, childDefaults, children[i]);
-					self.preParse(children[i], childDefaults);
+						
+						if(wrapChildren){
+							var viewWrappedChildren = [];
+							for(var i = 0; i < children.length; i++){
+								var child = children[i];
+								if(child.type !== 'View' && child.type !== 'BublView'){
+									var wrapperView = {
+										'type': 'View',
+										'autoadded': true,
+										'children': [child]
+									};
+									if(child['size']){
+										wrapperView['size'] = child['size'];
+										//delete child['size'];
+										child['size'] = { 'width': 'max', 'height': 'max' };
+									}
+									if(child['id']){
+										wrapperView['id'] = child['id'] + 'AutoWrap';
+									}
+									viewWrappedChildren.push(wrapperView);
+								} else {
+									viewWrappedChildren.push(child);
+								}
+							}
+							data['children'] = viewWrappedChildren;
+							children = viewWrappedChildren;
+						}	
+					}
+					for(var i = 0; i < children.length; i++){
+						children[i] = $.extend(true, {}, childDefaults, children[i]);
+						self.preParse(children[i], childDefaults);
+					}
 				}
 			}
 			return(data);

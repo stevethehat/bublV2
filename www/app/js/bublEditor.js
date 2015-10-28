@@ -4,9 +4,21 @@ var bublEditor = {
 		bublUtil.findID('bublEditor', pageDefinition, 
 			function(element){
 				var layout = bublApp.variables['page'].layout;
-				//layout['id'] = 'page1';
+				//layout['id'] = 'page1';	
+				/*			
+				bublUtil.recurseTree(layout,
+					function(element){
+						if(element['id'] !== undefined && element['id'] !== 'BublPageRoot'){
+							element['id'] = 'pageid' + element['id']; 						
+							ZEN.log('set id to ' + element['id'])
+						} else {
+							ZEN.log('no id to set');
+						}
+					}
+				);
+				*/
 				element.children = [layout];
-				
+	
 				objectStore.getObject('3000', 'withchildren',
 					function(data){
 						//var assetList = ZEN.objects['AssetList'];

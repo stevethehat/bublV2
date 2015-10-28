@@ -93,8 +93,8 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
 						this.setupStylingDiv();
-						var dropArea = $('<div/>').addClass('contentareadrop').appendTo(this.el);
-						var instructions = $('<p>Add content here %s</p>' % this.type).appendTo(dropArea);
+						//var dropArea = $('<div/>').addClass('contentareadrop').appendTo(this.el);
+						//var instructions = $('<p>Add content here %s</p>' % this.type).appendTo(dropArea);
 						this.resize();
 					}
 					return this.el;

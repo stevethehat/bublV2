@@ -158,5 +158,16 @@ var bublUtil = {
 			ZEN.log('no data supplied to findID');
 			callback(null);
 		}
+	},
+	recurseTree: function(root, callback){
+		var self = this;
+		callback(root);
+		if(root['children']){
+			_.each(root['children'], 
+				function(child){
+					self.recurseTree(child, callback);	
+				}
+			);
+		}
 	}
 }
