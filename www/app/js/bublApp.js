@@ -30,7 +30,6 @@
 				function(parsedData){
 					self.app = parsedData;
 					ZEN.init(self.app);
-					alert('here');
 					self.loadPage(self.variables['currentpage'], 'fadeIn');
 				}	
 			);			
@@ -137,8 +136,6 @@
 		loadPage: function(pageName, inAnimation, outAnimation){
 			var self = this;
 			
-			alert('load page ' + pageName);
-		
 			self.variables['lastpage'] = self.variables['currentpage'];
 			
 			if(pageName !== self.variables['currentpage']){

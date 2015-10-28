@@ -19,7 +19,6 @@ var ZEN = (function (ZEN, _, $) {
 		_.extend(
 			BublCSS.prototype,
 			{
-
 				init: function (params, parent) {
 					ZEN.ui.Control.prototype.init.call(this, params, parent);
 				},
@@ -30,21 +29,18 @@ var ZEN = (function (ZEN, _, $) {
 				getElement: function () {
 					var self = this;
 					if (this.el === null) {
-						//alert('in bubl css ' + JSON.stringify(this.params.definition, null, 2));
-						var allStyles = '';						
 						$.each(this.params.definition,
 							function(index, styleDefinition){
-								ZEN.log('class = ' + styleDefinition.class);
-								var css = '';
 								for(var style in styleDefinition.styles){
-									css = css + style + ':' + styleDefinition.styles[style] + ';\n';
-									$('.' + styleDefinition.class).css(style, styleDefinition.styles[style]);
-									ZEN.log('set .' + styleDefinition.class + ' ' + style + ' = ' + styleDefinition.styles[style])								
+									var elements = $('.' + styleDefinition.class); 
+									elements.css(style, styleDefinition.styles[style]);
+									ZEN.log('set (' + elements.length + ') elements .' + styleDefinition.class + ' ' + style + ' = ' + styleDefinition.styles[style])								
 								}
 							}
 						);
-						var styles = $('head').append($('<style type="text/css"/>'));
-						this.el = styles;
+						//var styles = $('head').append($('<style type="text/css"/>'));
+						//this.el = styles;
+						this.el = $('<div/>');
 						
 						this.resize();
 					}

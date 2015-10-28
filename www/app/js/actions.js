@@ -105,6 +105,7 @@
 		},
 		"bublEditor":{
 			onLoad: function(data, callback){
+				//alert(JSON.stringify(data, null, 4));
 				bublEditor.load(data, callback);
 			},
 			save: function(){
@@ -148,7 +149,7 @@
 			},
 			preview: function(data){
 				var bublID = bublApp.variables['page'].id;
-				window.open('index.html?id=' + bublID, '_blank');
+				window.open('player.html?id=' + bublID, '_blank');
 			},
 			source: function(data){
 				var bublID = bublApp.variables['page'].id;
@@ -295,7 +296,7 @@
 			
 			preview: function(data){
 				alert('preview');
-				window.open('index.html?id=' + bublApp.getBublID(data.id), '_blank');
+				window.open('player.html?id=' + bublApp.getBublID(data.id), '_blank');
 			},
 		},
 		
@@ -451,7 +452,7 @@
 			
 			preview: function(){
 				var bublID = bublApp.variables['properties']['id'];
-				window.open('index.html?id=' + bublID, '_blank');
+				window.open('player.html?id=' + bublID, '_blank');
 			},			
 			
 			save: function(data){

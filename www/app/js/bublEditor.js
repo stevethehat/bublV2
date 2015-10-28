@@ -4,8 +4,9 @@ var bublEditor = {
 		bublUtil.findID('bublEditor', pageDefinition, 
 			function(element){
 				var layout = bublApp.variables['page'].layout;
+				//layout['id'] = 'page1';
 				element.children = [layout];
-			
+				
 				objectStore.getObject('3000', 'withchildren',
 					function(data){
 						//var assetList = ZEN.objects['AssetList'];
