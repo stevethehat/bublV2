@@ -213,7 +213,10 @@ var bublEditor = {
 		var newElement = ZEN.parse(content, ZEN.objects[parentID]);
 		ZEN.objects[parentID].show(true);
 		ZEN.objects['bublEditor'].resize(true);
-		bublApp.variables['contentelement'] = newElement;										
+		bublApp.variables['contentelement'] = newElement;	
+		
+		var cssObj = ZEN.objects["BublCSS"];
+		cssObj.applyCss();									
 	},
 	deleteControl: function(data){
 		var currentElement = bublApp.variables['contentelement'];
