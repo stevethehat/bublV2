@@ -27,7 +27,7 @@ var ZEN = (function (ZEN, _, $) {
 				notify: function (message) {
 					message.source = this;
 
-					ZEN.log(message.type);
+					//ZEN.log(message.type);
 					if(message.type === 'active') {
 						ZEN.notify ("ui.asset", message);
 					}

@@ -5,12 +5,14 @@ var bublForm = {
 		self.loadForm(definitionFileName,
 			function(data){
 				data.fields = data.fields.concat(standardElements.fields);
-				
+				self.displayForm(parentView, object, data);
+				/*
 				object.setupControlPropertiesForm(data,
 					function(){
 						self.displayForm(parentView, object, data);				
 					}
 				)
+				*/
 			}
 		);
 	},
@@ -166,7 +168,7 @@ var bublForm = {
 		$('#' + form.id + ' div').each(
 			function(index, element){
 				element = $(element);
-				ZEN.log('remove form element ', element);
+				//ZEN.log('remove form element ', element);
 				var object = ZEN.objects[element.attr('id')];
 				if(object !== undefined){ 
 					object.remove();

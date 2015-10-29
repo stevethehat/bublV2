@@ -42,12 +42,11 @@ var ZEN = (function (ZEN, _, $) {
 					return(result);
 				},
 
-				/*
 				notify: function (message) {
 					var self = this;
 					message.source = this;
 
-					ZEN.log(message.type);
+					//ZEN.log(message.type + ' ' + message.source.id);
 					
 					if (message.type === 'highlight') {
 						this.el.addClass('hover');
@@ -56,7 +55,7 @@ var ZEN = (function (ZEN, _, $) {
 					}
 					self.addActionEvents(message);					
 				},
-				*/
+
 				addActionEvents: function(message){
 					if(bublApp.displayMode === 'app'){
 						if(message.type === 'active') {
