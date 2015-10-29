@@ -141,9 +141,10 @@ var bublEditor = {
 				bublUtil.findID('colors', form, 
 					function(colors){
 						var parent = bublApp.variables['contentelementparent'];
-						colors.fields[0].default = parent.params.styling['color'];
-						colors.fields[1].default = parent.params.styling['background-color'];
-						
+						if(parent !== undefined){
+							colors.fields[0].default = parent.params.styling['color'];
+							colors.fields[1].default = parent.params.styling['background-color'];
+						}						
 						callback(form);
 					}
 				);				
@@ -189,6 +190,11 @@ var bublEditor = {
 		//var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
 		var parentID = element.parent.id;
 		
+		if(element instanceof ZEN.ui.LayoutControl){
+			// will get auto parent so remove this as  well
+			parentID = element.parent.parent.id;
+		}
+		
 		bublForm.save(element);
 		bublForm.removeForm();
 		//content = element.params;
@@ -203,8 +209,8 @@ var bublEditor = {
 		
 		content = self.fixContent(content);
 
-		var parsedData = bublApp.preParse(content);
-		var newElement = ZEN.parse(parsedData, ZEN.objects[parentID]);
+		//var parsedData = bublApp.preParse(content);
+		var newElement = ZEN.parse(content, ZEN.objects[parentID]);
 		ZEN.objects[parentID].show(true);
 		ZEN.objects['bublEditor'].resize(true);
 		bublApp.variables['contentelement'] = newElement;										
