@@ -21,6 +21,52 @@ var ZEN = (function (ZEN, _, $) {
 					this.colourLayer = null;
 					this.imageLayer = null;
 					ZEN.ui.LayoutControl.prototype.init.call(this, params, parent);
+					ZEN.events.buttonHandler (this, this.el);
+				},
+
+				notify: function (message) {
+					var self = this;
+					message.source = this;
+
+					//ZEN.log(message.type + ' ' + message.source.id);
+					
+					if (message.type === 'highlight') {
+						this.el.addClass('hover');
+					} else {
+						this.el.removeClass('hover');
+					}
+					self.addActionEvents(message);					
+				},
+
+				addActionEvents: function(message){
+					if(bublApp.displayMode === 'app'){
+						if(message.type === 'active') {
+							ZEN.notify ("ui.bublcontrol", message);
+						
+							if(bublApp.variables['contentelement'] !== undefined){						
+								bublApp.variables['contentelement'].el.removeClass('selected');
+							}						
+						
+							this.el.addClass('selected');
+							bublApp.variables['contentelement'] = this;
+						}
+					} else {
+						if(this.params.actions !== undefined && this.params.actions.hoveranimate !== undefined){
+							if (message.type === 'highlight') {
+								this.el.addClass(this.params.actions.hoveranimate + ' animated');
+							} else {
+								this.el.removeClass(this.params.actions.hoveranimate + ' animated');
+							}
+						}
+						if(message.type === 'active'){
+							if(this.params.actions.active.startsWith('showpage')){
+								var pageID = this.params.actions.active.substr(8);
+								bublApp.loadPlayerPage(pageID, this.params.actions.activeanimation);
+								//alert('show page ' + pageID);								
+							}
+							return(false);
+						}
+					}
 				},
 
 				getElement: function () {

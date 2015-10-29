@@ -141,6 +141,7 @@
 								"size": { "height": 40 }	
 							},
 							{
+								"type": "View",
 								"id": "bublEditor",
 								"color": "#999"
 							}

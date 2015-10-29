@@ -34,13 +34,13 @@ var ZEN = (function (ZEN, _, $) {
 								for(var style in styleDefinition.styles){
 									var elements = $('.' + styleDefinition.class); 
 									elements.css(style, styleDefinition.styles[style]);
-									ZEN.log('set (' + elements.length + ') elements .' + styleDefinition.class + ' ' + style + ' = ' + styleDefinition.styles[style])								
+									//ZEN.log('set (' + elements.length + ') elements .' + styleDefinition.class + ' ' + style + ' = ' + styleDefinition.styles[style])								
 								}
 							}
 						);
 						//var styles = $('head').append($('<style type="text/css"/>'));
 						//this.el = styles;
-						this.el = $('<div/>');
+						this.el = $('<div style="width:0px;height:0px/>');
 						
 						this.resize();
 					}
