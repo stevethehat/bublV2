@@ -97,7 +97,8 @@ var ZEN = (function (ZEN, _, $) {
 							{ 'label': 'MS Purple', 'value': 'ms-purple' },
 							{ 'label': 'MS Teal', 'value': 'ms-teal' },
 							{ 'label': 'MS Green', 'value': 'ms-green' },
-							{ 'label': 'MS Dark Purple', 'value': 'ms-dk-purple' }
+							{ 'label': 'MS Dark Purple', 'value': 'ms-dk-purple' },
+							{ 'label': 'White', 'value': 'white' }
 						]										
 					}
 				},
