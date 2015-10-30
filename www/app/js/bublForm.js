@@ -4,15 +4,26 @@ var bublForm = {
 		// create definition
 		self.loadForm(definitionFileName,
 			function(data){
+				
 				data.fields = data.fields.concat(standardElements.fields);
-				self.displayForm(parentView, object, data);
 				/*
-				object.setupControlPropertiesForm(data,
+				if(updater){
+					updater(data.fields,
+						function(updatedFields){
+							alert('here 2');
+							data.fields = updatedFields;
+							self.displayForm(parentView, object, data);		
+						}
+					);
+				} else {
+					self.displayForm(parentView, object, data);				
+				}
+				*/
+				object.setupPropertiesForm(data,
 					function(){
 						self.displayForm(parentView, object, data);				
 					}
 				)
-				*/
 			}
 		);
 	},
@@ -120,11 +131,16 @@ var bublForm = {
 			value = value.replace('px', '');
 		}
 		
+		var height = 40;
+		if(field.height !== undefined){
+			height = field.height;
+		}
+		
 		var fieldDefinition = {
 			'type': field.type,
 			'label': field.label,
 			'placeholder': field.placeholder,
-			'size': { 'width': 'max', 'height': 40 },
+			'size': { 'width': 'max', 'height': height },
 			'source': field.source,
 			'datatype': field.datatype,
 			'value': value,
@@ -216,7 +232,10 @@ var bublForm = {
 						level = level[sourceBit];
 					}
 				}
-			}				
+			}
+			if(result === null){
+				result = object.getPropertyValue(source);				
+			}
 			ZEN.log('get value "' + source + '" = "' + result + '"');			
 		} catch(exception) {
 			ZEN.log('get value error "' + source + '"  ("' + exception + ')');
@@ -270,7 +289,7 @@ var bublForm = {
 	},
 	save: function(object){
 		var self = this;
-		$('.formElementContainer input, .formElementContainer select').each(
+		$('.formElementContainer input, .formElementContainer select, .formElementContainer textarea').each(
 			function(index, element){
 				element = $(element);
 				var value = null;

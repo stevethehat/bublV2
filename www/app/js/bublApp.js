@@ -238,7 +238,10 @@
 			self.dump(parentID, parsedData);
 
 			o = ZEN.parse(parsedData, ZEN.objects[parentID]);
-
+			if(ZEN.objects['BublCSS']){
+				ZEN.objects['BublCSS'].applyCss();
+			}
+		
 			if (self.lastElements.hasOwnProperty(parentID)) {
 				cleanup = self.lastElements[parentID];
 				self.lastElements[parentID].animate(outAnimation, false,

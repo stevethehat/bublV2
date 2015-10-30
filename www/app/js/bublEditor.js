@@ -137,7 +137,9 @@ var bublEditor = {
 					]
 				}
 				form.fields[form.fields.length -1].fields.push(clickTransitions);
+				callback(form);
 				
+				/*
 				bublUtil.findID('colors', form, 
 					function(colors){
 						var parent = bublApp.variables['contentelementparent'];
@@ -147,7 +149,8 @@ var bublEditor = {
 						}						
 						callback(form);
 					}
-				);				
+				);
+				*/				
 			}	
 		);
 	},

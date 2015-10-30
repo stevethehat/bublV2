@@ -110,6 +110,8 @@
 			},
 			save: function(){
 				var content = ZEN.objects['BublPageRoot'].serialize();
+				bublApp.dump('savedpage', content);
+
 				var page = bublApp.variables['page']; 
 				page.layout = content.params;
 				if(!page.thumbnails){

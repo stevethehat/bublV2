@@ -236,7 +236,7 @@ p{
 	width: 100%;
 	padding-bottom: 4px;
 }
-#PropertiesForm input, #PropertiesForm select{
+#PropertiesForm input, #PropertiesForm select, #PropertiesForm textarea{
 	width: 100%;
 }
 

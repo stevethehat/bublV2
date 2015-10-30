@@ -23,7 +23,7 @@ var ZEN = (function (ZEN, _, $) {
 				init: function (params, parent) {
 					this.colourLayer = null;
 					this.imageLayer = null;
-		// call the base class init method
+					// call the base class init method
 					ZEN.ui.LayoutControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
 					ZEN.events.buttonHandler (this, this.el);
@@ -32,8 +32,94 @@ var ZEN = (function (ZEN, _, $) {
 				label: function () {
 				},
 				
+				getPropertiesField: function(id){
+					var self = this;
+					var result = null;
+					_.each(self.propertiesDefinition.fields,
+						function(field){
+							if(field.id === id){
+								result = field;
+							}
+						}
+					);
+					return(result);
+				},
+				
+				setupPropertiesForm: function(propertiesDefinition, callback){
+					// setup fonts
+					var self = this;
+					self.propertiesDefinition = propertiesDefinition;	
+					self.setupFontProperty();	
+					self.setupStylesProperty();	
+					
+					callback();
+				},
+
+				setupFontProperty: function(){
+					var self = this;
+					var font = self.getPropertiesField('font');
+					var options = []
+					_.each(bublApp.variables['page']['css']['definition'],
+						function(styleDefinition){
+							if(styleDefinition['class'].indexOf('fontstyle') == 0){
+								var color = 'White';
+								if(styleDefinition['styles']['font-family'] === 'rgba(255,255,255)'){
+									color = 'Black';
+								}
+								
+								var label = styleDefinition['styles']['font-family'] + ' (' + styleDefinition['styles']['font-size'] + ') ' + color; 
+								options.push(
+									{
+										'label': label,
+										'value': styleDefinition['class']
+									}
+								)									
+							}
+						}
+					)
+					if(font !== null){
+						font['options'] = options;
+					}
+					//alert(JSON.stringify(font));
+				},
+				
+				setupStylesProperty: function(){
+					var self = this;
+					var style = self.getPropertiesField('style');
+					
+					if(style !== null){
+						style['options'] = [
+							{ 'label': 'No Style', 'value': 'no-style' },
+							{ 'label': 'MS Blue', 'value': 'ms-blue' },
+							{ 'label': 'MS Red', 'value': 'ms-red' },
+							{ 'label': 'MS Dark Red', 'value': 'ms-dk-red' },
+							{ 'label': 'MS Orange', 'value': 'ms-orange' },
+							{ 'label': 'MS Purple', 'value': 'ms-purple' },
+							{ 'label': 'MS Teal', 'value': 'ms-teal' },
+							{ 'label': 'MS Green', 'value': 'ms-green' },
+							{ 'label': 'MS Dark Purple', 'value': 'ms-dk-purple' }
+						]										
+					}
+				},
+
+				getPropertyValue: function(setting, defaultValue){
+					var result = defaultValue;
+					ZEN.log('get property value ' + setting);
+					try{
+						result = setting;
+					} catch(error) {
+						
+					}
+					return(result);
+				},
+				
+				resetClass: function(){
+					//this.el.attr('class', '');	
+				},
+				
 				getSetting: function(setting, defaultValue){
 					var result = defaultValue;
+					ZEN.log('get setting ' + setting);
 					try{
 						result = setting;
 					} catch(error) {

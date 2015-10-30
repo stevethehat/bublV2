@@ -23,6 +23,7 @@
 		 'app/js/ui.formdatalist.js',
 		 'app/js/ui.formrange.js',
 		 'app/js/ui.formnumber.js',
+		 'app/js/ui.formtextarea.js',
 		 'app/js/ui.formslideselector.js',
 
 		 'app/lib/color-thief.js',

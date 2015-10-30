@@ -29,7 +29,8 @@ var ZEN = (function (ZEN, _, $) {
 				getElement: function () {
 					var self = this;
 					if (this.el === null) {
-						self.applyCss();
+						
+						//self.applyCss();
 						//var styles = $('head').append($('<style type="text/css"/>'));
 						//this.el = styles;
 						this.el = $('<div style="width:0px;height:0px/>');
@@ -39,7 +40,9 @@ var ZEN = (function (ZEN, _, $) {
 					return this.el;
 				},
 				applyCss: function(){
-					$.each(this.params.definition,
+					var css = bublApp.variables['page'].css;
+					//$.each(this.params.definition,
+					$.each(css.definition,
 						function(index, styleDefinition){
 							for(var style in styleDefinition.styles){
 								var elements = $('.' + styleDefinition.class); 

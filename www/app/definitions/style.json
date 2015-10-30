@@ -2,28 +2,6 @@
 	"fields": [
 		{
 			"type": "group",
-			"label": "Colors",
-			"fields": [
-				{
-					"type": "combo",
-					"id": "colors",
-					"fields": [
-						{
-							"type": "FormColor",
-							"source": "css.color",
-							"default": "#ffffff"
-						},
-						{
-							"type": "FormColor",
-							"source": "css.background-color",
-							"default": "#1C6A85"
-						}		
-					]
-				}		
-			]
-		},
-		{
-			"type": "group",
 			"label": "Layout",
 			"fields": [
 				{
