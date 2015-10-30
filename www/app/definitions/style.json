@@ -1,6 +1,15 @@
 {
 	"fields": [ 
 		{
+			"type": "FormRange",
+			"label": "Opacity",
+			"source": "opacity",
+			"default": "0",
+			"min": 0,
+			"max": 100,
+			"multiplyer": 100
+		},		
+		{
 			"type": "group",
 			"label": "Position",
 			"fields": [

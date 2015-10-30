@@ -33,11 +33,14 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-formedit');
 						var container = $('<div/>').addClass('formElementContainer').appendTo(this.el);
-						var label = $('<label>' + this.params.label + ' ' + this.params.value + '</label>').appendTo(container);
+
+						var value = Number(this.params.value) * Number(this.params.multiplyer);
+						var label = $('<label>' + this.params.label + ' ' + value + '</label>').appendTo(container);
 						var edit = $('<input type="range"/>')
 							.attr('data-source', this.params.source)
 							.attr('data-type', 'Number')
-							.attr('value', this.params.value)
+							.attr('data-multiplyer', this.params.multiplyer)
+							.attr('value', value)
 							.appendTo(container);
 							
 						if(this.params.min !== undefined && this.params.min !== null){

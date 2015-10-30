@@ -21,7 +21,6 @@ var ZEN = (function (ZEN, _, $) {
 			{
 
 				init: function (params, parent) {
-					alert('init content area');
 					// call the base class init method
 					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
@@ -66,8 +65,6 @@ var ZEN = (function (ZEN, _, $) {
 						this.el.addClass('zen-contentarea');
 						self.setupStylingDiv();
 						
-						alert('here in content area');
-
 						var dropArea = $('<div/>').appendTo(self.stylingDiv);
 						if(bublApp.displayMode === 'app'){
 							dropArea.addClass('contentareadrop');

@@ -307,6 +307,9 @@ var bublForm = {
 				if(element.attr('data-type') === 'px'){
 					value = value.replace('px', '') + 'px';
 				}
+				if(element.attr('data-multiplyer') !== undefined && element.attr('data-multiplyer') !== ''){
+					value = Number(value) / Number(element.attr('data-multiplyer'));
+				}
 				
 				self.setValue(object, source, value);
 			}
