@@ -110,6 +110,7 @@ var bublEditor = {
 				
 		objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 			function(data){
+				/*
 				clickActions.options.push( { 'label': 'No action', 'value': '' });		
 
 				_.each(data.children,
@@ -137,6 +138,7 @@ var bublEditor = {
 					]
 				}
 				form.fields[form.fields.length -1].fields.push(clickTransitions);
+				*/
 				callback(form);
 				
 				/*

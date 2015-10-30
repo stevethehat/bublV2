@@ -1,133 +1,39 @@
 {
-	"fields": [
+	"fields": [ 
 		{
 			"type": "group",
-			"label": "Layout",
+			"label": "Position",
 			"fields": [
 				{
 					"type": "combo",
-					"label": "Margins",
 					"fields":[
 						{
 							"type": "FormNumber",
 							"label": "Top",
-							"source": "styling.padding-top",
-							"datatype": "px",
+							"source": "position.top",
 							"default": "0"
-						},
-						{
-							"type": "FormNumber",
-							"label": "Bottom",
-							"source": "styling.padding-bottom",
-							"datatype": "px",
-							"default": "0"					
 						},
 						{
 							"type": "FormNumber",
 							"label": "Left",
-							"source": "styling.padding-left",
-							"datatype": "px",
-							"default": "0"
+							"source": "position.left",
+							"default": "0"					
 						},
-						{
-							"type": "FormNumber",
-							"label": "Right",
-							"source": "styling.padding-right",
-							"datatype": "px",
-							"default": "0"
-						}		
-					]
-				},
-				{
-					"type": "combo",
-					"label": "Border",
-					"fields":[
 						{
 							"type": "FormNumber",
 							"label": "Width",
-							"source": "styling.border-width",
-							"datatype": "px",
-							"default": "0"
-						},
-						{
-							"type": "FormDataList",
-							"label": "Style",
-							"source": "styling.border-style",
-							"options":[
-								{ "value": "solid"},	
-								{ "value": "dashed"},	
-								{ "value": "dotted"}	
-							],
-							"default": "solid"					
-						},
-						{
-							"type": "FormColor",
-							"label": "Color",
-							"source": "styling.border-color",
-							"default": "#ffffff"
-						},
-						{
-							"type": "FormNumber",
-							"label": "Corners",
-							"source": "styling.border-radius",
-							"datatype": "px",
-							"default": "0"
-						}	
-					]
-				},
-				{
-					"type": "combo",
-					"label": "Shadow",
-					"fields": [
-						{
-							"type": "FormNumber",
-							"label": "H",
-							"source": "styling.box-shadow[0]",
-							"datatype": "px",
+							"source": "size.width",
 							"default": "0"
 						},
 						{
 							"type": "FormNumber",
-							"label": "V",
-							"source": "styling.box-shadow[1]",
-							"datatype": "px",
+							"label": "Height",
+							"source": "size.height",
 							"default": "0"
-						},
-						{
-							"type": "FormNumber",
-							"label": "Size",
-							"source": "styling.box-shadow[2]",
-							"datatype": "px",
-							"default": "0"
-						},
-						{
-							"type": "FormColor",
-							"label": "Color",
-							"source": "styling.box-shadow[3]",
-							"default": "#ffffff"
-						}
+						}		
 					]
 				}		
 			] 
-		},
-		{
-			"type": "group",
-			"fields":[
-				{
-					"type": "FormSelect",
-					"label": "Animation",
-					"source": "actions.hoveranimate",
-					"options": [
-						{ "label": "Pulse", "value": "pulse" },
-						{ "label": "Flash", "value": "flase" },
-						{ "label": "Wobble", "value": "wobble" },
-						{ "label": "Jello", "value": "jello" },
-						{ "label": "Tada", "value": "tada" },
-						{ "label": "Rubber band", "value": "rubberBand" },
-						{ "label": "Swing", "value": "swing" }
-					] 
-				}
-			]
 		}
 	]
 }
