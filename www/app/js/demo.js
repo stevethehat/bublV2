@@ -62,7 +62,7 @@
 			var url = 'v2definitions/demoexample' + bubl + '_' + page + '.json';
 			var css_url = 'app/css/demoexample' + bubl + '_' + page + '.css'
 			
-	        //$('head').append('<link rel="stylesheet" href="' + css_url + '" type="text/css" />');
+	        $('head').append('<link rel="stylesheet" href="' + css_url + '" type="text/css" />');
 			
 			ZEN.data.load(
 				url, {},
