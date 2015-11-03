@@ -29,7 +29,6 @@ var ZEN = (function (ZEN, _, $) {
 				getElement: function () {
 					var self = this;
 					if (this.el === null) {
-						
 						//self.applyCss();
 						//var styles = $('head').append($('<style type="text/css"/>'));
 						//this.el = styles;

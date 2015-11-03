@@ -92,6 +92,10 @@
 					object.layout.size['height'] = 'full';
 					var playerPage = ZEN.parse(object.layout, ZEN.objects['bublPlayer']);
 
+					self.variables['page'] = object;
+					if(ZEN.objects['BublCSS']){
+						ZEN.objects['BublCSS'].applyCss();
+					}
 					if(currentPage !== undefined){
 						ZEN.log('do OUT Animate');
 						//currentPage.animate(outAnimate, false,
