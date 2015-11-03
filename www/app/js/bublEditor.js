@@ -202,6 +202,7 @@ var bublEditor = {
 		
 		bublForm.save(element);
 		bublForm.removeForm();
+		element.afterEdit(element);
 		//content = element.params;
 		content = element.serialize()['params'];
 		

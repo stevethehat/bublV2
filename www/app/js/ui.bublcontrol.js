@@ -44,6 +44,24 @@ var ZEN = (function (ZEN, _, $) {
 					);
 					return(result);
 				},
+					
+				afterEdit: function(element){
+					var self = this;
+					var elementClass = self.params.elementClassName;
+					var page = bublApp.variables['page'];
+					var css = {
+						'padding-top': element.params.styles['padding-top'],
+						'padding-left': element.params.styles['padding-left']
+					}
+					
+					_.each(page.css['definition'],
+						function(definition){
+							if(definition.class.indexOf(elementClass) === 0 && definition.class.indexOf('.label') !== -1){
+								definition['styles'] = css;
+							}
+						}
+					);
+				},	
 				
 				setupPropertiesForm: function(propertiesDefinition, callback){
 					// setup fonts
