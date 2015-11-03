@@ -108,6 +108,16 @@
 				//alert(JSON.stringify(data, null, 4));
 				bublEditor.load(data, callback);
 			},
+			
+			converttotemplate: function(){
+				bublUtil.addTemplate(
+					function(templateData){
+						//alert(JSON.stringify(templateData, null, 4));
+					},
+					bublApp.variables['page']
+				);	
+			},
+			
 			save: function(){
 				var content = ZEN.objects['BublPageRoot'].serialize();
 				bublApp.dump('savedpage', content);
@@ -128,7 +138,7 @@
 						objectStore.upsertObject(pageData,
 							function(savedData){
 								bublApp.dump('savedpage', savedData);
-
+								
 								if(Number(page.order) === 1){
 									var bublUpdateData = { 
 										'thumbnails': { '340x200': thumbnail },

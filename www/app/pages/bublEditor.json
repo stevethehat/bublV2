@@ -220,6 +220,15 @@
 			},
 			{
 				"type": "IconLabel",
+				"tag": "converttotemplate",
+				"content": {
+					"label": "Convert to Template",
+					"icon": "fa-plus-square-o"
+				},
+				"size": { "width" : 170 }
+			},
+			{
+				"type": "IconLabel",
 				"tag": "save",
 				"content": {
 					"label": "Save",

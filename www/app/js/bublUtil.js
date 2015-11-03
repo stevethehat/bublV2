@@ -49,7 +49,8 @@ var bublUtil = {
 										'thumbnail': templateThumbnail,
 										'template': templateID,
 										'layout': template.layout,
-										'type': 'page'
+										'type': 'page',
+										'css': template.css
 									},
 									function(insertedData){
 										bublApp.dump('newpage', insertedData);
@@ -67,19 +68,24 @@ var bublUtil = {
 	},
 	
 
-	addTemplate: function(callback){
+	addTemplate: function(callback, defaultObject){
 		objectStore.getNextOrder(2000,
 			function(nextOrder){
-				objectStore.upsertObject(
-					{
-						'parentId': '2000',
-						'title': 'Template ' + nextOrder.nextorder,
-						'order': nextOrder.nextorder,
-						'description': 'Description of the template',
-						'thumbnail': 'img/layout1.png',
-						'type': 'template',
-						'layout': {}
-					},
+				var templateData = {};
+				if(defaultObject !== undefined){
+					templateData = defaultObject;
+					delete templateData['id'];
+				} else {
+					templateData['layout'] = {};
+				}
+				templateData['parentId'] = '2000';
+				templateData['title'] = 'Template ' + nextOrder.nextorder;
+				templateData['order'] = nextOrder.nextorder;
+				templateData['description'] = 'Description of the template';
+				templateData['thumbnail'] = 'img/layout1.png';
+				templateData['type'] = 'template';
+				
+				objectStore.upsertObject(templateData,
 					function(insertedData){
 						callback(insertedData);
 					}
