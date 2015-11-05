@@ -1,0 +1,74 @@
+{
+	"fields": [ 
+		{
+			"type": "group",
+			"label": "Highlight",
+			"height": 80,
+			"fields": [
+				{
+					"type": "FormSelect",
+					"label": "Action",
+					"source": "actions.highlightaction",
+					"options": [
+						{ "label": "No Action", "value": "no-action" }						
+					],
+					"height": 40						
+				},
+				{
+					"type": "FormDataList",
+					"label": "Transition",
+					"source": "actions.highlightanimation",
+					"options": [
+						{ "value": "bounceInDown" },	
+						{ "value": "bounceInUp" },	
+						{ "value": "bounceInLeft" },	
+						{ "value": "bounceInRight" },	
+						{ "value": "slideInDown" },	
+						{ "value": "slideInUp" },	
+						{ "value": "slideInLeft" },	
+						{ "value": "slideInRight" },	
+						{ "value": "fadeIn" },	
+						{ "value": "flipInX" },	
+						{ "value": "flipInY" }	
+					],
+					"height": 40			
+				}
+			] 
+		},
+		{
+			"type": "group",
+			"label": "Active",
+			"height": 80,
+			"fields": [
+				{
+					"type": "FormSelect",
+					"label": "Action",
+					"source": "actions.activeaction",
+					"options" :[
+						{ "label": "No Action", "value": "no-action" }						
+					],
+					"height": 40
+				},
+				{
+					"type": "FormDataList",
+					"label": "Transition",
+					"source": "actions.activeanimation",
+					"options": [
+						{ "value": "bounceInDown" },	
+						{ "value": "bounceInUp" },	
+						{ "value": "bounceInLeft" },	
+						{ "value": "bounceInRight" },	
+						{ "value": "slideInDown" },	
+						{ "value": "slideInUp" },	
+						{ "value": "slideInLeft" },	
+						{ "value": "slideInRight" },	
+						{ "value": "fadeIn" },	
+						{ "value": "flipInX" },	
+						{ "value": "flipInY" }	
+					],			
+					"height": 40
+				}
+			]
+		}
+	]
+}

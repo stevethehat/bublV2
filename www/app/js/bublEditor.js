@@ -4,24 +4,10 @@ var bublEditor = {
 		bublUtil.findID('bublEditor', pageDefinition, 
 			function(element){
 				var layout = bublApp.variables['page'].layout;
-				//layout['id'] = 'page1';	
-				/*			
-				bublUtil.recurseTree(layout,
-					function(element){
-						if(element['id'] !== undefined && element['id'] !== 'BublPageRoot'){
-							element['id'] = 'pageid' + element['id']; 						
-							ZEN.log('set id to ' + element['id'])
-						} else {
-							ZEN.log('no id to set');
-						}
-					}
-				);
-				*/
 				element.children = [layout];
 	
 				objectStore.getObject('3000', 'withchildren',
 					function(data){
-						//var assetList = ZEN.objects['AssetList'];
 						bublUtil.findID('AssetList', pageDefinition,
 							function(assetList){
 								_.each(data.children,
@@ -51,7 +37,6 @@ var bublEditor = {
 			function(message){
 				ZEN.log('observer(ui.contenteditable)', message, $(message.sourceElement));	
 				alert('show editor contenteditable');
-				//self.executeAction(message.source.tag, message);	
 			}
 		);
 
@@ -100,7 +85,14 @@ var bublEditor = {
 		);		
 	},
 	setupPropertiesForm: function(form, callback){
-		// add actions 
+		/*
+		// add actions
+		var actionsGroup = {
+			"type": "group",
+			"label": "Interactions",
+			"fields": []
+		}
+		 
 		var clickActions = {
 			'type': 'FormSelect',
 			'label': 'Click Action',
@@ -110,7 +102,6 @@ var bublEditor = {
 				
 		objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 			function(data){
-				/*
 				clickActions.options.push( { 'label': 'No action', 'value': '' });		
 
 				_.each(data.children,
@@ -118,7 +109,7 @@ var bublEditor = {
 						clickActions.options.push( { 'label': 'Goto - ' + page.title, 'value': 'showpage' + page.id });		
 					}
 				);
-				form.fields[form.fields.length -1].fields.push(clickActions);
+				actionsGroup.fields.push(clickActions);
 				var clickTransitions = {
 					'type': 'FormDataList',
 					'label': 'Transition',
@@ -137,24 +128,12 @@ var bublEditor = {
 						{ "value": "flipInY" }	
 					]
 				}
-				form.fields[form.fields.length -1].fields.push(clickTransitions);
-				*/
+				actionsGroup.fields.push(clickTransitions);
+				form.fields.push(actionsGroup);
 				callback(form);
-				
-				/*
-				bublUtil.findID('colors', form, 
-					function(colors){
-						var parent = bublApp.variables['contentelementparent'];
-						if(parent !== undefined){
-							colors.fields[0].default = parent.params.styling['color'];
-							colors.fields[1].default = parent.params.styling['background-color'];
-						}						
-						callback(form);
-					}
-				);
-				*/				
 			}	
-		);
+		);*/
+		callback(form);
 	},
 	addControl: function(data){
 		var contentArea = bublApp.variables['contentelement'];
@@ -163,16 +142,6 @@ var bublEditor = {
 			positioning = contentArea.params.childtype;
 		}
 		
-		/*
-		var newControlParams = {};
-		newControlParams['type'] = data.params.addcontent.type;
-		newControlParams['content'] = data.params.addcontent;
-		newControlParams['margin'] = contentArea.params.margin; 
-		newControlParams['children'] = data.params.addcontent.children;
-		if(newControlParams['content'].hasOwnProperty('children')){
-			delete newControlParams['content']['children'];
-		}
-		*/
 		var newControlParams = _.clone(data.params.addcontent);
 		
 		alert(JSON.stringify(newControlParams, null, 4));
@@ -203,7 +172,6 @@ var bublEditor = {
 		bublForm.save(element);
 		bublForm.removeForm();
 		element.afterEdit(element);
-		//content = element.params;
 		content = element.serialize()['params'];
 		
 		ZEN.log('content ' + JSON.stringify(content, null, 4));

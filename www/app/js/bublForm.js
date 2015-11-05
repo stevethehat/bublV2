@@ -6,19 +6,6 @@ var bublForm = {
 			function(data){
 				
 				data.fields = data.fields.concat(standardElements.fields);
-				/*
-				if(updater){
-					updater(data.fields,
-						function(updatedFields){
-							alert('here 2');
-							data.fields = updatedFields;
-							self.displayForm(parentView, object, data);		
-						}
-					);
-				} else {
-					self.displayForm(parentView, object, data);				
-				}
-				*/
 				object.setupPropertiesForm(data,
 					function(){
 						self.displayForm(parentView, object, data);				
@@ -76,6 +63,10 @@ var bublForm = {
 		} else {
 			group.layout = { 'style': 'vertical' };						
 		}			
+		
+		if(field.height !== undefined){
+			group.size.height = field.height; 
+		}
 		
 		if(field.label !== undefined){
 			processedDefinition.children.push(

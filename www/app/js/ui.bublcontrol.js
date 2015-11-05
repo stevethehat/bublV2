@@ -68,9 +68,8 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					self.propertiesDefinition = propertiesDefinition;	
 					self.setupFontProperty();	
-					self.setupStylesProperty();	
-					
-					callback();
+					self.setupStylesProperty();
+					self.setupInteractions(callback);	
 				},
 
 				setupFontProperty: function(){
@@ -98,7 +97,6 @@ var ZEN = (function (ZEN, _, $) {
 					if(font !== null){
 						font['options'] = options;
 					}
-					//alert(JSON.stringify(font));
 				},
 				
 				setupStylesProperty: function(){
@@ -121,6 +119,18 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				},
 
+				setupInteractions: function(callback){
+					var self = this;
+					
+					ZEN.data.load('app/definitions/interactions.json', {},
+						function(interactionsDefinition){
+							self.propertiesDefinition.fields.push(interactionsDefinition.fields[0]);
+							self.propertiesDefinition.fields.push(interactionsDefinition.fields[1]);
+							callback()
+						}
+					);		
+				},
+								
 				getPropertyValue: function(setting, defaultValue){
 					var result = defaultValue;
 					ZEN.log('get property value ' + setting);
