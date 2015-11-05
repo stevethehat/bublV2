@@ -8,7 +8,7 @@
 				{
 					"type": "FormSelect",
 					"label": "Action",
-					"source": "actions.highlightaction",
+					"source": "actions.highlightAction",
 					"options": [
 						{ "label": "No Action", "value": "no-action" }						
 					],
@@ -17,19 +17,15 @@
 				{
 					"type": "FormDataList",
 					"label": "Transition",
-					"source": "actions.highlightanimation",
+					"source": "actions.highlightAnimation",
 					"options": [
-						{ "value": "bounceInDown" },	
-						{ "value": "bounceInUp" },	
-						{ "value": "bounceInLeft" },	
-						{ "value": "bounceInRight" },	
-						{ "value": "slideInDown" },	
-						{ "value": "slideInUp" },	
-						{ "value": "slideInLeft" },	
-						{ "value": "slideInRight" },	
-						{ "value": "fadeIn" },	
-						{ "value": "flipInX" },	
-						{ "value": "flipInY" }	
+						{ "value": "pulse" },	
+						{ "value": "flash" },	
+						{ "value": "rubberBand" },	
+						{ "value": "tada" },	
+						{ "value": "shake" },	
+						{ "value": "swing" },	
+						{ "value": "wobble" }	
 					],
 					"height": 40			
 				}
@@ -43,7 +39,7 @@
 				{
 					"type": "FormSelect",
 					"label": "Action",
-					"source": "actions.activeaction",
+					"source": "actions.activeAction",
 					"options" :[
 						{ "label": "No Action", "value": "no-action" }						
 					],
@@ -52,7 +48,7 @@
 				{
 					"type": "FormDataList",
 					"label": "Transition",
-					"source": "actions.activeanimation",
+					"source": "actions.activeAnimation",
 					"options": [
 						{ "value": "bounceInDown" },	
 						{ "value": "bounceInUp" },	

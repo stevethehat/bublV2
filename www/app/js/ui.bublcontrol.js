@@ -124,9 +124,30 @@ var ZEN = (function (ZEN, _, $) {
 					
 					ZEN.data.load('app/definitions/interactions.json', {},
 						function(interactionsDefinition){
-							self.propertiesDefinition.fields.push(interactionsDefinition.fields[0]);
-							self.propertiesDefinition.fields.push(interactionsDefinition.fields[1]);
-							callback()
+							var highlightActions = interactionsDefinition.fields[0];
+							var highlightOptions = highlightActions.fields[0].options;
+							var activeActions = interactionsDefinition.fields[1];
+							var activeOptions = activeActions.fields[0].options;
+
+							objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
+								function(data){
+									_.each(data.children,
+										function(page){
+											highlightOptions.push( { 
+												'label': 'Goto - ' + page.title, 
+												'value': 'showpage' + page.id 
+											});		
+											activeOptions.push( { 
+												'label': 'Goto - ' + page.title, 
+												'value': 'showpage' + page.id 
+											});										
+										}
+									);								
+									self.propertiesDefinition.fields.push(highlightActions);
+									self.propertiesDefinition.fields.push(activeActions);
+									callback();
+								}
+							);
 						}
 					);		
 				},
@@ -161,7 +182,7 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					message.source = this;
 
-					//ZEN.log(message.type + ' ' + message.source.id);
+					ZEN.log(message.type + ' ' + message.source.id);
 					
 					if (message.type === 'highlight') {
 						this.el.addClass('hover');
@@ -184,17 +205,17 @@ var ZEN = (function (ZEN, _, $) {
 							bublApp.variables['contentelement'] = this;
 						}
 					} else {
-						if(this.params.actions !== undefined && this.params.actions.hoveranimate !== undefined){
+						if(this.params.actions !== undefined && this.params.actions.highlightAnimation !== undefined){
 							if (message.type === 'highlight') {
-								this.el.addClass(this.params.actions.hoveranimate + ' animated');
+								this.el.addClass(this.params.actions.highlightAnimation + ' animated');
 							} else {
-								this.el.removeClass(this.params.actions.hoveranimate + ' animated');
+								this.el.removeClass(this.params.actions.highlightAnimation + ' animated');
 							}
 						}
 						if(message.type === 'active'){
-							if(this.params.actions.active.startsWith('showpage')){
-								var pageID = this.params.actions.active.substr(8);
-								bublApp.loadPlayerPage(pageID, this.params.actions.activeanimation);
+							if(this.params.actions.activeAction.startsWith('showpage')){
+								var pageID = this.params.actions.activeAction.substr(8);
+								bublApp.loadPlayerPage(pageID, this.params.actions.activeAnimation);
 								//alert('show page ' + pageID);								
 							}
 							return(false);

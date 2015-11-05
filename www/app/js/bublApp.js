@@ -70,13 +70,7 @@
 						
 			objectStore.getObject(id, null,
 				function(object){
-					/*
-					if(object.type === 'template'){
-						base = self.preParse(base, {});
-					}
-					*/
-					//var inAnimate = 'bounceInDown';
-					//var outAnimate = 'bounceOutDown';
+					var outAnimate = 'bounceOutDown';
 					
 					var currentPageId = bublApp.variables['currentPlayerPageID'];
 					
@@ -96,19 +90,19 @@
 					if(ZEN.objects['BublCSS']){
 						ZEN.objects['BublCSS'].applyCss();
 					}
+					/*
 					if(currentPage !== undefined){
 						ZEN.log('do OUT Animate');
-						//currentPage.animate(outAnimate, false,
-						//	function () {
-								/*
+						currentPage.animate(outAnimate, false,
+							function () {
 								ZEN.cleanup();
 								currentPage.remove();
-								*/
-						//	}
-						//);
+							}
+						);
 					} else {
 						
 					}
+					*/
 					bublApp.variables['currentPlayerPageID'] = id;
 					ZEN.objects['bublPlayer'].resize();					
 					ZEN.objects['bublPlayer'].show(true);
@@ -119,6 +113,7 @@
 							if(currentPage !== undefined){
 								currentPage.remove();
 								ZEN.cleanup();
+								bublApp.variables['currentPage'] = playerPage;
 							}
 						}	
 					);

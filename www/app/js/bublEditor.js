@@ -161,7 +161,6 @@ var bublEditor = {
 	saveControl: function(data){
 		var self = this;
 		var element = bublApp.variables['contentelement'];
-		//var content = JSON.parse(ZEN.objects['BublElementEditor'].getContent());
 		var parentID = element.parent.id;
 		
 		if(element instanceof ZEN.ui.LayoutControl){
@@ -172,8 +171,8 @@ var bublEditor = {
 		bublForm.save(element);
 		bublForm.removeForm();
 		element.afterEdit(element);
-		content = element.serialize()['params'];
-		
+		var content = element.serialize()['params'];
+				
 		ZEN.log('content ' + JSON.stringify(content, null, 4));
 		ZEN.log('params ' + JSON.stringify(element.params, null, 4));
 		
@@ -183,7 +182,6 @@ var bublEditor = {
 		
 		content = self.fixContent(content);
 
-		//var parsedData = bublApp.preParse(content);
 		var newElement = ZEN.parse(content, ZEN.objects[parentID]);
 		ZEN.objects[parentID].show(true);
 		ZEN.objects['bublEditor'].resize(true);
