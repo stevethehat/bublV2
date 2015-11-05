@@ -16,7 +16,7 @@
 				},
 				{
 					"type": "FormDataList",
-					"label": "Transition",
+					"label": "Animation",
 					"source": "actions.highlightAnimation",
 					"options": [
 						{ "value": "pulse" },	
