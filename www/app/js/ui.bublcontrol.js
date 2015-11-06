@@ -25,7 +25,6 @@ var ZEN = (function (ZEN, _, $) {
 					this.imageLayer = null;
 					// call the base class init method
 					ZEN.ui.LayoutControl.prototype.init.call(this, params, parent);
-					//ZEN.events.ContentEditableHandler (this, this.el);
 					ZEN.events.buttonHandler (this, this.el);
 				},
 
@@ -216,7 +215,6 @@ var ZEN = (function (ZEN, _, $) {
 							if(this.params.actions.activeAction.startsWith('showpage')){
 								var pageID = this.params.actions.activeAction.substr(8);
 								bublApp.loadPlayerPage(pageID, this.params.actions.activeAnimation);
-								//alert('show page ' + pageID);								
 							}
 							return(false);
 						}
@@ -228,8 +226,16 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
 						this.setupStylingDiv();
-						//var dropArea = $('<div/>').addClass('contentareadrop').appendTo(this.el);
-						//var instructions = $('<p>Add content here %s</p>' % this.type).appendTo(dropArea);
+						if(bublApp.displayMode === 'app'){
+							this.el.css('cursor', 'pointer');
+						} else {
+							ZEN.log('in here');
+							if(this.params.actions !== undefined){
+								if(this.params.actions.activeAction !== undefined && this.params.actions.activeAction !== 'undefined'){
+									this.el.css('cursor', 'pointer');
+								}
+							}
+						}
 						this.resize();
 					}
 					return this.el;
@@ -245,13 +251,10 @@ var ZEN = (function (ZEN, _, $) {
 					
 					self.stylingDiv = $('<div/>').appendTo(this.imageLayer);
 					
-					//alert('setup styling div ' + self.stylingDiv.html());
 					if(self.params.styling === undefined){
 						self.params.styling = {};
 					}
 					self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' }, self.params.css);
-					//self.stylingDiv.css(self.params.styling);
-					//alert(JSON.stringify(self.params.styling));	
 				},
 				
 				opacity: function (value) {

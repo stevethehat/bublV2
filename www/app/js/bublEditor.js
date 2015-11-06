@@ -93,12 +93,6 @@ var bublEditor = {
 			"fields": []
 		}
 		 
-		var clickActions = {
-			'type': 'FormSelect',
-			'label': 'Click Action',
-			'options': [],
-			'source': 'actions.active'
-		}
 				
 		objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 			function(data){
