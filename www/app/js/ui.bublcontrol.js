@@ -9,12 +9,12 @@ var ZEN = (function (ZEN, _, $) {
 		
 		function BublControl (params, parent) {
 			if (arguments.length > 0) {
-				ZEN.ui.LayoutControl.call(this, params, parent);
+				ZEN.ui.Control.call(this, params, parent);
 			}
 			return this;
 		}
 
-		BublControl.prototype = new ZEN.ui.LayoutControl();
+		BublControl.prototype = new ZEN.ui.Control();
 		
 		_.extend(
 			BublControl.prototype,
@@ -24,7 +24,15 @@ var ZEN = (function (ZEN, _, $) {
 					this.colourLayer = null;
 					this.imageLayer = null;
 					// call the base class init method
-					ZEN.ui.LayoutControl.prototype.init.call(this, params, parent);
+					params['view'] = { 
+						'size': { 'width': params.size.width, 'height' : params.size.height }
+					};
+					
+					if(params['position'] !== undefined){
+						params['view']['position'] = params['position']; 
+					}
+					ZEN.ui.Control.prototype.init.call(this, params, parent);
+					
 					ZEN.events.buttonHandler (this, this.el);
 				},
 
