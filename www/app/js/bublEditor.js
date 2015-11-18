@@ -6,6 +6,7 @@ var bublEditor = {
 				var layout = bublApp.variables['page'].layout;
 				element.children = [layout];
 	
+				/*
 				objectStore.getObject('3000', 'withchildren',
 					function(data){
 						bublUtil.findID('AssetList', pageDefinition,
@@ -28,6 +29,8 @@ var bublEditor = {
 						);
 					}
 				);
+				*/
+				callback();
 			}
 		);
 	},
@@ -72,63 +75,14 @@ var bublEditor = {
 	
 	showPropertiesForCurrentElement: function(){
 		var self = this;
-		//ZEN.objects['BublElementEditor'].setContent(JSON.stringify(message.source.params, null, 4));
 		var currentElement = bublApp.variables['contentelement'];
 		ZEN.data.load('app/definitions/style.json', {},
 			function (standard) {
-				self.setupPropertiesForm(standard,
-					function(standard){
-						bublForm.showForm('PropertiesForm', currentElement, currentElement.params.type + '.json', standard);
-					}
-				);
+				bublForm.showForm('PropertiesForm', currentElement, currentElement.params.type + '.json', standard);
 			}
 		);		
 	},
-	setupPropertiesForm: function(form, callback){
-		/*
-		// add actions
-		var actionsGroup = {
-			"type": "group",
-			"label": "Interactions",
-			"fields": []
-		}
-		 
-				
-		objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
-			function(data){
-				clickActions.options.push( { 'label': 'No action', 'value': '' });		
 
-				_.each(data.children,
-					function(page){
-						clickActions.options.push( { 'label': 'Goto - ' + page.title, 'value': 'showpage' + page.id });		
-					}
-				);
-				actionsGroup.fields.push(clickActions);
-				var clickTransitions = {
-					'type': 'FormDataList',
-					'label': 'Transition',
-					'source': 'actions.activeanimation',
-					'options': [
-						{ "value": "bounceInDown" },	
-						{ "value": "bounceInUp" },	
-						{ "value": "bounceInLeft" },	
-						{ "value": "bounceInRight" },	
-						{ "value": "slideInDown" },	
-						{ "value": "slideInUp" },	
-						{ "value": "slideInLeft" },	
-						{ "value": "slideInRight" },	
-						{ "value": "fadeIn" },	
-						{ "value": "flipInX" },	
-						{ "value": "flipInY" }	
-					]
-				}
-				actionsGroup.fields.push(clickTransitions);
-				form.fields.push(actionsGroup);
-				callback(form);
-			}	
-		);*/
-		callback(form);
-	},
 	addControl: function(data){
 		var contentArea = bublApp.variables['contentelement'];
 		var positioning = 'fill'; 
@@ -157,7 +111,7 @@ var bublEditor = {
 		var element = bublApp.variables['contentelement'];
 		var parentID = element.parent.id;
 		
-		if(element instanceof ZEN.ui.LayoutControl){
+		if(element instanceof ZEN.ui.Control){
 			// will get auto parent so remove this as  well
 			parentID = element.parent.parent.id;
 		}
@@ -167,8 +121,8 @@ var bublEditor = {
 		element.afterEdit(element);
 		var content = element.serialize()['params'];
 				
-		ZEN.log('content ' + JSON.stringify(content, null, 4));
-		ZEN.log('params ' + JSON.stringify(element.params, null, 4));
+		//ZEN.log('content ' + JSON.stringify(content, null, 4));
+		//ZEN.log('params ' + JSON.stringify(element.params, null, 4));
 		
 						
 		element.remove(true);

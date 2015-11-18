@@ -26,22 +26,59 @@
 			
 			if(object['children']){
 				delete object['children'];
+			}
+			
+			var objectData = null;
+			try{
+				objectData = JSON.stringify(object);
+			} catch (e){
+				var result = self.findCircularObject(object);
+				alert('cr error ' + result);
+				objectData = null;
 			}	
 			
-   			$.ajax({
-        		url: self.apiRoot,
-        		type: 'POST',
-        		contentType: 'application/json',
-        		data: JSON.stringify(object),
-        		dataType: 'json',
-				success: function(returnData){
-					ZEN.log('returned data');
-					ZEN.log(returnData);
-					//alert(JSON.stringify(returnData, null, 4));
-					callback(returnData);
-				}
-			});
+			if(objectData !== null){
+				$.ajax({
+					url: self.apiRoot,
+					type: 'POST',
+					contentType: 'application/json',
+					data: objectData,
+					dataType: 'json',
+					success: function(returnData){
+						ZEN.log('returned data');
+						ZEN.log(returnData);
+						//alert(JSON.stringify(returnData, null, 4));
+						callback(returnData);
+					}
+				});				
+			}			
 		},
+	
+		findCircularObject: function(node, parents, tree){
+			parents = parents || [];
+			tree = tree || [];
+
+			if (!node || typeof node != "object")
+				return false;
+		
+			var keys = Object.keys(node), i, value;
+		
+			parents.push(node); // add self to current path
+			for (i = keys.length - 1; i >= 0; i--){
+				value = node[keys[i]];
+				if (value && typeof value == "object") {
+					tree.push(keys[i]);
+					if (parents.indexOf(value) >= 0)
+						return true;
+					// check child nodes
+					if (arguments.callee(value, parents, tree))
+						return tree.join('.');
+					tree.pop();
+				}
+			}
+			parents.pop();
+			return false;
+		},		
 		
 		updateObject: function(objectID, updateObject, callback){
 			var self = this;

@@ -220,7 +220,7 @@
 				}
 				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons',  empty, 'fadeIn', 'fadeOut');
 			}
-			self.dump('main', ZEN.objects['BublApp'].serialize());
+			self.dump('main', ZEN.objects['BublApp'].safeSerialize());
 
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
 				self.actions[pageName].afterLoad(data,
@@ -460,14 +460,24 @@
 		},
 		
 		dump: function(fileName, object){
-   			$.ajax({
-        		url: 'api/dump/' + fileName,
-        		type: 'POST',
-        		contentType: 'application/json',
-        		data: JSON.stringify(object),
-        		dataType: 'json',
-				success: function(returnData){}
-			});
+			var data = null;
+			try{
+				data = JSON.stringify(object);
+			} catch (e){
+				data = null;
+				ZEN.log('dump error for "' + fileName + '"');
+			}
+			
+			if(data !== null){
+				$.ajax({
+					url: 'api/dump/' + fileName,
+					type: 'POST',
+					contentType: 'application/json',
+					data: data,
+					dataType: 'json',
+					success: function(returnData){}
+				});								
+			}
 		},
 		
 		getBublID: function(elementID){
