@@ -290,6 +290,14 @@ var bublForm = {
 				} else {
 					value = element.val();
 				}
+				if(element.attr('data-type') === 'html'){
+					alert('html');
+					alert(tinymce.editors);
+					tinymce.triggerSave();
+					tinymce.EditorManager.execCommand('mceRemoveEditor', true, element.attr('id'));
+					tinymce.remove();
+					//tinymce.EditorManager.editors = [];
+				}
 				ZEN.log('found element (' + source + ') = ' + value, element);
 				
 				if(element.attr('data-type') === 'Number'){
