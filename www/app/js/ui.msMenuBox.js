@@ -44,11 +44,14 @@ var ZEN = (function (ZEN, _, $) {
 
 				getElement: function () {
 					if (this.el === null) {
+						if(this.params.content.textPosition === undefined){
+							this.params.content.textPosition = 'textTopLeft';
+						}
 						// bodge to get fontstyle
 						// set cssClass
 						var cssClass = this.params.cssClass;
 						var elementClassName = cssClass.substring(0, cssClass.indexOf(' '));
-						this.params.cssClass = elementClassName + ' text ms-menuControl ' + this.params.content.style;
+						this.params.cssClass = elementClassName.replace(/imageBottomRight/, '') + ' text ms-menuControl ' + this.params.content.style + ' ' + this.params.content.textPosition + ' ' + this.params.content.imagePosition;
 						//"Intel-15 text ms-menuControl ms-blue"
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('ms-menu-box ');
@@ -59,10 +62,15 @@ var ZEN = (function (ZEN, _, $) {
 						
 						
 						this.resize();
-						this.el.attr('title', this.params.content.bgtop + ' ' + this.params.content.bgleft + ' ' + this.params.content.bgwidth + 'x' + this.params.content.bgheight)
+						//this.el.attr('title', this.params.content.textPosition + ' ' + this.params.content.bgtop + ' ' + this.params.content.bgleft + ' ' + this.params.content.bgwidth + 'x' + this.params.content.bgheight)
+						this.el.attr('title', this.el.attr('class'));
 						//this.imageLayer.css('background-size', this.params.content.bgwidth + ' ' + this.params.content.bgheight);
 					}
 					return this.el;
+				},
+				
+				controlAfterEdit: function(element){
+					
 				},
 
 				opacity: function (value) {
@@ -78,11 +86,18 @@ var ZEN = (function (ZEN, _, $) {
 				image: function (value) {
 					if (value !== undefined) {
 						this._image = value;
+						
+						var backgroundDetails = {
+							'background-image':'url('+this._image+')',
+							'background-size': this.params.content.bgwidth + 'px ' + this.params.content.bgheight + 'px'
+						}
+						/*						
 						var backgroundDetails = {
 							'background-image':'url('+this._image+')',
 							'background-size': this.params.content.bgwidth + 'px ' + this.params.content.bgheight + 'px',
 							'background-position': 'top ' + this.params.content.bgtop + 'px left ' + this.params.content.bgleft + 'px'
 						}
+						*/
 						this.imageLayer.css(backgroundDetails);
 						return this;
 					} else {
