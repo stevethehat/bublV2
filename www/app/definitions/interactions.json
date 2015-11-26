@@ -15,17 +15,18 @@
 					"height": 40						
 				},
 				{
-					"type": "FormDataList",
+					"type": "FormSelect",
 					"label": "Animation",
 					"source": "actions.highlightAnimation",
 					"options": [
-						{ "value": "pulse" },	
-						{ "value": "flash" },	
-						{ "value": "rubberBand" },	
-						{ "value": "tada" },	
-						{ "value": "shake" },	
-						{ "value": "swing" },	
-						{ "value": "wobble" }	
+						{ "value": "", "label": "None" },	
+						{ "value": "pulse", "label": "Pulse" },	
+						{ "value": "flash", "label": "Flash" },	
+						{ "value": "rubberBand", "label": "Rubber Band" },	
+						{ "value": "tada", "label": "Tada" },	
+						{ "value": "shake", "label": "Shake" },	
+						{ "value": "swing", "label": "Swing" },	
+						{ "value": "wobble", "label": "Wobble" }	
 					],
 					"height": 40			
 				}
@@ -46,21 +47,22 @@
 					"height": 40
 				},
 				{
-					"type": "FormDataList",
+					"type": "FormSelect",
 					"label": "Transition",
 					"source": "actions.activeAnimation",
 					"options": [
-						{ "value": "bounceInDown" },	
-						{ "value": "bounceInUp" },	
-						{ "value": "bounceInLeft" },	
-						{ "value": "bounceInRight" },	
-						{ "value": "slideInDown" },	
-						{ "value": "slideInUp" },	
-						{ "value": "slideInLeft" },	
-						{ "value": "slideInRight" },	
-						{ "value": "fadeIn" },	
-						{ "value": "flipInX" },	
-						{ "value": "flipInY" }	
+						{ "value": "", "label": "None" },	
+						{ "value": "fadeIn", "label": "Fade In" },	
+						{ "value": "bounceInDown", "label": "Bounce in Down" },	
+						{ "value": "bounceInUp", "label": "Bounce in Up" },	
+						{ "value": "bounceInLeft", "label": "Bounce in Left" },	
+						{ "value": "bounceInRight", "label": "Bounce in Right" },	
+						{ "value": "slideInDown", "label": "Slide in Down" },	
+						{ "value": "slideInUp", "label": "Slide in Up" },	
+						{ "value": "slideInLeft", "label": "Slide in Left" },	
+						{ "value": "slideInRight", "label": "Slide in Right" },	
+						{ "value": "flipInX", "label": "Flip in X" },	
+						{ "value": "flipInY", "label": "Flip in Y" }	
 					],			
 					"height": 40
 				}
