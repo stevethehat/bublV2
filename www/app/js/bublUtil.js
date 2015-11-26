@@ -135,6 +135,23 @@ var bublUtil = {
 			}		
 		});
 	},
+	imageInfo: function(url, callback){
+		var data = {
+			'url': url
+		}
+		
+		$.ajax({
+			url: 'api/media/info',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			dataType: 'json',
+			complete: function(returnData){
+				callback(returnData['responseJSON']);
+			}		
+		});
+	},
+
 	findID: function(id, data, callback){
 		var self = this;
 		if(data !== undefined){			
@@ -165,6 +182,7 @@ var bublUtil = {
 			callback(null);
 		}
 	},
+	
 	recurseTree: function(root, callback){
 		var self = this;
 		callback(root);
