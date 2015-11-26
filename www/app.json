@@ -43,25 +43,6 @@
 					} 
 				}
 			]
-		},
-		{
-			"type": "View",
-			"id": "help",
-			"position": { "bottom": 10, "right": 10 },
-			"size": { "width": 40, "height": 40 },
-			"children": [
-				{
-					"type": "Button",
-					"icon": {
-						"name": "fa-question-circle",
-						"size": 3
-					},
-					"size": { "width": 40, "height": 40 },
-					"actions":{
-						"click": "ShowHelp"
-					}
-				}
-			]
 		}
 	]
 }
