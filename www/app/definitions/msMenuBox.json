@@ -6,7 +6,7 @@
 			"label": "Text",
 			"source": "label",
 			"default": "Enter your text here",
-			"height": 100
+			"height": 130
 		},
 		{
 			"id": "font",
@@ -21,28 +21,14 @@
 			"source": "content.style"
 		},
 		{
-			"type": "group",
+			"type": "FormSelect",
 			"label": "Text Position",
-			"fields": [
-				{
-					"type": "combo",
-					"fields":[
-						{
-							"type": "FormNumber",
-							"label": "Top",
-							"source": "styles.padding-top",
-							"datatype": "px",
-							"default": "0"
-						},
-						{
-							"type": "FormNumber",
-							"label": "Left",
-							"source": "styles.padding-left",
-							"datatype": "px",
-							"default": "0"					
-						}	
-					]
-				}		
+			"source": "content.textPosition",
+			"options": [
+				{ "value": "textTopLeft", "label": "Top Left" },				
+				{ "value": "textTopRight", "label": "Top Right" },				
+				{ "value": "textBottomLeft", "label": "Bottom Left" },				
+				{ "value": "textBottomRight", "label": "Bottom Right" }				
 			]
 		},
 		{
@@ -50,6 +36,23 @@
 			"type": "FormEdit",
 			"label": "Background Image",
 			"source": "image"
+		},
+		{
+			"type": "FormSelect",
+			"label": "Background Image Position",
+			"source": "content.imagePosition",
+			"options": [
+				{ "value": "imageTopLeft", "label": "Top Left" },				
+				{ "value": "imageTopCenter", "label": "Top Center" },				
+				{ "value": "imageTopRight", "label": "Top Right" },				
+				{ "value": "imageMiddleLeft", "label": "Middle Left" },				
+				{ "value": "imageMiddleCenter", "label": "Middle Center" },				
+				{ "value": "imageMiddleRight", "label": "Middle Right" },				
+				{ "value": "imageBottomLeft", "label": "Bottom Left" },				
+				{ "value": "imageBottomCenter", "label": "Bottom Center" },				
+				{ "value": "imageBottomRight", "label": "Bottom Right" },				
+				{ "value": "imageFull", "label": "Full" }				
+			]
 		}
 	]
 }
