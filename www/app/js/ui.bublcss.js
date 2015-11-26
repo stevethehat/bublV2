@@ -41,15 +41,17 @@ var ZEN = (function (ZEN, _, $) {
 				applyCss: function(){
 					var css = bublApp.variables['page'].css;
 					//$.each(this.params.definition,
-					$.each(css.definition,
-						function(index, styleDefinition){
-							for(var style in styleDefinition.styles){
-								var elements = $('.' + styleDefinition.class); 
-								elements.css(style, styleDefinition.styles[style]);
-								//ZEN.log('set (' + elements.length + ') elements .' + styleDefinition.class + ' ' + style + ' = ' + styleDefinition.styles[style])								
+					if(css){
+						$.each(css.definition,
+							function(index, styleDefinition){
+								for(var style in styleDefinition.styles){
+									var elements = $('.' + styleDefinition.class); 
+									elements.css(style, styleDefinition.styles[style]);
+									//ZEN.log('set (' + elements.length + ') elements .' + styleDefinition.class + ' ' + style + ' = ' + styleDefinition.styles[style])								
+								}
 							}
-						}
-					);					
+						);					
+					}
 				}		
 			}
 		);

@@ -56,9 +56,13 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					var elementClass = self.params.elementClassName;
 					var page = bublApp.variables['page'];
-					var css = {
-						'padding-top': element.params.styles['padding-top'],
-						'padding-left': element.params.styles['padding-left']
+					var css = {};
+
+					if(element.params.styles){
+						css = {
+							'padding-top': element.params.styles['padding-top'],
+							'padding-left': element.params.styles['padding-left']
+						}						
 					}
 					
 					_.each(page.css['definition'],
@@ -68,6 +72,12 @@ var ZEN = (function (ZEN, _, $) {
 							}
 						}
 					);
+					
+					self.controlAfterEdit(element);
+				},
+				
+				controlAfterEdit: function(element){
+					
 				},	
 				
 				setupPropertiesForm: function(propertiesDefinition, callback){
