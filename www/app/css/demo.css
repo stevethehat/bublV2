@@ -38,12 +38,18 @@
 }
 
 .ms-menu-box .label {
+	/*
 	width: 100%;
 	height: 100%;
+	*/
 	/*padding: 10px 40px 10px 10px;*/
 	font-family: Calibri;
 }
 
+.ms-menu-box .label p{
+	padding: 0px;
+	margin: 0px;
+}
 .text{
 	font-family: 'Calibri';
 	color: white;
@@ -66,8 +72,108 @@
 	width: 100%; height: 100%; position: absolute;
 }
 
-.zen-view .bg-image {
-	width: 100%; height: 100%; position: absolute;
+.zen-view .bg-image{
+	width: 100%;
+	height: 100%;
+}
+
+.zen-view .imageFull .bg-image{
+
+}
+
+.zen-view .imageTopLeft .bg-image{
+	position: absolute;
+	top: 10px;
+	left: 10px;
 	background-repeat: no-repeat;
-	background-position: bottom right;
+	background-position: left top;
+}
+
+.zen-view .imageMiddleLeft .bg-image{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.zen-view .imageBottomLeft .bg-image{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+.zen-view .imageTopCentre .bg-image{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+.zen-view .imageMiddleCenter .bg-image{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.zen-view .imageBottomCenter .bg-image{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+
+.zen-view .imageTopRight .bg-image{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.zen-view .imageMiddleRight .bg-image{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.zen-view .imageBottomRight .bg-image{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+
+.textTopLeft .label{
+	position: absolute;
+	top:10px;
+	left:10px;
+}
+
+.textTopRight .label{
+	position: absolute;
+	top:10px;
+	right:10px;
+}
+
+.textBottomLeft .label{
+	position: absolute;
+	bottom:10px;
+	left:10px;
+}
+
+.textBottomRight .label{
+	position: absolute;
+	bottom:10px;
+	right:10px;
 }
