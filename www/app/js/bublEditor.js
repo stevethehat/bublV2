@@ -119,12 +119,8 @@ var bublEditor = {
 		bublForm.save(element);
 		bublForm.removeForm();
 		element.afterEdit(element);
-		var content = element.serialize()['params'];
+		var content = element.safeSerialize()['params'];
 				
-		//ZEN.log('content ' + JSON.stringify(content, null, 4));
-		//ZEN.log('params ' + JSON.stringify(element.params, null, 4));
-		
-						
 		element.remove(true);
 		ZEN.cleanup();
 		
