@@ -39,6 +39,27 @@ var ZEN = (function (ZEN, _, $) {
 				label: function () {
 				},
 				
+				positioning: function(){
+					return(
+						{
+							'top': this.el.top,
+							'left': this.el.left,
+							'width': this.el.width(),
+							'height': this.el.height(),
+						}
+					);	
+				},
+				
+				menuItems: function(){
+					var menuItems = [
+						{ 'id': 'asset', 'label': 'Asset' },
+						{ 'id': 'styling','label': 'Styling' },
+						{ 'id': 'position','label': 'Position' },
+						{ 'id': 'other','label': 'Other' }
+					]
+					return(menuItems);	
+				},
+				
 				getPropertiesField: function(id){
 					var self = this;
 					var result = null;

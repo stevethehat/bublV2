@@ -21,7 +21,7 @@
 				"children": [
 					{
 						"id": "palette",
-						"size": { "width": 200 },
+						"size": { "width": 80 },
 						"children":[
 							{
 								"type": "View",
@@ -82,64 +82,15 @@
 												"addcontent":{
 													"type": "BublRows" 																								
 												}												
-											},
-											{
-												"content": {
-													"label": "Slides",
-													"icon": "fa-clone"
-												},
-												"addcontent":{
-													"type": "BublSlides",
-													"size": { "width": "max", "height": "max" },
-													"children": [
-														{
-															"type": "ContentArea",
-															"position": { "top": 0, "left": 0, "bottom": 0, "right": 0 },
-															"styling":{
-																"background-color": "#ff0000"
-															}
-														},
-														{
-															"type": "ContentArea",
-															"position": { "top": 0, "left": 0, "bottom": 0, "right": 0 },
-															"styling":{
-																"background-color": "#00ff00"
-															}
-														}
-													]											
-												}												
 											}
 										]
 									}
 								]
-							},
-							{
-								"type": "View",
-								"style": { "align": "vertical" },
-								"bgColour": "#f00",
-								"size": { "width": 200, "height": 120 },
-								"children": [
-									{
-										"type": "Uploader",
-										"size": { "height": 120 }
-									}
-								]
-							},
-							{
-								"type": "List",
-								"id": "AssetList",
-								"size": { "height": "max", "width": 200 },
-								"controls": []
 							}								
 						]
 					},
 					{
 						"children":[
-							{
-								"type": "Control",
-								"label": "<h2>Editing '$(page.title)'</h2>",
-								"size": { "height": 40 }	
-							},
 							{
 								"type": "View",
 								"id": "bublEditor",
@@ -149,7 +100,7 @@
 					},
 					{
 						"id": "properties",
-						"size": { "width": 260 },
+						"size": { "width": 1 },
 						"children": [
 							{
 								"type": "View",

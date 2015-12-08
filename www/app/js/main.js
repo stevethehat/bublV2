@@ -31,6 +31,8 @@
 		 'app/lib/ace/src/ace.js',
 		 'app/js/bublApp.js',
 		 'app/js/bublAssets.js',
+		 'app/js/ui.floatproperties.js',
+		 'app/js/ui.floatmenu.js',
 		 'app/js/bublEditor.js',
 		 'app/js/bublUtil.js',
 		 'app/js/bublForm.js',

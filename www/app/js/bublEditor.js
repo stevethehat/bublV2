@@ -66,11 +66,59 @@ var bublEditor = {
 				bublApp.variables['contentelementparent'] = bublApp.variables['contentelement'];
 				bublApp.setCurrentObject(['contentelement'], message.source,
 					function(){
-						self.showPropertiesForCurrentElement();
+						self.showMenuForCurrentElement();
 					}
 				);
 			}
 		);		
+	},
+		
+	showMenuForCurrentElement: function(){
+		var self = this;
+		var contentElement = bublApp.variables['contentelement'];
+		var currentMenuView = ZEN.objects['floatMenuView'];
+		if(currentMenuView !== undefined){
+			currentMenuView.remove(true);
+		}
+		var mainPanel = ZEN.objects['mainPanel'];
+		var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(ZEN.objects['bublEditor'], contentElement);
+		
+		var currentMenu = ZEN.objects['floatMenuView'];
+		var currentProperties = ZEN.objects['propertiesView'];
+		if(currentMenu !== undefined){
+			currentMenu.remove(true);
+		}
+		if(currentProperties !== undefined){
+			currentProperties.remove(true);
+		}
+		
+		
+		var menuDefinition = {
+			"id": "floatMenuView",
+			"type": "View",
+			"show": true,
+			"size": menuPositioning.size,
+			"opacity": 0.5,
+			"params": {},
+			"position": menuPositioning.position,
+			"layout": { "style": "vertical" },
+			"children": [
+				{
+					"type": "FloatMenu",
+					"id": "floatMenu",
+					"show": true,
+					'menu': contentElement.menuItems(),
+					"size": {
+						"width": "max", "height": "max"
+					}
+				}
+			]
+		}	
+		var menu = ZEN.parse(menuDefinition, mainPanel);
+		menu.show(true);
+		menu.contentElement = contentElement;
+		mainPanel.resize(true);	
+		//alert('show menu');									
 	},
 	
 	showPropertiesForCurrentElement: function(){
