@@ -18,13 +18,23 @@ var ZEN = (function (ZEN, _, $) {
 			var self = this;
 			var page = ZEN.objects['BublPageRoot'];
 			var app = ZEN.objects['BublApp'];
-			
+
+			var menuButtonPosition = 0;
+			var index = 0;
+			_.each(floatMenu.menuItems,
+				function(menuItem){
+					if(menuItem == menuButton){
+						menuButtonPosition = index;
+					}
+					index++;
+				}
+			);			
 			var pageHeight = Number(page.params.size.height);
 			
 			var top = 0;
 			var left = 0;
 			var propertiesSize = {
-				'width': '500',
+				'width': '300',
 				'height': '300'
 			};
 			var propertiesPosition = {};
@@ -41,14 +51,20 @@ var ZEN = (function (ZEN, _, $) {
 			propertiesPosition.left = floatMenu.parent.position.left - 80;
 		
 			var appWidth = app.el.width();
-			var propertiesRight = Number(propertiesPosition.left) + Number(propertiesSize.width); 
+			var propertiesRight = Number(propertiesPosition.left) + Number(propertiesSize.width);
+			var arrowOffset = 0; 
 			if(propertiesRight > appWidth){
+				arrowOffset = propertiesPosition.left - (appWidth - propertiesSize.width); 
 				propertiesPosition.left = appWidth - propertiesSize.width;
 			}
 			var result = {
 				'size': propertiesSize,
 				'position': propertiesPosition,
-				'arrowpos': arrowPos
+				'arrowpos': {
+					'topOrBottom': arrowPos,
+					'menuItem': menuButtonPosition,
+					'arrowOffset': arrowOffset 
+				} 
 			}
 			return(result);
 		}
@@ -90,13 +106,16 @@ var ZEN = (function (ZEN, _, $) {
 						var propertiesBackground = $('<div class="background"/>').appendTo(this.el);
 
 						var properties = $('<div class="properties"/>')
-							.addClass(this.params.params.arrowposition)
+							.addClass(this.params.params.arrowposition.topOrBottom)
 							.appendTo(this.el);
 
+						$('.arrow-up').remove();
+						$('.arrow-down').remove();
 						var arrow = $('<div/>')
+							.css('left', this.params.params.arrowposition.menuItem * 32 + this.params.params.arrowposition.arrowOffset)
 							.appendTo(this.el);
 							
-						if(this.params.params.arrowposition === 'top'){
+						if(this.params.params.arrowposition.topOrBottom === 'top'){
 							arrow.addClass('arrow-up');
 						} else {
 							arrow.addClass('arrow-down');							

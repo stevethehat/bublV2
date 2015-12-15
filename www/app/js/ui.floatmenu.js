@@ -46,18 +46,6 @@ var ZEN = (function (ZEN, _, $) {
 		
 			menuPosition.top = top;
 			menuPosition.left = left + 80;
-			/*
-			if(top < pageHeight / 2){
-				menuPosition.top = top + contentElement.params.size.height + 2;
-			} else {
-				menuPosition.top = top + -38;
-			}
-			if(left < pageWidth / 2){
-				menuPosition.left = left + 80; 
-			} else {
-				menuPosition.left = left + 80; 
-			}
-			*/
 			var result = {
 				'size': menuSize,
 				'position': menuPosition
@@ -91,7 +79,7 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
-						self.showProperties(message.sourceElement);
+						self.showProperties(message.sourceElement.id);
 						ZEN.notify ("ui.FloatMenu", message.sourceElement.id);
 					}
 				},
@@ -113,12 +101,20 @@ var ZEN = (function (ZEN, _, $) {
 								'id': 'properties',								
 								'params': {
 									'arrowposition': propertiesPositioning.arrowpos
-								}
+								},
+								'children': [
+									{
+										'type': 'View',
+										'id': 'PropertiesForm',
+										'layout': { 'style': 'vertical' }
+									}
+								]
 							}
 						]
 					}	
 					var properties = ZEN.parse(propertiesDefinition, page);
 					properties.show(true);
+					bublEditor.showPropertiesForCurrentElement();
 					page.resize(true);													
 				},
 				
@@ -129,15 +125,18 @@ var ZEN = (function (ZEN, _, $) {
 						// this.el.attr('tabindex',0);
 						var menu = $('<div/>').appendTo(this.el);
 						this.el.addClass('zen-FloatMenu');
+						
+						self.menuItems = [];
 												
 						_.each(this.params.menu,
 							function(menuItem){
 								var menuItemDiv = $('<div/>').addClass('menuItem').appendTo(menu);
 								menuItemDiv.attr('title', menuItem.label);
 								menuItemDiv.attr('id', self.id + '.' + menuItem.id);
+								self.menuItems.push(menuItemDiv.attr('id'));
 							}
 						);
-						self.showProperties(null)
+						self.showProperties(self.menuItems[0]);
 						this.resize();
 					}
 					return this.el;

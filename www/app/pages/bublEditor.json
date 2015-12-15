@@ -97,50 +97,6 @@
 								"color": "#999"
 							}
 						]
-					},
-					{
-						"id": "properties",
-						"size": { "width": 1 },
-						"children": [
-							{
-								"type": "View",
-								"layout": { "align": "left", "style": "horizontal" },
-								"size": { "height": 30 },
-								"children":[
-									{
-										"tag": "parentcontrol",
-										"type": "IconLabel",
-										"size": { "width": 50 },
-										"content": {
-											"label": "Up",
-											"icon": "fa-chevron-up"
-										}
-									},									
-									{
-										"tag": "deletecontrol",
-										"type": "IconLabel",
-										"size": { "width": 70 },
-										"content": {
-											"label": "Delete",
-											"icon": "fa-trash-o"
-										}
-									},									
-									{
-										"tag": "savecontrol",
-										"type": "IconLabel",
-										"content": {
-											"label": "Done",
-											"icon": "fa-check"
-										}
-									}									
-								]	
-							},
-							{
-								"type": "View",
-								"id": "PropertiesForm",
-								"scroll": true
-							}
-						]
 					}
 				]
 			}

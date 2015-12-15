@@ -92,7 +92,6 @@ var bublEditor = {
 			currentProperties.remove(true);
 		}
 		
-		
 		var menuDefinition = {
 			"id": "floatMenuView",
 			"type": "View",
@@ -113,12 +112,12 @@ var bublEditor = {
 					}
 				}
 			]
-		}	
+		}
+			
 		var menu = ZEN.parse(menuDefinition, mainPanel);
 		menu.show(true);
 		menu.contentElement = contentElement;
 		mainPanel.resize(true);	
-		//alert('show menu');									
 	},
 	
 	showPropertiesForCurrentElement: function(){

@@ -97,7 +97,7 @@ var bublForm = {
 			'type': 'View',
 			'id': 'form',
 			'layout': { 'style': 'vertical' },
-			'size': { 'width': 'max' },
+			'size': { 'width': 'max', 'height': 'max' },
 			'children': []
 		};
 		
@@ -161,7 +161,7 @@ var bublForm = {
 			ZEN.objects['form'].remove();
 		}
 		
-		processedDefinition = bublApp.preParse(processedDefinition);
+		//processedDefinition = bublApp.preParse(processedDefinition);
 
 		ZEN.parse(processedDefinition, ZEN.objects['PropertiesForm']);		
 		form.show(true);
