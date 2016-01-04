@@ -1,58 +1,81 @@
 {
-	"title": "Text",	
-	"fields":[
+	"propertypages": [
 		{
-			"type": "FormTextArea",
+			"id": "text",
 			"label": "Text",
-			"source": "label",
-			"default": "Enter your text here",
-			"height": 130
+			"fields": [
+				{
+					"type": "HTML",
+					"label": "Text",
+					"source": "label"
+				},
+				{
+					"id": "font",
+					"type": "Select",
+					"label": "Font",
+					"source": "content.font"
+				},		
+				{
+					"type": "Select",
+					"label": "Text Position",
+					"source": "content.textPosition",
+					"options": [
+						{ "value": "textTopLeft", "description": "Top Left" },				
+						{ "value": "textTopRight", "description": "Top Right" },				
+						{ "value": "textBottomLeft", "description": "Bottom Left" },				
+						{ "value": "textBottomRight", "description": "Bottom Right" }				
+					]					
+				}
+			]				
 		},
 		{
-			"id": "font",
-			"type": "FormSelect",
-			"label": "Font",
-			"source": "content.font"
+			"id": "styling",
+			"label": "Styling",
+			"fields": [
+				{
+					"type": "Select",
+					"label": "Style",
+					"source": "content.style"
+				},
+				{
+					"type": "Input",
+					"inputType": "range",
+					"label": "Opacity",
+					"source": "opacity",
+					"default": "0",
+					"min": 0,
+					"max": 100,
+					"multiplyer": 100
+				}								
+			]				
 		},
 		{
-			"id": "style",
-			"type": "FormSelect",
-			"label": "Style",
-			"source": "content.style"
-		},
-		{
-			"type": "FormSelect",
-			"label": "Text Position",
-			"source": "content.textPosition",
-			"options": [
-				{ "value": "textTopLeft", "label": "Top Left" },				
-				{ "value": "textTopRight", "label": "Top Right" },				
-				{ "value": "textBottomLeft", "label": "Bottom Left" },				
-				{ "value": "textBottomRight", "label": "Bottom Right" }				
-			]
-		},
-		{
-			"id": "bgimage",
-			"type": "FormEdit",
-			"label": "Background Image",
-			"source": "image"
-		},
-		{
-			"type": "FormSelect",
-			"label": "Background Image Position",
-			"source": "content.imagePosition",
-			"options": [
-				{ "value": "imageTopLeft", "label": "Top Left" },				
-				{ "value": "imageTopCenter", "label": "Top Center" },				
-				{ "value": "imageTopRight", "label": "Top Right" },				
-				{ "value": "imageMiddleLeft", "label": "Middle Left" },				
-				{ "value": "imageMiddleCenter", "label": "Middle Center" },				
-				{ "value": "imageMiddleRight", "label": "Middle Right" },				
-				{ "value": "imageBottomLeft", "label": "Bottom Left" },				
-				{ "value": "imageBottomCenter", "label": "Bottom Center" },				
-				{ "value": "imageBottomRight", "label": "Bottom Right" },				
-				{ "value": "imageFull", "label": "Full" }				
-			]
+			"id": "image",
+			"label": "Image",
+			"fields": [
+				{
+					"source": "image",
+					"type": "Input",
+					"label": "Background Image"
+				},
+				{
+					"type": "Select",
+					"label": "Background Image Position",
+					"source": "content.imagePosition",
+					"options": [
+						{ "value": "imageTopLeft", "description": "Top Left" },				
+						{ "value": "imageTopCenter", "description": "Top Center" },				
+						{ "value": "imageTopRight", "description": "Top Right" },				
+						{ "value": "imageMiddleLeft", "description": "Middle Left" },				
+						{ "value": "imageMiddleCenter", "description": "Middle Center" },				
+						{ "value": "imageMiddleRight", "description": "Middle Right" },				
+						{ "value": "imageBottomLeft", "description": "Bottom Left" },				
+						{ "value": "imageBottomCenter", "description": "Bottom Center" },				
+						{ "value": "imageBottomRight", "description": "Bottom Right" },				
+						{ "value": "imageFull", "description": "Full" }				
+					]
+				}
+			]				
 		}
-	]
+	]	
 }

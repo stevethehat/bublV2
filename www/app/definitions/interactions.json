@@ -1,71 +1,63 @@
 {
-	"fields": [ 
+	"controls": [ 
 		{
-			"type": "group",
-			"label": "Highlight",
-			"height": 80,
-			"fields": [
-				{
-					"type": "FormSelect",
-					"label": "Action",
-					"source": "actions.highlightAction",
-					"options": [
-						{ "label": "No Action", "value": "no-action" }						
-					],
-					"height": 40						
-				},
-				{
-					"type": "FormSelect",
-					"label": "Animation",
-					"source": "actions.highlightAnimation",
-					"options": [
-						{ "value": "", "label": "None" },	
-						{ "value": "pulse", "label": "Pulse" },	
-						{ "value": "flash", "label": "Flash" },	
-						{ "value": "rubberBand", "label": "Rubber Band" },	
-						{ "value": "tada", "label": "Tada" },	
-						{ "value": "shake", "label": "Shake" },	
-						{ "value": "swing", "label": "Swing" },	
-						{ "value": "wobble", "label": "Wobble" }	
-					],
-					"height": 40			
-				}
-			] 
+			"type": "Select",
+			"label": "Action",
+			"id": "actions.highlightAction",
+			"size": { "width": "max", "height": 50 },
+			"margin": { "left": 10, "right": 10, "top": 4 },												
+			"options": [
+				{ "description": "No Action", "value": "no-action" }						
+			]
 		},
 		{
-			"type": "group",
-			"label": "Active",
-			"height": 80,
-			"fields": [
-				{
-					"type": "FormSelect",
-					"label": "Action",
-					"source": "actions.activeAction",
-					"options" :[
-						{ "label": "No Action", "value": "no-action" }						
-					],
-					"height": 40
-				},
-				{
-					"type": "FormSelect",
-					"label": "Transition",
-					"source": "actions.activeAnimation",
-					"options": [
-						{ "value": "", "label": "None" },	
-						{ "value": "fadeIn", "label": "Fade In" },	
-						{ "value": "bounceInDown", "label": "Bounce in Down" },	
-						{ "value": "bounceInUp", "label": "Bounce in Up" },	
-						{ "value": "bounceInLeft", "label": "Bounce in Left" },	
-						{ "value": "bounceInRight", "label": "Bounce in Right" },	
-						{ "value": "slideInDown", "label": "Slide in Down" },	
-						{ "value": "slideInUp", "label": "Slide in Up" },	
-						{ "value": "slideInLeft", "label": "Slide in Left" },	
-						{ "value": "slideInRight", "label": "Slide in Right" },	
-						{ "value": "flipInX", "label": "Flip in X" },	
-						{ "value": "flipInY", "label": "Flip in Y" }	
-					],			
-					"height": 40
-				}
+			"type": "Select",
+			"label": "Animation",
+			"id": "actions.highlightAnimation",
+			"size": { "width": "max", "height": 50 },
+			"margin": { "left": 10, "right": 10, "top": 4 },												
+			
+			"options": [
+				{ "value": "", "description": "None" },	
+				{ "value": "pulse", "description": "Pulse" },	
+				{ "value": "flash", "description": "Flash" },	
+				{ "value": "rubberBand", "description": "Rubber Band" },	
+				{ "value": "tada", "description": "Tada" },	
+				{ "value": "shake", "description": "Shake" },	
+				{ "value": "swing", "description": "Swing" },	
+				{ "value": "wobble", "description": "Wobble" }	
+			]			
+		},
+		{
+			"type": "Select",
+			"label": "Action",
+			"id": "actions.activeAction",
+			"size": { "width": "max", "height": 50 },
+			"margin": { "left": 10, "right": 10, "top": 4 },												
+
+			"options" :[
+				{ "description": "No Action", "value": "no-action" }						
+			]
+		},
+		{
+			"type": "Select",
+			"label": "Transition",
+			"id": "actions.activeAnimation",
+			"size": { "width": "max", "height": 50 },
+			"margin": { "left": 10, "right": 10, "top": 4 },															
+			"options": [
+				{ "value": "", "description": "None" },	
+				{ "value": "fadeIn", "description": "Fade In" },	
+				{ "value": "bounceInDown", "description": "Bounce in Down" },	
+				{ "value": "bounceInUp", "description": "Bounce in Up" },	
+				{ "value": "bounceInLeft", "description": "Bounce in Left" },	
+				{ "value": "bounceInRight", "description": "Bounce in Right" },	
+				{ "value": "slideInDown", "description": "Slide in Down" },	
+				{ "value": "slideInUp", "description": "Slide in Up" },	
+				{ "value": "slideInLeft", "description": "Slide in Left" },	
+				{ "value": "slideInRight", "description": "Slide in Right" },	
+				{ "value": "flipInX", "description": "Flip in X" },	
+				{ "value": "flipInY", "description": "Flip in Y" }	
 			]
 		}
 	]

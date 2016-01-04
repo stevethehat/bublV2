@@ -1,48 +1,50 @@
 {
-	"fields": [ 
+	"propertypages": [
 		{
-			"type": "FormRange",
-			"label": "Opacity",
-			"source": "opacity",
-			"default": "0",
-			"min": 0,
-			"max": 100,
-			"multiplyer": 100
-		},		
-		{
-			"type": "group",
-			"label": "Position",
-			"fields": [
+			"id": "positioning",
+			"label": "Positioning",
+			"fields": [						
 				{
-					"type": "combo",
-					"fields":[
+					"type": "group",
+					"label": "Position",
+					"fields": [
 						{
-							"type": "FormNumber",
-							"label": "Top",
-							"source": "position.top",
-							"default": "0"
-						},
-						{
-							"type": "FormNumber",
-							"label": "Left",
-							"source": "position.left",
-							"default": "0"					
-						},
-						{
-							"type": "FormNumber",
-							"label": "Width",
-							"source": "size.width",
-							"default": "0"
-						},
-						{
-							"type": "FormNumber",
-							"label": "Height",
-							"source": "size.height",
-							"default": "0"
+							"type": "combo",
+							"fields":[
+								{
+									"type": "FormNumber",
+									"label": "Top",
+									"source": "position.top",
+									"default": "0"
+								},
+								{
+									"type": "FormNumber",
+									"label": "Left",
+									"source": "position.left",
+									"default": "0"					
+								},
+								{
+									"type": "FormNumber",
+									"label": "Width",
+									"source": "size.width",
+									"default": "0"
+								},
+								{
+									"type": "FormNumber",
+									"label": "Height",
+									"source": "size.height",
+									"default": "0"
+								}		
+							]
 						}		
-					]
-				}		
-			] 
+					] 
+				}
+			]
+		},
+		{
+			"id": "interactions",
+			"label": "Interactions",
+			"fields": []				
 		}
 	]
 }
