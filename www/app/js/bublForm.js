@@ -1,4 +1,5 @@
 var bublForm = {
+	/*
 	showForm: function(parentView, object, definitionFileName, standardElements){
 		var self = this;		
 		// create definition
@@ -14,7 +15,7 @@ var bublForm = {
 			}
 		);
 	},
-	
+	*/
 	insertForm: function(parentView, object, definitionFileName, callback){
 		var self = this;
 		self.loadForm(definitionFileName, 
@@ -28,6 +29,7 @@ var bublForm = {
 		);
 	},
 	
+	/*
 	loadForm: function(definitionFileName, callback){
 		var self = this;		
 		// create definition
@@ -50,6 +52,7 @@ var bublForm = {
 			}			
 		);
 	},
+	*/
 	processDefinitionLevel: function(object, processedDefinition, orientation, field){
 		var self = this;
 		var group = {
@@ -161,7 +164,7 @@ var bublForm = {
 			ZEN.objects['form'].remove();
 		}
 		
-		//processedDefinition = bublApp.preParse(processedDefinition);
+		processedDefinition = bublApp.preParse(processedDefinition);
 
 		ZEN.parse(processedDefinition, ZEN.objects['PropertiesForm']);		
 		form.show(true);
@@ -184,61 +187,7 @@ var bublForm = {
 		);	
 		ZEN.cleanup();
 	},
-	getValue: function(object, source, defaultValue){
-		var self = this;
-		try{
-			var sourceBits = source.split('.');
-			var result = null;
-			var level = object.params;
-			
-			if(sourceBits[0] === 'parent'){
-				sourceBits.shift();
-				level = object.parent.params;
-			}
-			
-			for(var i=0; i < sourceBits.length; i++){
-				var sourceBit = sourceBits[i];
-				if(i === sourceBits.length -1){
-					if(sourceBit.indexOf('[') !== -1){
-						var tempSourceBit = sourceBit.substr(0, sourceBit.indexOf('[')); 
-						var index = Number(sourceBit.substr(sourceBit.indexOf('[')).replace('[', '').replace(']', ''));
-						var compoundValue = level[tempSourceBit];
-						var levelBits = [null];
-						if(compoundValue !== undefined && compoundValue !== null && _.isString(compoundValue)){
-							levelBits = compoundValue.split(' ');
-						}
-						if(index < levelBits.length){
-							result = levelBits[index];
-						} else {
-							result = null;
-						}
-					} else {
-						result = level[sourceBit];
-					}
-				} else {
-					if(level.hasOwnProperty(sourceBit)){
-						level = level[sourceBit];
-					} else {
-						level[sourceBit] = {}
-						level = level[sourceBit];
-					}
-				}
-			}
-			if(result === null){
-				result = object.getPropertyValue(source);				
-			}
-			ZEN.log('get value "' + source + '" = "' + result + '"');			
-		} catch(exception) {
-			ZEN.log('get value error "' + source + '"  ("' + exception + ')');
-			result = null;
-		}
-		
-		if(result === null || result === undefined){
-			result = defaultValue;
-			ZEN.log('get value "' + source + '" = DEFAULT "' + result + '"');
-		}
-		return(result);
-	},
+
 	setValue: function(object, source, value){
 		ZEN.log('set value "' + source + '"');
 		

@@ -13,8 +13,11 @@
 		 'zen/js/ui.button.js',
 		 'app/js/ui.asset.js',
 		 'zen/js/ui.menu.js',
+		 'zen/js/action.js',
 		 'zen/js/ui.list.js',
 		 'zen/js/ui.layoutcontrol.js',
+		 'zen/js/ui.form.js',
+		 'zen/js/ui.form.input.js',
 
 		 'app/js/ui.formselect.js',
 		 'app/js/ui.formedit.js',

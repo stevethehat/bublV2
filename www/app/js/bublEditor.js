@@ -81,8 +81,6 @@ var bublEditor = {
 			currentMenuView.remove(true);
 		}
 		var mainPanel = ZEN.objects['mainPanel'];
-		var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(ZEN.objects['bublEditor'], contentElement);
-		
 		var currentMenu = ZEN.objects['floatMenuView'];
 		var currentProperties = ZEN.objects['propertiesView'];
 		if(currentMenu !== undefined){
@@ -91,43 +89,58 @@ var bublEditor = {
 		if(currentProperties !== undefined){
 			currentProperties.remove(true);
 		}
-		
-		var menuDefinition = {
-			"id": "floatMenuView",
-			"type": "View",
-			"show": true,
-			"size": menuPositioning.size,
-			"opacity": 0.5,
-			"params": {},
-			"position": menuPositioning.position,
-			"layout": { "style": "vertical" },
-			"children": [
-				{
-					"type": "FloatMenu",
-					"id": "floatMenu",
+		contentElement.getProperties(
+			function(properties){
+				var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(contentElement, properties);
+				var menuDefinition = {
+					"id": "floatMenuView",
+					"type": "View",
 					"show": true,
-					'menu': contentElement.menuItems(),
-					"size": {
-						"width": "max", "height": "max"
-					}
+					"size": menuPositioning.size,
+					"opacity": 0.5,
+					"params": {},
+					"position": menuPositioning.position,
+					"layout": { "style": "vertical" },
+					"children": [
+						{
+							"type": "FloatMenu",
+							"id": "floatMenu",
+							"show": true,
+							'definition': properties,
+							"size": {
+								"width": "max", "height": "max"
+							}
+						}
+					]
 				}
-			]
-		}
-			
-		var menu = ZEN.parse(menuDefinition, mainPanel);
-		menu.show(true);
-		menu.contentElement = contentElement;
-		mainPanel.resize(true);	
+					
+				var menu = ZEN.parse(menuDefinition, mainPanel);
+				menu.show(true);
+				menu.contentElement = contentElement;
+				mainPanel.resize(true);					
+			}
+		)
 	},
 	
 	showPropertiesForCurrentElement: function(){
 		var self = this;
 		var currentElement = bublApp.variables['contentelement'];
+		bublForm.displayForm('PropertiesForm', currentElement, currentElement.propertiesDefinition);				
+		/*		
 		ZEN.data.load('app/definitions/style.json', {},
 			function (standard) {
+				currentElemenet.setupPropertiesForm(data,
+					function(){
+						
+						bublForm.displayForm(parentView, object, data);				
+					}
+				)
+				
+				
 				bublForm.showForm('PropertiesForm', currentElement, currentElement.params.type + '.json', standard);
 			}
-		);		
+		);
+		*/		
 	},
 
 	addControl: function(data){

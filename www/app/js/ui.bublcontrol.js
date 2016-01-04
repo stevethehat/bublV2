@@ -50,6 +50,93 @@ var ZEN = (function (ZEN, _, $) {
 					);	
 				},
 				
+				getProperties: function(callback){
+					var self = this;
+					ZEN.data.load(
+						'app/definitions/' + self.type + '.json',
+						{},
+						function(data){
+							ZEN.data.load('app/definitions/style.json', {},
+								function (styling) {
+									data.propertypages = data.propertypages.concat(styling.propertypages);
+									self.propertiesDefinition = data; 
+									callback(data);
+								}
+							);									
+						}
+					)								
+				},
+				
+				getPropertiesForm: function(pageNo, callback){
+					var self = this;
+					var page = self.propertiesDefinition.propertypages[pageNo];
+					//alert('properties for ' + JSON.stringify(page));
+					
+					var controls = [];
+					
+					_.each(page.fields,
+						function(field){
+							var fieldDefinition = {
+									'type': 'Input',
+									'id': field.source,
+									'label': field.label,
+									'value': self.getValue(field.source),
+									'size': { 'width': 'max', 'height': 50 },
+									'margin': { 'left': 10, 'right': 10, 'top': 4 }												
+								}		
+							switch(field.type){
+								case 'Select':
+									fieldDefinition.type = 'Select';
+									fieldDefinition.options = field.options;
+									break;
+								case 'HTML':
+									if(fieldDefinition.value.indexOf('<') === 0){
+										fieldDefinition.value = $(fieldDefinition.value).text();
+									}
+									break;
+									
+								case 'Number':
+									break;
+							}						
+							controls.push(fieldDefinition);							
+						}
+					)
+					var height = controls.length * 50 + 60;
+					if(page.label === 'Interactions'){
+						height = 240;
+					}
+					var result = {
+						'type': 'Form',
+						'id': 'PropertiesForm',
+						'layout': { 'style': 'vertical' },
+						'size': { 'width': 'max', 'height': 'max' },
+						'label': page.label,
+						'height': height,
+						'observers': [
+							{
+								'queue': 'ui.form',
+								'message': 'submitted',
+								'actions': [
+									{'type': 'processForm', 'target': 'form-user-account', 'processor': 'account-details'	}
+								]
+							}
+						],						
+						'controls': controls
+					}
+					self.propertiesDefinitionPage = result;	
+					self.setupFontProperty();	
+					self.setupStylesProperty();
+					if(self.propertiesDefinitionPage.label === 'Interactions'){
+						self.setupInteractions(result,
+							function(result){
+								callback(result);
+							}
+						)						
+					} else {
+						callback(result);
+					}
+				},
+				
 				menuItems: function(){
 					var menuItems = [
 						{ 'id': 'asset', 'label': 'Asset' },
@@ -63,13 +150,13 @@ var ZEN = (function (ZEN, _, $) {
 				getPropertiesField: function(id){
 					var self = this;
 					var result = null;
-					_.each(self.propertiesDefinition.fields,
+					_.each(self.propertiesDefinitionPage.controls,
 						function(field){
 							if(field.id === id){
 								result = field;
 							}
 						}
-					);
+					);							
 					return(result);
 				},
 					
@@ -101,7 +188,7 @@ var ZEN = (function (ZEN, _, $) {
 					
 				},	
 				
-				setupPropertiesForm: function(propertiesDefinition, callback){
+				propertiesDefinition: function(callback){
 					// setup fonts
 					var self = this;
 					self.propertiesDefinition = propertiesDefinition;	
@@ -112,7 +199,7 @@ var ZEN = (function (ZEN, _, $) {
 
 				setupFontProperty: function(){
 					var self = this;
-					var font = self.getPropertiesField('font');
+					var font = self.getPropertiesField('content.font');
 					var options = []
 					_.each(bublApp.variables['page']['css']['definition'],
 						function(styleDefinition){
@@ -125,7 +212,7 @@ var ZEN = (function (ZEN, _, $) {
 								var label = styleDefinition['styles']['font-family'] + ' (' + styleDefinition['styles']['font-size'] + ') ' + color; 
 								options.push(
 									{
-										'label': label,
+										'description': label,
 										'value': styleDefinition['class']
 									}
 								)									
@@ -139,51 +226,53 @@ var ZEN = (function (ZEN, _, $) {
 				
 				setupStylesProperty: function(){
 					var self = this;
-					var style = self.getPropertiesField('style');
+					var style = self.getPropertiesField('content.style');
 					
 					if(style !== null){
 						style['options'] = [
-							{ 'label': 'No Style', 'value': 'no-style' },
-							{ 'label': 'MS Blue', 'value': 'ms-blue' },
-							{ 'label': 'MS Red', 'value': 'ms-red' },
-							{ 'label': 'MS Dark Red', 'value': 'ms-dk-red' },
-							{ 'label': 'MS Orange', 'value': 'ms-orange' },
-							{ 'label': 'MS Purple', 'value': 'ms-purple' },
-							{ 'label': 'MS Teal', 'value': 'ms-teal' },
-							{ 'label': 'MS Green', 'value': 'ms-green' },
-							{ 'label': 'MS Dark Purple', 'value': 'ms-dk-purple' },
-							{ 'label': 'White', 'value': 'white' }
+							{ 'description': 'No Style', 'value': 'no-style' },
+							{ 'description': 'MS Blue', 'value': 'ms-blue' },
+							{ 'description': 'MS Red', 'value': 'ms-red' },
+							{ 'description': 'MS Dark Red', 'value': 'ms-dk-red' },
+							{ 'description': 'MS Orange', 'value': 'ms-orange' },
+							{ 'description': 'MS Purple', 'value': 'ms-purple' },
+							{ 'description': 'MS Teal', 'value': 'ms-teal' },
+							{ 'description': 'MS Green', 'value': 'ms-green' },
+							{ 'description': 'MS Dark Purple', 'value': 'ms-dk-purple' },
+							{ 'description': 'White', 'value': 'white' }
 						]										
 					}
 				},
 
-				setupInteractions: function(callback){
+				setupInteractions: function(properties, callback){
 					var self = this;
 					
 					ZEN.data.load('app/definitions/interactions.json', {},
 						function(interactionsDefinition){
-							var highlightActions = interactionsDefinition.fields[0];
-							var highlightOptions = highlightActions.fields[0].options;
-							var activeActions = interactionsDefinition.fields[1];
-							var activeOptions = activeActions.fields[0].options;
+							var highlightActions = interactionsDefinition.controls[0];
+							var highlightOptions = highlightActions.options;
+							var activeActions = interactionsDefinition.controls[2];
+							var activeOptions = activeActions.options;
 
 							objectStore.getObject(bublApp.variables['bubl']['id'], 'withchildren',
 								function(data){
 									_.each(data.children,
 										function(page){
 											highlightOptions.push( { 
-												'label': 'Goto - ' + page.title, 
+												'description': 'Goto - ' + page.title, 
 												'value': 'showpage' + page.id 
 											});		
 											activeOptions.push( { 
-												'label': 'Goto - ' + page.title, 
+												'description': 'Goto - ' + page.title, 
 												'value': 'showpage' + page.id 
 											});										
 										}
 									);								
-									self.propertiesDefinition.fields.push(highlightActions);
-									self.propertiesDefinition.fields.push(activeActions);
-									callback();
+									self.propertiesDefinitionPage.controls.push(highlightActions);
+									self.propertiesDefinitionPage.controls.push(interactionsDefinition.controls[1]);
+									self.propertiesDefinitionPage.controls.push(activeActions);
+									self.propertiesDefinitionPage.controls.push(interactionsDefinition.controls[3]);
+									callback(properties);
 								}
 							);
 						}
@@ -331,7 +420,63 @@ var ZEN = (function (ZEN, _, $) {
 				setupControlPropertiesForm: function(form, callback){
 					callback();
 					//alert('setup properties form ' + this.type + ' ' + JSON.stringify(form, null, 4));
-				}
+				},
+				
+				getValue: function(source, defaultValue){
+					var self = this;
+					try{
+						var sourceBits = source.split('.');
+						var result = null;
+						var level = self.params;
+						
+						if(sourceBits[0] === 'parent'){
+							sourceBits.shift();
+							level = self.parent.params;
+						}
+						
+						for(var i=0; i < sourceBits.length; i++){
+							var sourceBit = sourceBits[i];
+							if(i === sourceBits.length -1){
+								if(sourceBit.indexOf('[') !== -1){
+									var tempSourceBit = sourceBit.substr(0, sourceBit.indexOf('[')); 
+									var index = Number(sourceBit.substr(sourceBit.indexOf('[')).replace('[', '').replace(']', ''));
+									var compoundValue = level[tempSourceBit];
+									var levelBits = [null];
+									if(compoundValue !== undefined && compoundValue !== null && _.isString(compoundValue)){
+										levelBits = compoundValue.split(' ');
+									}
+									if(index < levelBits.length){
+										result = levelBits[index];
+									} else {
+										result = null;
+									}
+								} else {
+									result = level[sourceBit];
+								}
+							} else {
+								if(level.hasOwnProperty(sourceBit)){
+									level = level[sourceBit];
+								} else {
+									level[sourceBit] = {}
+									level = level[sourceBit];
+								}
+							}
+						}
+						if(result === null){
+							result = self.getPropertyValue(source);				
+						}
+						ZEN.log('get value "' + source + '" = "' + result + '"');			
+					} catch(exception) {
+						ZEN.log('get value error "' + source + '"  ("' + exception + ')');
+						result = null;
+					}
+					
+					if(result === null || result === undefined){
+						result = defaultValue;
+						ZEN.log('get value "' + source + '" = DEFAULT "' + result + '"');
+					}
+					return(result);
+				}				
 				
 				
 			}

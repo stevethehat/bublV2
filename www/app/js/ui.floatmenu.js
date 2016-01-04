@@ -16,10 +16,11 @@ var ZEN = (function (ZEN, _, $) {
 
 		FloatMenu.prototype = new ZEN.ui.Control();
 		
-		FloatMenu.getMenuPositionAndSize = function(root, contentElement){
+		FloatMenu.getMenuPositionAndSize = function(contentElement, contentElementProperties){
 			var self = this;
-			var menuItems = contentElement.menuItems();
+			var root = ZEN.objects['bublEditor'];
 			var page = ZEN.objects['BublPageRoot'];
+
 			var pageWidth = Number(page.params.size.width);
 			var pageHeight = Number(page.params.size.height);
 			
@@ -39,9 +40,9 @@ var ZEN = (function (ZEN, _, $) {
 				element = element.parent;
 			}
 			if(contentElement.el.width() > contentElement.el.height()){
-				menuSize = { "width": (Number(menuItems.length) -1) * 43, "height": 33 };
+				menuSize = { "width": (Number(contentElementProperties.propertypages.length) -1) * 43, "height": 33 };
 			} else {
-				menuSize = { "width": 33, "height": (Number(menuItems.length) -1) * 43 };
+				menuSize = { "width": 33, "height": (Number(contentElementProperties.propertypages.length) -1) * 43 };
 			}
 		
 			menuPosition.top = top;
@@ -83,39 +84,160 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.notify ("ui.FloatMenu", message.sourceElement.id);
 					}
 				},
+
+				propertiesPosition: function(menuButton, currentPage){
+					var self = this;
+					var page = ZEN.objects['BublPageRoot'];
+					var app = ZEN.objects['BublApp'];
+		
+					var menuButtonPosition = 0;
+					var index = 0;
+					_.each(self.menuItems,
+						function(menuItem){
+							if(menuItem == menuButton){
+								menuButtonPosition = index;
+							}
+							index++;
+						}
+					);			
+					var pageHeight = Number(page.params.size.height);
+					
+					var top = 0;
+					var left = 0;
+					var propertiesSize = {
+						'width': '300',
+						'height': self.propertiesForm.height + 100
+					};
+					var propertiesPosition = {};
+		
+					var arrowPos = '';	
+					if(self.parent.position.top < (pageHeight / 2)){
+						propertiesPosition.top = self.parent.position.top + 50;
+						arrowPos = 'top';
+					} else {
+						propertiesPosition.top = self.parent.position.top - propertiesSize.height -16;
+						arrowPos = 'bottom';
+					}
+
+					propertiesPosition.left = self.parent.position.left - 80;
+				
+					var appWidth = app.el.width();
+					var propertiesRight = Number(propertiesPosition.left) + Number(propertiesSize.width);
+					var arrowOffset = 0; 
+					if(propertiesRight > appWidth){
+						arrowOffset = propertiesPosition.left - (appWidth - propertiesSize.width); 
+						propertiesPosition.left = appWidth - propertiesSize.width;
+					}
+					var result = {
+						'size': propertiesSize,
+						'position': propertiesPosition,
+						'arrowpos': {
+							'topOrBottom': arrowPos,
+							'menuItem': menuButtonPosition,
+							'arrowOffset': arrowOffset 
+						} 
+					}
+					return(result);
+				},
+				
+				getCurrentPage: function(menuButton){
+					var self = this;
+					var menuButtonPosition = 0;
+					var index = 0;
+					_.each(self.menuItems,
+						function(menuItem){
+							if(menuItem == menuButton){
+								menuButtonPosition = index;
+							}
+							index++;
+						}
+					);
+					return(menuButtonPosition);
+				},
+
+				positionArrow: function(position){
+					var self = this;
+				},
 				
 				showProperties: function(sourceElement){
 					var self = this;
 					var page = ZEN.objects['BublPageRoot'];
-					var propertiesPositioning = ZEN.ui.FloatProperties.position(this, this.contentElement, sourceElement);
-					var propertiesDefinition = {
-						'id': 'propertiesView',
-						'type': 'View',
-						'show': true,
-						'size': propertiesPositioning.size,
-						'position': propertiesPositioning.position,
-						'layout': { 'style': 'vertical' },
-						'children': [
-							{
-								'type': 'FloatProperties',
-								'id': 'properties',								
-								'params': {
-									'arrowposition': propertiesPositioning.arrowpos
-								},
-								'children': [
+					var currentPage = self.getCurrentPage(sourceElement);
+					bublApp.variables['contentelement'].getPropertiesForm(currentPage,
+						function(propertiesForm){
+							self.propertiesForm = propertiesForm; 
+							var propertiesPositioning = self.propertiesPosition(sourceElement, currentPage);
+							var propertiesDefinition = {
+								'id': 'propertiesView',
+								'type': 'View',
+								'show': true,
+								'size': propertiesPositioning.size,
+								'position': propertiesPositioning.position,
+								'layout': { 'style': 'vertical' },						
+								'children': [ 
+									{
+										'id': 'propertiesHeading',
+										'type': 'View',
+										'size': { 'width': 'max', 'height': 60 },
+										'children':[
+											{
+												'type': 'Button',
+												'size': { 'width': 'max', 'height': '50' },
+												'label': self.propertiesForm.label 										
+											}									
+										]
+									},
 									{
 										'type': 'View',
-										'id': 'PropertiesForm',
-										'layout': { 'style': 'vertical' }
+										'size': { 'width': 'max', 'height': 'max' }, 
+										'children':[
+											self.propertiesForm
+										]
+									},
+									{
+										'id': 'propertiesButtons',
+										'type': 'View',
+										'size': { 'width': 'max', 'height': 60 },
+										'children': [
+											{
+												'type': 'Button',
+												'label': 'Save changes',
+												'id': 'form-save',
+												'view': {'size': {'width': 'max', 'height': 52}},
+												'actions': {
+														'active': {'queue': 'ui.form', 'message': {'type': 'submit'}}
+												}
+											}									
+										]
 									}
 								]
+							}	
+							if(ZEN.objects['propertiesView'] !== undefined){
+								ZEN.objects['propertiesView'].remove(true);
 							}
-						]
-					}	
-					var properties = ZEN.parse(propertiesDefinition, page);
-					properties.show(true);
-					bublEditor.showPropertiesForCurrentElement();
-					page.resize(true);													
+							
+							var properties = ZEN.parse(propertiesDefinition, page);
+							properties.show(true);
+							self.positionArrow(currentPage);					
+							page.resize(true);
+							ZEN.observe('ui.form', null, {},
+								function(message){
+									if(message.type === 'submit'){
+										ZEN.objects['propertiesView'].remove(true);
+										ZEN.objects[self.id].remove(true);
+										
+										alert(JSON.stringify(message, null, 2));	
+																	
+									}
+								}
+							)	
+							ZEN.app = {
+								sendForm: function(message, data){
+									alert('send form ' + JSON.stringify(data, null, 2));
+								}
+							}							
+						}
+					);												
 				},
 				
 				getElement: function () {
@@ -128,7 +250,7 @@ var ZEN = (function (ZEN, _, $) {
 						
 						self.menuItems = [];
 												
-						_.each(this.params.menu,
+						_.each(this.params.definition.propertypages,
 							function(menuItem){
 								var menuItemDiv = $('<div/>').addClass('menuItem').appendTo(menu);
 								menuItemDiv.attr('title', menuItem.label);
