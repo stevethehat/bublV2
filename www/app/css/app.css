@@ -223,6 +223,11 @@ p{
 }
 
 
+#propertiesView{
+	background-color: white;
+	overflow: scroll;
+	opacity: 0.9;
+}
 
 #PropertiesForm{
 	
@@ -242,6 +247,10 @@ p{
 
 .thumbnailMI *{
 	cursor: pointer;
+}
+
+textarea{
+	height: 80px;
 }
 
 #bublEditor{
@@ -293,9 +302,7 @@ p{
 	opacity: 0.8;	
 	position: absolute;
 	top: 0px;
-	left:0px;
 	bottom:0px;
-	right:0px;
 	width: 0; 
 	height: 0; 
 	border-left: 15px solid transparent;
@@ -335,4 +342,12 @@ p{
 	border-bottom: 10px solid transparent; 
 	
 	border-right:10px solid blue; 
+}
+
+#propertiesHeading{
+	border-bottom: solid 1px #777;	
+}
+
+#propertiesButtons{
+	border-top: solid 1px #777;
 }
