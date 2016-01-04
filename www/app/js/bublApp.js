@@ -220,7 +220,6 @@
 				}
 				this.lastElements['toolbarButtons'] = self.showElement('toolbarButtons',  empty, 'fadeIn', 'fadeOut');
 			}
-			self.dump('main', ZEN.objects['BublApp'].safeSerialize());
 
 			if(self.actions[pageName] && self.actions[pageName].afterLoad){
 				self.actions[pageName].afterLoad(data,
