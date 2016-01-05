@@ -18,35 +18,46 @@ var ZEN = (function (ZEN, _, $) {
 		
 		FloatMenu.getMenuPositionAndSize = function(contentElement, contentElementProperties){
 			var self = this;
+			var propertiesWidth = 316;
 			var root = ZEN.objects['bublEditor'];
 			var page = ZEN.objects['BublPageRoot'];
 
-			var pageWidth = Number(page.params.size.width);
-			var pageHeight = Number(page.params.size.height);
+			var pageWidth = Number(root.el.width());
+			var pageHeight = Number(root.el.height());
 			
 			var element = contentElement;
-			var top = 0;
-			var left = 0;
+			var elementTop = 0;
+			var elementLeft = 0;
 			var menuSize = {};
 			var menuPosition = {};
 
 			while(element.parent.id !== root.id){
 				if(_.isNumber(element.parent.position.top)){
-					top += Number(element.parent.position.top);			
+					elementTop += Number(element.parent.position.top);			
 				}
 				if(_.isNumber(element.parent.position.left)){
-					left += Number(element.parent.position.left);			
+					elementLeft += Number(element.parent.position.left);			
 				}
 				element = element.parent;
 			}
-			if(contentElement.el.width() > contentElement.el.height()){
-				menuSize = { "width": (Number(contentElementProperties.propertypages.length) -1) * 43, "height": 33 };
-			} else {
-				menuSize = { "width": 33, "height": (Number(contentElementProperties.propertypages.length) -1) * 43 };
-			}
+			var elementBottom = elementTop + contentElement.el.height();
+			var elementRight = elementLeft + contentElement.el.width();
+			
+			menuSize = { "width": 33, "height": (Number(contentElementProperties.propertypages.length) -1) * 40 };
 		
-			menuPosition.top = top;
-			menuPosition.left = left + 80;
+			var menuTopTest = Number(elementTop + Number(menuSize['height'])); 
+			if(menuTopTest > pageHeight){
+				menuPosition.top = elementBottom - menuSize.height;			
+			} else {
+				menuPosition.top = elementTop;			
+			}
+			if(Number(elementRight + propertiesWidth) + 49 > pageWidth){
+				menuPosition.left = elementLeft - 33;
+			} else {
+				menuPosition.left = elementRight;
+			}
+			
+			menuPosition.left = menuPosition.left + 80;
 			var result = {
 				'size': menuSize,
 				'position': menuPosition
@@ -220,19 +231,6 @@ var ZEN = (function (ZEN, _, $) {
 							properties.show(true);
 							self.positionArrow(currentPage);					
 							page.resize(true);
-							/*
-							ZEN.observe('ui.form', null, {},
-								function(message){
-									if(message.type === 'submit'){
-										ZEN.objects['propertiesView'].remove(true);
-										ZEN.objects[self.id].remove(true);
-										
-										alert(JSON.stringify(message, null, 2));	
-																	
-									}
-								}
-							)
-							*/	
 							ZEN.app = {
 								sendForm: function(message, data){
 									var contentElement = bublApp.variables['contentelement'];
@@ -253,8 +251,6 @@ var ZEN = (function (ZEN, _, $) {
 									removeElement.remove(true);
 									ZEN.cleanup();
 		
-									//content = self.fixContent(content);
-
 									var newElement = ZEN.parse(content, ZEN.objects[parentID]);
 									ZEN.objects[parentID].show(true);
 									ZEN.objects['bublEditor'].resize(true);
