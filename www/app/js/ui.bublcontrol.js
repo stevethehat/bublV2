@@ -39,6 +39,16 @@ var ZEN = (function (ZEN, _, $) {
 				label: function () {
 				},
 				
+				update: function(data){
+					var self = this;
+					_.each(data,
+						function(value, key){
+							self.setValue(key, value);
+						}
+					);
+					//self.parent.resize();
+				},
+				
 				positioning: function(){
 					return(
 						{
@@ -476,9 +486,49 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.log('get value "' + source + '" = DEFAULT "' + result + '"');
 					}
 					return(result);
-				}				
+				},				
 				
-				
+				setValue: function(source, value){
+					var self = this;
+					try{
+						var sourceBits = source.split('.');
+						var level = self.params;
+						
+						if(sourceBits[0] === 'parent'){
+							sourceBits.shift();
+							level = self.parent.params;
+						}
+						
+						for(var i=0; i < sourceBits.length; i++){
+							var sourceBit = sourceBits[i];
+							if(i === sourceBits.length -1){
+								if(sourceBit.indexOf('[') !== -1){
+									var tempSourceBit = sourceBit.substr(0, sourceBit.indexOf('[')); 
+									var index = Number(sourceBit.substr(sourceBit.indexOf('[')).replace('[', '').replace(']', ''));
+									var compoundValue = level[tempSourceBit];
+									var levelBits = [null];
+									if(compoundValue !== undefined && compoundValue !== null && _.isString(compoundValue)){
+										levelBits = compoundValue.split(' ');
+									}
+									if(index < levelBits.length){
+										 levelBits[index] = value;
+									}
+								} else {
+									level[sourceBit] = value;
+								}
+							} else {
+								if(level.hasOwnProperty(sourceBit)){
+									level = level[sourceBit];
+								} else {
+									level[sourceBit] = {}
+									level = level[sourceBit];
+								}
+							}
+						}
+					} catch(exception) {
+						ZEN.log('set value error "' + source + '"  ("' + exception + ')');
+					}
+				}								
 			}
 		);
 

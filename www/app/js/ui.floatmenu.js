@@ -220,6 +220,7 @@ var ZEN = (function (ZEN, _, $) {
 							properties.show(true);
 							self.positionArrow(currentPage);					
 							page.resize(true);
+							/*
 							ZEN.observe('ui.form', null, {},
 								function(message){
 									if(message.type === 'submit'){
@@ -230,10 +231,34 @@ var ZEN = (function (ZEN, _, $) {
 																	
 									}
 								}
-							)	
+							)
+							*/	
 							ZEN.app = {
 								sendForm: function(message, data){
-									alert('send form ' + JSON.stringify(data, null, 2));
+									var contentElement = bublApp.variables['contentelement'];
+									if(contentElement.parent.autoAddedView === true){
+										var removeElement = contentElement.parent;
+										var parentID = contentElement.parent.parent.id;
+									} else {
+										var removeElement = contentElement;										
+										var parentID = contentElement.parent.id;
+									}
+									
+									contentElement.update(data);
+									properties.remove(true);
+									self.remove(true);
+									
+									var content = contentElement.safeSerialize()['params'];
+				
+									removeElement.remove(true);
+									ZEN.cleanup();
+		
+									//content = self.fixContent(content);
+
+									var newElement = ZEN.parse(content, ZEN.objects[parentID]);
+									ZEN.objects[parentID].show(true);
+									ZEN.objects['bublEditor'].resize(true);
+									bublApp.variables['contentelement'] = newElement;	
 								}
 							}							
 						}
