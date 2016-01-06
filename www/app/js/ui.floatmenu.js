@@ -96,6 +96,7 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				},
 
+				/*
 				propertiesPosition: function(menuButton, currentPage){
 					var self = this;
 					var page = ZEN.objects['BublPageRoot'];
@@ -123,14 +124,14 @@ var ZEN = (function (ZEN, _, $) {
 		
 					var arrowPos = '';	
 					if(self.parent.position.top < (pageHeight / 2)){
-						propertiesPosition.top = self.parent.position.top + 50;
+						propertiesPosition.top = self.parent.position.top;
 						arrowPos = 'top';
 					} else {
 						propertiesPosition.top = self.parent.position.top - propertiesSize.height -16;
 						arrowPos = 'bottom';
 					}
 
-					propertiesPosition.left = self.parent.position.left - 80;
+					propertiesPosition.left = self.parent.position.left + 49 - 80;
 				
 					var appWidth = app.el.width();
 					var propertiesRight = Number(propertiesPosition.left) + Number(propertiesSize.width);
@@ -150,7 +151,73 @@ var ZEN = (function (ZEN, _, $) {
 					}
 					return(result);
 				},
+				*/
 				
+				propertiesPosition: function(menuButton, currentPage){
+					var self = this;
+					var root = ZEN.objects['bublEditor'];
+					var page = ZEN.objects['BublPageRoot'];
+					var app = ZEN.objects['BublApp'];
+		
+					var menuButtonPosition = 0;
+					var index = 0;
+					_.each(self.menuItems,
+						function(menuItem){
+							if(menuItem == menuButton){
+								menuButtonPosition = index;
+							}
+							index++;
+						}
+					);			
+					var pageHeight = root.el.height();
+					
+					var top = 0;
+					var left = 0;
+					var propertiesSize = {
+						'width': '300',
+						'height': self.propertiesForm.height + 100
+					};
+					var propertiesPosition = {};
+					
+					if(self.parent.position.top + self.propertiesForm.height + 100 < pageHeight){
+						propertiesPosition.top = self.parent.position.top;						
+					} else {
+						var menuBottom = self.parent.position.top + self.menuItems.length -1 * 40;
+						var propertiesTop = menuBottom - self.propertiesForm.height + 100;
+						propertiesPosition.top = propertiesTop;
+					}
+					
+		
+					var arrowPos = '';	
+					if(self.parent.position.top < (pageHeight / 2)){
+						//propertiesPosition.top = self.parent.position.top;
+						arrowPos = 'top';
+					} else {
+						//propertiesPosition.top = self.parent.position.top - propertiesSize.height -16;
+						arrowPos = 'bottom';
+					}
+
+					propertiesPosition.left = self.parent.position.left + 49 - 80;
+				
+					var appWidth = app.el.width();
+					var propertiesRight = Number(propertiesPosition.left) + Number(propertiesSize.width);
+					var arrowOffset = 0; 
+					if(propertiesRight > appWidth){
+						arrowOffset = propertiesPosition.left - (appWidth - propertiesSize.width); 
+						propertiesPosition.left = appWidth - propertiesSize.width;
+					}
+					var result = {
+						'size': propertiesSize,
+						'position': propertiesPosition,
+						'arrowpos': {
+							'topOrBottom': arrowPos,
+							'menuItem': menuButtonPosition,
+							'arrowOffset': arrowOffset 
+						} 
+					}
+					return(result);
+				},
+												
 				getCurrentPage: function(menuButton){
 					var self = this;
 					var menuButtonPosition = 0;
