@@ -51,16 +51,21 @@ var ZEN = (function (ZEN, _, $) {
 			} else {
 				menuPosition.top = elementTop;			
 			}
+			
+			var side = null;
 			if(Number(elementRight + propertiesWidth) + 49 > pageWidth){
 				menuPosition.left = elementLeft - 33;
+				side = 'left'
 			} else {
 				menuPosition.left = elementRight;
+				side = 'right'
 			}
 			
 			menuPosition.left = menuPosition.left + 80;
 			var result = {
 				'size': menuSize,
-				'position': menuPosition
+				'position': menuPosition,
+				'side': side
 			}
 			return(result);
 		}
@@ -187,18 +192,12 @@ var ZEN = (function (ZEN, _, $) {
 						propertiesPosition.top = propertiesTop;
 					}
 					
-		
-					var arrowPos = '';	
-					if(self.parent.position.top < (pageHeight / 2)){
-						//propertiesPosition.top = self.parent.position.top;
-						arrowPos = 'top';
+					if(self.params.side === 'right'){
+						propertiesPosition.left = self.parent.position.left + 49 - 80;		
 					} else {
-						//propertiesPosition.top = self.parent.position.top - propertiesSize.height -16;
-						arrowPos = 'bottom';
+						propertiesPosition.left = self.parent.position.left - 80 - 300;
 					}
-
-					propertiesPosition.left = self.parent.position.left + 49 - 80;
-				
+					
 					var appWidth = app.el.width();
 					var propertiesRight = Number(propertiesPosition.left) + Number(propertiesSize.width);
 					var arrowOffset = 0; 
@@ -210,7 +209,6 @@ var ZEN = (function (ZEN, _, $) {
 						'size': propertiesSize,
 						'position': propertiesPosition,
 						'arrowpos': {
-							'topOrBottom': arrowPos,
 							'menuItem': menuButtonPosition,
 							'arrowOffset': arrowOffset 
 						} 
