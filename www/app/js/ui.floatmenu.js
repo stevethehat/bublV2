@@ -187,8 +187,8 @@ var ZEN = (function (ZEN, _, $) {
 					var page = ZEN.objects['BublPageRoot'];
 					var currentPage = self.getCurrentPage(sourceElement);
 					
-					self.el.children('.menuItem').css('background-color', 'rgba(0,0,0,0.4)');
-					//sourceElement.css('background-color', 'rgba(0,0,0,0.8)');
+					$('#' + self.el.attr('id') +  ' .menuItem').css('background-color', 'rgba(0,0,0,0.4)');
+					$(sourceElement).css('background-color', 'rgba(0,0,0,1)');
 					self.propertiesArrow.css('top', currentPage * 32 + 'px');
 					
 					
@@ -305,16 +305,16 @@ var ZEN = (function (ZEN, _, $) {
 						}
 						self.propertiesArrow.css('top', '0px');
 						self.menuItems = [];
-												
+								
 						_.each(this.params.definition.propertypages,
 							function(menuItem){
-								var menuItemDiv = $('<div/>').addClass('menuItem').appendTo(menu);
+								var menuItemDiv = $('<div>' + menuItem.text + '</div>').addClass('menuItem').appendTo(menu);
 								menuItemDiv.attr('title', menuItem.label);
 								menuItemDiv.attr('id', self.id + '.' + menuItem.id);
 								self.menuItems.push(menuItemDiv.attr('id'));
 							}
 						);
-						self.showProperties(self.menuItems[0]);
+						self.showProperties(document.getElementById(self.menuItems[0]));
 						
 						this.resize();
 					}

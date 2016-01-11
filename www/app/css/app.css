@@ -270,28 +270,20 @@ textarea{
 	width:32px;
 	height:32px;
 	border: solid 1px white;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.6);
+	font-weight: bold;
+	color: white;
+	vertical-align: middle;
+	text-align: center;
 }
 .zen-FloatMenu .leftArrow{
 	position: absolute;
 	left:0px;
-	/*
-	width:16px;
-	height:16px;
-	background-color: white;
-	color:black;
-	*/
 }
 
 .zen-FloatMenu .rightArrow{
 	position: absolute;
 	left:48px;
-	/*
-	width:16px;
-	height:16px;
-	background-color: white;
-	color:black;
-	*/
 }
 
 #propertiesView .background{
@@ -356,6 +348,7 @@ textarea{
 	border-bottom: 16px solid transparent;
 	
 	border-left: 16px solid white;
+	opacity: 0.8;
 }
 
 .arrow-left {
@@ -365,6 +358,7 @@ textarea{
 	border-bottom: 16px solid transparent; 
 	
 	border-right:16px solid white; 
+	opacity: 0.8;
 }
 
 #propertiesHeading{
