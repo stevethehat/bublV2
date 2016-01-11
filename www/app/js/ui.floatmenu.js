@@ -43,18 +43,21 @@ var ZEN = (function (ZEN, _, $) {
 			var elementBottom = elementTop + contentElement.el.height();
 			var elementRight = elementLeft + contentElement.el.width();
 			
-			menuSize = { "width": 33, "height": (Number(contentElementProperties.propertypages.length) -1) * 40 };
+			menuSize = { "width": 65, "height": (Number(contentElementProperties.propertypages.length) -1) * 40 };
 		
-			var menuTopTest = Number(elementTop + Number(menuSize['height'])); 
+			var menuTopTest = Number(elementTop + Number(menuSize['height']));
+			var valign = null; 
 			if(menuTopTest > pageHeight){
-				menuPosition.top = elementBottom - menuSize.height;			
+				menuPosition.top = elementBottom - menuSize.height;
+				valign = 'bottom';			
 			} else {
-				menuPosition.top = elementTop;			
+				menuPosition.top = elementTop;
+				valign = 'top';			
 			}
 			
 			var side = null;
 			if(Number(elementRight + propertiesWidth) + 49 > pageWidth){
-				menuPosition.left = elementLeft - 33;
+				menuPosition.left = elementLeft - 65;
 				side = 'left'
 			} else {
 				menuPosition.left = elementRight;
@@ -65,7 +68,8 @@ var ZEN = (function (ZEN, _, $) {
 			var result = {
 				'size': menuSize,
 				'position': menuPosition,
-				'side': side
+				'side': side,
+				'valign': valign
 			}
 			return(result);
 		}
@@ -96,67 +100,10 @@ var ZEN = (function (ZEN, _, $) {
 					}
 
 					if(message.type === 'active') {
-						self.showProperties(message.sourceElement.id);
-						ZEN.notify ("ui.FloatMenu", message.sourceElement.id);
+						self.showProperties(message.sourceElement);
+						ZEN.notify ("ui.FloatMenu", message.sourceElement);
 					}
 				},
-
-				/*
-				propertiesPosition: function(menuButton, currentPage){
-					var self = this;
-					var page = ZEN.objects['BublPageRoot'];
-					var app = ZEN.objects['BublApp'];
-		
-					var menuButtonPosition = 0;
-					var index = 0;
-					_.each(self.menuItems,
-						function(menuItem){
-							if(menuItem == menuButton){
-								menuButtonPosition = index;
-							}
-							index++;
-						}
-					);			
-					var pageHeight = Number(page.params.size.height);
-					
-					var top = 0;
-					var left = 0;
-					var propertiesSize = {
-						'width': '300',
-						'height': self.propertiesForm.height + 100
-					};
-					var propertiesPosition = {};
-		
-					var arrowPos = '';	
-					if(self.parent.position.top < (pageHeight / 2)){
-						propertiesPosition.top = self.parent.position.top;
-						arrowPos = 'top';
-					} else {
-						propertiesPosition.top = self.parent.position.top - propertiesSize.height -16;
-						arrowPos = 'bottom';
-					}
-
-					propertiesPosition.left = self.parent.position.left + 49 - 80;
-				
-					var appWidth = app.el.width();
-					var propertiesRight = Number(propertiesPosition.left) + Number(propertiesSize.width);
-					var arrowOffset = 0; 
-					if(propertiesRight > appWidth){
-						arrowOffset = propertiesPosition.left - (appWidth - propertiesSize.width); 
-						propertiesPosition.left = appWidth - propertiesSize.width;
-					}
-					var result = {
-						'size': propertiesSize,
-						'position': propertiesPosition,
-						'arrowpos': {
-							'topOrBottom': arrowPos,
-							'menuItem': menuButtonPosition,
-							'arrowOffset': arrowOffset 
-						} 
-					}
-					return(result);
-				},
-				*/
 				
 				propertiesPosition: function(menuButton, currentPage){
 					var self = this;
@@ -193,9 +140,9 @@ var ZEN = (function (ZEN, _, $) {
 					}
 					
 					if(self.params.side === 'right'){
-						propertiesPosition.left = self.parent.position.left + 49 - 80;		
+						propertiesPosition.left = self.parent.position.left +65 -80;		
 					} else {
-						propertiesPosition.left = self.parent.position.left - 80 - 300;
+						propertiesPosition.left = self.parent.position.left -80 -300;
 					}
 					
 					var appWidth = app.el.width();
@@ -222,7 +169,7 @@ var ZEN = (function (ZEN, _, $) {
 					var index = 0;
 					_.each(self.menuItems,
 						function(menuItem){
-							if(menuItem == menuButton){
+							if(menuItem == $(menuButton).attr('id')){
 								menuButtonPosition = index;
 							}
 							index++;
@@ -239,6 +186,12 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					var page = ZEN.objects['BublPageRoot'];
 					var currentPage = self.getCurrentPage(sourceElement);
+					
+					self.el.children('.menuItem').css('background-color', 'rgba(0,0,0,0.4)');
+					//sourceElement.css('background-color', 'rgba(0,0,0,0.8)');
+					self.propertiesArrow.css('top', currentPage * 32 + 'px');
+					
+					
 					bublApp.variables['contentelement'].getPropertiesForm(currentPage,
 						function(propertiesForm){
 							self.propertiesForm = propertiesForm; 
@@ -333,7 +286,24 @@ var ZEN = (function (ZEN, _, $) {
 						// this.el.attr('tabindex',0);
 						var menu = $('<div/>').appendTo(this.el);
 						this.el.addClass('zen-FloatMenu');
+
+						self.leftArrow = $('<div></div>').addClass('leftArrow').addClass('arrow-left').appendTo(this.el);
+						self.rightArrow = $('<div></div>').addClass('rightArrow').addClass('arrow-right').appendTo(this.el);
 						
+						if(self.params.side === 'right'){
+							self.propertiesArrow = self.rightArrow;
+							self.controlArrow = self.leftArrow;
+						} else {
+							self.propertiesArrow = self.leftArrow;							
+							self.controlArrow = self.rightArrow;
+						}
+						
+						if(self.params.valign === 'bottom'){
+							self.controlArrow.css('bottom', '0px');							
+						} else {
+							self.controlArrow.css('top', '0px');														
+						}
+						self.propertiesArrow.css('top', '0px');
 						self.menuItems = [];
 												
 						_.each(this.params.definition.propertypages,
@@ -345,6 +315,7 @@ var ZEN = (function (ZEN, _, $) {
 							}
 						);
 						self.showProperties(self.menuItems[0]);
+						
 						this.resize();
 					}
 					return this.el;

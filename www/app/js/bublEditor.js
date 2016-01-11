@@ -107,6 +107,7 @@ var bublEditor = {
 							"id": "floatMenu",
 							"show": true,
 							"side": menuPositioning.side,
+							"valign": menuPositioning.valign,
 							'definition': properties,
 							"size": {
 								"width": "max", "height": "max"
