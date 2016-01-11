@@ -3,6 +3,7 @@
 		{
 			"id": "positioning",
 			"label": "Positioning",
+			"text": "P",
 			"fields": [						
 				{
 					"type": "group",
@@ -44,6 +45,7 @@
 		{
 			"id": "interactions",
 			"label": "Interactions",
+			"text": "I",
 			"fields": []				
 		}
 	]

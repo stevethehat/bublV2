@@ -3,6 +3,7 @@
 		{
 			"id": "text",
 			"label": "Text",
+			"text": "T",
 			"fields": [
 				{
 					"type": "HTML",
@@ -31,6 +32,7 @@
 		{
 			"id": "styling",
 			"label": "Styling",
+			"text": "S",
 			"fields": [
 				{
 					"type": "Select",
@@ -52,6 +54,7 @@
 		{
 			"id": "image",
 			"label": "Image",
+			"text": "I",
 			"fields": [
 				{
 					"source": "image",
