@@ -35,7 +35,7 @@
 									},
 									{
 										"type": "CompoundElement",
-										"label": "<p>Select the page you want to edit, or <span data-tag=\"add\"><i class=\"fa fa-plus fa-x1\"/> add a new page</span>.</p>",
+										"label": "<p>Select the page you want to edit, or <span data-tag=\"add\"><i class=\"fa fa-plus fa-x1\"/> add a new page</span> or a new <span data-tag=\"addsection\"><i class=\"fa fa-plus fa-x1\"/> section</span></p>",
 										"size": { "height": 30 }	
 									},
 									{
