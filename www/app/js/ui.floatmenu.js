@@ -56,7 +56,11 @@ var ZEN = (function (ZEN, _, $) {
 			}
 			
 			var side = null;
-			if(Number(elementRight + propertiesWidth) + 49 > pageWidth){
+            if((Number(elementRight + propertiesWidth) + 49 > pageWidth) && (Number(elementLeft - propertiesWidth - 49) < 0)){
+                // we are gonna have to overlay it
+                menuPosition.left = elementLeft
+                side = 'right';
+            } else if (Number(elementRight + propertiesWidth) + 49 > pageWidth){
 				menuPosition.left = elementLeft - 65;
 				side = 'left'
 			} else {
