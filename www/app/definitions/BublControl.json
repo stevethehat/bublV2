@@ -1,55 +1,40 @@
 {
-	"title": "Text",	
-	"fields":[
+	"propertypages": [
 		{
-			"type": "FormTextArea",
+			"id": "text",
 			"label": "Text",
-			"source": "label",
-			"default": "",
-			"height": 100
+			"text": "T",
+			"fields": [
+                {
+                    "type": "FormTextArea",
+                    "label": "Text",
+                    "source": "label",
+                    "default": "",
+                    "height": 100
+                }
+			]				
 		},
 		{
-			"id": "font",
-			"type": "FormSelect",
-			"label": "Font",
-			"source": "content.font"
-		},
-		{
-			"id": "style",
-			"type": "FormSelect",
-			"label": "Style",
-			"source": "content.style"
-		},
-		{
-			"type": "group",
-			"label": "Text Position",
+			"id": "styling",
+			"label": "Styling",
+			"text": "S",
 			"fields": [
 				{
-					"type": "combo",
-					"fields":[
-						{
-							"type": "FormNumber",
-							"label": "Top",
-							"source": "styles.padding-top",
-							"datatype": "px",
-							"default": "0"
-						},
-						{
-							"type": "FormNumber",
-							"label": "Left",
-							"source": "styles.padding-left",
-							"datatype": "px",
-							"default": "0"					
-						}	
-					]
-				}		
-			]
-		},
-		{
-			"id": "bgimage",
-			"type": "FormEdit",
-			"label": "Background Image",
-			"source": "image"
+					"type": "Select",
+					"label": "Style",
+					"source": "content.style"
+				},
+				{
+					"type": "Input",
+					"inputType": "range",
+					"label": "Opacity",
+					"source": "opacity",
+					"default": "0",
+					"min": 0,
+					"max": 100,
+					"multiplyer": 100
+				}								
+			]				
 		}
-	]
+	]	
 }

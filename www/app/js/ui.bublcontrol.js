@@ -319,12 +319,14 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					message.source = this;
 
-					ZEN.log(message.type + ' ' + message.source.id);
+					ZEN.log('BublControl ' + message.type + ' ' + message.source.id);
 					
 					if (message.type === 'highlight') {
 						this.el.addClass('hover');
+                        this.addDropAreas();
 					} else {
 						this.el.removeClass('hover');
+                        this.removeDropAreas();
 					}
 					self.addActionEvents(message);					
 				},
@@ -340,6 +342,8 @@ var ZEN = (function (ZEN, _, $) {
 						
 							this.el.addClass('selected');
 							bublApp.variables['contentelement'] = this;
+                            //alert(bublApp.variables['contentelement']);
+                            alert($(message.sourceElement).attr('id'));
 						}
 					} else {
 						if(this.params.actions !== undefined && this.params.actions.highlightAnimation !== undefined){
@@ -358,8 +362,89 @@ var ZEN = (function (ZEN, _, $) {
 						}
 					}
 				},
+                
+                addDropAreas: function(){
+                    var self = this;
+                    self.el.css('position', 'relative');
+                    
+                    var width = self.el.width();
+                    var height = self.el.height();
+                    
+                    var width60 = Math.round(width * 0.6);
+                    var height60 = Math.round(height * 0.6);
+                    var width20 = Math.round((width - width60) / 2);
+                    var height20 = Math.round((height - height60) / 2);
 
-				getElement: function () {
+                    var top = height - height60;
+                    var left = width - width60;
+                    
+                    self.dropTop  = $('<div id="dropTop" title="Add ?? above"/>')
+                        .addClass('editorDropTarget')
+                        .css(
+                            {
+                                'top': 0,
+                                'left': width20,
+                                'width': width60,
+                                'height': height20                                                                
+                            }
+                        )
+                        .appendTo(self.el);  
+                    self.dropBottom  = $('<div id="dropBottom" title="Add ?? below"/>')
+                        .addClass('editorDropTarget')
+                        .css(
+                            {
+                                'width': width60,
+                                'height': height20,
+                                'bottom': 0,
+                                'left': width20,
+                            }
+                        )
+                        .appendTo(self.el);  
+                    self.dropLeft  = $('<div id="dropLeft" title="Add ?? to the left"/>')
+                        .addClass('editorDropTarget')
+                        .css(
+                            {
+                                'width': width20,
+                                'height': height60,
+                                'top': height20,
+                                'left': 0,
+                            }
+                        )
+                        .appendTo(self.el);  
+                    self.dropRight  = $('<div id="dropRight" title="Add ?? to the right"/>')
+                        .addClass('editorDropTarget')
+                        .css(
+                            {
+                                'width': width20,
+                                'height': height60,
+                                'top': height20,
+                                'right': 0,
+                            }
+                        )
+                        .appendTo(self.el);  
+                    self.dropReplace  = $('<div id="dropReplace" title="Replace Element with ??"/>')
+                        .addClass('editorDropTarget')
+                        .css(
+                            {
+                                'width': width60,
+                                'height': height60,
+                                'top': height20,
+                                'left': width20,
+                            }
+                        )
+                        .appendTo(self.el);  
+                },
+
+                removeDropAreas: function(){
+                    var self = this;
+                    self.dropTop.remove();
+                    self.dropBottom.remove();
+                    self.dropLeft.remove();
+                    self.dropRight.remove();
+                    self.dropReplace.remove();
+                },
+                
+   				getElement: function () {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
@@ -375,6 +460,7 @@ var ZEN = (function (ZEN, _, $) {
 							}
 						}
 						this.resize();
+                        //this.addDropAreas();
 					}
 					return this.el;
 				},

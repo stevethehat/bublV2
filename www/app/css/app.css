@@ -368,3 +368,14 @@ textarea{
 #propertiesButtons{
 	border-top: solid 1px #777;
 }
+
+.zen-contentarea{
+    /*background-color: red;*/
+}
+
+.editorDropTarget{
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
