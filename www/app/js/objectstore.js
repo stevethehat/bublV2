@@ -3,10 +3,10 @@
 			//$(function() {
 
 	var objectStore = {
-		apiRoot: 'http://localhost:3000/api/objects',
+		apiRoot: location.protocol + '//' + location.host + '/api/objects',
 
 		getObject: function(objectID, subObjects, callback){
-			var url = 'http://localhost:3000/api/objects/' + objectID;
+			var url = location.protocol + '//' + location.host + '/api/objects/' + objectID;
 			if(subObjects !== null && subObjects !== ''){
 				url = url + '/' + subObjects;
 			} 				

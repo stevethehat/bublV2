@@ -310,7 +310,7 @@ _.extend(
 			uploadFile: function(uploadDetails){
 				var self = this;
 				//self.uploadUrl = uploadDetails.uploadUrl.substr(8);
-				self.uploadUrl = 'http://localhost:3000/api/upload';
+				self.uploadUrl = location.protocol + '//' + location.host + '/api/upload';
 				self.currentFilePosition = 0;
 				self.maxChunkSize = 256 * 1024;
 				self.bytesRemaining = self.file.size;

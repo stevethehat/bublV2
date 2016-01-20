@@ -117,7 +117,7 @@ var bublUtil = {
 	
 	generateThumbnail: function(id, callback){
 		var data = {
-			'url': 'http://localhost:3000/player.html?id=' + id,
+			'url': location.protocol + '//' + location.host + '/player.html?id=' + id,
 			'fileName': id + '-thumbnail.png',
 			'width': 340,
 			'height': 200,

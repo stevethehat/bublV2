@@ -3,11 +3,12 @@
 
 	var bublApp = {
 		variables: {},
-		apiRoot: 'http://localhost:3001/api/objects',
+		apiRoot: location.protocol + '//' + location.host + '/api/objects',
 		
 		init: function(){
+            alert(location.protocol + '//' + location.host);
 			var self = this;
-			var url = 'http://localhost:3001/app.json'
+			var url = location.protocol + '//' + location.host+ '/app.json'
 
 			
 			self.variables['username'] = 'Steve';
