@@ -6,7 +6,6 @@
 		apiRoot: location.protocol + '//' + location.host + '/api/objects',
 		
 		init: function(){
-            alert(location.protocol + '//' + location.host);
 			var self = this;
 			var url = location.protocol + '//' + location.host+ '/app.json'
 
