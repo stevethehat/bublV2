@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+//var session = require('express-session');
 var bodyParser = require('body-parser');
 var _s = require('underscore.string');
 
@@ -11,12 +11,13 @@ var objects = require('./routes/objects');
 var upload = require('./routes/upload');
 var bublv2 = require('./routes/bublv2');
 var dump = require('./routes/dump');
-var media = require('./routes/media');
 
 
 var app = express();
 
-app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT || 3000);
+console.log('Running on PORT ' + app.get('port'));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +27,7 @@ app.set('view engine', 'jade');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(cookieParser());
-app.use(session({secret: '1234567890QWERTY'}));
+//app.use(session({secret: '1234567890QWERTY'}));
 app.use(express.static('www'));
 
 app.all('/*', function(req, res, next) {
@@ -34,7 +35,7 @@ app.all('/*', function(req, res, next) {
 	console.log('===================================================================================================');
 
 	
-	//console.log('adding cors headers');
+	console.log('adding cors headers');
   	res.header("Access-Control-Allow-Origin", "*");
   	res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
   	res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
@@ -45,7 +46,7 @@ app.all('/*', function(req, res, next) {
 
 		bodyParser.json()(req, res, next); 
 		console.log(req.body);
-		bodyParser.urlencoded({ extended: false, limit: '10mb' });		
+		bodyParser.urlencoded({ extended: false });		
 	} else {
 		/*
 	  	req.rawBody = '';
@@ -67,7 +68,6 @@ app.all('/*', function(req, res, next) {
 
 app.use('/api/objects', objects);
 app.use('/api/dump', dump);
-app.use('/api/media', media);
 app.use('/bublv2', bublv2);
 
 
