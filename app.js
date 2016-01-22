@@ -32,7 +32,7 @@ app.use(express.static('www'));
 app.all('/*', function(req, res, next) {
 	console.log('===================================================================================================');
 	console.log('===================================================================================================');
-
+    console.log('CLIENT IP ' + req.ip);
 	
 	//console.log('adding cors headers');
   	res.header("Access-Control-Allow-Origin", "*");

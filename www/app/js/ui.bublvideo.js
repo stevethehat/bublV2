@@ -36,6 +36,26 @@ var ZEN = (function (ZEN, _, $) {
 							//var video = $('<video width="' + this.parent.el.width() + '" height="' + this.parent.el.height() + '" controls/>').appendTo(this.el);
 							var video = $('<video width="100%" height="100%" controls/>').appendTo(self.stylingDiv);
 							var source = $('<source src="' + this.params.content.url + '" type="video/mp4"/>').appendTo(video);
+                            
+                            video.on('play',
+                                function(){
+                                    alert('play');
+                                    ga('send', 'event', 'Videos', 'play', self.title);
+                                }
+                            );
+                            video.on('pause',
+                                function(){
+                                    alert('pause');
+                                    ga('send', 'event', 'Videos', 'pause', self.title);
+                                }
+                            )
+                            video.on('ended',
+                                function(){
+                                    alert('end');
+                                    ga('send', 'event', 'Videos', 'ended', self.title);
+                                }
+                            )
+                            
 						} else {
 							self.stylingDiv.html('<p>Please select a video</p>');						
 						}

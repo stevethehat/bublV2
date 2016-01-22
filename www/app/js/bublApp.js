@@ -60,6 +60,12 @@
 			ZEN.init(base);
 			self.loadPlayerPage(id, 'fadeIn');
 		},
+        
+        urlize: function(str){
+            //str = str.trim().replace(/[^-a-zA-Z0-9\s]/g, '');
+            str = str.replace(/ /g,'');
+            return '/' + str.toLowerCase(); 
+        },
 		
 		loadPlayerPage: function(id, inAnimate){
 			var self = this;
@@ -75,6 +81,9 @@
 					var currentPageId = bublApp.variables['currentPlayerPageID'];
 					
 					ZEN.log('load page ' + id + ' from ' + currentPageId);
+                    var url = self.urlize(object.title);
+                    ga('set', 'page', url);
+                    ga('send', 'pageview', url);
 					
 					var currentPage = ZEN.objects['BublPageRoot'];
 					if(currentPageId === id){
