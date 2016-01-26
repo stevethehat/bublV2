@@ -46,7 +46,7 @@ var ZEN = (function (ZEN, _, $) {
 						ZEN.notify ("ui.bublcontentarea", message);
 						//alert('here');
 						
-						if(bublApp.variables['contentelement'] !== undefined){						
+						if(bublApp.variables['contentelement'] !== undefined && bublApp.variables['contentelement'] !== null){						
 							bublApp.variables['contentelement'].el.removeClass('selected');
 						}						
 						

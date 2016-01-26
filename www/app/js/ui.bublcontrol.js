@@ -323,7 +323,10 @@ var ZEN = (function (ZEN, _, $) {
 					
 					if (message.type === 'highlight') {
 						this.el.addClass('hover');
-                        this.addDropAreas();
+                        var addControlType = bublApp.variables['addControlType'];
+                        if(addControlType !== null && addControlType !== undefined){
+                            this.addDropAreas();                        
+                        }
 					} else {
 						this.el.removeClass('hover');
                         this.removeDropAreas();
@@ -342,8 +345,7 @@ var ZEN = (function (ZEN, _, $) {
 						
 							this.el.addClass('selected');
 							bublApp.variables['contentelement'] = this;
-                            //alert(bublApp.variables['contentelement']);
-                            alert($(message.sourceElement).attr('id'));
+                            bublEditor.addSelectedControl();
 						}
 					} else {
 						if(this.params.actions !== undefined && this.params.actions.highlightAnimation !== undefined){
@@ -364,8 +366,10 @@ var ZEN = (function (ZEN, _, $) {
 				},
                 
                 addDropAreas: function(){
+                    return;
                     var self = this;
                     self.el.css('position', 'relative');
+                    self.hasDropTargets = true;
                     
                     var width = self.el.width();
                     var height = self.el.height();
@@ -436,12 +440,16 @@ var ZEN = (function (ZEN, _, $) {
                 },
 
                 removeDropAreas: function(){
+                    return;
                     var self = this;
-                    self.dropTop.remove();
-                    self.dropBottom.remove();
-                    self.dropLeft.remove();
-                    self.dropRight.remove();
-                    self.dropReplace.remove();
+                    if(self.hasDropTargets){
+                        self.dropTop.remove();
+                        self.dropBottom.remove();
+                        self.dropLeft.remove();
+                        self.dropRight.remove();
+                        self.dropReplace.remove();                        
+                    }
+                    self.hasDropTargets = false;
                 },
                 
    				getElement: function () {

@@ -72,78 +72,140 @@ var bublEditor = {
 			}
 		);		
 	},
+
+    removeCurrentMenuAndProperties: function(){
+        var currentMenuView = ZEN.objects['floatMenuView'];
+        if(currentMenuView !== undefined){
+            currentMenuView.remove(true);
+        }
+        var currentMenu = ZEN.objects['floatMenuView'];
+        var currentProperties = ZEN.objects['propertiesView'];
+        if(currentMenu !== undefined){
+            currentMenu.remove(true);
+        }
+        if(currentProperties !== undefined){
+            currentProperties.remove(true);
+        }
+    },
 		
 	showMenuForCurrentElement: function(){
 		var self = this;
-		var contentElement = bublApp.variables['contentelement'];
-		var currentMenuView = ZEN.objects['floatMenuView'];
-		if(currentMenuView !== undefined){
-			currentMenuView.remove(true);
-		}
-		var mainPanel = ZEN.objects['mainPanel'];
-		var currentMenu = ZEN.objects['floatMenuView'];
-		var currentProperties = ZEN.objects['propertiesView'];
-		if(currentMenu !== undefined){
-			currentMenu.remove(true);
-		}
-		if(currentProperties !== undefined){
-			currentProperties.remove(true);
-		}
-		contentElement.getProperties(
-			function(properties){
-				var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(contentElement, properties);
-				var menuDefinition = {
-					"id": "floatMenuView",
-					"type": "View",
-					"show": true,
-					"size": menuPositioning.size,
-					"opacity": 0.5,
-					"params": {},
-					"position": menuPositioning.position,
-					"layout": { "style": "vertical" },
-					"children": [
-						{
-							"type": "FloatMenu",
-							"id": "floatMenu",
-							"show": true,
-							"side": menuPositioning.side,
-							"valign": menuPositioning.valign,
-							'definition': properties,
-							"size": {
-								"width": "max", "height": "max"
-							}
-						}
-					]
-				}
-					
-				var menu = ZEN.parse(menuDefinition, mainPanel);
-				menu.show(true);
-				menu.contentElement = contentElement;
-				mainPanel.resize(true);					
-			}
-		)
+        
+        var addControlType = bublApp.variables['addControlType'];
+        
+        if(addControlType === null || addControlType === undefined){
+            var contentElement = bublApp.variables['contentelement'];
+            var mainPanel = ZEN.objects['mainPanel'];
+            self.removeCurrentMenuAndProperties();
+            contentElement.getProperties(
+                function(properties){
+                    var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(contentElement, properties);
+                    var menuDefinition = {
+                        "id": "floatMenuView",
+                        "type": "View",
+                        "show": true,
+                        "size": menuPositioning.size,
+                        "opacity": 0.5,
+                        "params": {},
+                        "position": menuPositioning.position,
+                        "layout": { "style": "vertical" },
+                        "children": [
+                            {
+                                "type": "FloatMenu",
+                                "id": "floatMenu",
+                                "show": true,
+                                "side": menuPositioning.side,
+                                "valign": menuPositioning.valign,
+                                'definition': properties,
+                                "size": {
+                                    "width": "max", "height": "max"
+                                }
+                            }
+                        ]
+                    }
+                        
+                    var menu = ZEN.parse(menuDefinition, mainPanel);
+                    menu.show(true);
+                    menu.contentElement = contentElement;
+                    mainPanel.resize(true);					
+                }
+            )   
+        }        
 	},
 	
 	showPropertiesForCurrentElement: function(){
 		var self = this;
-		var currentElement = bublApp.variables['contentelement'];
-		bublForm.displayForm('PropertiesForm', currentElement, currentElement.propertiesDefinition);				
-		/*		
-		ZEN.data.load('app/definitions/style.json', {},
-			function (standard) {
-				currentElemenet.setupPropertiesForm(data,
-					function(){
-						
-						bublForm.displayForm(parentView, object, data);				
-					}
-				)
-				
-				
-				bublForm.showForm('PropertiesForm', currentElement, currentElement.params.type + '.json', standard);
-			}
-		);
-		*/		
+        var addControlType = bublApp.variables['addControlType'];
+
+        if(addControlType === null || addControlType === undefined){
+            var currentElement = bublApp.variables['contentelement'];
+            bublForm.displayForm('PropertiesForm', currentElement, currentElement.propertiesDefinition);				
+            /*		
+            ZEN.data.load('app/definitions/style.json', {},
+                function (standard) {
+                    currentElemenet.setupPropertiesForm(data,
+                        function(){
+                            
+                            bublForm.displayForm(parentView, object, data);				
+                        }
+                    )
+                    
+                    
+                    bublForm.showForm('PropertiesForm', currentElement, currentElement.params.type + '.json', standard);
+                }
+            );
+            */		
+        }
 	},
+    
+    selectControlToAdd: function(data){
+        var self = this;
+        var currentAddControlType = bublApp.variables['addControlType'];
+        
+        if(data.params.addcontent.type === currentAddControlType){
+            // turn addin functionality off
+            bublApp.variables['addControlType'] = null;
+            data.el.removeClass('selected');
+        } else {
+            bublApp.variables['addControlType'] = data.params.addcontent.type; 
+            data.el.addClass('selected');
+        }
+        self.removeCurrentMenuAndProperties();
+    },
+
+    addSelectedControl: function(){
+        var self = this;
+        var addControlType = bublApp.variables['addControlType'];
+		var contentArea = bublApp.variables['contentelement'];
+
+        if(contentArea !== null && addControlType !== null){
+            switch(addControlType){
+                case 'BublRows':
+                    ZEN.ui.BublRows.setup(contentArea);
+                    alert('add rows');
+                    break;
+                case 'BublColumns':
+                    ZEN.ui.BublColumns.setup(contentArea);
+                    alert('add columns');
+                    break;
+                default:
+                    bublEditor.addControl(
+                        { 
+                            'params': {
+                                'addcontent':{
+                                    'type': addControlType,
+                                    'content': {
+                                    }
+                                }
+                            }
+                        }
+                    );                    
+                    break;               
+            }
+        }
+        bublApp.variables['addControlType'] = null;
+        bublApp.variables['contentelement'] = null;
+    },
 
 	addControl: function(data){
 		var contentArea = bublApp.variables['contentelement'];
@@ -209,27 +271,6 @@ var bublEditor = {
 		,parent)
 		parent.show(true);
 		ZEN.objects['bublEditor'].resize(true);
-	},
-	setupChildViews: function(content, children, orientation){
-		var self = this;
-				
-		content = {
-			'type': 'View', 
-			'children': [], 
-			'layout': { 'style': orientation },
-			'size': { 'width': 'max', 'height': 'max' },
-			'defaults': {
-				'size': { 'width': 'max', 'height': 'max' },
-				'layout': { 'style': 'vertical', 'align': 'left' } 					
-			}
-		}
-
-		if(content.children.length !== children){
-			for(var i=0; i < children; i++){
-				content.children.push( { 'type': 'ContentArea' } );
-			}
-		}
-		return(content);
 	},
 	fixContent: function(content){
 		var self = this;

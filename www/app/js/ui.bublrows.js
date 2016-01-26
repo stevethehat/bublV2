@@ -15,6 +15,36 @@ var ZEN = (function (ZEN, _, $) {
 		}
 
 		BublRows.prototype = new ZEN.ui.BublControl();
+        
+        BublRows.setup = function(contentArea){	
+            var parentID = contentArea.parent.parent.id;
+            var content = {
+                'type': 'View', 
+                'children': [
+                    {
+                        'id': 'contentArea.id' + '-top',
+                        'type': 'ContentArea',
+                        'size': { 'width': 'max', 'height': 'max' }                
+                    },
+                    {
+                        'id': 'contentArea.id' + '-bottom',
+                        'type': 'ContentArea',
+                        'size': { 'width': 'max', 'height': 'max' }                                        
+                    }
+                ], 
+                'layout': { 'style': 'vertical' },
+                'size': { 'width': 'max', 'height': 'max' }
+            }           
+            
+            contentArea.parent.remove(true);
+            ZEN.cleanup();
+            
+            var rows = ZEN.parse(content, ZEN.objects[parentID]);
+            ZEN.objects[parentID].show(true);
+            ZEN.objects['bublEditor'].resize(true);
+            return(rows);
+        }
+        
 		
 		_.extend(
 			BublRows.prototype,

@@ -15,6 +15,35 @@ var ZEN = (function (ZEN, _, $) {
 		}
 
 		BublColumns.prototype = new ZEN.ui.BublControl();
+        
+        BublColumns.setup = function(contentArea){	
+            var parentID = contentArea.parent.parent.id;
+            var content = {
+                'type': 'View', 
+                'children': [
+                    {
+                        'id': 'contentArea.id' + '-left',
+                        'type': 'ContentArea',
+                        'size': { 'width': 'max', 'height': 'max' }                
+                    },
+                    {
+                        'id': 'contentArea.id' + '-right',
+                        'type': 'ContentArea',
+                        'size': { 'width': 'max', 'height': 'max' }                                        
+                    }
+                ], 
+                'layout': { 'style': 'horizontal' },
+                'size': { 'width': 'max', 'height': 'max' }
+            }           
+            
+            contentArea.parent.remove(true);
+            ZEN.cleanup();
+                        
+            var columns = ZEN.parse(content, ZEN.objects[parentID]);
+            ZEN.objects[parentID].show(true);
+            ZEN.objects['bublEditor'].resize(true);
+            return(columns);
+        }
 		
 		_.extend(
 			BublColumns.prototype,

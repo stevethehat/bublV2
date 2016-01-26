@@ -34,7 +34,7 @@
 										"defaults": {
 											"type": "IconLabel",
 											"size": { "height": 38 },
-											"tag": "addcontrol"
+											"tag": "selectcontroltoadd"
 										},
 										"children": [
 											{	

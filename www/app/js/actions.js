@@ -175,6 +175,9 @@
 			cancel: function(data){
 				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
 			},
+			selectcontroltoadd: function(data){
+				bublEditor.selectControlToAdd(data);
+			},
 			addcontrol: function(data){
 				bublEditor.addControl(data);
 			},

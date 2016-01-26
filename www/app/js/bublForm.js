@@ -166,11 +166,12 @@ var bublForm = {
 		
 		processedDefinition = bublApp.preParse(processedDefinition);
 
-		ZEN.parse(processedDefinition, ZEN.objects['PropertiesForm']);		
+		var form = ZEN.parse(processedDefinition, ZEN.objects['PropertiesForm']);		
 		form.show(true);
 	
 		//ZEN.objects['properties'].resize(true);
-		ZEN.objects[parentID].resize(true);						
+		ZEN.objects[parentID].resize(true);		
+        return(form);				
 	},
 	
 	removeForm: function(){
