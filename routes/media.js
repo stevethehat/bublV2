@@ -30,8 +30,8 @@ router.post('/capture',
 
 		console.log(JSON.stringify(object));
 		
-		var filePath = path.resolve('../bubl/www/app/img/assets/' + fileName);
-		var thumbnailFilePath = path.resolve('../bubl/www/app/img/assets/' + width + 'x' + height + '/' + fileName);
+		var filePath = path.resolve('./www/app/img/assets/' + fileName);
+		var thumbnailFilePath = path.resolve('./www/app/img/assets/' + width + 'x' + height + '/' + fileName);
 		
 		object['filePath'] = filePath;
 		object['thumbnailFilePath'] = thumbnailFilePath;
@@ -85,7 +85,7 @@ router.all('/thumbnails',
 				}
 			)
 		} else {
-			var filePath = path.resolve('../bubl/www/app/img/assets/' + fileName);
+			var filePath = path.resolve('./www/app/img/assets/' + fileName);
 			media.generateThumbnails(sizes, filePath,
 				function(thumbnailInfo){
 					response.send({'result': 'ok', 'request': object, 'response': thumbnailInfo });											
@@ -99,7 +99,7 @@ router.all('/resize',
 	function(request, response, next){
 		var object = request.body;
 		var fileName = object.fileName;
-		var filePath = path.resolve('../bubl/www/app/img/assets/' + fileName);
+		var filePath = path.resolve('./www/app/img/assets/' + fileName);
 
 		media.resize(filePath, '', object.width, object.height,
 			function (info){
@@ -113,7 +113,7 @@ router.all('/info',
 	function(request, response, next){
 		var object = request.body;
 		var fileName = object.fileName;
-		var filePath = path.resolve('../bubl/www/app/img/assets/' + fileName);
+		var filePath = path.resolve('./www/app/img/assets/' + fileName);
 		
 		media.info(filePath,
 			function(info){
