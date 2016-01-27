@@ -60,6 +60,16 @@ var ZEN = (function (ZEN, _, $) {
 				
 				getElement: function () {
 					var self = this;
+                    
+                    function getRandomColor() {
+                        var letters = '0123456789ABCDEF'.split('');
+                        var color = '#';
+                        for (var i = 0; i < 6; i++ ) {
+                            color += letters[Math.floor(Math.random() * 16)];
+                        }
+                        return color;
+                    }
+                    
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
@@ -68,8 +78,10 @@ var ZEN = (function (ZEN, _, $) {
 						var dropArea = $('<div/>').appendTo(self.stylingDiv);
 						if(bublApp.displayMode === 'app'){
 							dropArea.addClass('contentareadrop');
-							var instructions = $('<p>Add content here</p>').appendTo(dropArea);
-						}
+							var instructions = $('<p>Select a content element to add on the left.</p>').appendTo(dropArea);
+						} else {
+                            this.el.css('background-color', getRandomColor());
+                        }
 						this.resize();
 					}
 					return this.el;

@@ -16,18 +16,23 @@ var ZEN = (function (ZEN, _, $) {
 
 		BublRows.prototype = new ZEN.ui.BublControl();
         
-        BublRows.setup = function(contentArea){	
-            var parentID = contentArea.parent.parent.id;
+        BublRows.id = 0;
+        BublRows.setup = function(contentArea){
+            var editor = ZEN.objects['bublEditor'];	
+            var parentID = contentArea.parent.id;
+            BublRows.id = BublRows.id +1;
+            var id = 'bublRows-' + BublRows.id;
             var content = {
-                'type': 'View', 
+                'type': 'View',
+                'id': id,  
                 'children': [
                     {
-                        'id': 'contentArea.id' + '-top',
+                        'id': id + '-top',
                         'type': 'ContentArea',
                         'size': { 'width': 'max', 'height': 'max' }                
                     },
                     {
-                        'id': 'contentArea.id' + '-bottom',
+                        'id': id + '-bottom',
                         'type': 'ContentArea',
                         'size': { 'width': 'max', 'height': 'max' }                                        
                     }
@@ -36,7 +41,7 @@ var ZEN = (function (ZEN, _, $) {
                 'size': { 'width': 'max', 'height': 'max' }
             }           
             
-            contentArea.parent.remove(true);
+            contentArea.remove(true);
             ZEN.cleanup();
             
             var rows = ZEN.parse(content, ZEN.objects[parentID]);
@@ -45,7 +50,6 @@ var ZEN = (function (ZEN, _, $) {
             return(rows);
         }
         
-		
 		_.extend(
 			BublRows.prototype,
 			{

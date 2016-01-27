@@ -1,14 +1,20 @@
 {
-	"title": "Content area..",	
-	"fields":[
-		{
-			"type": "FormSelect",
-			"source": "childtype",
-			"label": "Container type",
-			"options": [
-				{ "label": "Fill", "value": "fill" },
-				{ "label": "Position", "value": "position" }
-			]	
-		}
-	]
+    "propertypages":[
+        {
+            "id": "text",
+            "label": "Text",
+            "text": "T",        
+            "fields":[
+                {
+                    "type": "FormSelect",
+                    "source": "childtype",
+                    "label": "Container type",
+                    "options": [
+                        { "label": "Fill", "value": "fill" },
+                        { "label": "Position", "value": "position" }
+                    ]	
+                }
+            ]
+        }        
+    ]
 }

@@ -195,92 +195,94 @@ var ZEN = (function (ZEN, _, $) {
 					$(sourceElement).css('background-color', 'rgba(0,0,0,1)');
 					self.propertiesArrow.css('top', currentPage * 32 + 'px');
 					
-					
-					bublApp.variables['contentelement'].getPropertiesForm(currentPage,
-						function(propertiesForm){
-							self.propertiesForm = propertiesForm; 
-							var propertiesPositioning = self.propertiesPosition(sourceElement, currentPage);
-							var propertiesDefinition = {
-								'id': 'propertiesView',
-								'type': 'View',
-								'show': true,
-								'size': propertiesPositioning.size,
-								'position': propertiesPositioning.position,
-								'layout': { 'style': 'vertical' },						
-								'children': [ 
-									{
-										'id': 'propertiesHeading',
-										'type': 'View',
-										'size': { 'width': 'max', 'height': 60 },
-										'children':[
-											{
-												'type': 'Button',
-												'size': { 'width': 'max', 'height': '50' },
-												'label': self.propertiesForm.label 										
-											}									
-										]
-									},
-									{
-										'type': 'View',
-										'size': { 'width': 'max', 'height': 'max' }, 
-										'children':[
-											self.propertiesForm
-										]
-									},
-									{
-										'id': 'propertiesButtons',
-										'type': 'View',
-										'size': { 'width': 'max', 'height': 60 },
-										'children': [
-											{
-												'type': 'Button',
-												'label': 'Save changes',
-												'id': 'form-save',
-												'view': {'size': {'width': 'max', 'height': 52}},
-												'actions': {
-														'active': {'queue': 'ui.form', 'message': {'type': 'submit'}}
-												}
-											}									
-										]
-									}
-								]
-							}	
-							if(ZEN.objects['propertiesView'] !== undefined){
-								ZEN.objects['propertiesView'].remove(true);
-							}
-							
-							var properties = ZEN.parse(propertiesDefinition, page);
-							properties.show(true);
-							self.positionArrow(currentPage);					
-							page.resize(true);
-							ZEN.app = {
-								sendForm: function(message, data){
-									var contentElement = bublApp.variables['contentelement'];
-									if(contentElement.parent.autoAddedView === true){
-										var removeElement = contentElement.parent;
-										var parentID = contentElement.parent.parent.id;
-									} else {
-										var removeElement = contentElement;										
-										var parentID = contentElement.parent.id;
-									}
-									
-									contentElement.update(data);
-									properties.remove(true);
-									self.remove(true);
-									
-									var content = contentElement.safeSerialize()['params'];
-				
-									removeElement.remove(true);
-									ZEN.cleanup();
-		
-									var newElement = ZEN.parse(content, ZEN.objects[parentID]);
-									ZEN.objects[parentID].show(true);
-									ZEN.objects['bublEditor'].resize(true);
-									bublApp.variables['contentelement'] = newElement;	
-								}
-							}							
-						}
-					);												
+					var contentElement = bublApp.variables['contentelement'];
+                    if(contentElement !== null && contentElement !== undefined){
+                        contentElement.getPropertiesForm(currentPage,
+                            function(propertiesForm){
+                                self.propertiesForm = propertiesForm; 
+                                var propertiesPositioning = self.propertiesPosition(sourceElement, currentPage);
+                                var propertiesDefinition = {
+                                    'id': 'propertiesView',
+                                    'type': 'View',
+                                    'show': true,
+                                    'size': propertiesPositioning.size,
+                                    'position': propertiesPositioning.position,
+                                    'layout': { 'style': 'vertical' },						
+                                    'children': [ 
+                                        {
+                                            'id': 'propertiesHeading',
+                                            'type': 'View',
+                                            'size': { 'width': 'max', 'height': 60 },
+                                            'children':[
+                                                {
+                                                    'type': 'Button',
+                                                    'size': { 'width': 'max', 'height': '50' },
+                                                    'label': self.propertiesForm.label 										
+                                                }									
+                                            ]
+                                        },
+                                        {
+                                            'type': 'View',
+                                            'size': { 'width': 'max', 'height': 'max' }, 
+                                            'children':[
+                                                self.propertiesForm
+                                            ]
+                                        },
+                                        {
+                                            'id': 'propertiesButtons',
+                                            'type': 'View',
+                                            'size': { 'width': 'max', 'height': 60 },
+                                            'children': [
+                                                {
+                                                    'type': 'Button',
+                                                    'label': 'Save changes',
+                                                    'id': 'form-save',
+                                                    'view': {'size': {'width': 'max', 'height': 52}},
+                                                    'actions': {
+                                                            'active': {'queue': 'ui.form', 'message': {'type': 'submit'}}
+                                                    }
+                                                }									
+                                            ]
+                                        }
+                                    ]
+                                }	
+                                if(ZEN.objects['propertiesView'] !== undefined){
+                                    ZEN.objects['propertiesView'].remove(true);
+                                }
+                                
+                                var properties = ZEN.parse(propertiesDefinition, page);
+                                properties.show(true);
+                                self.positionArrow(currentPage);					
+                                page.resize(true);
+                                ZEN.app = {
+                                    sendForm: function(message, data){
+                                        var contentElement = bublApp.variables['contentelement'];
+                                        if(contentElement.parent.autoAddedView === true){
+                                            var removeElement = contentElement.parent;
+                                            var parentID = contentElement.parent.parent.id;
+                                        } else {
+                                            var removeElement = contentElement;										
+                                            var parentID = contentElement.parent.id;
+                                        }
+                                        
+                                        contentElement.update(data);
+                                        properties.remove(true);
+                                        self.remove(true);
+                                        
+                                        var content = contentElement.safeSerialize()['params'];
+                    
+                                        removeElement.remove(true);
+                                        ZEN.cleanup();
+            
+                                        var newElement = ZEN.parse(content, ZEN.objects[parentID]);
+                                        ZEN.objects[parentID].show(true);
+                                        ZEN.objects['bublEditor'].resize(true);
+                                        bublApp.variables['contentelement'] = newElement;	
+                                    }
+                                }							
+                            }
+                        );                        
+                    }												
 				},
 				
 				getElement: function () {

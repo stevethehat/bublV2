@@ -1,4 +1,5 @@
 var bublEditor = {
+    state: 'default',
 	load: function(data, callback){
 		var pageDefinition = data;
 		bublUtil.findID('bublEditor', pageDefinition, 
@@ -86,51 +87,55 @@ var bublEditor = {
         if(currentProperties !== undefined){
             currentProperties.remove(true);
         }
+        bublEditor.state = 'default';
     },
 		
 	showMenuForCurrentElement: function(){
 		var self = this;
+
+        if(bublEditor.state === 'default'){
+            var addControlType = bublApp.variables['addControlType'];
         
-        var addControlType = bublApp.variables['addControlType'];
-        
-        if(addControlType === null || addControlType === undefined){
-            var contentElement = bublApp.variables['contentelement'];
-            var mainPanel = ZEN.objects['mainPanel'];
-            self.removeCurrentMenuAndProperties();
-            contentElement.getProperties(
-                function(properties){
-                    var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(contentElement, properties);
-                    var menuDefinition = {
-                        "id": "floatMenuView",
-                        "type": "View",
-                        "show": true,
-                        "size": menuPositioning.size,
-                        "opacity": 0.5,
-                        "params": {},
-                        "position": menuPositioning.position,
-                        "layout": { "style": "vertical" },
-                        "children": [
-                            {
-                                "type": "FloatMenu",
-                                "id": "floatMenu",
-                                "show": true,
-                                "side": menuPositioning.side,
-                                "valign": menuPositioning.valign,
-                                'definition': properties,
-                                "size": {
-                                    "width": "max", "height": "max"
+            if(addControlType === null || addControlType === undefined){
+                var contentElement = bublApp.variables['contentelement'];
+                var mainPanel = ZEN.objects['mainPanel'];
+                self.removeCurrentMenuAndProperties();
+                contentElement.getProperties(
+                    function(properties){
+                        var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(contentElement, properties);
+                        var menuDefinition = {
+                            "id": "floatMenuView",
+                            "type": "View",
+                            "show": true,
+                            "size": menuPositioning.size,
+                            "opacity": 0.5,
+                            "params": {},
+                            "position": menuPositioning.position,
+                            "layout": { "style": "vertical" },
+                            "children": [
+                                {
+                                    "type": "FloatMenu",
+                                    "id": "floatMenu",
+                                    "show": true,
+                                    "side": menuPositioning.side,
+                                    "valign": menuPositioning.valign,
+                                    'definition': properties,
+                                    "size": {
+                                        "width": "max", "height": "max"
+                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
+                            
+                        var menu = ZEN.parse(menuDefinition, mainPanel);
+                        menu.show(true);
+                        menu.contentElement = contentElement;
+                        mainPanel.resize(true);					
                     }
-                        
-                    var menu = ZEN.parse(menuDefinition, mainPanel);
-                    menu.show(true);
-                    menu.contentElement = contentElement;
-                    mainPanel.resize(true);					
-                }
-            )   
-        }        
+                )   
+            }
+        }
+        bublEditor.state = 'properties';        
 	},
 	
 	showPropertiesForCurrentElement: function(){
@@ -162,11 +167,14 @@ var bublEditor = {
         var self = this;
         var currentAddControlType = bublApp.variables['addControlType'];
         
+        
         if(data.params.addcontent.type === currentAddControlType){
             // turn addin functionality off
+            $('.contentareadrop').text('Select a content element to add on the left.');
             bublApp.variables['addControlType'] = null;
             data.el.removeClass('selected');
         } else {
+            $('.contentareadrop').text('Click here to add a "' + data.params.addcontent.type + '" element.');
             bublApp.variables['addControlType'] = data.params.addcontent.type; 
             data.el.addClass('selected');
         }
@@ -178,33 +186,33 @@ var bublEditor = {
         var addControlType = bublApp.variables['addControlType'];
 		var contentArea = bublApp.variables['contentelement'];
 
-        if(contentArea !== null && addControlType !== null){
-            switch(addControlType){
-                case 'BublRows':
-                    ZEN.ui.BublRows.setup(contentArea);
-                    alert('add rows');
-                    break;
-                case 'BublColumns':
-                    ZEN.ui.BublColumns.setup(contentArea);
-                    alert('add columns');
-                    break;
-                default:
-                    bublEditor.addControl(
-                        { 
-                            'params': {
-                                'addcontent':{
-                                    'type': addControlType,
-                                    'content': {
+        if(!contentArea.autoAddedView){
+            if(contentArea !== null && addControlType !== null){
+                switch(addControlType){
+                    case 'BublRows':
+                        ZEN.ui.BublRows.setup(contentArea);
+                        break;
+                    case 'BublColumns':
+                        ZEN.ui.BublColumns.setup(contentArea);
+                        break;
+                    default:
+                        bublEditor.addControl(
+                            { 
+                                'params': {
+                                    'addcontent':{
+                                        'type': addControlType,
+                                        'content': {
+                                        }
                                     }
                                 }
                             }
-                        }
-                    );                    
-                    break;               
+                        );                    
+                        break;               
+                }
             }
+            bublApp.variables['addControlType'] = null;
+            bublApp.variables['contentelement'] = null;            
         }
-        bublApp.variables['addControlType'] = null;
-        bublApp.variables['contentelement'] = null;
     },
 
 	addControl: function(data){
