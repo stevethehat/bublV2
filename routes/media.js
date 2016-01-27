@@ -8,6 +8,11 @@ var path = require('path');
 // dummy images here.. http://dummyimage.com/
 // e.g. http://dummyimage.com/340x200/fff/aaa.png&text=New+asset
 
+router.get('/test',
+    function(request, response, next){
+        response.send({'result': 'ok', 'info': 'test complete' });        
+    }
+);
 
 router.post('/capture',
 	function(request, response, next){ 
@@ -30,11 +35,20 @@ router.post('/capture',
 		
 		object['filePath'] = filePath;
 		object['thumbnailFilePath'] = thumbnailFilePath;
+        
+        console.log('delay = ' + delay);
+        console.time('capture');
 		
 		media.capture(url, filePath, width, height, delay,
 			function(){
+                console.log('TIME (after capture)= ');
+                console.timeEnd('capture');
+                console.time('resize');
 				media.resize(filePath, thumbnailFilePath, width, height,
 					function(info){
+                        console.log('TIME (after resize)= ');
+                        console.timeEnd('resize');
+                        
 						response.send({'result': 'ok', 'request': object, 'info': info });
 						//response.write(JSON.stringify({'result': 'ok', 'request': object, 'info': info }, null, 4));
 						//response.send('{}');
