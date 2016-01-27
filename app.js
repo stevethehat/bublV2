@@ -11,6 +11,7 @@ var objects = require('./routes/objects');
 var upload = require('./routes/upload');
 var bublv2 = require('./routes/bublv2');
 var dump = require('./routes/dump');
+var media = require('./routes/media');
 
 
 var app = express();
@@ -68,6 +69,7 @@ app.all('/*', function(req, res, next) {
 
 app.use('/api/objects', objects);
 app.use('/api/dump', dump);
+app.use('/api/media', media);
 app.use('/bublv2', bublv2);
 
 
