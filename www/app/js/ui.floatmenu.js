@@ -26,20 +26,33 @@ var ZEN = (function (ZEN, _, $) {
 			var pageHeight = Number(root.el.height());
 			
 			var element = contentElement;
-			var elementTop = 0;
-			var elementLeft = 0;
+			var elementTop = null;
+			var elementLeft = null;
 			var menuSize = {};
 			var menuPosition = {};
 
 			while(element.parent.id !== root.id){
 				if(_.isNumber(element.parent.position.top)){
+                    if(elementTop === null){
+                        elementTop = 0;
+                    }
 					elementTop += Number(element.parent.position.top);			
 				}
 				if(_.isNumber(element.parent.position.left)){
+                    if(elementLeft === null){
+                        elementLeft = 0;
+                    }
 					elementLeft += Number(element.parent.position.left);			
 				}
 				element = element.parent;
 			}
+            if(elementTop === null){
+                elementTop = contentElement.el.offset().top - 84;
+            }
+            if(elementLeft === null){
+                elementLeft = contentElement.el.offset().left -80;
+            }
+            
 			var elementBottom = elementTop + contentElement.el.height();
 			var elementRight = elementLeft + contentElement.el.width();
 			
