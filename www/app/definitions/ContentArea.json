@@ -1,18 +1,14 @@
 {
     "propertypages":[
         {
-            "id": "text",
-            "label": "Text",
-            "text": "T",        
+            "id": "general",
+            "label": "General",
+            "text": "G",        
             "fields":[
                 {
-                    "type": "FormSelect",
-                    "source": "childtype",
-                    "label": "Container type",
-                    "options": [
-                        { "label": "Fill", "value": "fill" },
-                        { "label": "Position", "value": "position" }
-                    ]	
+                    "type": "FormText",
+                    "source": "id",
+                    "label": "Name"
                 }
             ]
         }        

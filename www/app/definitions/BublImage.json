@@ -1,58 +1,64 @@
 {
-	"title": "Image",
-	"fields":[
-		{
-			"type": "FormEdit",
-			"label": "Image Url",
-			"placeholder": "Please enter the image url",
-			"source": "content.url"
-		},	
-		{
-			"type": "FormEdit",
-			"label": "Description",
-			"placeholder": "Please enter the image description",
-			"source": "content.description"
-		},
-		{
-			"type": "FormSelect",
-			"label": "Inactive Filter",
-			"source": "content.inactivefilter",
-			"options":[
-				{ "label": "None", "value": "none" },	
-				{ "label": "Grayscale", "value": "grayscale" },
-				{ "label": "Sepia", "value": "sepia" },
-				{ "label": "Opacity", "value": "opacity" },
-				{ "label": "Brightness", "value": "brightness" }
-			]
-		}
-		,
-		{
-			"type": "FormRange",
-			"label": "Value",
-			"min": 0,
-			"max": 0,
-			"default": 0,
-			"source": "content.inactivefiltervalue"
-		},	
-		{
-			"type": "FormSelect",
-			"label": "Active Filter",
-			"source": "content.activefilter",
-			"options":[
-				{ "label": "None", "value": "none" },	
-				{ "label": "Grayscale", "value": "grayscale" },
-				{ "label": "Sepia", "value": "sepia" },
-				{ "label": "Opacity", "value": "opacity" },
-				{ "label": "Brightness", "value": "brightness" }
-			]
-		},
-		{
-			"type": "FormRange",
-			"label": "Value",
-			"min": 0,
-			"max": 0,
-			"default": 0,
-			"source": "content.activefiltervalue"
-		}
-	]
+    "propertypages":[
+        {
+            "id": "general",
+            "label": "General",
+            "text": "G",
+            "fields":[
+                {
+                    "type": "FormEdit",
+                    "label": "Image Url",
+                    "placeholder": "Please enter the image url",
+                    "source": "content.url"
+                },	
+                {
+                    "type": "FormEdit",
+                    "label": "Description",
+                    "placeholder": "Please enter the image description",
+                    "source": "content.description"
+                },
+                {
+                    "type": "FormSelect",
+                    "label": "Inactive Filter",
+                    "source": "content.inactivefilter",
+                    "options":[
+                        { "label": "None", "value": "none" },	
+                        { "label": "Grayscale", "value": "grayscale" },
+                        { "label": "Sepia", "value": "sepia" },
+                        { "label": "Opacity", "value": "opacity" },
+                        { "label": "Brightness", "value": "brightness" }
+                    ]
+                }
+                ,
+                {
+                    "type": "FormRange",
+                    "label": "Value",
+                    "min": 0,
+                    "max": 0,
+                    "default": 0,
+                    "source": "content.inactivefiltervalue"
+                },	
+                {
+                    "type": "FormSelect",
+                    "label": "Active Filter",
+                    "source": "content.activefilter",
+                    "options":[
+                        { "label": "None", "value": "none" },	
+                        { "label": "Grayscale", "value": "grayscale" },
+                        { "label": "Sepia", "value": "sepia" },
+                        { "label": "Opacity", "value": "opacity" },
+                        { "label": "Brightness", "value": "brightness" }
+                    ]
+                },
+                {
+                    "type": "FormRange",
+                    "label": "Value",
+                    "min": 0,
+                    "max": 0,
+                    "default": 0,
+                    "source": "content.activefiltervalue"
+                }
+            ]   
+        }
+    ]
 }
