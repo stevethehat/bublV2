@@ -217,7 +217,7 @@ p{
 
 
 #propertiesView{
-	background-color: white;
+	background-color: #888;
 	overflow: scroll;
 	opacity: 0.9;
 }
@@ -316,7 +316,7 @@ textarea{
 	border-left: 15px solid transparent;
 	border-right: 15px solid transparent;
 	
-	border-bottom: 15px solid white;
+	border-bottom: 15px solid #888;
 }
 
 .arrow-down {
@@ -331,7 +331,7 @@ textarea{
 	border-left: 15px solid transparent;
 	border-right: 15px solid transparent;
 	
-	border-top: 15px solid white;
+	border-top: 15px solid #888;
 }
 
 .arrow-right {
@@ -340,7 +340,7 @@ textarea{
 	border-top: 16px solid transparent;
 	border-bottom: 16px solid transparent;
 	
-	border-left: 16px solid white;
+	border-left: 16px solid #888;
 	opacity: 0.8;
 }
 
@@ -350,7 +350,7 @@ textarea{
 	border-top: 16px solid transparent;
 	border-bottom: 16px solid transparent; 
 	
-	border-right:16px solid white; 
+	border-right:16px solid #888; 
 	opacity: 0.8;
 }
 
