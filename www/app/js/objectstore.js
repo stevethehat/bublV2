@@ -67,7 +67,11 @@
 			for (i = keys.length - 1; i >= 0; i--){
 				value = node[keys[i]];
 				if (value && typeof value == "object") {
-					tree.push(keys[i]);
+                    var key = keys[i];
+                    if(value['id'] !== undefined && value['id'] !== null){
+                        key = key + ' [' + value['id'] + ']';
+                    }
+					tree.push(key);
 					if (parents.indexOf(value) >= 0)
 						return true;
 					// check child nodes
