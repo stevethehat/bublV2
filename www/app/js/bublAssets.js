@@ -6,7 +6,7 @@ var bublAssets = {
 		var self = this;
 		
 		if(url !== undefined && url !== null){
-			if(url.startsWith('https://bubblestore')){
+			if(url.startsWith('https://bubblestore') || url.startsWith('http://bubblestore')){
 				if(!self.secureUrls.hasOwnProperty(url)){
 					self.pendingSecureUrlRequests.push(url); 
 				}
@@ -94,7 +94,9 @@ var bublAssets = {
 					function(secureUrl){
 						self.generateThumbnails(secureUrl,
 							function(thumbnailInfo){
-								_.each(thumbnailInfo['responseJSON']['response'],
+                                var responseJSON = thumbnailInfo['responseJSON'];
+                                var response = responseJSON['response']  
+								_.each(response,
 									function(thumbnail){
 										var majorColor = thumbnail['majorColor'];
 										if(majorColor !== undefined){
