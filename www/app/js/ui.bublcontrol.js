@@ -96,6 +96,8 @@ var ZEN = (function (ZEN, _, $) {
 								}		
 							switch(field.type){
 								case 'Select':
+								case 'FormSelect':
+                                case 'FormDataList':
 									fieldDefinition.type = 'Select';
 									fieldDefinition.options = field.options;
 									break;
