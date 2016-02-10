@@ -25,6 +25,8 @@ var ZEN = (function (ZEN, _, $) {
 					this.imageLayer = null;
 					// call the base class init method
                     if(params.size === undefined || params.size === null){
+                        params.size = { 'width': 'max', 'height': 'max'}
+                    }
 					params['view'] = { 
 						'size': { 'width': params.size.width, 'height' : params.size.height }
 					};
@@ -123,7 +125,7 @@ var ZEN = (function (ZEN, _, $) {
 						'id': 'PropertiesForm',
 						'layout': { 'style': 'vertical' },
 						'size': { 'width': 'max', 'height': 'max' },
-						'label': page.label,
+						'label': page.label + ' -(' + self.id + ')',
 						'height': height,
 						'observers': [
 							{
@@ -338,17 +340,12 @@ var ZEN = (function (ZEN, _, $) {
 				},
 
 				addActionEvents: function(message){
+                    var self = this;
+                    ZEN.notify ("ui.bublcontrol", message);
+                    
 					if(bublApp.displayMode === 'app'){
 						if(message.type === 'active') {
-							ZEN.notify ("ui.bublcontrol", message);
-						
-							if(bublApp.variables['contentelement'] !== undefined){						
-								bublApp.variables['contentelement'].el.removeClass('selected');
-							}						
-						
-							this.el.addClass('selected');
-							bublApp.variables['contentelement'] = this;
-                            bublEditor.addSelectedControl();
+							bublEditor.selectElementInEditor(self);
 						}
 					} else {
 						if(this.params.actions !== undefined && this.params.actions.highlightAnimation !== undefined){
@@ -483,8 +480,15 @@ var ZEN = (function (ZEN, _, $) {
 					this.imageLayer.prependTo(this.el);						 
 					this.colourLayer = $('<div class="bg-colour" />');
 					this.colourLayer.prependTo(this.el);
+                    if(self.params.content !== undefined && self.params.content !== null){
+                        this.colourLayer.css(
+                            {
+                                'background-color': self.params.content.bgcolor
+                            }                        
+                        );                                                
+                    }
 					
-					self.stylingDiv = $('<div/>').appendTo(this.imageLayer);
+					self.stylingDiv = $('<div class="styling"/>').appendTo(this.imageLayer);
 					
 					if(self.params.styling === undefined){
 						self.params.styling = {};
