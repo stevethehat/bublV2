@@ -24,7 +24,7 @@ var ZEN = (function (ZEN, _, $) {
 					// call the base class init method
 					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
-					ZEN.events.buttonHandler (this, this.el);
+					//ZEN.events.buttonHandler (this, this.el);
 				},
 
 				label: function () {
