@@ -24,6 +24,7 @@ var ZEN = (function (ZEN, _, $) {
 					this.colourLayer = null;
 					this.imageLayer = null;
 					// call the base class init method
+                    if(params.size === undefined || params.size === null){
 					params['view'] = { 
 						'size': { 'width': params.size.width, 'height' : params.size.height }
 					};
