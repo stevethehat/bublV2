@@ -38,6 +38,42 @@ var ZEN = (function (ZEN, _, $) {
 					
 					ZEN.events.buttonHandler (this, this.el);
 				},
+                
+                getDimensions: function(){
+                    var self = this;
+                    var result = {
+                        'top': null, 'left': null
+                    };
+                    var element = this;
+        			var root = ZEN.objects['bublEditor'];
+                    
+                    while(element.parent.id !== root.id){
+                        if(_.isNumber(element.parent.position.top)){
+                            if(result.top === null){
+                                result.top = 0;
+                            }
+                            result.top += Number(element.parent.position.top);			
+                        }
+                        if(_.isNumber(element.parent.position.left)){
+                            if(result.left === null){
+                                result.left = 0;
+                            }
+                            result.left += Number(element.parent.position.left);			
+                        }
+                        element = element.parent;
+                    }
+                    if(result.top === null){
+                        result.top = self.el.offset().top - 84;
+                    }
+                    if(result.left === null){
+                        result.left = self.el.offset().left -80;
+                    }
+                    
+                    result.bottom = result.top + self.el.height();
+                    result.right = result.left + self.el.width();
+                    
+                    return(result);
+                },
 
 				label: function () {
 				},
@@ -97,6 +133,11 @@ var ZEN = (function (ZEN, _, $) {
 									'size': { 'width': 'max', 'height': 50 },
 									'margin': { 'left': 10, 'right': 10, 'top': 4 }												
 								}		
+                                
+                                if(field.inputType !== undefined && field.inputType !== null){
+                                    fieldDefinition.inputType = field.inputType;
+                                }
+                                
 							switch(field.type){
 								case 'Select':
 								case 'FormSelect':
@@ -105,9 +146,11 @@ var ZEN = (function (ZEN, _, $) {
 									fieldDefinition.options = field.options;
 									break;
 								case 'HTML':
-									if(fieldDefinition.value.indexOf('<') === 0){
-										fieldDefinition.value = $(fieldDefinition.value).text();
-									}
+                                    if(fieldDefinition.value !== undefined && fieldDefinition.value !== null){
+                                        if(fieldDefinition.value.indexOf('<') === 0){
+                                            fieldDefinition.value = $(fieldDefinition.value).text();
+                                        }                                        
+                                    }
 									break;
 									
 								case 'Number':

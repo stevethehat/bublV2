@@ -26,11 +26,14 @@ var ZEN = (function (ZEN, _, $) {
 			var pageHeight = Number(root.el.height());
 			
 			var element = contentElement;
-			var elementTop = null;
-			var elementLeft = null;
 			var menuSize = {};
 			var menuPosition = {};
-
+            
+            var dimensions = element.getDimensions();
+            
+            /*
+			var elementTop = null;
+			var elementLeft = null;
 			while(element.parent.id !== root.id){
 				if(_.isNumber(element.parent.position.top)){
                     if(elementTop === null){
@@ -55,29 +58,30 @@ var ZEN = (function (ZEN, _, $) {
             
 			var elementBottom = elementTop + contentElement.el.height();
 			var elementRight = elementLeft + contentElement.el.width();
-			
+			*/
+            
 			menuSize = { "width": 65, "height": (Number(contentElementProperties.propertypages.length) -1) * 40 };
 		
-			var menuTopTest = Number(elementTop + Number(menuSize['height']));
+			var menuTopTest = Number(dimensions.top + Number(menuSize['height']));
 			var valign = null; 
 			if(menuTopTest > pageHeight){
-				menuPosition.top = elementBottom - menuSize.height;
+				menuPosition.top = dimensions.bottom - menuSize.height;
 				valign = 'bottom';			
 			} else {
-				menuPosition.top = elementTop;
+				menuPosition.top = dimensions.top;
 				valign = 'top';			
 			}
 			
 			var side = null;
-            if((Number(elementRight + propertiesWidth) + 49 > pageWidth) && (Number(elementLeft - propertiesWidth - 49) < 0)){
+            if((Number(dimensions.right + propertiesWidth) + 49 > pageWidth) && (Number(dimensions.left - propertiesWidth - 49) < 0)){
                 // we are gonna have to overlay it
-                menuPosition.left = elementLeft
+                menuPosition.left = dimensions.left
                 side = 'right';
-            } else if (Number(elementRight + propertiesWidth) + 49 > pageWidth){
-				menuPosition.left = elementLeft - 65;
+            } else if (Number(dimensions.right + propertiesWidth) + 49 > pageWidth){
+				menuPosition.left = dimensions.left - 65;
 				side = 'left'
 			} else {
-				menuPosition.left = elementRight;
+				menuPosition.left = dimensions.right;
 				side = 'right'
 			}
 			
