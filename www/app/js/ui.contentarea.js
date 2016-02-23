@@ -34,7 +34,7 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					message.source = this;
 
-					ZEN.log(message.type);
+					ZEN.log('mk:', this.id, message.type);
 					
 					if (message.type === 'highlight') {
 						this.el.addClass('hover');
@@ -78,7 +78,7 @@ var ZEN = (function (ZEN, _, $) {
 						var dropArea = $('<div/>').appendTo(self.stylingDiv);
 						if(bublApp.displayMode === 'app'){
 							dropArea.addClass('contentareadrop');
-							var instructions = $('<p>Select a content element to add on the left.</p>').appendTo(dropArea);
+							var instructions = $('<p>Select a content element to add on the left. (' + this.id + ')</p>').appendTo(dropArea);
 						} else {
                             this.el.css('background-color', getRandomColor());
                         }

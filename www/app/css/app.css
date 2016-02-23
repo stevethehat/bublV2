@@ -373,3 +373,12 @@ textarea{
     cursor: pointer;
 }
 
+#PropertiesForm .formNumberCombo div{
+    float: left;
+}
+
+#PropertiesForm .formNumberCombo div input{
+    width: 40px;
+    margin-left: 4px;
+    margin-right: 4px;    
+}

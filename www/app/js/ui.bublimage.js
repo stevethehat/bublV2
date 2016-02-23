@@ -68,6 +68,7 @@ var ZEN = (function (ZEN, _, $) {
 							self.setActiveFilter();
 						}
 					}
+                    self.addActionEvents(message);					
 				},
 				
 				getElement: function () {

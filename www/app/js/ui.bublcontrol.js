@@ -71,6 +71,9 @@ var ZEN = (function (ZEN, _, $) {
                     
                     result.bottom = result.top + self.el.height();
                     result.right = result.left + self.el.width();
+                    result.width = self.el.width();
+                    result.height = self.el.height();
+                    
                     
                     return(result);
                 },
@@ -120,67 +123,8 @@ var ZEN = (function (ZEN, _, $) {
 					var self = this;
 					var page = self.propertiesDefinition.propertypages[pageNo];
 					//alert('properties for ' + JSON.stringify(page));
-					
-					var controls = [];
-					
-					_.each(page.fields,
-						function(field){
-							var fieldDefinition = {
-									'type': 'Input',
-									'id': field.source,
-									'label': field.label,
-									'value': self.getValue(field.source),
-									'size': { 'width': 'max', 'height': 50 },
-									'margin': { 'left': 10, 'right': 10, 'top': 4 }												
-								}		
-                                
-                                if(field.inputType !== undefined && field.inputType !== null){
-                                    fieldDefinition.inputType = field.inputType;
-                                }
-                                
-							switch(field.type){
-								case 'Select':
-								case 'FormSelect':
-                                case 'FormDataList':
-									fieldDefinition.type = 'Select';
-									fieldDefinition.options = field.options;
-									break;
-								case 'HTML':
-                                    if(fieldDefinition.value !== undefined && fieldDefinition.value !== null){
-                                        if(fieldDefinition.value.indexOf('<') === 0){
-                                            fieldDefinition.value = $(fieldDefinition.value).text();
-                                        }                                        
-                                    }
-									break;
-									
-								case 'Number':
-									break;
-							}						
-							controls.push(fieldDefinition);							
-						}
-					)
-					var height = controls.length * 50 + 60;
-					if(page.label === 'Interactions'){
-						height = 240;
-					}
-					var result = {
-						'type': 'Form',
-						'id': 'PropertiesForm',
-						'layout': { 'style': 'vertical' },
-						'size': { 'width': 'max', 'height': 'max' },
-						'label': page.label + ' -(' + self.id + ')',
-						'height': height,
-						'observers': [
-							{
-								'queue': 'ui.form',
-								'message': 'submitted',
-								'actions': [
-									{'type': 'processForm', 'target': 'form-user-account', 'processor': 'account-details'	}
-								]
-							}
-						],						
-						'controls': controls
-					}
+				    var result = bublForm.getFormDefinition(self, page);	
+				
 					self.propertiesDefinitionPage = result;	
 					self.setupFontProperty();	
 					self.setupStylesProperty();
@@ -494,11 +438,13 @@ var ZEN = (function (ZEN, _, $) {
                     }
                     self.hasDropTargets = false;
                 },
-                
+                                
    				getElement: function () {
 					if (this.el === null) {
 						ZEN.ui.Base.prototype.getElement.call(this);
 						this.el.addClass('zen-contentarea');
+						this.resize();
+
 						this.setupStylingDiv();
 						if(bublApp.displayMode === 'app'){
 							this.el.css('cursor', 'pointer');
@@ -510,12 +456,29 @@ var ZEN = (function (ZEN, _, $) {
 								}
 							}
 						}
-						this.resize();
                         //this.addDropAreas();
 					}
 					return this.el;
 				},
-				
+                unpackStylingValues: function(){
+                    var self = this;
+                    var result = {}; 
+                    _.each(self.params.styling,
+                        function(value, key){
+                            if(_.isObject(value)){
+                                _.each(value,
+                                    function(value2, key2){
+                                        result[key + '-' + key2] = value2;
+                                    }
+                                )
+                            } else {
+                                result[key] = value;
+                            }   
+                        }
+                    );
+                    //alert(JSON.stringify(result, null, 4));
+                    return(result);
+                },				
 				setupStylingDiv: function(){
 					var self = this;
 					
@@ -532,11 +495,35 @@ var ZEN = (function (ZEN, _, $) {
                     }
 					
 					self.stylingDiv = $('<div class="styling"/>').appendTo(this.imageLayer);
-					
+                    					
 					if(self.params.styling === undefined){
 						self.params.styling = {};
 					}
-					self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' }, self.params.css);
+                    var css = self.unpackStylingValues();
+                    //alert(JSON.stringify(css, null, 4));
+                    self.stylingDiv.css(css);         
+                    self.stylingDiv.css('border-color', css['border-color']);         
+                    self.stylingDiv.css('border-style', 'solid');  
+                    self.imageLayer.css('position', 'relative');
+                    css = {
+                            'position': 'absolute',
+                            'top': bublUtil.safeNumber(css['margin-top']) + 'px',
+                            'left': bublUtil.safeNumber(css['margin-left']) + 'px',
+                            'bottom': bublUtil.safeNumber(css['margin-bottom']) + 'px',
+                            'right': bublUtil.safeNumber(css['margin-right']) + 'px'
+                        };
+                    self.stylingDiv.css(css);
+                    /*                   
+                    var heightDifference = bublUtil.safeNumber(css['margin-top']) + bublUtil.safeNumber(css['margin-bottom']);               
+                    var widthDifference = bublUtil.safeNumber(css['margin-left']) + bublUtil.safeNumber(css['margin-right']);
+                    var dimensions = self.getDimensions();
+                    var width = dimensions.width - widthDifference;
+                    var height = dimensions.height - heightDifference;
+                    
+                    alert('w: ' + widthDifference + ', h: ' + heightDifference);
+                    */               
+					//self.params.styling = _.extend(self.params.styling, { 'width' : '100%', 'height': '100%' }, self.params.css);
+                    //self.params.styling = _.extend(self.params.styling, self.params.css);
 				},
 				
 				opacity: function (value) {

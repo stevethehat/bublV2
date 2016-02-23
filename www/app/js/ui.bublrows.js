@@ -20,21 +20,35 @@ var ZEN = (function (ZEN, _, $) {
         BublRows.setup = function(contentArea){
             var editor = ZEN.objects['bublEditor'];	
             var parentID = contentArea.parent.id;
-            BublRows.id = BublRows.id +1;
+            BublRows.id = bublEditor.getControlID();
             var id = 'bublRows-' + BublRows.id;
             var content = {
                 'type': 'View',
                 'id': id,  
                 'children': [
                     {
-                        'id': id + '-top',
-                        'type': 'ContentArea',
-                        'size': { 'width': 'max', 'height': 'max' }                
+                        'type': 'View',
+                        'size': { 'width': 'max', 'height': 'max' },
+                        'id': id + '-top-row-view',
+                        'children':[
+                            {
+                                'id': id + '-top',
+                                'type': 'ContentArea',
+                                'size': { 'width': 'max', 'height': 'max' }       
+                            }                            
+                        ]       
                     },
                     {
-                        'id': id + '-bottom',
-                        'type': 'ContentArea',
-                        'size': { 'width': 'max', 'height': 'max' }                                        
+                        'type': 'View',
+                        'size': { 'width': 'max', 'height': 'max' },
+                        'id': id + '-bottom-row-view',
+                        'children':[
+                            {
+                                'id': id + '-bottom',
+                                'type': 'ContentArea',
+                                'size': { 'width': 'max', 'height': 'max' }                                        
+                            }
+                        ]                                    
                     }
                 ], 
                 'layout': { 'style': 'vertical' },

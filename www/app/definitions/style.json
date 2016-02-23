@@ -1,45 +1,108 @@
 {
 	"propertypages": [
 		{
-			"id": "positioning",
-			"label": "Positioning",
-			"text": "P",
+			"id": "style",
+			"label": "Style",
+			"text": "S",
 			"fields": [						
-				{
-					"type": "group",
-					"label": "Position",
-					"fields": [
-						{
-							"type": "combo",
-							"fields":[
-								{
-									"type": "FormNumber",
-									"label": "Top",
-									"source": "position.top",
-									"default": "0"
-								},
-								{
-									"type": "FormNumber",
-									"label": "Left",
-									"source": "position.left",
-									"default": "0"					
-								},
-								{
-									"type": "FormNumber",
-									"label": "Width",
-									"source": "size.width",
-									"default": "0"
-								},
-								{
-									"type": "FormNumber",
-									"label": "Height",
-									"source": "size.height",
-									"default": "0"
-								}		
-							]
-						}		
-					] 
-				}
+                {
+                    "type": "FormText",
+                    "label": "Background Colour",
+                    "source": "content.bgcolor",
+                    "default": "fff",
+                    "inputType": "color"					
+                },
+                {
+                    "type": "FormNumberCombo",
+                    "label": "Margin",
+                    "source": "styling.margin",
+                    "postFix": "px",
+                    "fields":[
+                        {
+                            "label": "T",
+                            "source": "top",
+                            "default": 10
+                        },
+                        {
+                            "label": "L",
+                            "source": "left",
+                            "default": 10
+                        },
+                        {
+                            "label": "B",
+                            "source": "bottom",
+                            "default": 10
+                        },
+                        {
+                            "label": "R",
+                            "source": "right",
+                            "default": 10
+                        }
+                    ]
+                },
+                {
+                    "type": "FormNumberCombo",
+                    "label": "Padding",
+                    "source": "styling.padding",
+                    "postFix": "px",
+                    "fields":[
+                        {
+                            "label": "T",
+                            "source": "top",
+                            "default": 10
+                        },
+                        {
+                            "label": "L",
+                            "source": "left",
+                            "default": 10
+                        },
+                        {
+                            "label": "B",
+                            "source": "bottom",
+                            "default": 10
+                        },
+                        {
+                            "label": "R",
+                            "source": "right",
+                            "default": 10
+                        }
+                    ]
+                },
+                {
+                    "type": "FormText",
+                    "label": "Border Colour",
+                    "source": "styling.border-color",
+                    "default": "fff",
+                    "inputType": "color"					
+                },
+                {
+                    "type": "FormNumberCombo",
+                    "label": "Border",
+                    "source": "styling.border",
+                    "postFix": "px",
+                    "fields":[
+                        {
+                            "label": "T",
+                            "source": "top",
+                            "default": 0
+                        },
+                        {
+                            "label": "L",
+                            "source": "left",
+                            "default": 0
+                        },
+                        {
+                            "label": "B",
+                            "source": "bottom",
+                            "default": 0
+                        },
+                        {
+                            "label": "R",
+                            "source": "right",
+                            "default": 0
+                        }
+                    ]
+                }
 			]
 		},
 		{

@@ -49,6 +49,12 @@ var ZEN = (function (ZEN, _, $) {
 						}
 						// bodge to get fontstyle
 						// set cssClass
+                        if(this.params.content.style === undefined || this.params.content.style === null){
+                            this.params.content.style = 'ms-blue';
+                        }
+                        if(this.params.cssClass !=- undefined && this.params.cssClass !== null){
+                            this.params.cssClass = '';
+                        }
 						var cssClass = this.params.cssClass;
 						var elementClassName = cssClass.substring(0, cssClass.indexOf(' '));
 						this.params.cssClass = elementClassName.replace(/imageBottomRight/, '') + ' text ms-menuControl ' + this.params.content.style + ' ' + this.params.content.textPosition + ' ' + this.params.content.imagePosition;

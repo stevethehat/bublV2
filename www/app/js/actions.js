@@ -104,12 +104,17 @@
 			}
 		},
 		"bublEditor":{
+            formCancel: function(){
+                alert('here in cancel');    
+            },
+            
 			onLoad: function(data, callback){
 				//alert(JSON.stringify(data, null, 4));
 				bublEditor.load(data, callback);
 			},
 			
 			converttotemplate: function(){
+                bublEditor.removeCurrentMenuAndProperties();
 				bublUtil.addTemplate(
 					function(templateData){
 						//alert(JSON.stringify(templateData, null, 4));
@@ -119,7 +124,10 @@
 			},
 						
 			save: function(){
-				var content = ZEN.objects['BublPageRoot'].safeSerialize();
+                bublEditor.removeCurrentMenuAndProperties();
+        		var content = ZEN.objects['BublPageRoot'].safeSerialize();
+		        content.maxControlID = bublEditor.controlID;
+          
 				//bublUtil.cleanBeforeSave(content.params);
 				bublApp.dump('savedpage', content);
 
@@ -161,10 +169,12 @@
 				);
 			},
 			preview: function(data){
+                bublEditor.removeCurrentMenuAndProperties();
 				var bublID = bublApp.variables['page'].id;
 				window.open('player.html?id=' + bublID, '_blank');
 			},
 			source: function(data){
+                bublEditor.removeCurrentMenuAndProperties();
 				var bublID = bublApp.variables['page'].id;
 				bublApp.setCurrentObject(['properties'], bublID,
 					function(){
@@ -173,6 +183,7 @@
 				);
 			},
 			cancel: function(data){
+                bublEditor.removeCurrentMenuAndProperties();
 				bublApp.loadPage('bublPages', 'slideInLeft', 'slideOutRight');
 			},
 			selectcontroltoadd: function(data){

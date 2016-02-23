@@ -116,6 +116,30 @@ var bublUtil = {
 	},
 	
 	generateThumbnail: function(id, callback){
+        // just get out of here for now...
+        callback(
+            {
+                "result": "ok",
+                "request": {
+                    "url": "http://localhost:3000/player.html?id=1000101",
+                    "fileName": "1000101-thumbnail.png",
+                    "width": 340,
+                    "height": 200,
+                    "delay": 3000,
+                    "filePath": "/Users/stevework/Development/RichWork/BublV2/bubl/www/app/img/assets/1000101-thumbnail.png",
+                    "thumbnailFilePath": "/Users/stevework/Development/RichWork/BublV2/bubl/www/app/img/assets/340x200/1000101-thumbnail.png"
+                },
+                "info": {
+                    "width": 266,
+                    "height": 200,
+                    "scale": 3,
+                    "majorColor": "#737165",
+                    "contrastColor": "white"
+                }
+            }                        
+        );
+        
+        /*
 		var data = {
 			'url': location.protocol + '//' + location.host + '/player.html?id=' + id,
 			'fileName': id + '-thumbnail.png',
@@ -131,9 +155,15 @@ var bublUtil = {
 			data: JSON.stringify(data),
 			dataType: 'json',
 			complete: function(returnData){
+                alert(JSON.stringify(returnData['responseJSON'], null, 2));
 				callback(returnData['responseJSON']);
-			}		
+			},
+            error: function(){
+                alert('error generating thumbnail');
+                callback({});
+            }		
 		});
+        */
 	},
 	imageInfo: function(url, callback){
 		var data = {
@@ -193,5 +223,8 @@ var bublUtil = {
 				}
 			);
 		}
-	}
+	},
+    safeNumber: function(value){
+        return(Number(String(value).replace(/\D/g,'')));
+    }
 }

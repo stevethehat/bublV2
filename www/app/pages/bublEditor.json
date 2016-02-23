@@ -39,11 +39,22 @@
 										"children": [
 											{	
 												"content": {
+													"label": "Compound",
+													"icon": "fa-file-text-o"
+												},
+												"addcontent": {
+													"type": "msMenuBox",
+                                                    "text": "Compound Element"
+												} 
+											},
+											{	
+												"content": {
 													"label": "Text",
 													"icon": "fa-file-text-o"
 												},
 												"addcontent": {
-													"type": "ContentEditable"
+													"type": "ContentEditable",
+                                                    "text": "Content Editable"
 												} 
 											},
 											{

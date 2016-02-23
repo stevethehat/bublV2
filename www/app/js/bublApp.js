@@ -59,6 +59,17 @@
 			}
 			ZEN.init(base);
 			self.loadPlayerPage(id, 'fadeIn');
+            
+            if(ZEN.data.querystring['withtext'] === 'true'){
+                var html = document.documentElement.outerHTML;
+                //self.dumpText('playerpage.htm', html);
+                /*
+                var x=window.open();
+                x.document.open();
+                x.document.write(html);
+                x.document.close();
+                */                
+            }
 		},
         
         urlize: function(str){
@@ -483,6 +494,18 @@
 					contentType: 'application/json',
 					data: data,
 					dataType: 'json',
+					success: function(returnData){}
+				});								
+			}
+		},
+        
+		dumpText: function(fileName, text){			
+			if(text !== null){
+				$.ajax({
+					url: 'api/dump/' + fileName + '/astext',
+					type: 'POST',
+					contentType: 'text/plain',
+					data: text,
 					success: function(returnData){}
 				});								
 			}

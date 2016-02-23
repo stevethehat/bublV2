@@ -1,4 +1,79 @@
 var bublForm = {
+    getFormDefinition: function(object, formPage){
+        var controls = [];
+					
+        _.each(formPage.fields,
+            function(field){
+                var fieldDefinition = {
+                        'type': 'Input',
+                        'id': field.source,
+                        'label': field.label,
+                        'value': object.getValue(field.source),
+                        'size': { 'width': 'max', 'height': 50 },
+                        'margin': { 'left': 10, 'right': 10, 'top': 4 },
+                        'postFix': field.postFix												
+                    }		
+                    
+                    if(fieldDefinition.value === undefined || fieldDefinition.value === null){
+                        fieldDefinition.value = field.default;
+                    }
+                    
+                    if(field.inputType !== undefined && field.inputType !== null){
+                        fieldDefinition.inputType = field.inputType;
+                    }
+                    
+                switch(field.type){
+                    case 'FormNumberCombo':
+                        fieldDefinition.type = 'FormNumberCombo';
+                        fieldDefinition.fields = field.fields;
+                        break; 
+                    case 'Select':
+                    case 'FormSelect':
+                    case 'FormDataList':
+                        fieldDefinition.type = 'Select';
+                        fieldDefinition.options = field.options;
+                        break;
+                    case 'HTML':
+                        if(fieldDefinition.value !== undefined && fieldDefinition.value !== null){
+                            if(fieldDefinition.value.indexOf('<') === 0){
+                                fieldDefinition.value = $(fieldDefinition.value).text();
+                            }                                        
+                        }
+                        break;
+                        
+                    case 'Number':
+                        break;
+                }						
+                controls.push(fieldDefinition);							
+            }
+        )
+        var height = controls.length * 50 + 60;
+        if(formPage.label === 'Interactions'){
+            height = 240;
+        }
+        var result = {
+            'type': 'Form',
+            'id': 'PropertiesForm',
+            'layout': { 'style': 'vertical' },
+            'size': { 'width': 'max', 'height': 'max' },
+            'label': formPage.label,
+            'height': height,
+            'observers': [
+                {
+                    'queue': 'ui.form',
+                    'message': 'submitted',
+                    'actions': [
+                        {'type': 'processForm', 'target': 'form-user-account', 'processor': 'account-details'	}
+                    ]
+                }
+            ],						
+            'controls': controls
+        }
+        return(result);        
+    },
+    
+    
+    
 	/*
 	showForm: function(parentView, object, definitionFileName, standardElements){
 		var self = this;		
@@ -29,7 +104,6 @@ var bublForm = {
 		);
 	},
 	
-	/*
 	loadForm: function(definitionFileName, callback){
 		var self = this;		
 		// create definition
@@ -52,7 +126,6 @@ var bublForm = {
 			}			
 		);
 	},
-	*/
 	processDefinitionLevel: function(object, processedDefinition, orientation, field){
 		var self = this;
 		var group = {

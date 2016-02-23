@@ -38,6 +38,12 @@
                     ],
                     "default": "16px",
                     "datatype": "px"
+                },
+                {
+                    "type": "Input",
+                    "source": "styling.color",
+                    "label": "Font Color",
+                    "inputType": "color"                                        
                 }
             ]
         }        

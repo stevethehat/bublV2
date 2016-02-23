@@ -4,9 +4,7 @@
 
 var ZEN = (function (ZEN, _, $) {
 	ZEN.namespace('ui');
-	_.extend(ZEN.ui, (function () {
-
-		
+	_.extend(ZEN.ui, (function () {	
 		function FloatMenu (params, parent) {
 			if (arguments.length > 0) {
 				ZEN.ui.Control.call(this, params, parent);
@@ -249,6 +247,7 @@ var ZEN = (function (ZEN, _, $) {
                                             'id': 'propertiesButtons',
                                             'type': 'View',
                                             'size': { 'width': 'max', 'height': 60 },
+                            				'layout': { 'style': 'horizontal' },                                            
                                             'children': [
                                                 {
                                                     'type': 'Button',
@@ -257,6 +256,15 @@ var ZEN = (function (ZEN, _, $) {
                                                     'view': {'size': {'width': 'max', 'height': 52}},
                                                     'actions': {
                                                             'active': {'queue': 'ui.form', 'message': {'type': 'submit'}}
+                                                    }
+                                                },									
+                                                {
+                                                    'type': 'Button',
+                                                    'label': 'Cancel',
+                                                    'id': 'form-cancel',
+                                                    'view': {'size': {'width': 'max', 'height': 52}},
+                                                    'actions': {
+                                                            'active': {'queue': 'ui.form', 'message': {'type': 'cancel'}}
                                                     }
                                                 }									
                                             ]
@@ -282,12 +290,16 @@ var ZEN = (function (ZEN, _, $) {
                                             var parentID = contentElement.parent.id;
                                         }
                                         
+                                        var delta = jsondiffpatch.diff(contentElement.params.content, data.content);
+                                        alert(JSON.stringify(delta, null, 2));
+                                        //alert(JSON.stringify(JSON.parse(delta), null, 2));                    
+
                                         contentElement.update(data);
                                         properties.remove(true);
                                         self.remove(true);
                                         
                                         var content = contentElement.safeSerialize()['params'];
-                    
+                                        
                                         removeElement.remove(true);
                                         ZEN.cleanup();
             

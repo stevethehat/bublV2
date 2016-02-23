@@ -28,10 +28,12 @@
 		 'app/js/ui.formnumber.js',
 		 'app/js/ui.formtextarea.js',
 		 'app/js/ui.formhtmlarea.js',
+		 'app/js/ui.formnumbercombo.js',
 		 'app/js/ui.formslideselector.js',
 
 		 'app/lib/color-thief.js',
 		 'app/lib/ace/src/ace.js',
+         'app/lib/jsondiffpatch-full.min.js',
 		 'app/js/bublApp.js',
 		 'app/js/bublAssets.js',
 		 'app/js/ui.floatproperties.js',

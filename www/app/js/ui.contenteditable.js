@@ -24,7 +24,7 @@ var ZEN = (function (ZEN, _, $) {
 					// call the base class init method
 					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
 					//ZEN.events.ContentEditableHandler (this, this.el);
-					ZEN.events.buttonHandler (this, this.el);
+					//ZEN.events.buttonHandler (this, this.el);
 				},
 
 				label: function () {
@@ -48,6 +48,8 @@ var ZEN = (function (ZEN, _, $) {
 					}
 				},
 				*/
+                
+                
 				
 				getElement: function () {
 					var self = this;
@@ -56,9 +58,12 @@ var ZEN = (function (ZEN, _, $) {
 						// this.el.attr('tabindex',0);
 						this.el.addClass('zen-contenteditable');
 						self.setupStylingDiv();
+                        //this.params.styling.padding = this.unpackStylingValues('padding');
+                        //this.params.border = this.unpackStylingValues(this.params.border);
+                        //self.stylingDiv.css(this.params.styling);
 						
-						if(this.params.label !== undefined && this.params.label !== ''){
-							self.stylingDiv.html(this.params.label);						
+						if(this.params.content.text !== undefined && this.params.content.text !== ''){
+							self.stylingDiv.html(this.params.content.text);						
 						} else {
 							if(bublApp.displayMode === 'app'){
 								self.stylingDiv.html('<p>Enter your text here</p>');

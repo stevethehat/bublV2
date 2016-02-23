@@ -20,21 +20,35 @@ var ZEN = (function (ZEN, _, $) {
         BublColumns.setup = function(contentArea){	
             var editor = ZEN.objects['bublEditor'];	
             var parentID = contentArea.parent.id;
-            BublColumns.id = BublColumns.id +1;
+            BublColumns.id = bublEditor.getControlID();
             var id = 'bublColumns-' + BublColumns.id;
             var content = {
                 'type': 'View', 
                 'id': id,  
                 'children': [
                     {
-                        'id': id + '-left',
-                        'type': 'ContentArea',
-                        'size': { 'width': 'max', 'height': 'max' }                
+                        'type': 'View',
+                        'size': { 'width': 'max', 'height': 'max' },
+                        'id': id + '-left-column-view',
+                        'children':[
+                            {
+                                'id': id + '-left',
+                                'type': 'ContentArea',
+                                'size': { 'width': 'max', 'height': 'max' }       
+                            }                            
+                        ]       
                     },
                     {
-                        'id': id + '-right',
-                        'type': 'ContentArea',
-                        'size': { 'width': 'max', 'height': 'max' }                                        
+                        'type': 'View',
+                        'size': { 'width': 'max', 'height': 'max' },
+                        'id': id + '-right-column-view',
+                        'children':[
+                            {
+                                'id': id + '-right',
+                                'type': 'ContentArea',
+                                'size': { 'width': 'max', 'height': 'max' }                                        
+                            }
+                        ]                                    
                     }
                 ], 
                 'layout': { 'style': 'horizontal' },
@@ -57,7 +71,7 @@ var ZEN = (function (ZEN, _, $) {
 				init: function (params, parent) {
 					// call the base class init method
 					ZEN.ui.BublControl.prototype.init.call(this, params, parent);
-					ZEN.events.buttonHandler (this, this.el);
+					//ZEN.events.buttonHandler (this, this.el);
 				},
 				getElement: function () {
 					var self = this;

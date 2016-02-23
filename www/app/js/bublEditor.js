@@ -1,5 +1,12 @@
 var bublEditor = {
-    state: 'default',
+    _state: 'default',
+    getState: function(){
+        return(this._state);    
+    },
+    setState: function(value){
+        this._state = value;
+    },
+    
 	load: function(data, callback){
 		var pageDefinition = data;
 		bublUtil.findID('bublEditor', pageDefinition, 
@@ -61,81 +68,114 @@ var bublEditor = {
 			}
 		);		
 				
+        /*
 		bublApp.setupObserver('ui.bublcontrol',
 			function(message){
 				ZEN.log('observer(ui.bublcontrol)', message, $(message.sourceElement));
 				bublApp.variables['contentelementparent'] = bublApp.variables['contentelement'];
 				bublApp.setCurrentObject(['contentelement'], message.source,
 					function(){
-						self.showMenuForCurrentElement();
+						self.showMenuForCurrentElement(message);
 					}
 				);
 			}
-		);		
+		);
+        */		
 	},
+    
+    selectElementInEditor: function(element){
+        var currentContendElement = bublApp.variables['contentelement'];						
+        if(currentContendElement !== undefined && currentContendElement !== null){						
+            currentContendElement.el.removeClass('selected');
+        }						
+    
+        element.el.addClass('selected');
+        bublApp.variables['contentelement'] = element;
+
+        switch(bublEditor.getState()){
+            case 'default':
+                // if default open properties..
+                bublEditor.showMenuForCurrentElement();
+                break;
+            case 'add':
+                bublEditor.addSelectedControl();                            
+                break;
+            case 'properties':
+                bublEditor.showMenuForCurrentElement();            
+                break;                                    
+        }
+        /*
+        var addControlType = bublApp.variables['addControlType'];
+        if(addControlType !== null && addControlType !== undefined){
+            bublEditor.addSelectedControl();                            
+        } else {
+            bublEditor.showMenuForCurrentElement();
+        }
+        */        
+    },
 
     removeCurrentMenuAndProperties: function(){
         var currentMenuView = ZEN.objects['floatMenuView'];
-        if(currentMenuView !== undefined){
+        if(currentMenuView !== undefined && currentMenuView !== null){
             currentMenuView.remove(true);
         }
-        var currentMenu = ZEN.objects['floatMenuView'];
-        var currentProperties = ZEN.objects['propertiesView'];
-        if(currentMenu !== undefined){
+        
+        var currentMenu = ZEN.objects['floatMenu'];
+        if(currentMenu !== undefined && currentMenu !== null){
             currentMenu.remove(true);
         }
-        if(currentProperties !== undefined){
+        
+        var currentProperties = ZEN.objects['propertiesView'];
+        if(currentProperties !== undefined && currentProperties !== null){
             currentProperties.remove(true);
         }
-        bublEditor.state = 'default';
+        bublEditor.setState('default');
     },
 		
-	showMenuForCurrentElement: function(){
+	showMenuForCurrentElement: function(message){
 		var self = this;
 
-        if(bublEditor.state === 'default'){
-            var addControlType = bublApp.variables['addControlType'];
-        
-            if(addControlType === null || addControlType === undefined){
-                var contentElement = bublApp.variables['contentelement'];
-                var mainPanel = ZEN.objects['mainPanel'];
-                self.removeCurrentMenuAndProperties();
-                contentElement.getProperties(
-                    function(properties){
-                        var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(contentElement, properties);
-                        var menuDefinition = {
-                            "id": "floatMenuView",
-                            "type": "View",
-                            "show": true,
-                            "size": menuPositioning.size,
-                            "opacity": 0.5,
-                            "params": {},
-                            "position": menuPositioning.position,
-                            "layout": { "style": "vertical" },
-                            "children": [
-                                {
-                                    "type": "FloatMenu",
-                                    "id": "floatMenu",
-                                    "show": true,
-                                    "side": menuPositioning.side,
-                                    "valign": menuPositioning.valign,
-                                    'definition': properties,
-                                    "size": {
-                                        "width": "max", "height": "max"
-                                    }
+        if(bublEditor.getState() === 'default' || bublEditor.getState() === 'properties'){
+            bublEditor.setState('loadingproperties');
+            var contentElement = bublApp.variables['contentelement'];
+            var mainPanel = ZEN.objects['mainPanel'];
+            self.removeCurrentMenuAndProperties();
+            contentElement.getProperties(
+                function(properties){
+                    var menuPositioning = ZEN.ui.FloatMenu.getMenuPositionAndSize(contentElement, properties);
+                    var menuDefinition = {
+                        "id": "floatMenuView",
+                        "type": "View",
+                        "show": true,
+                        "size": menuPositioning.size,
+                        "opacity": 0.5,
+                        "params": {},
+                        "position": menuPositioning.position,
+                        "layout": { "style": "vertical" },
+                        "children": [
+                            {
+                                "type": "FloatMenu",
+                                "id": "floatMenu",
+                                "show": true,
+                                "side": menuPositioning.side,
+                                "valign": menuPositioning.valign,
+                                'definition': properties,
+                                "size": {
+                                    "width": "max", "height": "max"
                                 }
-                            ]
-                        }
-                            
-                        var menu = ZEN.parse(menuDefinition, mainPanel);
-                        menu.show(true);
-                        menu.contentElement = contentElement;
-                        mainPanel.resize(true);					
+                            }
+                        ]
                     }
-                )   
-            }
+                        
+                    var menu = ZEN.parse(menuDefinition, mainPanel);
+                    menu.show(true);
+                    menu.contentElement = contentElement;
+                    mainPanel.resize(true);
+                    bublEditor.setState('properties');                               					
+                }
+            )   
+        
         }
-        bublEditor.state = 'properties';        
 	},
 	
 	showPropertiesForCurrentElement: function(){
@@ -165,8 +205,10 @@ var bublEditor = {
     
     selectControlToAdd: function(data){
         var self = this;
+        self.removeCurrentMenuAndProperties();
+
         var currentAddControlType = bublApp.variables['addControlType'];
-        
+        bublEditor.setState('add');
         
         if(data.params.addcontent.type === currentAddControlType){
             // turn addin functionality off
@@ -174,17 +216,24 @@ var bublEditor = {
             bublApp.variables['addControlType'] = null;
             data.el.removeClass('selected');
         } else {
-            $('.contentareadrop').text('Click here to add a "' + data.params.addcontent.type + '" element.');
+            $('.contentareadrop').each(
+                function(index, element){
+                    element = $(element);
+                    var elementParent = element.parent().parent().parent();
+                    element.text('Click here to add a "' + data.params.addcontent.type + '" element. (' + elementParent.attr('id') + ')');
+                }
+            )
+            
             bublApp.variables['addControlType'] = data.params.addcontent.type; 
             data.el.addClass('selected');
         }
-        self.removeCurrentMenuAndProperties();
     },
 
     addSelectedControl: function(){
         var self = this;
         var addControlType = bublApp.variables['addControlType'];
 		var contentArea = bublApp.variables['contentelement'];
+        bublEditor.setState('default');
 
         if(!contentArea.autoAddedView){
             if(contentArea !== null && addControlType !== null){
@@ -215,6 +264,30 @@ var bublEditor = {
         }
     },
 
+    _controlID: null,
+    getControlID: function(){
+        if(bublEditor._controlID === null){
+            bublEditor._controlID = 0;
+            _.each(ZEN.objects,
+                function(object){
+                    var objectID = object.id;
+                    var lastHyphen = objectID.lastIndexOf('-');
+                    if(lastHyphen !== -1){
+                        var ID = objectID.substr(lastHyphen +1);
+                        if(_.isNumber(Number(ID))){
+                            if(Number(ID) > bublEditor._controlID){
+                                bublEditor._controlID = Number(ID);                                
+                            }
+                        }
+                    }            
+                }
+            );
+        }
+        bublEditor._controlID = bublEditor._controlID + 1; 
+        
+        return(bublEditor._controlID);
+    },
+    
 	addControl: function(data){
 		var contentArea = bublApp.variables['contentelement'];
 		var positioning = 'fill'; 
@@ -223,11 +296,10 @@ var bublEditor = {
 		}
 		
 		var newControlParams = _.clone(data.params.addcontent);
+        newControlParams['id'] = 'bublControl-' + bublEditor.getControlID(); 
 		
-		alert(JSON.stringify(newControlParams, null, 4));
+		//alert('addControl = ' + JSON.stringify(newControlParams, null, 4));
 				
-		ZEN.log('add control', bublApp.variables);
-		
 		var parentID = contentArea.parent.id;
 		contentArea.remove(true);
 		ZEN.cleanup();
@@ -238,6 +310,7 @@ var bublEditor = {
 		
 		ZEN.notify ("ui.bublcontrol", { 'source': newControl });				
 	},
+    
 	saveControl: function(data){
 		var self = this;
 		var element = bublApp.variables['contentelement'];
