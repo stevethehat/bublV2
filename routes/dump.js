@@ -18,6 +18,20 @@ function dumpFile(fileName, object){
 	);
 }
 
+function dumpText(fileName, text){
+	fs.unlink(fileName,
+		function(){
+			fs.writeFile(fileName, text, 
+				function(err) {
+			    	if(err) {
+			        	return console.log(err);
+			    	}
+				}
+			);
+		}
+	);
+}
+
 router.post('/', 
 	function(request, response, next){
 		var object = request.body;
@@ -25,6 +39,15 @@ router.post('/',
 		response.send('ok');
 	}
 ); 	
+
+router.post('/:dump_file/astext', 
+	function(request, response, next){
+		var text = request.body;
+		dumpText('../bubl/www/dumps/' + request.params.dump_file, text);		
+		response.send('ok');
+	}
+); 	
+
 
 router.post('/:dump_file', 
 	function(request, response, next){
